@@ -463,3 +463,4 @@ def get_prediction_for_project(project_id: str) -> Dict[str, Any]:
         ],
         "model_version": "v1"
     }
+

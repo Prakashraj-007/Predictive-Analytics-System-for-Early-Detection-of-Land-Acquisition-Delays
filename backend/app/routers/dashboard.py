@@ -66,3 +66,4 @@ def get_monthly_risk_trend():
         TrendItem(month="2026-09", avg_risk=53.4),
         TrendItem(month="2026-10", avg_risk=50.3),
     ]
+

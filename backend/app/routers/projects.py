@@ -101,3 +101,4 @@ def approve_project(id: str):
 def update_project(id: str, payload: ProjectPatchRequest):
     # Updating project returns full updated prediction object (contracts.md section 3 & 4)
     return get_prediction_for_project(id)
+

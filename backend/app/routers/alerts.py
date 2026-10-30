@@ -19,3 +19,4 @@ def acknowledge_alert(id: str):
         status="ack",
         alert_id=id
     )
+

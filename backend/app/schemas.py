@@ -210,3 +210,4 @@ class AuditLogItem(BaseModel):
     timestamp: str
     model_version: Optional[str] = None
     details: Optional[Dict[str, Any]] = None
+

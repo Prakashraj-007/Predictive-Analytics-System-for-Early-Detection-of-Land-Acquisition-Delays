@@ -16,3 +16,4 @@ def get_current_user_profile():
         role="project_manager",
         district="Pune"
     )
+

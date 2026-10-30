@@ -207,3 +207,4 @@ def test_audit():
     if data:
         assert "log_id" in data[0]
         assert "action" in data[0]
+

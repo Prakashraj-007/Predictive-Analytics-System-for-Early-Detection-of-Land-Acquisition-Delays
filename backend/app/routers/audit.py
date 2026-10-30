@@ -24,3 +24,4 @@ def list_audit_logs(
             continue
         results.append(AuditLogItem(**log))
     return results
+

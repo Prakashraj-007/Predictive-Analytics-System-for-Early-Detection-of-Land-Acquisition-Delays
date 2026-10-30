@@ -32,3 +32,4 @@ def get_map_projects(
             )
         )
     return results
+

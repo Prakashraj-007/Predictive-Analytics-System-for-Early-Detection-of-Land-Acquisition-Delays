@@ -60,3 +60,4 @@ def activate_model(version: str):
         "version": version,
         "message": f"Model version {version} is now active."
     }
+

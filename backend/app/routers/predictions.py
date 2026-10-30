@@ -48,3 +48,4 @@ def simulate_what_if(id: str, payload: WhatIfRequest):
         new_score=new_score,
         change=(new_score - current_score)
     )
+

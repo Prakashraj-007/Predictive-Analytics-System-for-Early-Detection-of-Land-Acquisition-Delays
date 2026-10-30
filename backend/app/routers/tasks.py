@@ -43,3 +43,4 @@ def update_task(id: str, payload: TaskPatchRequest):
             task["remarks"] = payload.remarks
 
     return TaskItem(**task)
+
