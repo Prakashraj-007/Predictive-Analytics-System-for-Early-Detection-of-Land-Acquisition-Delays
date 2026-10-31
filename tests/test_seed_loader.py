@@ -80,3 +80,4 @@ def test_clean_records_projects_nan_handling():
     records = clean_records(df, project_cfg)
     assert len(records) == 1
     assert records[0]["created_by"] is not None
+
