@@ -1,0 +1,44 @@
+base_rate: -9
+noise_sd: 0.4
+weights:
+  land_area_ha: 0.006
+  families_affected: 0.0007
+  litigation_cases: 0.14
+  stay_orders: 0.16
+  ownership_disputes: 0.15
+  compensation_pending_pct: 0.015
+  approval_days_pending: 0.012
+  docs_incomplete_pct: 0.014
+  officer_response_days: 0.016
+  encroached_area_pct: 0.018
+  possession_pct: -0.008
+  rr_progress_pct: -0.007
+  district_past_delay_rate: 1.0
+  project_type_bias: &id001
+    highway: 0.16
+    rail: 0.12
+    irrigation: 0.1
+    power: 0.06
+    urban: 0.16
+  current_stage_bias: &id002
+    planning: 0.2
+    sia: 0.25
+    notification: 0.16
+    award: 0.1
+    compensation: 0.28
+    possession: 0.38
+    rr: 0.22
+project_type_bias: *id001
+current_stage_bias: *id002
+stage_weights:
+  approval:
+    approval_days_pending: 0.018
+    officer_response_days: 0.016
+  compensation:
+    compensation_pending_pct: 0.022
+    ownership_disputes: 0.22
+  possession:
+    encroached_area_pct: 0.02
+    stay_orders: 0.2
+    litigation_cases: 0.15
+    possession_pct: -0.014
