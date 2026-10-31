@@ -1,9 +1,9 @@
 """
-Admin Router (Stub implementation for A4)
-Strictly adheres to docs/contracts.md section 3.
+Admin Router for LandSentinel.
+Strictly adheres to docs/contracts.md section 3 & 5.
 """
-from typing import List, Dict, Any
-from fastapi import APIRouter, UploadFile, File, status
+from typing import List
+from fastapi import APIRouter, UploadFile, File, status, Depends
 from app.schemas import (
     AdminUploadResponse,
     RetrainRequest,
@@ -11,12 +11,16 @@ from app.schemas import (
     ModelVersionItem
 )
 from app.stubs import SAMPLE_MODELS
+from app.auth import CurrentUser, require_roles
+from app.services.audit import log_action
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
 @router.post("/upload", response_model=AdminUploadResponse)
-async def upload_training_csv(file: UploadFile = File(...)):
-    # Stub CSV processing response
+async def upload_training_csv(
+    file: UploadFile = File(...),
+    user: CurrentUser = Depends(require_roles("admin"))
+):
     filename = file.filename or "retrain_dataset.csv"
     columns = [
         "project_id", "planned_start", "land_area_ha", "families_affected",
@@ -27,6 +31,7 @@ async def upload_training_csv(file: UploadFile = File(...)):
         "is_delayed", "delay_days", "delayed_approval", "delayed_compensation",
         "delayed_possession"
     ]
+    log_action(user.user_id, "UPLOAD_DATASET", details={"filename": filename, "rows": 500})
     return AdminUploadResponse(
         filename=filename,
         rows=500,
@@ -34,11 +39,15 @@ async def upload_training_csv(file: UploadFile = File(...)):
     )
 
 @router.post("/retrain", status_code=status.HTTP_202_ACCEPTED)
-def trigger_retraining(payload: RetrainRequest):
+def trigger_retraining(
+    payload: RetrainRequest,
+    user: CurrentUser = Depends(require_roles("admin"))
+):
+    log_action(user.user_id, "TRIGGER_RETRAINING", details={"file": payload.file})
     return {"message": "Retraining job queued successfully", "file": payload.file}
 
 @router.get("/retrain/status", response_model=RetrainStatusResponse)
-def get_retrain_status():
+def get_retrain_status(user: CurrentUser = Depends(require_roles("admin"))):
     return RetrainStatusResponse(
         state="done",
         result={
@@ -50,14 +59,17 @@ def get_retrain_status():
     )
 
 @router.get("/models", response_model=List[ModelVersionItem])
-def list_models():
+def list_models(user: CurrentUser = Depends(require_roles("admin"))):
     return [ModelVersionItem(**m) for m in SAMPLE_MODELS]
 
 @router.post("/models/{version}/activate")
-def activate_model(version: str):
+def activate_model(
+    version: str,
+    user: CurrentUser = Depends(require_roles("admin"))
+):
+    log_action(user.user_id, "ACTIVATE_MODEL", model_version=version)
     return {
         "status": "activated",
         "version": version,
         "message": f"Model version {version} is now active."
     }
-
