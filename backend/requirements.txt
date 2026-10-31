@@ -13,3 +13,4 @@ joblib
 faker
 httpx
 pytest
+python-multipart
