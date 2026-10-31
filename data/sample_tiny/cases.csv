@@ -1,645 +1,577 @@
 case_id,parcel_id,category,filing_date,status,stay_order,hearings
-CAS-00001,PAR-PRJ-0001-001,title dispute,2021-05-08,disposed,False,10
-CAS-00002,PAR-PRJ-0001-001,encroachment,2025-07-11,disposed,False,10
-CAS-00003,PAR-PRJ-0001-001,encroachment,2022-02-19,disposed,True,8
-CAS-00004,PAR-PRJ-0001-001,compensation,2024-11-26,pending,False,8
-CAS-00005,PAR-PRJ-0001-001,compensation,2023-08-12,disposed,False,11
-CAS-00006,PAR-PRJ-0001-001,encroachment,2024-10-12,pending,False,5
-CAS-00007,PAR-PRJ-0001-001,compensation,2020-09-15,pending,True,5
-CAS-00008,PAR-PRJ-0001-001,land acquisition,2024-03-29,disposed,True,8
-CAS-00009,PAR-PRJ-0001-002,title dispute,2023-01-09,disposed,False,5
-CAS-00010,PAR-PRJ-0001-002,encroachment,2025-09-10,pending,True,2
-CAS-00011,PAR-PRJ-0001-002,encroachment,2022-06-12,disposed,False,10
-CAS-00012,PAR-PRJ-0001-002,land acquisition,2024-05-18,disposed,True,7
-CAS-00013,PAR-PRJ-0001-002,compensation,2024-11-27,pending,False,1
-CAS-00014,PAR-PRJ-0001-002,land acquisition,2021-03-01,pending,False,6
-CAS-00015,PAR-PRJ-0001-003,compensation,2021-07-05,pending,False,2
-CAS-00016,PAR-PRJ-0001-003,stay,2021-12-25,pending,True,9
-CAS-00017,PAR-PRJ-0001-003,title dispute,2024-08-11,disposed,False,10
-CAS-00018,PAR-PRJ-0001-003,compensation,2025-12-26,pending,False,11
-CAS-00019,PAR-PRJ-0001-003,title dispute,2023-01-30,disposed,False,11
-CAS-00020,PAR-PRJ-0001-004,stay,2022-10-17,disposed,True,10
-CAS-00021,PAR-PRJ-0001-004,compensation,2024-10-26,disposed,False,4
-CAS-00022,PAR-PRJ-0001-004,stay,2022-01-02,disposed,False,7
-CAS-00023,PAR-PRJ-0001-004,compensation,2020-04-29,pending,False,9
-CAS-00024,PAR-PRJ-0001-004,compensation,2022-04-10,disposed,True,4
-CAS-00025,PAR-PRJ-0001-004,compensation,2021-07-20,pending,True,7
-CAS-00026,PAR-PRJ-0001-005,stay,2020-05-15,disposed,False,2
-CAS-00027,PAR-PRJ-0001-005,land acquisition,2023-11-13,disposed,True,2
-CAS-00028,PAR-PRJ-0001-005,land acquisition,2022-08-06,pending,False,4
-CAS-00029,PAR-PRJ-0001-005,land acquisition,2020-05-21,disposed,False,7
-CAS-00030,PAR-PRJ-0001-005,encroachment,2020-04-18,disposed,True,7
-CAS-00031,PAR-PRJ-0001-005,title dispute,2022-01-24,pending,False,10
-CAS-00032,PAR-PRJ-0001-005,land acquisition,2024-05-18,pending,True,3
-CAS-00033,PAR-PRJ-0001-006,stay,2020-10-21,disposed,False,3
-CAS-00034,PAR-PRJ-0001-006,encroachment,2022-07-14,pending,True,5
-CAS-00035,PAR-PRJ-0001-006,land acquisition,2023-12-27,pending,False,4
-CAS-00036,PAR-PRJ-0001-007,compensation,2024-03-15,disposed,True,5
-CAS-00037,PAR-PRJ-0001-007,stay,2022-06-18,pending,False,6
-CAS-00038,PAR-PRJ-0001-007,encroachment,2024-07-28,disposed,False,7
-CAS-00039,PAR-PRJ-0001-007,stay,2024-11-17,pending,True,1
-CAS-00040,PAR-PRJ-0001-007,land acquisition,2021-09-02,pending,True,5
-CAS-00041,PAR-PRJ-0001-007,land acquisition,2023-06-03,pending,True,4
-CAS-00042,PAR-PRJ-0001-007,encroachment,2025-06-26,pending,False,7
-CAS-00043,PAR-PRJ-0001-007,compensation,2020-08-12,pending,True,9
-CAS-00044,PAR-PRJ-0001-007,land acquisition,2023-03-04,disposed,False,6
-CAS-00045,PAR-PRJ-0001-007,title dispute,2021-01-20,disposed,False,4
-CAS-00046,PAR-PRJ-0001-007,compensation,2025-05-21,disposed,False,9
-CAS-00047,PAR-PRJ-0001-007,compensation,2024-06-03,pending,False,3
-CAS-00048,PAR-PRJ-0001-008,compensation,2024-05-21,disposed,False,3
-CAS-00049,PAR-PRJ-0001-008,compensation,2024-04-27,disposed,False,5
-CAS-00050,PAR-PRJ-0001-008,land acquisition,2024-09-04,disposed,False,2
-CAS-00051,PAR-PRJ-0001-008,compensation,2024-04-24,disposed,False,6
-CAS-00052,PAR-PRJ-0001-008,stay,2022-10-24,pending,True,6
-CAS-00053,PAR-PRJ-0001-008,land acquisition,2025-07-08,disposed,False,4
-CAS-00054,PAR-PRJ-0001-008,land acquisition,2022-06-16,disposed,False,11
-CAS-00055,PAR-PRJ-0001-008,title dispute,2020-03-06,pending,False,11
-CAS-00056,PAR-PRJ-0001-008,compensation,2020-06-10,disposed,True,6
-CAS-00057,PAR-PRJ-0001-009,compensation,2024-08-11,pending,False,8
-CAS-00058,PAR-PRJ-0001-010,land acquisition,2023-08-13,pending,False,10
-CAS-00059,PAR-PRJ-0001-010,land acquisition,2021-12-21,disposed,True,7
-CAS-00060,PAR-PRJ-0001-010,land acquisition,2022-03-26,pending,True,11
-CAS-00061,PAR-PRJ-0001-011,land acquisition,2024-06-30,disposed,True,3
-CAS-00062,PAR-PRJ-0001-011,stay,2024-10-30,pending,False,11
-CAS-00063,PAR-PRJ-0001-011,title dispute,2021-07-15,pending,False,7
-CAS-00064,PAR-PRJ-0001-011,compensation,2021-03-31,pending,False,1
-CAS-00065,PAR-PRJ-0001-011,encroachment,2024-01-28,disposed,False,2
-CAS-00066,PAR-PRJ-0001-012,compensation,2020-05-09,disposed,False,7
-CAS-00067,PAR-PRJ-0001-012,title dispute,2022-10-04,pending,True,9
-CAS-00068,PAR-PRJ-0001-012,encroachment,2025-03-29,pending,False,7
-CAS-00069,PAR-PRJ-0001-012,stay,2024-09-21,pending,True,10
-CAS-00070,PAR-PRJ-0001-012,title dispute,2024-04-17,disposed,True,3
-CAS-00071,PAR-PRJ-0001-012,land acquisition,2021-12-12,disposed,False,7
-CAS-00072,PAR-PRJ-0001-012,encroachment,2025-08-03,disposed,True,1
-CAS-00073,PAR-PRJ-0001-012,compensation,2022-03-04,disposed,False,9
-CAS-00074,PAR-PRJ-0001-012,encroachment,2023-01-27,disposed,False,9
-CAS-00075,PAR-PRJ-0001-012,stay,2021-09-27,disposed,False,1
-CAS-00076,PAR-PRJ-0001-012,compensation,2025-04-13,disposed,True,7
-CAS-00077,PAR-PRJ-0001-013,compensation,2022-07-20,pending,False,5
-CAS-00078,PAR-PRJ-0001-013,compensation,2020-08-23,disposed,True,5
-CAS-00079,PAR-PRJ-0001-014,encroachment,2023-09-06,disposed,False,10
-CAS-00080,PAR-PRJ-0001-014,stay,2022-10-29,disposed,False,9
-CAS-00081,PAR-PRJ-0001-014,title dispute,2025-10-13,disposed,True,4
-CAS-00082,PAR-PRJ-0001-014,encroachment,2024-12-25,disposed,False,4
-CAS-00083,PAR-PRJ-0001-014,title dispute,2023-08-28,disposed,True,6
-CAS-00084,PAR-PRJ-0001-015,stay,2021-10-24,pending,False,9
-CAS-00085,PAR-PRJ-0001-015,land acquisition,2021-09-16,pending,True,4
-CAS-00086,PAR-PRJ-0001-015,land acquisition,2024-01-20,pending,True,6
-CAS-00087,PAR-PRJ-0001-016,stay,2021-06-25,disposed,False,5
-CAS-00088,PAR-PRJ-0001-016,stay,2025-06-29,disposed,True,9
-CAS-00089,PAR-PRJ-0001-016,stay,2022-11-12,disposed,False,6
-CAS-00090,PAR-PRJ-0001-016,land acquisition,2020-07-09,disposed,False,6
-CAS-00091,PAR-PRJ-0001-016,title dispute,2022-05-24,disposed,False,3
-CAS-00092,PAR-PRJ-0001-016,compensation,2021-12-02,pending,True,11
-CAS-00093,PAR-PRJ-0001-018,stay,2020-07-02,pending,True,8
-CAS-00094,PAR-PRJ-0001-018,land acquisition,2025-05-27,pending,False,10
-CAS-00095,PAR-PRJ-0001-019,encroachment,2023-12-17,pending,False,10
-CAS-00096,PAR-PRJ-0001-019,land acquisition,2022-01-19,disposed,True,5
-CAS-00097,PAR-PRJ-0001-019,stay,2024-03-27,disposed,False,5
-CAS-00098,PAR-PRJ-0001-020,stay,2025-03-06,disposed,False,10
-CAS-00099,PAR-PRJ-0001-020,land acquisition,2020-08-05,pending,True,9
-CAS-00100,PAR-PRJ-0001-020,stay,2022-04-22,disposed,False,11
-CAS-00101,PAR-PRJ-0001-020,title dispute,2023-02-17,disposed,True,11
-CAS-00102,PAR-PRJ-0001-020,encroachment,2025-12-30,disposed,False,11
-CAS-00103,PAR-PRJ-0001-020,land acquisition,2021-12-18,disposed,False,2
-CAS-00104,PAR-PRJ-0001-020,encroachment,2021-02-11,pending,False,1
-CAS-00105,PAR-PRJ-0001-020,title dispute,2023-08-04,pending,False,8
-CAS-00106,PAR-PRJ-0001-020,title dispute,2020-04-03,disposed,False,2
-CAS-00107,PAR-PRJ-0001-021,title dispute,2021-01-01,disposed,False,10
-CAS-00108,PAR-PRJ-0001-021,stay,2024-12-23,disposed,True,6
-CAS-00109,PAR-PRJ-0001-021,encroachment,2021-02-10,disposed,True,11
-CAS-00110,PAR-PRJ-0001-021,compensation,2023-09-23,pending,False,9
-CAS-00111,PAR-PRJ-0001-022,compensation,2022-06-17,pending,False,7
-CAS-00112,PAR-PRJ-0001-022,encroachment,2025-08-16,pending,True,9
-CAS-00113,PAR-PRJ-0001-023,title dispute,2021-10-16,disposed,False,5
-CAS-00114,PAR-PRJ-0001-023,title dispute,2022-08-31,disposed,True,5
-CAS-00115,PAR-PRJ-0001-023,compensation,2022-08-16,disposed,False,5
-CAS-00116,PAR-PRJ-0001-023,land acquisition,2022-12-08,disposed,False,8
-CAS-00117,PAR-PRJ-0001-023,stay,2022-11-21,pending,False,9
-CAS-00118,PAR-PRJ-0001-023,encroachment,2020-07-25,pending,True,4
-CAS-00119,PAR-PRJ-0001-023,encroachment,2025-07-29,pending,False,7
-CAS-00120,PAR-PRJ-0001-023,encroachment,2024-07-30,disposed,False,2
-CAS-00121,PAR-PRJ-0001-023,encroachment,2025-04-25,disposed,False,10
-CAS-00122,PAR-PRJ-0001-023,encroachment,2021-02-14,disposed,False,8
-CAS-00123,PAR-PRJ-0001-023,stay,2024-09-17,disposed,True,1
-CAS-00124,PAR-PRJ-0001-024,land acquisition,2023-12-30,pending,False,9
-CAS-00125,PAR-PRJ-0001-024,encroachment,2025-03-22,disposed,False,4
-CAS-00126,PAR-PRJ-0001-024,encroachment,2021-08-01,pending,False,6
-CAS-00127,PAR-PRJ-0001-024,compensation,2021-03-16,disposed,False,1
-CAS-00128,PAR-PRJ-0001-024,title dispute,2024-11-08,pending,True,8
-CAS-00129,PAR-PRJ-0001-024,title dispute,2023-12-13,disposed,False,1
-CAS-00130,PAR-PRJ-0001-024,stay,2023-06-17,pending,False,7
-CAS-00131,PAR-PRJ-0001-024,compensation,2021-05-08,disposed,False,8
-CAS-00132,PAR-PRJ-0001-024,title dispute,2024-06-21,pending,True,5
-CAS-00133,PAR-PRJ-0001-024,title dispute,2023-04-04,disposed,False,7
-CAS-00134,PAR-PRJ-0001-024,stay,2025-04-29,pending,False,1
-CAS-00135,PAR-PRJ-0001-024,encroachment,2021-07-26,disposed,False,8
-CAS-00136,PAR-PRJ-0001-025,encroachment,2022-04-12,pending,False,8
-CAS-00137,PAR-PRJ-0001-025,stay,2020-01-21,disposed,False,11
-CAS-00138,PAR-PRJ-0001-025,encroachment,2020-09-02,disposed,True,7
-CAS-00139,PAR-PRJ-0001-025,stay,2020-02-27,pending,False,7
-CAS-00140,PAR-PRJ-0001-025,title dispute,2020-05-15,pending,True,2
-CAS-00141,PAR-PRJ-0001-026,encroachment,2020-06-10,disposed,False,8
-CAS-00142,PAR-PRJ-0001-026,stay,2022-02-16,pending,False,2
-CAS-00143,PAR-PRJ-0001-026,stay,2020-10-05,pending,True,10
-CAS-00144,PAR-PRJ-0001-026,encroachment,2022-03-04,pending,True,6
-CAS-00145,PAR-PRJ-0001-026,encroachment,2021-11-29,disposed,False,4
-CAS-00146,PAR-PRJ-0001-027,land acquisition,2022-12-04,pending,False,8
-CAS-00147,PAR-PRJ-0001-027,title dispute,2021-10-06,disposed,False,4
-CAS-00148,PAR-PRJ-0001-027,encroachment,2022-11-24,disposed,False,11
-CAS-00149,PAR-PRJ-0001-027,title dispute,2025-07-20,pending,False,1
-CAS-00150,PAR-PRJ-0001-028,encroachment,2023-09-02,pending,False,10
-CAS-00151,PAR-PRJ-0001-028,stay,2024-06-11,disposed,True,8
-CAS-00152,PAR-PRJ-0001-028,stay,2022-03-22,disposed,False,7
-CAS-00153,PAR-PRJ-0001-028,land acquisition,2021-10-23,pending,True,5
-CAS-00154,PAR-PRJ-0001-028,title dispute,2024-03-07,pending,False,5
-CAS-00155,PAR-PRJ-0001-028,title dispute,2021-05-27,pending,False,8
-CAS-00156,PAR-PRJ-0001-028,encroachment,2022-10-14,pending,False,3
-CAS-00157,PAR-PRJ-0001-028,stay,2024-06-21,disposed,True,3
-CAS-00158,PAR-PRJ-0001-028,title dispute,2022-10-11,disposed,False,3
-CAS-00159,PAR-PRJ-0001-028,compensation,2024-11-26,pending,False,11
-CAS-00160,PAR-PRJ-0001-028,title dispute,2023-11-20,disposed,False,3
-CAS-00161,PAR-PRJ-0001-028,land acquisition,2024-05-14,pending,False,9
-CAS-00162,PAR-PRJ-0001-029,land acquisition,2023-02-11,pending,False,4
-CAS-00163,PAR-PRJ-0001-029,compensation,2023-12-29,pending,True,10
-CAS-00164,PAR-PRJ-0001-029,title dispute,2022-05-12,pending,False,11
-CAS-00165,PAR-PRJ-0001-029,compensation,2022-10-10,disposed,False,4
-CAS-00166,PAR-PRJ-0001-029,stay,2023-08-01,disposed,True,2
-CAS-00167,PAR-PRJ-0001-029,compensation,2023-01-02,pending,False,1
-CAS-00168,PAR-PRJ-0001-029,land acquisition,2024-09-28,pending,False,8
-CAS-00169,PAR-PRJ-0001-030,stay,2023-01-20,disposed,False,9
-CAS-00170,PAR-PRJ-0001-030,compensation,2022-02-13,pending,True,6
-CAS-00171,PAR-PRJ-0001-030,compensation,2021-11-05,pending,False,4
-CAS-00172,PAR-PRJ-0001-030,encroachment,2022-01-04,pending,False,3
-CAS-00173,PAR-PRJ-0001-030,encroachment,2020-10-30,pending,False,11
-CAS-00174,PAR-PRJ-0001-030,compensation,2023-11-19,disposed,True,5
-CAS-00175,PAR-PRJ-0001-030,compensation,2020-08-20,disposed,True,2
-CAS-00176,PAR-PRJ-0001-030,land acquisition,2022-06-11,pending,False,11
-CAS-00177,PAR-PRJ-0001-030,stay,2025-12-11,pending,True,8
-CAS-00178,PAR-PRJ-0001-030,land acquisition,2023-04-28,disposed,True,2
-CAS-00179,PAR-PRJ-0001-030,land acquisition,2025-08-30,disposed,True,4
-CAS-00180,PAR-PRJ-0001-031,title dispute,2024-05-29,disposed,False,6
-CAS-00181,PAR-PRJ-0001-031,title dispute,2020-04-25,disposed,True,5
-CAS-00182,PAR-PRJ-0001-031,stay,2024-01-28,pending,False,1
-CAS-00183,PAR-PRJ-0001-031,compensation,2021-06-16,disposed,False,7
-CAS-00184,PAR-PRJ-0001-031,stay,2022-10-06,pending,False,5
-CAS-00185,PAR-PRJ-0001-031,encroachment,2021-03-30,pending,True,7
-CAS-00186,PAR-PRJ-0001-031,encroachment,2022-08-11,disposed,False,8
-CAS-00187,PAR-PRJ-0001-031,land acquisition,2020-05-02,disposed,True,10
-CAS-00188,PAR-PRJ-0001-031,encroachment,2023-02-03,pending,True,2
-CAS-00189,PAR-PRJ-0001-031,compensation,2020-01-06,disposed,True,11
-CAS-00190,PAR-PRJ-0001-032,encroachment,2022-11-16,disposed,False,8
-CAS-00191,PAR-PRJ-0001-032,encroachment,2024-05-08,disposed,True,2
-CAS-00192,PAR-PRJ-0001-032,encroachment,2021-11-08,disposed,False,4
-CAS-00193,PAR-PRJ-0001-033,land acquisition,2020-06-04,disposed,True,2
-CAS-00194,PAR-PRJ-0001-033,encroachment,2021-03-28,disposed,False,4
-CAS-00195,PAR-PRJ-0001-033,compensation,2022-06-14,pending,False,11
-CAS-00196,PAR-PRJ-0001-033,stay,2022-02-27,disposed,True,10
-CAS-00197,PAR-PRJ-0001-033,title dispute,2025-04-20,pending,True,7
-CAS-00198,PAR-PRJ-0001-033,land acquisition,2025-01-28,disposed,False,11
-CAS-00199,PAR-PRJ-0001-033,title dispute,2023-05-14,pending,False,6
-CAS-00200,PAR-PRJ-0001-033,stay,2023-02-05,pending,False,3
-CAS-00201,PAR-PRJ-0001-033,stay,2021-10-28,disposed,False,2
-CAS-00202,PAR-PRJ-0001-033,title dispute,2025-03-10,disposed,False,2
-CAS-00203,PAR-PRJ-0001-033,stay,2023-11-21,disposed,True,11
-CAS-00204,PAR-PRJ-0001-033,encroachment,2023-12-02,pending,True,8
-CAS-00205,PAR-PRJ-0001-034,compensation,2022-06-28,disposed,False,4
-CAS-00206,PAR-PRJ-0001-034,stay,2024-11-25,pending,True,1
-CAS-00207,PAR-PRJ-0001-035,land acquisition,2021-04-10,disposed,False,10
-CAS-00208,PAR-PRJ-0001-035,encroachment,2023-09-29,disposed,True,11
-CAS-00209,PAR-PRJ-0001-035,land acquisition,2022-09-09,disposed,True,10
-CAS-00210,PAR-PRJ-0001-035,title dispute,2020-11-01,disposed,True,11
-CAS-00211,PAR-PRJ-0001-035,stay,2021-06-16,disposed,False,7
-CAS-00212,PAR-PRJ-0001-035,land acquisition,2024-11-01,pending,False,1
-CAS-00213,PAR-PRJ-0001-035,compensation,2025-08-13,pending,False,7
-CAS-00214,PAR-PRJ-0001-035,encroachment,2023-10-28,disposed,False,3
-CAS-00215,PAR-PRJ-0001-036,compensation,2020-12-26,disposed,False,5
-CAS-00216,PAR-PRJ-0001-037,land acquisition,2023-10-09,disposed,False,3
-CAS-00217,PAR-PRJ-0001-037,stay,2020-04-10,disposed,True,2
-CAS-00218,PAR-PRJ-0001-037,encroachment,2020-05-26,pending,False,5
-CAS-00219,PAR-PRJ-0001-037,encroachment,2021-05-07,pending,True,5
-CAS-00220,PAR-PRJ-0001-037,encroachment,2023-07-18,disposed,True,4
-CAS-00221,PAR-PRJ-0001-037,encroachment,2020-07-12,disposed,False,1
-CAS-00222,PAR-PRJ-0001-037,stay,2022-04-17,disposed,True,2
-CAS-00223,PAR-PRJ-0001-038,stay,2024-07-25,disposed,True,6
-CAS-00224,PAR-PRJ-0001-038,stay,2021-04-18,disposed,True,5
-CAS-00225,PAR-PRJ-0001-038,compensation,2020-05-13,disposed,False,5
-CAS-00226,PAR-PRJ-0001-038,title dispute,2021-09-21,pending,True,5
-CAS-00227,PAR-PRJ-0001-038,stay,2022-04-06,pending,False,7
-CAS-00228,PAR-PRJ-0001-038,stay,2021-03-09,pending,False,9
-CAS-00229,PAR-PRJ-0001-038,compensation,2022-10-01,pending,False,8
-CAS-00230,PAR-PRJ-0001-038,compensation,2025-02-04,disposed,False,9
-CAS-00231,PAR-PRJ-0001-038,stay,2024-04-29,disposed,False,2
-CAS-00232,PAR-PRJ-0001-038,encroachment,2021-07-11,disposed,True,3
-CAS-00233,PAR-PRJ-0001-038,encroachment,2022-05-20,disposed,False,1
-CAS-00234,PAR-PRJ-0001-039,stay,2025-03-20,disposed,True,1
-CAS-00235,PAR-PRJ-0001-039,stay,2020-10-03,disposed,True,9
-CAS-00236,PAR-PRJ-0001-039,title dispute,2025-12-15,pending,False,4
-CAS-00237,PAR-PRJ-0001-039,title dispute,2020-05-14,disposed,True,4
-CAS-00238,PAR-PRJ-0001-039,stay,2025-12-29,disposed,False,9
-CAS-00239,PAR-PRJ-0001-039,encroachment,2023-04-24,disposed,False,5
-CAS-00240,PAR-PRJ-0002-001,compensation,2020-05-30,pending,False,11
-CAS-00241,PAR-PRJ-0002-001,stay,2021-08-19,pending,False,5
-CAS-00242,PAR-PRJ-0002-001,encroachment,2023-02-08,pending,True,3
-CAS-00243,PAR-PRJ-0002-001,compensation,2022-03-07,pending,False,9
-CAS-00244,PAR-PRJ-0002-001,compensation,2020-03-25,pending,True,5
-CAS-00245,PAR-PRJ-0002-001,stay,2020-01-28,disposed,True,11
-CAS-00246,PAR-PRJ-0002-001,encroachment,2023-03-24,disposed,True,4
-CAS-00247,PAR-PRJ-0002-001,land acquisition,2025-05-28,pending,True,11
-CAS-00248,PAR-PRJ-0002-001,title dispute,2022-07-05,disposed,True,5
-CAS-00249,PAR-PRJ-0002-002,stay,2021-07-02,disposed,False,8
-CAS-00250,PAR-PRJ-0002-002,stay,2020-09-22,pending,True,1
-CAS-00251,PAR-PRJ-0002-002,compensation,2025-08-10,disposed,False,8
-CAS-00252,PAR-PRJ-0002-002,compensation,2023-05-09,disposed,True,10
-CAS-00253,PAR-PRJ-0002-002,encroachment,2024-12-07,pending,False,11
-CAS-00254,PAR-PRJ-0002-002,encroachment,2023-02-08,pending,False,1
-CAS-00255,PAR-PRJ-0002-002,stay,2021-02-26,pending,False,11
-CAS-00256,PAR-PRJ-0002-002,title dispute,2024-08-29,disposed,True,6
-CAS-00257,PAR-PRJ-0002-002,land acquisition,2023-06-12,pending,False,1
-CAS-00258,PAR-PRJ-0002-002,land acquisition,2023-12-13,pending,True,4
-CAS-00259,PAR-PRJ-0002-002,compensation,2021-11-03,pending,False,3
-CAS-00260,PAR-PRJ-0002-002,stay,2024-04-22,pending,False,4
-CAS-00261,PAR-PRJ-0002-003,title dispute,2022-09-23,pending,True,5
-CAS-00262,PAR-PRJ-0002-003,title dispute,2021-10-09,disposed,True,3
-CAS-00263,PAR-PRJ-0002-003,title dispute,2024-09-11,pending,True,2
-CAS-00264,PAR-PRJ-0002-003,stay,2023-02-27,disposed,True,4
-CAS-00265,PAR-PRJ-0002-003,stay,2022-03-29,disposed,False,6
-CAS-00266,PAR-PRJ-0002-003,stay,2025-11-01,pending,False,10
-CAS-00267,PAR-PRJ-0002-004,compensation,2024-01-01,pending,True,7
-CAS-00268,PAR-PRJ-0002-004,land acquisition,2022-02-15,pending,True,8
-CAS-00269,PAR-PRJ-0002-004,stay,2025-09-10,disposed,True,3
-CAS-00270,PAR-PRJ-0002-004,land acquisition,2025-02-28,pending,False,4
-CAS-00271,PAR-PRJ-0002-004,title dispute,2025-06-25,disposed,True,7
-CAS-00272,PAR-PRJ-0002-004,encroachment,2024-02-05,disposed,False,3
-CAS-00273,PAR-PRJ-0002-004,land acquisition,2025-03-29,disposed,True,3
-CAS-00274,PAR-PRJ-0002-004,title dispute,2024-07-17,pending,True,3
-CAS-00275,PAR-PRJ-0002-004,land acquisition,2020-06-04,pending,True,3
-CAS-00276,PAR-PRJ-0002-005,compensation,2020-01-31,disposed,True,6
-CAS-00277,PAR-PRJ-0002-005,title dispute,2025-05-26,pending,False,8
-CAS-00278,PAR-PRJ-0002-006,land acquisition,2022-05-24,disposed,True,3
-CAS-00279,PAR-PRJ-0002-006,land acquisition,2025-07-25,disposed,False,2
-CAS-00280,PAR-PRJ-0002-006,encroachment,2022-06-11,disposed,False,10
-CAS-00281,PAR-PRJ-0002-006,encroachment,2025-03-11,pending,False,1
-CAS-00282,PAR-PRJ-0002-007,land acquisition,2021-05-23,disposed,True,7
-CAS-00283,PAR-PRJ-0002-007,title dispute,2025-07-07,pending,True,4
-CAS-00284,PAR-PRJ-0002-007,stay,2020-04-04,pending,False,4
-CAS-00285,PAR-PRJ-0002-007,title dispute,2021-04-23,disposed,False,6
-CAS-00286,PAR-PRJ-0002-007,encroachment,2020-01-15,disposed,False,4
-CAS-00287,PAR-PRJ-0002-007,stay,2020-07-28,disposed,False,11
-CAS-00288,PAR-PRJ-0002-007,title dispute,2020-11-09,disposed,False,7
-CAS-00289,PAR-PRJ-0002-007,encroachment,2024-02-29,pending,False,4
-CAS-00290,PAR-PRJ-0002-008,encroachment,2025-11-16,pending,True,1
-CAS-00291,PAR-PRJ-0002-009,compensation,2025-04-29,disposed,False,4
-CAS-00292,PAR-PRJ-0002-009,stay,2022-12-10,pending,True,4
-CAS-00293,PAR-PRJ-0002-009,compensation,2025-10-16,pending,False,4
-CAS-00294,PAR-PRJ-0002-009,land acquisition,2025-09-02,disposed,False,4
-CAS-00295,PAR-PRJ-0002-009,title dispute,2020-09-07,pending,False,9
-CAS-00296,PAR-PRJ-0002-009,encroachment,2025-01-09,pending,False,11
-CAS-00297,PAR-PRJ-0002-009,title dispute,2025-11-12,pending,False,4
-CAS-00298,PAR-PRJ-0002-009,title dispute,2021-04-14,pending,False,1
-CAS-00299,PAR-PRJ-0002-009,stay,2024-04-26,pending,True,9
-CAS-00300,PAR-PRJ-0002-009,stay,2025-08-27,pending,True,3
-CAS-00301,PAR-PRJ-0002-009,encroachment,2024-12-29,disposed,False,10
-CAS-00302,PAR-PRJ-0002-010,encroachment,2020-10-13,pending,False,8
-CAS-00303,PAR-PRJ-0002-010,encroachment,2021-04-05,disposed,False,3
-CAS-00304,PAR-PRJ-0002-010,compensation,2024-10-14,disposed,False,3
-CAS-00305,PAR-PRJ-0002-010,stay,2024-09-04,disposed,True,1
-CAS-00306,PAR-PRJ-0002-010,compensation,2020-02-17,disposed,False,10
-CAS-00307,PAR-PRJ-0002-010,title dispute,2022-06-09,disposed,False,1
-CAS-00308,PAR-PRJ-0002-010,title dispute,2021-04-10,disposed,False,2
-CAS-00309,PAR-PRJ-0002-010,title dispute,2025-02-22,disposed,False,7
-CAS-00310,PAR-PRJ-0002-010,stay,2020-01-20,disposed,False,4
-CAS-00311,PAR-PRJ-0002-010,title dispute,2025-08-02,disposed,False,6
-CAS-00312,PAR-PRJ-0002-011,title dispute,2021-08-15,pending,False,9
-CAS-00313,PAR-PRJ-0002-011,encroachment,2022-02-17,pending,True,5
-CAS-00314,PAR-PRJ-0002-011,compensation,2020-01-13,disposed,True,3
-CAS-00315,PAR-PRJ-0002-011,encroachment,2020-08-25,pending,False,9
-CAS-00316,PAR-PRJ-0002-011,land acquisition,2023-05-30,disposed,False,4
-CAS-00317,PAR-PRJ-0002-011,title dispute,2024-07-09,disposed,False,6
-CAS-00318,PAR-PRJ-0002-011,stay,2022-07-15,disposed,False,7
-CAS-00319,PAR-PRJ-0002-011,land acquisition,2021-08-09,pending,False,6
-CAS-00320,PAR-PRJ-0002-011,stay,2020-07-09,pending,False,11
-CAS-00321,PAR-PRJ-0002-011,stay,2021-06-21,pending,False,9
-CAS-00322,PAR-PRJ-0002-011,title dispute,2023-10-14,pending,True,11
-CAS-00323,PAR-PRJ-0002-012,compensation,2020-05-11,disposed,False,8
-CAS-00324,PAR-PRJ-0002-012,stay,2021-04-30,disposed,False,5
-CAS-00325,PAR-PRJ-0002-012,compensation,2021-04-04,disposed,False,11
-CAS-00326,PAR-PRJ-0002-012,land acquisition,2021-05-30,disposed,False,10
-CAS-00327,PAR-PRJ-0002-012,title dispute,2020-11-25,disposed,False,6
-CAS-00328,PAR-PRJ-0002-012,stay,2024-06-13,pending,False,7
-CAS-00329,PAR-PRJ-0002-012,land acquisition,2021-09-16,pending,True,3
-CAS-00330,PAR-PRJ-0002-012,compensation,2025-04-06,disposed,True,11
-CAS-00331,PAR-PRJ-0002-012,land acquisition,2020-03-22,pending,True,8
-CAS-00332,PAR-PRJ-0002-012,compensation,2020-11-15,disposed,False,4
-CAS-00333,PAR-PRJ-0002-013,stay,2021-07-02,pending,False,9
-CAS-00334,PAR-PRJ-0002-013,compensation,2022-04-26,disposed,False,9
-CAS-00335,PAR-PRJ-0002-013,title dispute,2022-11-16,pending,True,11
-CAS-00336,PAR-PRJ-0002-013,stay,2020-12-30,disposed,True,9
-CAS-00337,PAR-PRJ-0002-013,stay,2023-07-07,pending,True,6
-CAS-00338,PAR-PRJ-0002-013,title dispute,2024-07-11,pending,True,9
-CAS-00339,PAR-PRJ-0002-013,encroachment,2021-07-23,pending,False,9
-CAS-00340,PAR-PRJ-0002-013,land acquisition,2025-03-22,disposed,False,6
-CAS-00341,PAR-PRJ-0002-013,stay,2022-09-02,disposed,False,2
-CAS-00342,PAR-PRJ-0002-013,encroachment,2021-05-21,disposed,False,2
-CAS-00343,PAR-PRJ-0002-013,stay,2020-05-20,disposed,False,6
-CAS-00344,PAR-PRJ-0002-014,stay,2020-08-27,disposed,False,6
-CAS-00345,PAR-PRJ-0002-014,stay,2021-02-02,disposed,False,5
-CAS-00346,PAR-PRJ-0002-014,stay,2020-12-28,pending,False,5
-CAS-00347,PAR-PRJ-0002-014,land acquisition,2025-05-12,disposed,False,5
-CAS-00348,PAR-PRJ-0002-014,stay,2022-03-02,pending,False,9
-CAS-00349,PAR-PRJ-0002-014,title dispute,2025-01-21,pending,True,2
-CAS-00350,PAR-PRJ-0002-014,encroachment,2025-08-09,disposed,True,7
-CAS-00351,PAR-PRJ-0002-014,encroachment,2024-05-19,disposed,False,4
-CAS-00352,PAR-PRJ-0002-014,stay,2021-06-10,pending,True,5
-CAS-00353,PAR-PRJ-0002-014,land acquisition,2022-09-02,pending,True,7
-CAS-00354,PAR-PRJ-0002-015,land acquisition,2022-12-15,pending,False,11
-CAS-00355,PAR-PRJ-0002-015,compensation,2023-05-21,pending,False,6
-CAS-00356,PAR-PRJ-0002-015,compensation,2023-10-05,disposed,True,4
-CAS-00357,PAR-PRJ-0002-016,encroachment,2022-02-23,disposed,False,2
-CAS-00358,PAR-PRJ-0002-016,stay,2023-07-26,pending,False,6
-CAS-00359,PAR-PRJ-0002-016,encroachment,2020-03-02,disposed,False,5
-CAS-00360,PAR-PRJ-0002-016,compensation,2020-09-21,disposed,False,3
-CAS-00361,PAR-PRJ-0002-016,stay,2020-07-25,pending,False,9
-CAS-00362,PAR-PRJ-0002-016,encroachment,2024-07-30,pending,True,8
-CAS-00363,PAR-PRJ-0002-016,compensation,2023-10-16,pending,False,6
-CAS-00364,PAR-PRJ-0002-017,compensation,2020-01-31,disposed,True,11
-CAS-00365,PAR-PRJ-0002-018,compensation,2024-07-17,pending,True,11
-CAS-00366,PAR-PRJ-0002-018,compensation,2023-11-07,disposed,True,11
-CAS-00367,PAR-PRJ-0002-018,land acquisition,2021-11-03,disposed,False,5
-CAS-00368,PAR-PRJ-0002-018,encroachment,2021-07-15,pending,True,11
-CAS-00369,PAR-PRJ-0002-018,encroachment,2021-04-12,disposed,True,3
-CAS-00370,PAR-PRJ-0002-018,stay,2021-08-25,disposed,True,2
-CAS-00371,PAR-PRJ-0002-018,title dispute,2024-12-07,disposed,False,2
-CAS-00372,PAR-PRJ-0002-018,encroachment,2024-02-14,disposed,True,1
-CAS-00373,PAR-PRJ-0002-019,compensation,2020-09-09,disposed,True,8
-CAS-00374,PAR-PRJ-0002-019,title dispute,2021-01-28,pending,False,9
-CAS-00375,PAR-PRJ-0002-019,stay,2023-12-21,pending,False,9
-CAS-00376,PAR-PRJ-0002-019,encroachment,2021-03-09,pending,True,8
-CAS-00377,PAR-PRJ-0002-019,encroachment,2021-08-14,pending,True,5
-CAS-00378,PAR-PRJ-0002-020,title dispute,2024-10-25,disposed,False,8
-CAS-00379,PAR-PRJ-0002-020,encroachment,2025-01-24,pending,True,6
-CAS-00380,PAR-PRJ-0002-020,compensation,2021-07-07,disposed,False,1
-CAS-00381,PAR-PRJ-0002-020,title dispute,2021-12-20,disposed,False,4
-CAS-00382,PAR-PRJ-0002-020,encroachment,2020-08-20,disposed,False,2
-CAS-00383,PAR-PRJ-0002-020,stay,2022-09-11,pending,False,10
-CAS-00384,PAR-PRJ-0002-021,land acquisition,2020-08-22,disposed,True,6
-CAS-00385,PAR-PRJ-0002-021,encroachment,2025-01-26,disposed,True,9
-CAS-00386,PAR-PRJ-0002-021,compensation,2024-06-22,disposed,True,8
-CAS-00387,PAR-PRJ-0002-021,compensation,2023-02-25,pending,True,8
-CAS-00388,PAR-PRJ-0002-021,title dispute,2023-01-09,disposed,False,11
-CAS-00389,PAR-PRJ-0002-021,title dispute,2023-01-05,disposed,True,1
-CAS-00390,PAR-PRJ-0002-021,compensation,2025-02-07,pending,False,9
-CAS-00391,PAR-PRJ-0002-021,encroachment,2023-06-21,pending,False,7
-CAS-00392,PAR-PRJ-0002-021,encroachment,2024-05-30,pending,False,4
-CAS-00393,PAR-PRJ-0002-021,title dispute,2022-10-26,disposed,True,8
-CAS-00394,PAR-PRJ-0002-021,land acquisition,2020-02-24,pending,True,1
-CAS-00395,PAR-PRJ-0002-022,land acquisition,2023-04-04,disposed,False,9
-CAS-00396,PAR-PRJ-0002-023,land acquisition,2020-08-13,disposed,False,6
-CAS-00397,PAR-PRJ-0002-023,stay,2023-01-21,pending,False,7
-CAS-00398,PAR-PRJ-0002-023,title dispute,2020-11-24,disposed,False,7
-CAS-00399,PAR-PRJ-0002-023,title dispute,2022-01-27,disposed,False,3
-CAS-00400,PAR-PRJ-0002-023,title dispute,2021-11-27,pending,True,7
-CAS-00401,PAR-PRJ-0002-024,stay,2023-09-29,pending,False,10
-CAS-00402,PAR-PRJ-0002-024,land acquisition,2021-11-17,disposed,False,5
-CAS-00403,PAR-PRJ-0002-025,title dispute,2025-01-16,disposed,False,5
-CAS-00404,PAR-PRJ-0002-025,land acquisition,2025-05-17,pending,False,8
-CAS-00405,PAR-PRJ-0002-025,stay,2023-04-07,pending,True,9
-CAS-00406,PAR-PRJ-0002-025,title dispute,2025-12-06,pending,True,9
-CAS-00407,PAR-PRJ-0002-026,encroachment,2025-11-16,disposed,False,11
-CAS-00408,PAR-PRJ-0003-001,compensation,2025-10-06,pending,False,4
-CAS-00409,PAR-PRJ-0003-002,stay,2021-09-12,pending,False,11
-CAS-00410,PAR-PRJ-0003-002,title dispute,2020-10-06,pending,False,5
-CAS-00411,PAR-PRJ-0003-002,stay,2023-08-04,disposed,False,1
-CAS-00412,PAR-PRJ-0003-002,land acquisition,2025-01-02,pending,False,6
-CAS-00413,PAR-PRJ-0003-002,land acquisition,2021-11-23,pending,False,2
-CAS-00414,PAR-PRJ-0003-002,stay,2020-03-19,disposed,False,7
-CAS-00415,PAR-PRJ-0003-002,compensation,2020-10-13,disposed,False,4
-CAS-00416,PAR-PRJ-0003-002,land acquisition,2023-03-18,disposed,True,8
-CAS-00417,PAR-PRJ-0003-002,stay,2025-11-06,pending,True,9
-CAS-00418,PAR-PRJ-0003-002,title dispute,2025-05-30,disposed,True,9
-CAS-00419,PAR-PRJ-0003-002,encroachment,2021-01-16,pending,True,2
-CAS-00420,PAR-PRJ-0003-002,stay,2022-02-06,pending,False,8
-CAS-00421,PAR-PRJ-0003-003,stay,2020-04-18,pending,False,4
-CAS-00422,PAR-PRJ-0003-003,title dispute,2025-12-19,pending,True,10
-CAS-00423,PAR-PRJ-0003-003,encroachment,2024-08-02,pending,True,5
-CAS-00424,PAR-PRJ-0003-003,land acquisition,2022-11-20,pending,False,11
-CAS-00425,PAR-PRJ-0003-003,stay,2022-05-08,pending,False,1
-CAS-00426,PAR-PRJ-0003-003,land acquisition,2025-12-01,disposed,True,6
-CAS-00427,PAR-PRJ-0003-003,land acquisition,2023-04-06,pending,False,8
-CAS-00428,PAR-PRJ-0003-004,encroachment,2025-01-29,pending,True,3
-CAS-00429,PAR-PRJ-0003-004,title dispute,2023-05-29,pending,False,4
-CAS-00430,PAR-PRJ-0003-004,title dispute,2024-06-22,disposed,False,2
-CAS-00431,PAR-PRJ-0003-004,compensation,2021-03-31,disposed,True,2
-CAS-00432,PAR-PRJ-0003-004,stay,2022-06-19,disposed,False,7
-CAS-00433,PAR-PRJ-0003-004,compensation,2022-04-23,disposed,False,3
-CAS-00434,PAR-PRJ-0003-004,compensation,2024-03-06,disposed,True,4
-CAS-00435,PAR-PRJ-0003-004,land acquisition,2021-07-04,disposed,False,5
-CAS-00436,PAR-PRJ-0003-004,encroachment,2020-06-08,disposed,True,1
-CAS-00437,PAR-PRJ-0003-004,compensation,2022-10-21,pending,True,5
-CAS-00438,PAR-PRJ-0003-004,stay,2022-08-20,pending,False,9
-CAS-00439,PAR-PRJ-0003-005,stay,2025-02-06,pending,True,1
-CAS-00440,PAR-PRJ-0003-005,stay,2025-02-19,disposed,False,8
-CAS-00441,PAR-PRJ-0003-006,land acquisition,2021-02-05,pending,False,4
-CAS-00442,PAR-PRJ-0003-006,stay,2025-03-11,disposed,False,8
-CAS-00443,PAR-PRJ-0003-006,title dispute,2020-04-10,pending,False,10
-CAS-00444,PAR-PRJ-0003-006,stay,2025-09-13,pending,True,2
-CAS-00445,PAR-PRJ-0003-006,compensation,2024-08-25,pending,False,2
-CAS-00446,PAR-PRJ-0003-006,encroachment,2023-10-28,disposed,True,1
-CAS-00447,PAR-PRJ-0003-006,compensation,2021-05-15,pending,False,6
-CAS-00448,PAR-PRJ-0003-006,compensation,2023-09-02,pending,False,1
-CAS-00449,PAR-PRJ-0003-006,stay,2022-06-29,pending,False,5
-CAS-00450,PAR-PRJ-0003-006,encroachment,2025-10-30,disposed,True,4
-CAS-00451,PAR-PRJ-0003-006,land acquisition,2020-02-27,pending,False,5
-CAS-00452,PAR-PRJ-0003-006,encroachment,2020-01-05,pending,False,4
-CAS-00453,PAR-PRJ-0003-008,encroachment,2025-10-18,pending,False,6
-CAS-00454,PAR-PRJ-0003-008,encroachment,2020-08-04,pending,True,9
-CAS-00455,PAR-PRJ-0003-008,encroachment,2021-10-14,disposed,False,7
-CAS-00456,PAR-PRJ-0003-009,compensation,2024-03-24,pending,True,10
-CAS-00457,PAR-PRJ-0003-009,encroachment,2020-06-21,disposed,True,6
-CAS-00458,PAR-PRJ-0003-009,land acquisition,2020-02-14,disposed,False,11
-CAS-00459,PAR-PRJ-0003-009,land acquisition,2022-06-27,pending,False,2
-CAS-00460,PAR-PRJ-0003-009,title dispute,2023-03-14,disposed,False,2
-CAS-00461,PAR-PRJ-0003-009,stay,2025-09-15,disposed,False,11
-CAS-00462,PAR-PRJ-0003-009,compensation,2023-03-11,pending,False,4
-CAS-00463,PAR-PRJ-0003-009,land acquisition,2020-11-27,disposed,True,7
-CAS-00464,PAR-PRJ-0003-010,title dispute,2023-11-10,disposed,True,4
-CAS-00465,PAR-PRJ-0003-010,stay,2021-04-07,disposed,False,11
-CAS-00466,PAR-PRJ-0003-010,stay,2020-02-11,disposed,False,10
-CAS-00467,PAR-PRJ-0003-010,land acquisition,2022-09-08,disposed,True,6
-CAS-00468,PAR-PRJ-0003-010,encroachment,2024-05-30,pending,True,10
-CAS-00469,PAR-PRJ-0003-010,title dispute,2021-03-24,disposed,True,5
-CAS-00470,PAR-PRJ-0003-010,title dispute,2025-04-25,disposed,True,8
-CAS-00471,PAR-PRJ-0003-010,encroachment,2023-08-26,disposed,False,2
-CAS-00472,PAR-PRJ-0003-010,compensation,2023-06-08,pending,True,11
-CAS-00473,PAR-PRJ-0003-011,compensation,2024-09-30,disposed,False,1
-CAS-00474,PAR-PRJ-0003-011,title dispute,2022-04-04,disposed,True,8
-CAS-00475,PAR-PRJ-0003-011,compensation,2020-10-12,disposed,True,1
-CAS-00476,PAR-PRJ-0003-011,encroachment,2025-02-28,disposed,False,10
-CAS-00477,PAR-PRJ-0003-011,encroachment,2024-06-27,pending,False,3
-CAS-00478,PAR-PRJ-0003-011,land acquisition,2025-05-25,disposed,False,11
-CAS-00479,PAR-PRJ-0003-011,title dispute,2024-08-27,pending,False,11
-CAS-00480,PAR-PRJ-0003-011,title dispute,2021-10-10,disposed,False,8
-CAS-00481,PAR-PRJ-0003-011,encroachment,2022-10-16,pending,True,6
-CAS-00482,PAR-PRJ-0003-011,encroachment,2020-02-11,disposed,False,9
-CAS-00483,PAR-PRJ-0003-011,land acquisition,2025-01-16,pending,True,2
-CAS-00484,PAR-PRJ-0003-011,stay,2023-07-30,disposed,False,11
-CAS-00485,PAR-PRJ-0003-012,encroachment,2025-07-06,disposed,False,6
-CAS-00486,PAR-PRJ-0003-012,land acquisition,2024-06-14,disposed,False,7
-CAS-00487,PAR-PRJ-0003-012,encroachment,2022-03-18,disposed,False,3
-CAS-00488,PAR-PRJ-0003-012,land acquisition,2020-07-09,pending,True,9
-CAS-00489,PAR-PRJ-0003-012,encroachment,2022-12-06,disposed,False,7
-CAS-00490,PAR-PRJ-0003-012,encroachment,2023-10-14,disposed,False,1
-CAS-00491,PAR-PRJ-0003-012,compensation,2021-12-25,disposed,True,4
-CAS-00492,PAR-PRJ-0003-012,encroachment,2020-07-02,pending,True,5
-CAS-00493,PAR-PRJ-0003-012,compensation,2020-01-22,pending,False,4
-CAS-00494,PAR-PRJ-0003-013,title dispute,2022-08-31,pending,True,8
-CAS-00495,PAR-PRJ-0003-013,land acquisition,2022-06-15,disposed,False,7
-CAS-00496,PAR-PRJ-0003-014,land acquisition,2025-05-22,disposed,True,9
-CAS-00497,PAR-PRJ-0003-014,land acquisition,2023-11-22,disposed,False,2
-CAS-00498,PAR-PRJ-0003-014,title dispute,2021-09-03,pending,False,7
-CAS-00499,PAR-PRJ-0003-014,stay,2021-04-07,disposed,True,11
-CAS-00500,PAR-PRJ-0003-015,title dispute,2023-05-30,disposed,False,8
-CAS-00501,PAR-PRJ-0003-015,compensation,2022-06-07,disposed,False,11
-CAS-00502,PAR-PRJ-0003-015,encroachment,2024-11-05,pending,False,5
-CAS-00503,PAR-PRJ-0003-015,land acquisition,2021-01-14,disposed,False,9
-CAS-00504,PAR-PRJ-0003-015,stay,2020-12-18,pending,False,9
-CAS-00505,PAR-PRJ-0003-015,stay,2020-03-21,disposed,False,11
-CAS-00506,PAR-PRJ-0003-015,compensation,2021-08-13,pending,False,1
-CAS-00507,PAR-PRJ-0003-015,encroachment,2022-01-10,disposed,True,6
-CAS-00508,PAR-PRJ-0003-015,encroachment,2023-08-23,disposed,False,5
-CAS-00509,PAR-PRJ-0003-015,title dispute,2023-12-31,disposed,True,8
-CAS-00510,PAR-PRJ-0003-016,title dispute,2021-10-29,disposed,False,1
-CAS-00511,PAR-PRJ-0003-016,stay,2020-05-02,disposed,False,3
-CAS-00512,PAR-PRJ-0003-016,stay,2025-01-23,pending,False,3
-CAS-00513,PAR-PRJ-0003-016,compensation,2024-02-06,pending,False,10
-CAS-00514,PAR-PRJ-0003-016,compensation,2020-02-05,pending,False,1
-CAS-00515,PAR-PRJ-0003-017,encroachment,2023-10-22,pending,False,9
-CAS-00516,PAR-PRJ-0003-017,stay,2023-12-26,pending,True,7
-CAS-00517,PAR-PRJ-0003-017,stay,2022-04-04,disposed,False,10
-CAS-00518,PAR-PRJ-0003-018,title dispute,2021-09-14,pending,False,2
-CAS-00519,PAR-PRJ-0003-018,land acquisition,2023-12-15,disposed,False,6
-CAS-00520,PAR-PRJ-0003-018,compensation,2025-12-08,disposed,True,1
-CAS-00521,PAR-PRJ-0003-018,compensation,2023-09-23,disposed,True,6
-CAS-00522,PAR-PRJ-0003-018,stay,2020-07-22,pending,False,3
-CAS-00523,PAR-PRJ-0003-019,land acquisition,2022-07-18,pending,False,11
-CAS-00524,PAR-PRJ-0003-019,encroachment,2024-07-16,disposed,True,1
-CAS-00525,PAR-PRJ-0003-019,land acquisition,2024-04-08,pending,False,11
-CAS-00526,PAR-PRJ-0003-019,compensation,2025-06-23,pending,False,1
-CAS-00527,PAR-PRJ-0003-019,encroachment,2025-04-07,pending,False,7
-CAS-00528,PAR-PRJ-0003-019,compensation,2024-03-25,disposed,False,3
-CAS-00529,PAR-PRJ-0003-019,title dispute,2024-03-01,disposed,True,6
-CAS-00530,PAR-PRJ-0003-019,stay,2020-01-05,pending,False,3
-CAS-00531,PAR-PRJ-0003-019,title dispute,2021-04-10,disposed,True,1
-CAS-00532,PAR-PRJ-0003-019,stay,2023-02-12,pending,False,7
-CAS-00533,PAR-PRJ-0003-020,land acquisition,2025-03-08,disposed,False,4
-CAS-00534,PAR-PRJ-0003-020,compensation,2021-12-30,pending,False,8
-CAS-00535,PAR-PRJ-0003-020,encroachment,2022-01-06,disposed,True,1
-CAS-00536,PAR-PRJ-0003-020,land acquisition,2022-04-25,pending,False,8
-CAS-00537,PAR-PRJ-0003-020,encroachment,2021-03-17,disposed,False,1
-CAS-00538,PAR-PRJ-0003-020,stay,2021-08-11,pending,True,9
-CAS-00539,PAR-PRJ-0003-020,land acquisition,2022-07-24,disposed,False,9
-CAS-00540,PAR-PRJ-0003-020,land acquisition,2021-05-24,disposed,True,4
-CAS-00541,PAR-PRJ-0003-020,stay,2020-07-07,pending,False,7
-CAS-00542,PAR-PRJ-0003-020,compensation,2024-11-21,disposed,False,7
-CAS-00543,PAR-PRJ-0003-020,land acquisition,2022-10-17,pending,False,1
-CAS-00544,PAR-PRJ-0003-020,land acquisition,2020-12-11,disposed,False,9
-CAS-00545,PAR-PRJ-0004-001,land acquisition,2022-12-14,disposed,True,2
-CAS-00546,PAR-PRJ-0004-001,land acquisition,2023-12-12,pending,False,5
-CAS-00547,PAR-PRJ-0004-001,stay,2022-05-31,disposed,True,3
-CAS-00548,PAR-PRJ-0004-001,stay,2020-04-17,pending,True,8
-CAS-00549,PAR-PRJ-0004-001,compensation,2022-09-28,disposed,False,11
-CAS-00550,PAR-PRJ-0004-001,stay,2024-11-11,disposed,False,9
-CAS-00551,PAR-PRJ-0004-001,encroachment,2020-05-26,pending,False,5
-CAS-00552,PAR-PRJ-0004-001,land acquisition,2022-10-15,disposed,True,11
-CAS-00553,PAR-PRJ-0004-001,title dispute,2020-05-12,pending,False,10
-CAS-00554,PAR-PRJ-0004-001,land acquisition,2023-01-19,pending,True,11
-CAS-00555,PAR-PRJ-0004-001,stay,2025-10-23,pending,True,5
-CAS-00556,PAR-PRJ-0004-002,encroachment,2024-11-02,disposed,False,8
-CAS-00557,PAR-PRJ-0004-002,land acquisition,2023-05-12,pending,True,7
-CAS-00558,PAR-PRJ-0004-002,title dispute,2024-12-09,disposed,False,3
-CAS-00559,PAR-PRJ-0004-002,compensation,2021-03-10,disposed,False,7
-CAS-00560,PAR-PRJ-0004-002,title dispute,2021-03-22,pending,False,6
-CAS-00561,PAR-PRJ-0004-002,encroachment,2025-02-01,disposed,False,2
-CAS-00562,PAR-PRJ-0004-002,encroachment,2023-03-12,pending,True,6
-CAS-00563,PAR-PRJ-0004-002,encroachment,2021-06-16,pending,False,8
-CAS-00564,PAR-PRJ-0004-002,compensation,2024-07-04,pending,True,2
-CAS-00565,PAR-PRJ-0004-002,encroachment,2023-06-15,disposed,True,8
-CAS-00566,PAR-PRJ-0004-002,stay,2025-04-16,pending,False,1
-CAS-00567,PAR-PRJ-0004-002,encroachment,2024-04-12,pending,False,8
-CAS-00568,PAR-PRJ-0004-003,land acquisition,2021-12-20,pending,True,1
-CAS-00569,PAR-PRJ-0004-003,compensation,2025-04-16,disposed,True,4
-CAS-00570,PAR-PRJ-0004-003,stay,2023-07-31,disposed,False,10
-CAS-00571,PAR-PRJ-0004-003,stay,2020-11-28,disposed,True,5
-CAS-00572,PAR-PRJ-0004-003,compensation,2020-02-06,disposed,False,11
-CAS-00573,PAR-PRJ-0004-003,compensation,2020-10-22,disposed,False,10
-CAS-00574,PAR-PRJ-0004-003,title dispute,2024-11-23,disposed,True,3
-CAS-00575,PAR-PRJ-0004-003,compensation,2023-02-25,disposed,False,7
-CAS-00576,PAR-PRJ-0004-003,title dispute,2025-10-21,disposed,True,11
-CAS-00577,PAR-PRJ-0004-003,stay,2023-07-07,disposed,False,2
-CAS-00578,PAR-PRJ-0004-003,land acquisition,2020-06-04,pending,True,2
-CAS-00579,PAR-PRJ-0004-004,encroachment,2022-08-19,pending,False,5
-CAS-00580,PAR-PRJ-0004-004,title dispute,2020-11-25,pending,False,11
-CAS-00581,PAR-PRJ-0004-004,stay,2024-02-24,disposed,False,6
-CAS-00582,PAR-PRJ-0004-004,stay,2022-05-13,disposed,False,1
-CAS-00583,PAR-PRJ-0004-004,title dispute,2021-06-23,pending,False,3
-CAS-00584,PAR-PRJ-0004-004,title dispute,2022-01-28,disposed,True,8
-CAS-00585,PAR-PRJ-0004-004,compensation,2020-06-19,disposed,False,4
-CAS-00586,PAR-PRJ-0004-004,compensation,2023-11-28,pending,False,1
-CAS-00587,PAR-PRJ-0004-004,stay,2023-08-04,pending,False,5
-CAS-00588,PAR-PRJ-0004-004,stay,2025-01-23,disposed,False,11
-CAS-00589,PAR-PRJ-0004-004,land acquisition,2020-03-12,disposed,False,2
-CAS-00590,PAR-PRJ-0004-004,land acquisition,2025-10-24,pending,False,11
-CAS-00591,PAR-PRJ-0004-005,land acquisition,2020-05-06,disposed,False,9
-CAS-00592,PAR-PRJ-0004-005,land acquisition,2025-08-14,disposed,False,5
-CAS-00593,PAR-PRJ-0004-005,encroachment,2025-06-21,disposed,False,5
-CAS-00594,PAR-PRJ-0004-005,encroachment,2022-07-12,pending,True,4
-CAS-00595,PAR-PRJ-0004-005,title dispute,2021-04-12,pending,True,5
-CAS-00596,PAR-PRJ-0004-005,encroachment,2024-12-19,pending,True,11
-CAS-00597,PAR-PRJ-0004-005,encroachment,2020-04-30,pending,False,1
-CAS-00598,PAR-PRJ-0005-001,title dispute,2021-12-03,disposed,True,6
-CAS-00599,PAR-PRJ-0005-001,title dispute,2023-03-07,pending,False,2
-CAS-00600,PAR-PRJ-0005-001,title dispute,2022-10-25,disposed,False,3
-CAS-00601,PAR-PRJ-0005-001,encroachment,2020-12-30,pending,False,4
-CAS-00602,PAR-PRJ-0005-001,stay,2022-05-02,pending,True,4
-CAS-00603,PAR-PRJ-0005-001,compensation,2025-01-15,disposed,False,2
-CAS-00604,PAR-PRJ-0005-001,land acquisition,2022-01-05,disposed,False,11
-CAS-00605,PAR-PRJ-0005-001,compensation,2025-09-03,disposed,False,11
-CAS-00606,PAR-PRJ-0005-001,stay,2023-06-25,pending,True,2
-CAS-00607,PAR-PRJ-0005-001,land acquisition,2024-02-13,pending,False,4
-CAS-00608,PAR-PRJ-0005-001,land acquisition,2020-09-06,disposed,True,4
-CAS-00609,PAR-PRJ-0005-001,stay,2023-09-01,disposed,True,1
-CAS-00610,PAR-PRJ-0005-002,title dispute,2022-11-24,disposed,True,1
-CAS-00611,PAR-PRJ-0005-002,title dispute,2021-05-15,pending,False,7
-CAS-00612,PAR-PRJ-0005-002,title dispute,2020-08-05,pending,False,1
-CAS-00613,PAR-PRJ-0005-002,stay,2022-06-16,pending,False,5
-CAS-00614,PAR-PRJ-0005-002,title dispute,2025-07-07,pending,False,11
-CAS-00615,PAR-PRJ-0005-002,compensation,2020-01-08,pending,False,2
-CAS-00616,PAR-PRJ-0005-002,title dispute,2025-09-24,pending,False,1
-CAS-00617,PAR-PRJ-0005-002,title dispute,2022-05-19,disposed,True,5
-CAS-00618,PAR-PRJ-0005-002,encroachment,2021-08-16,pending,True,3
-CAS-00619,PAR-PRJ-0005-002,encroachment,2023-04-29,pending,False,5
-CAS-00620,PAR-PRJ-0005-002,compensation,2023-11-03,disposed,True,11
-CAS-00621,PAR-PRJ-0005-004,title dispute,2022-04-23,pending,False,8
-CAS-00622,PAR-PRJ-0005-004,stay,2022-05-19,pending,False,5
-CAS-00623,PAR-PRJ-0005-004,encroachment,2020-08-30,pending,True,6
-CAS-00624,PAR-PRJ-0005-004,encroachment,2021-05-07,pending,False,7
-CAS-00625,PAR-PRJ-0005-004,title dispute,2025-12-30,pending,True,3
-CAS-00626,PAR-PRJ-0005-004,stay,2023-02-10,disposed,False,5
-CAS-00627,PAR-PRJ-0005-004,title dispute,2024-08-11,pending,False,8
-CAS-00628,PAR-PRJ-0005-004,compensation,2023-09-24,disposed,False,7
-CAS-00629,PAR-PRJ-0005-004,compensation,2025-07-26,pending,False,11
-CAS-00630,PAR-PRJ-0005-004,compensation,2025-02-27,pending,False,2
-CAS-00631,PAR-PRJ-0005-004,title dispute,2024-09-09,disposed,False,4
-CAS-00632,PAR-PRJ-0005-005,title dispute,2023-01-30,pending,False,5
-CAS-00633,PAR-PRJ-0005-005,title dispute,2025-05-18,pending,True,10
-CAS-00634,PAR-PRJ-0005-005,land acquisition,2024-08-26,pending,False,11
-CAS-00635,PAR-PRJ-0005-005,land acquisition,2022-06-23,disposed,True,3
-CAS-00636,PAR-PRJ-0005-005,encroachment,2020-02-19,disposed,True,9
-CAS-00637,PAR-PRJ-0005-005,encroachment,2025-04-16,disposed,False,3
-CAS-00638,PAR-PRJ-0005-005,encroachment,2021-12-19,disposed,False,9
-CAS-00639,PAR-PRJ-0005-005,title dispute,2024-12-19,pending,True,9
-CAS-00640,PAR-PRJ-0005-005,land acquisition,2024-07-18,pending,True,1
-CAS-00641,PAR-PRJ-0005-005,title dispute,2021-07-20,disposed,False,1
-CAS-00642,PAR-PRJ-0005-005,title dispute,2024-05-02,disposed,False,11
-CAS-00643,PAR-PRJ-0005-006,stay,2025-06-30,disposed,False,4
-CAS-00644,PAR-PRJ-0005-006,title dispute,2020-06-13,disposed,False,6
+CAS-00001,PAR-PRJ-0001-001,stay,2022-04-24,pending,False,1
+CAS-00002,PAR-PRJ-0001-001,stay,2021-09-17,disposed,False,6
+CAS-00003,PAR-PRJ-0001-002,encroachment,2021-06-09,disposed,True,5
+CAS-00004,PAR-PRJ-0001-002,title dispute,2024-12-01,pending,False,5
+CAS-00005,PAR-PRJ-0001-002,land acquisition,2023-01-06,pending,False,7
+CAS-00006,PAR-PRJ-0001-003,title dispute,2020-04-03,disposed,True,2
+CAS-00007,PAR-PRJ-0001-004,land acquisition,2021-06-25,disposed,False,3
+CAS-00008,PAR-PRJ-0001-004,land acquisition,2025-06-12,pending,False,5
+CAS-00009,PAR-PRJ-0001-004,encroachment,2022-06-28,pending,True,2
+CAS-00010,PAR-PRJ-0001-004,encroachment,2025-07-02,disposed,True,11
+CAS-00011,PAR-PRJ-0001-004,stay,2025-07-09,pending,False,1
+CAS-00012,PAR-PRJ-0001-004,encroachment,2020-02-26,disposed,False,5
+CAS-00013,PAR-PRJ-0001-004,stay,2022-08-11,disposed,False,11
+CAS-00014,PAR-PRJ-0001-004,land acquisition,2020-02-09,pending,False,2
+CAS-00015,PAR-PRJ-0001-004,title dispute,2020-10-08,pending,True,1
+CAS-00016,PAR-PRJ-0001-004,title dispute,2025-11-13,pending,True,5
+CAS-00017,PAR-PRJ-0001-004,stay,2023-12-14,pending,False,5
+CAS-00018,PAR-PRJ-0001-005,land acquisition,2021-11-27,disposed,False,4
+CAS-00019,PAR-PRJ-0001-005,land acquisition,2022-07-19,disposed,False,11
+CAS-00020,PAR-PRJ-0001-005,land acquisition,2023-06-23,disposed,False,5
+CAS-00021,PAR-PRJ-0001-005,encroachment,2025-11-26,pending,True,3
+CAS-00022,PAR-PRJ-0001-005,encroachment,2024-01-01,disposed,False,8
+CAS-00023,PAR-PRJ-0001-005,land acquisition,2024-08-19,disposed,False,2
+CAS-00024,PAR-PRJ-0001-006,compensation,2022-12-27,pending,False,8
+CAS-00025,PAR-PRJ-0001-006,encroachment,2022-02-11,disposed,True,9
+CAS-00026,PAR-PRJ-0001-006,encroachment,2025-11-11,pending,False,11
+CAS-00027,PAR-PRJ-0001-006,compensation,2022-10-21,pending,False,5
+CAS-00028,PAR-PRJ-0001-006,title dispute,2022-10-03,pending,False,3
+CAS-00029,PAR-PRJ-0001-006,encroachment,2025-04-15,disposed,False,6
+CAS-00030,PAR-PRJ-0001-006,stay,2021-10-01,pending,False,10
+CAS-00031,PAR-PRJ-0001-006,compensation,2024-01-09,disposed,False,11
+CAS-00032,PAR-PRJ-0001-006,compensation,2024-02-29,pending,True,6
+CAS-00033,PAR-PRJ-0001-006,title dispute,2020-10-01,disposed,True,10
+CAS-00034,PAR-PRJ-0001-007,stay,2022-09-15,pending,False,3
+CAS-00035,PAR-PRJ-0001-007,land acquisition,2024-08-19,disposed,True,2
+CAS-00036,PAR-PRJ-0001-007,stay,2020-07-12,pending,False,10
+CAS-00037,PAR-PRJ-0001-007,title dispute,2022-07-14,pending,False,8
+CAS-00038,PAR-PRJ-0001-007,land acquisition,2021-12-22,disposed,False,2
+CAS-00039,PAR-PRJ-0001-007,stay,2023-08-29,disposed,False,5
+CAS-00040,PAR-PRJ-0001-007,title dispute,2025-07-03,pending,True,10
+CAS-00041,PAR-PRJ-0001-007,title dispute,2021-07-03,pending,False,8
+CAS-00042,PAR-PRJ-0001-007,stay,2023-09-10,disposed,False,3
+CAS-00043,PAR-PRJ-0001-007,title dispute,2020-08-19,disposed,False,7
+CAS-00044,PAR-PRJ-0001-007,land acquisition,2023-08-27,pending,False,3
+CAS-00045,PAR-PRJ-0001-007,stay,2020-11-12,disposed,True,7
+CAS-00046,PAR-PRJ-0001-008,stay,2023-03-22,pending,True,1
+CAS-00047,PAR-PRJ-0001-008,compensation,2024-05-13,disposed,False,3
+CAS-00048,PAR-PRJ-0001-008,stay,2021-04-05,pending,True,5
+CAS-00049,PAR-PRJ-0001-008,compensation,2020-10-06,pending,True,10
+CAS-00050,PAR-PRJ-0001-008,compensation,2024-07-05,pending,True,10
+CAS-00051,PAR-PRJ-0001-008,stay,2020-01-13,pending,True,6
+CAS-00052,PAR-PRJ-0001-008,stay,2025-03-30,pending,False,2
+CAS-00053,PAR-PRJ-0001-008,compensation,2020-02-26,disposed,True,3
+CAS-00054,PAR-PRJ-0001-008,stay,2025-02-10,pending,False,7
+CAS-00055,PAR-PRJ-0001-008,compensation,2020-06-29,pending,False,4
+CAS-00056,PAR-PRJ-0001-008,title dispute,2023-09-06,disposed,False,9
+CAS-00057,PAR-PRJ-0001-009,encroachment,2020-03-16,disposed,True,5
+CAS-00058,PAR-PRJ-0001-009,title dispute,2020-02-03,disposed,True,11
+CAS-00059,PAR-PRJ-0001-009,stay,2020-11-29,disposed,False,8
+CAS-00060,PAR-PRJ-0001-009,compensation,2022-07-24,pending,True,5
+CAS-00061,PAR-PRJ-0001-009,title dispute,2022-01-19,pending,True,5
+CAS-00062,PAR-PRJ-0001-009,title dispute,2025-03-10,pending,False,9
+CAS-00063,PAR-PRJ-0001-010,land acquisition,2021-01-15,disposed,False,9
+CAS-00064,PAR-PRJ-0001-010,land acquisition,2023-12-23,disposed,True,8
+CAS-00065,PAR-PRJ-0001-010,encroachment,2025-01-11,disposed,True,7
+CAS-00066,PAR-PRJ-0001-010,compensation,2024-02-09,pending,False,7
+CAS-00067,PAR-PRJ-0001-010,encroachment,2022-10-29,pending,False,9
+CAS-00068,PAR-PRJ-0001-010,encroachment,2023-07-15,pending,True,1
+CAS-00069,PAR-PRJ-0001-011,land acquisition,2021-03-08,pending,False,9
+CAS-00070,PAR-PRJ-0001-011,title dispute,2023-03-16,disposed,False,4
+CAS-00071,PAR-PRJ-0001-011,stay,2023-05-02,disposed,False,7
+CAS-00072,PAR-PRJ-0001-011,encroachment,2022-07-28,pending,True,7
+CAS-00073,PAR-PRJ-0001-011,compensation,2023-04-09,disposed,False,7
+CAS-00074,PAR-PRJ-0001-011,stay,2022-07-30,disposed,True,1
+CAS-00075,PAR-PRJ-0001-011,encroachment,2020-10-10,disposed,True,7
+CAS-00076,PAR-PRJ-0001-011,title dispute,2024-07-18,disposed,False,8
+CAS-00077,PAR-PRJ-0001-011,title dispute,2020-07-05,pending,False,5
+CAS-00078,PAR-PRJ-0001-011,compensation,2020-04-28,pending,False,3
+CAS-00079,PAR-PRJ-0001-011,stay,2025-03-12,disposed,True,8
+CAS-00080,PAR-PRJ-0001-011,stay,2024-10-23,pending,True,2
+CAS-00081,PAR-PRJ-0001-012,compensation,2020-02-14,disposed,True,2
+CAS-00082,PAR-PRJ-0001-012,compensation,2024-02-26,disposed,True,8
+CAS-00083,PAR-PRJ-0001-012,stay,2021-11-04,disposed,False,9
+CAS-00084,PAR-PRJ-0001-012,compensation,2022-02-03,disposed,False,11
+CAS-00085,PAR-PRJ-0001-012,title dispute,2023-03-25,disposed,True,7
+CAS-00086,PAR-PRJ-0001-012,land acquisition,2022-05-24,disposed,False,9
+CAS-00087,PAR-PRJ-0001-013,land acquisition,2024-08-18,pending,False,2
+CAS-00088,PAR-PRJ-0001-013,encroachment,2023-11-10,pending,True,10
+CAS-00089,PAR-PRJ-0001-013,title dispute,2024-01-05,pending,False,8
+CAS-00090,PAR-PRJ-0001-013,compensation,2023-03-18,disposed,False,11
+CAS-00091,PAR-PRJ-0001-013,compensation,2024-01-11,disposed,False,10
+CAS-00092,PAR-PRJ-0001-013,encroachment,2025-03-20,disposed,False,4
+CAS-00093,PAR-PRJ-0001-013,land acquisition,2023-02-15,disposed,True,7
+CAS-00094,PAR-PRJ-0001-013,stay,2023-10-07,pending,False,6
+CAS-00095,PAR-PRJ-0001-013,land acquisition,2021-05-02,disposed,True,7
+CAS-00096,PAR-PRJ-0001-013,compensation,2022-08-13,pending,False,5
+CAS-00097,PAR-PRJ-0001-013,stay,2022-06-07,disposed,False,3
+CAS-00098,PAR-PRJ-0001-014,encroachment,2021-04-01,pending,False,11
+CAS-00099,PAR-PRJ-0001-014,compensation,2020-03-07,disposed,False,7
+CAS-00100,PAR-PRJ-0001-014,encroachment,2021-05-21,pending,True,1
+CAS-00101,PAR-PRJ-0001-014,compensation,2024-03-29,pending,False,1
+CAS-00102,PAR-PRJ-0001-014,encroachment,2024-10-16,disposed,False,1
+CAS-00103,PAR-PRJ-0001-014,land acquisition,2022-08-03,pending,False,5
+CAS-00104,PAR-PRJ-0001-014,encroachment,2022-02-10,disposed,False,10
+CAS-00105,PAR-PRJ-0001-015,encroachment,2021-12-31,pending,False,7
+CAS-00106,PAR-PRJ-0001-015,land acquisition,2021-07-06,disposed,True,10
+CAS-00107,PAR-PRJ-0001-015,encroachment,2025-09-28,pending,False,9
+CAS-00108,PAR-PRJ-0001-015,title dispute,2021-02-26,pending,False,3
+CAS-00109,PAR-PRJ-0001-016,stay,2024-04-19,disposed,False,8
+CAS-00110,PAR-PRJ-0001-016,stay,2020-01-19,pending,True,3
+CAS-00111,PAR-PRJ-0001-016,land acquisition,2021-07-15,pending,False,5
+CAS-00112,PAR-PRJ-0001-016,land acquisition,2022-01-14,pending,False,1
+CAS-00113,PAR-PRJ-0001-016,encroachment,2025-09-28,pending,True,7
+CAS-00114,PAR-PRJ-0001-016,land acquisition,2022-09-14,pending,False,11
+CAS-00115,PAR-PRJ-0001-016,compensation,2024-03-07,disposed,False,8
+CAS-00116,PAR-PRJ-0001-016,land acquisition,2023-12-06,pending,False,2
+CAS-00117,PAR-PRJ-0001-016,stay,2025-07-14,disposed,True,2
+CAS-00118,PAR-PRJ-0001-017,title dispute,2025-03-12,pending,True,1
+CAS-00119,PAR-PRJ-0001-017,stay,2022-09-09,disposed,False,5
+CAS-00120,PAR-PRJ-0001-017,compensation,2023-11-25,pending,False,10
+CAS-00121,PAR-PRJ-0001-018,stay,2022-02-27,disposed,False,5
+CAS-00122,PAR-PRJ-0001-018,land acquisition,2024-07-26,pending,False,7
+CAS-00123,PAR-PRJ-0001-019,encroachment,2023-01-12,disposed,False,2
+CAS-00124,PAR-PRJ-0001-020,land acquisition,2024-07-05,disposed,False,6
+CAS-00125,PAR-PRJ-0001-020,land acquisition,2023-08-25,pending,True,2
+CAS-00126,PAR-PRJ-0001-020,title dispute,2021-01-19,pending,False,6
+CAS-00127,PAR-PRJ-0001-020,title dispute,2024-03-30,disposed,True,3
+CAS-00128,PAR-PRJ-0001-020,land acquisition,2020-11-15,pending,False,8
+CAS-00129,PAR-PRJ-0001-021,encroachment,2021-09-02,pending,False,8
+CAS-00130,PAR-PRJ-0001-021,compensation,2021-03-07,disposed,True,5
+CAS-00131,PAR-PRJ-0001-021,encroachment,2023-08-17,disposed,False,5
+CAS-00132,PAR-PRJ-0001-021,title dispute,2020-03-29,disposed,False,1
+CAS-00133,PAR-PRJ-0001-021,land acquisition,2025-03-05,disposed,False,3
+CAS-00134,PAR-PRJ-0001-021,land acquisition,2022-12-17,pending,False,2
+CAS-00135,PAR-PRJ-0001-021,compensation,2020-03-04,pending,False,3
+CAS-00136,PAR-PRJ-0001-021,stay,2023-12-10,pending,False,6
+CAS-00137,PAR-PRJ-0001-022,stay,2021-03-06,disposed,True,8
+CAS-00138,PAR-PRJ-0001-022,land acquisition,2023-06-05,disposed,False,7
+CAS-00139,PAR-PRJ-0001-022,title dispute,2025-08-11,disposed,False,11
+CAS-00140,PAR-PRJ-0001-022,compensation,2021-07-30,disposed,False,3
+CAS-00141,PAR-PRJ-0001-022,land acquisition,2024-07-24,pending,False,9
+CAS-00142,PAR-PRJ-0001-022,stay,2023-05-23,disposed,False,10
+CAS-00143,PAR-PRJ-0001-024,compensation,2025-01-08,disposed,False,8
+CAS-00144,PAR-PRJ-0001-024,title dispute,2025-07-31,pending,False,5
+CAS-00145,PAR-PRJ-0001-024,title dispute,2021-10-16,pending,False,6
+CAS-00146,PAR-PRJ-0001-024,compensation,2025-11-04,disposed,False,11
+CAS-00147,PAR-PRJ-0001-024,compensation,2025-02-02,pending,False,10
+CAS-00148,PAR-PRJ-0001-024,encroachment,2021-06-17,pending,False,1
+CAS-00149,PAR-PRJ-0001-024,compensation,2024-07-24,disposed,False,9
+CAS-00150,PAR-PRJ-0001-024,title dispute,2023-12-13,pending,False,8
+CAS-00151,PAR-PRJ-0001-025,stay,2021-08-04,pending,False,2
+CAS-00152,PAR-PRJ-0001-025,stay,2024-07-29,disposed,True,1
+CAS-00153,PAR-PRJ-0001-025,title dispute,2024-12-23,disposed,True,7
+CAS-00154,PAR-PRJ-0001-026,title dispute,2021-02-03,disposed,False,9
+CAS-00155,PAR-PRJ-0001-026,encroachment,2025-05-29,disposed,True,3
+CAS-00156,PAR-PRJ-0001-026,land acquisition,2024-01-19,disposed,True,9
+CAS-00157,PAR-PRJ-0001-026,encroachment,2022-10-31,disposed,True,8
+CAS-00158,PAR-PRJ-0001-026,land acquisition,2022-05-02,pending,True,7
+CAS-00159,PAR-PRJ-0001-026,encroachment,2020-11-15,disposed,True,10
+CAS-00160,PAR-PRJ-0001-026,encroachment,2025-12-03,disposed,False,10
+CAS-00161,PAR-PRJ-0001-026,title dispute,2025-03-01,disposed,False,1
+CAS-00162,PAR-PRJ-0001-026,title dispute,2022-02-14,disposed,False,4
+CAS-00163,PAR-PRJ-0001-026,land acquisition,2020-03-24,pending,True,10
+CAS-00164,PAR-PRJ-0001-027,stay,2022-01-22,pending,False,4
+CAS-00165,PAR-PRJ-0001-027,land acquisition,2024-09-06,disposed,True,11
+CAS-00166,PAR-PRJ-0001-027,encroachment,2023-01-02,pending,False,2
+CAS-00167,PAR-PRJ-0001-027,title dispute,2024-04-02,disposed,False,1
+CAS-00168,PAR-PRJ-0001-027,land acquisition,2021-07-29,pending,True,7
+CAS-00169,PAR-PRJ-0001-027,land acquisition,2025-02-09,disposed,True,4
+CAS-00170,PAR-PRJ-0001-029,encroachment,2023-09-15,disposed,False,11
+CAS-00171,PAR-PRJ-0001-029,encroachment,2023-08-01,disposed,False,3
+CAS-00172,PAR-PRJ-0001-029,compensation,2021-10-17,pending,False,8
+CAS-00173,PAR-PRJ-0001-029,encroachment,2021-01-17,disposed,False,3
+CAS-00174,PAR-PRJ-0001-029,encroachment,2025-05-03,pending,False,8
+CAS-00175,PAR-PRJ-0001-030,stay,2020-08-18,disposed,False,5
+CAS-00176,PAR-PRJ-0001-030,land acquisition,2020-01-31,disposed,False,11
+CAS-00177,PAR-PRJ-0001-030,title dispute,2020-08-10,pending,True,7
+CAS-00178,PAR-PRJ-0001-030,title dispute,2021-04-09,disposed,True,4
+CAS-00179,PAR-PRJ-0001-030,stay,2024-02-17,disposed,False,5
+CAS-00180,PAR-PRJ-0001-030,encroachment,2024-11-22,disposed,True,7
+CAS-00181,PAR-PRJ-0001-030,encroachment,2020-11-02,pending,False,8
+CAS-00182,PAR-PRJ-0001-030,land acquisition,2024-09-08,pending,True,2
+CAS-00183,PAR-PRJ-0001-031,land acquisition,2024-05-16,disposed,True,5
+CAS-00184,PAR-PRJ-0001-031,stay,2025-11-14,pending,False,8
+CAS-00185,PAR-PRJ-0001-031,compensation,2020-07-31,disposed,True,1
+CAS-00186,PAR-PRJ-0001-031,land acquisition,2025-01-22,disposed,False,6
+CAS-00187,PAR-PRJ-0001-031,stay,2023-11-21,pending,False,11
+CAS-00188,PAR-PRJ-0001-031,stay,2023-07-03,disposed,False,3
+CAS-00189,PAR-PRJ-0001-031,encroachment,2025-09-23,disposed,False,5
+CAS-00190,PAR-PRJ-0001-032,compensation,2022-04-08,disposed,False,2
+CAS-00191,PAR-PRJ-0001-032,land acquisition,2025-12-09,disposed,False,5
+CAS-00192,PAR-PRJ-0001-033,land acquisition,2020-03-06,pending,True,1
+CAS-00193,PAR-PRJ-0001-033,stay,2020-05-21,pending,False,2
+CAS-00194,PAR-PRJ-0001-033,land acquisition,2023-12-23,disposed,True,11
+CAS-00195,PAR-PRJ-0001-033,encroachment,2022-08-09,disposed,False,2
+CAS-00196,PAR-PRJ-0001-033,stay,2023-10-13,disposed,False,10
+CAS-00197,PAR-PRJ-0001-034,encroachment,2023-08-25,pending,False,1
+CAS-00198,PAR-PRJ-0001-034,stay,2024-11-14,disposed,False,3
+CAS-00199,PAR-PRJ-0001-034,title dispute,2024-04-28,pending,False,2
+CAS-00200,PAR-PRJ-0001-034,encroachment,2021-06-18,disposed,True,11
+CAS-00201,PAR-PRJ-0001-035,stay,2020-08-03,disposed,False,10
+CAS-00202,PAR-PRJ-0001-035,compensation,2023-03-25,pending,False,8
+CAS-00203,PAR-PRJ-0001-035,compensation,2023-10-08,pending,False,3
+CAS-00204,PAR-PRJ-0001-036,stay,2023-02-26,disposed,False,2
+CAS-00205,PAR-PRJ-0001-036,land acquisition,2022-09-21,disposed,False,11
+CAS-00206,PAR-PRJ-0001-036,stay,2020-02-27,disposed,True,2
+CAS-00207,PAR-PRJ-0001-036,title dispute,2025-09-16,pending,True,4
+CAS-00208,PAR-PRJ-0001-036,compensation,2025-11-09,pending,False,3
+CAS-00209,PAR-PRJ-0001-036,compensation,2025-09-08,pending,True,11
+CAS-00210,PAR-PRJ-0001-036,compensation,2022-10-29,disposed,False,3
+CAS-00211,PAR-PRJ-0001-036,stay,2021-06-23,pending,True,2
+CAS-00212,PAR-PRJ-0001-036,compensation,2020-10-13,pending,True,8
+CAS-00213,PAR-PRJ-0001-036,compensation,2022-05-26,pending,False,4
+CAS-00214,PAR-PRJ-0001-036,stay,2021-10-31,disposed,False,4
+CAS-00215,PAR-PRJ-0001-037,title dispute,2025-12-07,disposed,True,4
+CAS-00216,PAR-PRJ-0001-037,title dispute,2022-07-30,pending,False,11
+CAS-00217,PAR-PRJ-0001-037,title dispute,2023-06-09,pending,False,2
+CAS-00218,PAR-PRJ-0001-037,title dispute,2020-07-29,pending,True,3
+CAS-00219,PAR-PRJ-0001-037,land acquisition,2024-11-23,pending,False,9
+CAS-00220,PAR-PRJ-0001-037,title dispute,2020-09-22,disposed,False,11
+CAS-00221,PAR-PRJ-0001-037,compensation,2025-02-17,disposed,False,4
+CAS-00222,PAR-PRJ-0001-038,title dispute,2025-12-15,pending,False,5
+CAS-00223,PAR-PRJ-0001-038,stay,2023-06-30,pending,True,11
+CAS-00224,PAR-PRJ-0001-038,compensation,2020-12-05,disposed,False,10
+CAS-00225,PAR-PRJ-0001-039,stay,2023-06-17,disposed,False,8
+CAS-00226,PAR-PRJ-0001-039,land acquisition,2020-03-16,disposed,True,1
+CAS-00227,PAR-PRJ-0001-039,land acquisition,2023-09-13,pending,False,11
+CAS-00228,PAR-PRJ-0001-039,title dispute,2021-08-27,disposed,False,8
+CAS-00229,PAR-PRJ-0001-039,title dispute,2021-02-22,disposed,False,10
+CAS-00230,PAR-PRJ-0001-039,title dispute,2021-06-04,disposed,False,7
+CAS-00231,PAR-PRJ-0002-001,encroachment,2025-09-03,disposed,True,3
+CAS-00232,PAR-PRJ-0002-001,title dispute,2025-05-10,disposed,False,2
+CAS-00233,PAR-PRJ-0002-001,land acquisition,2021-04-05,pending,False,9
+CAS-00234,PAR-PRJ-0002-001,land acquisition,2023-09-15,disposed,False,7
+CAS-00235,PAR-PRJ-0002-001,land acquisition,2023-02-10,pending,True,8
+CAS-00236,PAR-PRJ-0002-001,title dispute,2025-06-30,pending,True,10
+CAS-00237,PAR-PRJ-0002-002,encroachment,2023-09-28,pending,False,6
+CAS-00238,PAR-PRJ-0002-002,compensation,2021-01-24,pending,False,4
+CAS-00239,PAR-PRJ-0002-002,title dispute,2021-11-05,disposed,False,2
+CAS-00240,PAR-PRJ-0002-002,title dispute,2023-09-15,disposed,False,8
+CAS-00241,PAR-PRJ-0002-002,land acquisition,2021-11-16,pending,False,6
+CAS-00242,PAR-PRJ-0002-002,land acquisition,2021-01-08,pending,False,1
+CAS-00243,PAR-PRJ-0002-003,compensation,2022-01-23,pending,False,11
+CAS-00244,PAR-PRJ-0002-003,stay,2021-06-26,disposed,False,3
+CAS-00245,PAR-PRJ-0002-003,land acquisition,2023-10-25,pending,False,3
+CAS-00246,PAR-PRJ-0002-003,land acquisition,2021-09-20,pending,False,10
+CAS-00247,PAR-PRJ-0002-004,stay,2025-01-26,disposed,True,1
+CAS-00248,PAR-PRJ-0002-004,land acquisition,2024-08-03,pending,False,6
+CAS-00249,PAR-PRJ-0002-004,encroachment,2021-01-22,disposed,False,5
+CAS-00250,PAR-PRJ-0002-004,compensation,2020-03-01,disposed,False,6
+CAS-00251,PAR-PRJ-0002-004,title dispute,2025-02-07,disposed,False,10
+CAS-00252,PAR-PRJ-0002-004,stay,2025-12-30,disposed,True,2
+CAS-00253,PAR-PRJ-0002-005,stay,2020-07-15,pending,False,8
+CAS-00254,PAR-PRJ-0002-005,stay,2023-12-18,pending,True,9
+CAS-00255,PAR-PRJ-0002-005,title dispute,2020-03-09,disposed,True,5
+CAS-00256,PAR-PRJ-0002-006,encroachment,2021-03-14,pending,True,2
+CAS-00257,PAR-PRJ-0002-007,land acquisition,2023-08-03,disposed,False,10
+CAS-00258,PAR-PRJ-0002-007,land acquisition,2021-06-04,pending,False,11
+CAS-00259,PAR-PRJ-0002-007,stay,2023-05-18,disposed,False,11
+CAS-00260,PAR-PRJ-0002-007,title dispute,2020-03-03,pending,True,2
+CAS-00261,PAR-PRJ-0002-007,encroachment,2024-03-06,pending,False,7
+CAS-00262,PAR-PRJ-0002-007,title dispute,2020-02-11,disposed,False,3
+CAS-00263,PAR-PRJ-0002-007,title dispute,2023-12-05,disposed,True,5
+CAS-00264,PAR-PRJ-0002-007,title dispute,2021-11-10,pending,False,9
+CAS-00265,PAR-PRJ-0002-008,encroachment,2025-11-07,disposed,True,7
+CAS-00266,PAR-PRJ-0002-008,encroachment,2020-08-21,pending,False,4
+CAS-00267,PAR-PRJ-0002-008,compensation,2025-09-19,disposed,False,6
+CAS-00268,PAR-PRJ-0002-008,encroachment,2023-11-15,pending,False,1
+CAS-00269,PAR-PRJ-0002-009,stay,2020-10-21,pending,False,1
+CAS-00270,PAR-PRJ-0002-009,compensation,2025-12-07,pending,False,11
+CAS-00271,PAR-PRJ-0002-009,stay,2022-09-22,pending,False,10
+CAS-00272,PAR-PRJ-0002-009,land acquisition,2022-02-19,disposed,False,11
+CAS-00273,PAR-PRJ-0002-009,encroachment,2020-11-18,pending,True,5
+CAS-00274,PAR-PRJ-0002-009,stay,2022-06-12,disposed,False,6
+CAS-00275,PAR-PRJ-0002-009,title dispute,2021-12-25,disposed,False,8
+CAS-00276,PAR-PRJ-0002-010,compensation,2025-03-18,disposed,False,7
+CAS-00277,PAR-PRJ-0002-010,stay,2020-10-01,pending,False,4
+CAS-00278,PAR-PRJ-0002-010,title dispute,2025-06-03,disposed,False,6
+CAS-00279,PAR-PRJ-0002-010,title dispute,2022-04-07,disposed,False,11
+CAS-00280,PAR-PRJ-0002-011,encroachment,2023-02-08,disposed,False,9
+CAS-00281,PAR-PRJ-0002-011,stay,2023-10-25,disposed,True,3
+CAS-00282,PAR-PRJ-0002-011,stay,2024-01-04,pending,True,11
+CAS-00283,PAR-PRJ-0002-011,land acquisition,2025-06-19,pending,False,5
+CAS-00284,PAR-PRJ-0002-011,compensation,2021-08-06,disposed,False,8
+CAS-00285,PAR-PRJ-0002-011,title dispute,2024-10-08,pending,True,4
+CAS-00286,PAR-PRJ-0002-012,stay,2020-11-25,pending,False,2
+CAS-00287,PAR-PRJ-0002-012,stay,2025-04-20,disposed,True,8
+CAS-00288,PAR-PRJ-0002-012,stay,2023-04-21,pending,True,6
+CAS-00289,PAR-PRJ-0002-012,compensation,2023-04-08,pending,False,4
+CAS-00290,PAR-PRJ-0002-012,compensation,2023-11-15,pending,False,8
+CAS-00291,PAR-PRJ-0002-013,land acquisition,2021-09-28,disposed,False,9
+CAS-00292,PAR-PRJ-0002-013,land acquisition,2024-05-12,pending,False,11
+CAS-00293,PAR-PRJ-0002-013,title dispute,2021-04-26,pending,False,11
+CAS-00294,PAR-PRJ-0002-014,compensation,2025-11-30,pending,False,7
+CAS-00295,PAR-PRJ-0002-014,compensation,2025-03-30,pending,False,5
+CAS-00296,PAR-PRJ-0002-014,encroachment,2025-05-31,disposed,False,7
+CAS-00297,PAR-PRJ-0002-015,title dispute,2020-06-12,pending,False,7
+CAS-00298,PAR-PRJ-0002-015,title dispute,2024-04-15,disposed,False,8
+CAS-00299,PAR-PRJ-0002-015,land acquisition,2024-05-22,pending,False,2
+CAS-00300,PAR-PRJ-0002-015,encroachment,2025-10-25,disposed,False,10
+CAS-00301,PAR-PRJ-0002-015,encroachment,2022-06-07,pending,False,11
+CAS-00302,PAR-PRJ-0002-015,title dispute,2021-04-16,pending,False,6
+CAS-00303,PAR-PRJ-0002-015,compensation,2024-01-26,pending,True,10
+CAS-00304,PAR-PRJ-0002-015,compensation,2025-10-26,disposed,False,11
+CAS-00305,PAR-PRJ-0002-016,land acquisition,2025-08-20,pending,False,9
+CAS-00306,PAR-PRJ-0002-016,title dispute,2022-08-09,disposed,False,9
+CAS-00307,PAR-PRJ-0002-016,land acquisition,2020-08-23,pending,False,2
+CAS-00308,PAR-PRJ-0002-016,compensation,2025-06-12,pending,False,9
+CAS-00309,PAR-PRJ-0002-016,compensation,2020-06-07,pending,False,1
+CAS-00310,PAR-PRJ-0002-017,land acquisition,2025-02-08,pending,False,3
+CAS-00311,PAR-PRJ-0002-017,stay,2020-07-08,disposed,True,11
+CAS-00312,PAR-PRJ-0002-017,title dispute,2025-10-29,disposed,False,7
+CAS-00313,PAR-PRJ-0002-017,compensation,2024-01-06,pending,False,6
+CAS-00314,PAR-PRJ-0002-017,title dispute,2021-03-31,pending,True,4
+CAS-00315,PAR-PRJ-0002-017,land acquisition,2021-08-10,disposed,False,8
+CAS-00316,PAR-PRJ-0002-017,stay,2023-05-28,disposed,False,6
+CAS-00317,PAR-PRJ-0002-017,stay,2025-02-06,pending,False,3
+CAS-00318,PAR-PRJ-0002-018,land acquisition,2022-09-22,pending,False,1
+CAS-00319,PAR-PRJ-0002-018,stay,2021-10-13,disposed,False,11
+CAS-00320,PAR-PRJ-0002-018,stay,2020-08-27,pending,False,6
+CAS-00321,PAR-PRJ-0002-018,compensation,2021-12-02,pending,False,9
+CAS-00322,PAR-PRJ-0002-018,stay,2021-05-17,disposed,False,10
+CAS-00323,PAR-PRJ-0002-018,compensation,2025-01-09,pending,False,8
+CAS-00324,PAR-PRJ-0002-018,encroachment,2023-10-01,disposed,False,9
+CAS-00325,PAR-PRJ-0002-018,compensation,2024-04-01,pending,True,3
+CAS-00326,PAR-PRJ-0002-018,land acquisition,2025-12-11,pending,False,9
+CAS-00327,PAR-PRJ-0002-018,land acquisition,2021-11-05,disposed,False,6
+CAS-00328,PAR-PRJ-0002-018,land acquisition,2025-08-28,pending,False,2
+CAS-00329,PAR-PRJ-0002-018,stay,2022-04-17,pending,False,4
+CAS-00330,PAR-PRJ-0002-019,stay,2025-12-25,pending,False,1
+CAS-00331,PAR-PRJ-0002-019,land acquisition,2020-11-30,pending,False,6
+CAS-00332,PAR-PRJ-0002-020,land acquisition,2025-01-04,pending,False,5
+CAS-00333,PAR-PRJ-0002-020,land acquisition,2025-03-19,pending,False,1
+CAS-00334,PAR-PRJ-0002-021,encroachment,2024-09-03,disposed,True,10
+CAS-00335,PAR-PRJ-0002-022,land acquisition,2024-03-06,pending,True,8
+CAS-00336,PAR-PRJ-0002-022,land acquisition,2023-11-24,pending,True,9
+CAS-00337,PAR-PRJ-0002-023,compensation,2025-06-06,disposed,False,11
+CAS-00338,PAR-PRJ-0002-023,encroachment,2022-12-18,disposed,False,7
+CAS-00339,PAR-PRJ-0002-023,stay,2020-01-20,pending,False,9
+CAS-00340,PAR-PRJ-0002-023,compensation,2022-06-07,disposed,False,5
+CAS-00341,PAR-PRJ-0002-024,compensation,2024-07-26,pending,False,3
+CAS-00342,PAR-PRJ-0002-024,compensation,2020-06-22,disposed,True,1
+CAS-00343,PAR-PRJ-0002-024,stay,2020-05-02,pending,False,4
+CAS-00344,PAR-PRJ-0002-024,compensation,2024-08-25,disposed,False,2
+CAS-00345,PAR-PRJ-0002-024,land acquisition,2024-09-05,pending,False,2
+CAS-00346,PAR-PRJ-0002-025,land acquisition,2023-07-09,pending,True,8
+CAS-00347,PAR-PRJ-0002-025,title dispute,2023-04-07,pending,True,11
+CAS-00348,PAR-PRJ-0002-025,title dispute,2022-12-06,pending,False,10
+CAS-00349,PAR-PRJ-0002-026,title dispute,2021-02-02,disposed,False,1
+CAS-00350,PAR-PRJ-0002-026,land acquisition,2024-09-29,disposed,False,4
+CAS-00351,PAR-PRJ-0002-026,encroachment,2023-09-05,disposed,False,11
+CAS-00352,PAR-PRJ-0002-026,title dispute,2021-11-11,disposed,False,6
+CAS-00353,PAR-PRJ-0002-026,stay,2021-08-15,disposed,True,10
+CAS-00354,PAR-PRJ-0002-026,compensation,2022-08-04,disposed,True,3
+CAS-00355,PAR-PRJ-0002-026,stay,2022-03-01,pending,False,3
+CAS-00356,PAR-PRJ-0002-026,stay,2025-11-16,disposed,True,5
+CAS-00357,PAR-PRJ-0002-026,title dispute,2020-09-15,disposed,False,4
+CAS-00358,PAR-PRJ-0002-026,title dispute,2024-07-18,pending,False,11
+CAS-00359,PAR-PRJ-0002-026,title dispute,2025-01-13,disposed,True,6
+CAS-00360,PAR-PRJ-0002-026,land acquisition,2020-05-14,disposed,False,6
+CAS-00361,PAR-PRJ-0003-001,stay,2024-02-25,pending,False,4
+CAS-00362,PAR-PRJ-0003-001,compensation,2020-05-25,disposed,False,1
+CAS-00363,PAR-PRJ-0003-001,land acquisition,2025-02-07,pending,True,9
+CAS-00364,PAR-PRJ-0003-001,stay,2023-09-29,pending,False,8
+CAS-00365,PAR-PRJ-0003-001,compensation,2022-04-08,disposed,True,8
+CAS-00366,PAR-PRJ-0003-001,stay,2022-10-28,disposed,False,3
+CAS-00367,PAR-PRJ-0003-001,compensation,2023-04-26,pending,False,5
+CAS-00368,PAR-PRJ-0003-001,title dispute,2025-04-17,pending,False,9
+CAS-00369,PAR-PRJ-0003-002,compensation,2023-08-10,pending,False,11
+CAS-00370,PAR-PRJ-0003-002,title dispute,2024-08-21,disposed,False,11
+CAS-00371,PAR-PRJ-0003-002,title dispute,2020-02-18,pending,False,6
+CAS-00372,PAR-PRJ-0003-002,land acquisition,2025-06-16,pending,False,10
+CAS-00373,PAR-PRJ-0003-002,stay,2022-11-03,disposed,False,1
+CAS-00374,PAR-PRJ-0003-002,stay,2020-07-03,disposed,False,5
+CAS-00375,PAR-PRJ-0003-002,compensation,2023-11-02,disposed,True,2
+CAS-00376,PAR-PRJ-0003-002,title dispute,2020-02-19,disposed,True,10
+CAS-00377,PAR-PRJ-0003-002,compensation,2024-08-02,disposed,True,2
+CAS-00378,PAR-PRJ-0003-002,stay,2023-08-29,pending,False,10
+CAS-00379,PAR-PRJ-0003-002,land acquisition,2021-11-27,disposed,False,11
+CAS-00380,PAR-PRJ-0003-002,compensation,2020-09-09,disposed,True,3
+CAS-00381,PAR-PRJ-0003-003,land acquisition,2024-06-27,pending,False,1
+CAS-00382,PAR-PRJ-0003-004,title dispute,2025-04-25,disposed,False,8
+CAS-00383,PAR-PRJ-0003-004,stay,2020-11-28,disposed,True,10
+CAS-00384,PAR-PRJ-0003-004,land acquisition,2024-04-07,disposed,False,1
+CAS-00385,PAR-PRJ-0003-005,stay,2022-04-21,disposed,False,11
+CAS-00386,PAR-PRJ-0003-005,compensation,2021-06-12,disposed,False,7
+CAS-00387,PAR-PRJ-0003-005,land acquisition,2025-07-22,disposed,False,7
+CAS-00388,PAR-PRJ-0003-005,encroachment,2024-06-25,disposed,False,7
+CAS-00389,PAR-PRJ-0003-005,compensation,2024-12-31,pending,False,8
+CAS-00390,PAR-PRJ-0003-005,land acquisition,2023-11-22,pending,False,11
+CAS-00391,PAR-PRJ-0003-005,compensation,2021-04-23,disposed,False,7
+CAS-00392,PAR-PRJ-0003-006,compensation,2022-01-11,pending,False,11
+CAS-00393,PAR-PRJ-0003-006,stay,2022-07-03,pending,True,7
+CAS-00394,PAR-PRJ-0003-006,land acquisition,2022-08-28,disposed,False,5
+CAS-00395,PAR-PRJ-0003-006,land acquisition,2022-06-13,disposed,False,1
+CAS-00396,PAR-PRJ-0003-006,stay,2025-06-22,disposed,True,11
+CAS-00397,PAR-PRJ-0003-006,encroachment,2024-01-05,disposed,False,11
+CAS-00398,PAR-PRJ-0003-006,land acquisition,2022-05-02,pending,False,11
+CAS-00399,PAR-PRJ-0003-006,title dispute,2020-09-20,pending,True,8
+CAS-00400,PAR-PRJ-0003-006,compensation,2025-05-05,disposed,True,11
+CAS-00401,PAR-PRJ-0003-006,title dispute,2020-06-22,disposed,True,6
+CAS-00402,PAR-PRJ-0003-006,title dispute,2021-11-08,disposed,True,11
+CAS-00403,PAR-PRJ-0003-006,compensation,2021-11-13,disposed,False,1
+CAS-00404,PAR-PRJ-0003-007,stay,2023-07-22,disposed,True,2
+CAS-00405,PAR-PRJ-0003-007,compensation,2023-11-10,pending,True,6
+CAS-00406,PAR-PRJ-0003-007,title dispute,2020-12-27,disposed,True,4
+CAS-00407,PAR-PRJ-0003-007,stay,2022-02-16,pending,False,4
+CAS-00408,PAR-PRJ-0003-007,compensation,2022-10-08,disposed,False,10
+CAS-00409,PAR-PRJ-0003-007,compensation,2021-09-28,pending,False,11
+CAS-00410,PAR-PRJ-0003-007,land acquisition,2025-01-21,pending,False,3
+CAS-00411,PAR-PRJ-0003-007,land acquisition,2023-10-24,pending,True,5
+CAS-00412,PAR-PRJ-0003-007,land acquisition,2020-08-04,pending,True,1
+CAS-00413,PAR-PRJ-0003-007,land acquisition,2021-11-10,pending,False,6
+CAS-00414,PAR-PRJ-0003-007,encroachment,2020-04-09,pending,True,2
+CAS-00415,PAR-PRJ-0003-007,compensation,2020-03-29,pending,False,4
+CAS-00416,PAR-PRJ-0003-008,title dispute,2025-11-20,disposed,False,3
+CAS-00417,PAR-PRJ-0003-008,stay,2025-11-16,pending,True,10
+CAS-00418,PAR-PRJ-0003-008,compensation,2022-08-25,disposed,False,11
+CAS-00419,PAR-PRJ-0003-008,stay,2020-03-11,disposed,True,3
+CAS-00420,PAR-PRJ-0003-008,compensation,2023-08-30,pending,True,2
+CAS-00421,PAR-PRJ-0003-008,compensation,2024-07-20,disposed,False,5
+CAS-00422,PAR-PRJ-0003-009,encroachment,2021-10-17,disposed,True,2
+CAS-00423,PAR-PRJ-0003-010,encroachment,2024-08-22,pending,False,1
+CAS-00424,PAR-PRJ-0003-010,encroachment,2021-12-14,pending,True,1
+CAS-00425,PAR-PRJ-0003-010,encroachment,2024-02-28,pending,False,6
+CAS-00426,PAR-PRJ-0003-010,encroachment,2021-09-05,pending,False,6
+CAS-00427,PAR-PRJ-0003-010,title dispute,2022-03-06,disposed,True,7
+CAS-00428,PAR-PRJ-0003-010,compensation,2025-03-05,disposed,True,9
+CAS-00429,PAR-PRJ-0003-012,compensation,2020-05-22,disposed,False,2
+CAS-00430,PAR-PRJ-0003-012,encroachment,2020-07-18,disposed,False,7
+CAS-00431,PAR-PRJ-0003-012,encroachment,2024-12-26,disposed,False,3
+CAS-00432,PAR-PRJ-0003-012,compensation,2020-10-12,pending,False,10
+CAS-00433,PAR-PRJ-0003-012,compensation,2020-11-23,pending,False,10
+CAS-00434,PAR-PRJ-0003-012,title dispute,2020-10-04,disposed,False,8
+CAS-00435,PAR-PRJ-0003-012,stay,2025-06-21,disposed,False,7
+CAS-00436,PAR-PRJ-0003-012,compensation,2020-02-02,pending,False,10
+CAS-00437,PAR-PRJ-0003-013,encroachment,2023-01-06,pending,False,11
+CAS-00438,PAR-PRJ-0003-013,encroachment,2025-08-06,pending,False,3
+CAS-00439,PAR-PRJ-0003-013,compensation,2024-08-09,pending,True,11
+CAS-00440,PAR-PRJ-0003-013,encroachment,2023-05-03,disposed,False,10
+CAS-00441,PAR-PRJ-0003-013,stay,2021-09-25,disposed,False,4
+CAS-00442,PAR-PRJ-0003-013,compensation,2024-01-11,disposed,True,1
+CAS-00443,PAR-PRJ-0003-013,compensation,2023-05-05,pending,False,3
+CAS-00444,PAR-PRJ-0003-013,encroachment,2024-01-03,pending,True,1
+CAS-00445,PAR-PRJ-0003-013,stay,2025-04-14,pending,True,1
+CAS-00446,PAR-PRJ-0003-013,compensation,2024-12-02,disposed,False,8
+CAS-00447,PAR-PRJ-0003-014,land acquisition,2022-04-02,pending,True,2
+CAS-00448,PAR-PRJ-0003-014,land acquisition,2023-11-14,disposed,True,10
+CAS-00449,PAR-PRJ-0003-014,compensation,2021-11-06,pending,True,11
+CAS-00450,PAR-PRJ-0003-014,compensation,2024-10-26,disposed,True,3
+CAS-00451,PAR-PRJ-0003-014,title dispute,2021-08-15,pending,True,3
+CAS-00452,PAR-PRJ-0003-014,stay,2025-02-24,disposed,False,5
+CAS-00453,PAR-PRJ-0003-014,land acquisition,2024-06-22,disposed,False,5
+CAS-00454,PAR-PRJ-0003-015,stay,2024-01-01,disposed,False,9
+CAS-00455,PAR-PRJ-0003-015,land acquisition,2021-01-28,pending,True,8
+CAS-00456,PAR-PRJ-0003-015,stay,2021-03-27,pending,False,11
+CAS-00457,PAR-PRJ-0003-015,stay,2023-05-28,pending,False,3
+CAS-00458,PAR-PRJ-0003-015,compensation,2020-02-23,disposed,False,7
+CAS-00459,PAR-PRJ-0003-015,encroachment,2024-02-15,pending,False,8
+CAS-00460,PAR-PRJ-0003-015,encroachment,2021-12-03,disposed,False,9
+CAS-00461,PAR-PRJ-0003-016,encroachment,2025-01-28,disposed,False,10
+CAS-00462,PAR-PRJ-0003-016,stay,2024-11-21,disposed,True,10
+CAS-00463,PAR-PRJ-0003-016,land acquisition,2021-09-03,pending,False,8
+CAS-00464,PAR-PRJ-0003-016,compensation,2023-01-06,disposed,True,11
+CAS-00465,PAR-PRJ-0003-017,title dispute,2021-09-08,pending,False,3
+CAS-00466,PAR-PRJ-0003-018,title dispute,2020-07-17,pending,False,10
+CAS-00467,PAR-PRJ-0003-018,title dispute,2020-09-17,disposed,True,10
+CAS-00468,PAR-PRJ-0003-018,encroachment,2025-03-19,disposed,False,10
+CAS-00469,PAR-PRJ-0003-018,encroachment,2023-10-02,pending,False,4
+CAS-00470,PAR-PRJ-0003-018,stay,2021-09-21,disposed,True,1
+CAS-00471,PAR-PRJ-0003-018,title dispute,2025-07-17,pending,True,9
+CAS-00472,PAR-PRJ-0003-018,stay,2024-05-13,disposed,False,3
+CAS-00473,PAR-PRJ-0003-018,encroachment,2021-03-07,pending,False,10
+CAS-00474,PAR-PRJ-0003-018,title dispute,2021-11-13,pending,True,9
+CAS-00475,PAR-PRJ-0003-019,land acquisition,2023-02-08,pending,False,8
+CAS-00476,PAR-PRJ-0003-019,stay,2024-11-17,pending,True,6
+CAS-00477,PAR-PRJ-0003-019,land acquisition,2020-09-02,disposed,True,5
+CAS-00478,PAR-PRJ-0003-019,compensation,2025-07-23,disposed,True,9
+CAS-00479,PAR-PRJ-0003-019,land acquisition,2023-01-26,pending,False,6
+CAS-00480,PAR-PRJ-0003-019,title dispute,2025-09-06,disposed,False,4
+CAS-00481,PAR-PRJ-0003-019,title dispute,2023-01-10,pending,True,11
+CAS-00482,PAR-PRJ-0003-019,encroachment,2023-11-21,pending,False,1
+CAS-00483,PAR-PRJ-0003-019,title dispute,2025-10-04,disposed,True,8
+CAS-00484,PAR-PRJ-0003-019,title dispute,2025-11-26,disposed,False,6
+CAS-00485,PAR-PRJ-0003-020,land acquisition,2025-12-28,disposed,True,5
+CAS-00486,PAR-PRJ-0003-020,compensation,2025-08-07,disposed,False,10
+CAS-00487,PAR-PRJ-0003-020,title dispute,2022-09-25,pending,True,2
+CAS-00488,PAR-PRJ-0003-020,title dispute,2024-04-27,pending,False,3
+CAS-00489,PAR-PRJ-0003-020,encroachment,2021-04-08,pending,False,1
+CAS-00490,PAR-PRJ-0003-020,stay,2023-08-10,disposed,True,5
+CAS-00491,PAR-PRJ-0003-020,stay,2021-05-24,pending,False,10
+CAS-00492,PAR-PRJ-0004-001,stay,2023-07-02,pending,False,7
+CAS-00493,PAR-PRJ-0004-001,title dispute,2023-09-30,disposed,False,4
+CAS-00494,PAR-PRJ-0004-001,compensation,2020-12-19,disposed,False,9
+CAS-00495,PAR-PRJ-0004-001,land acquisition,2021-07-24,disposed,True,9
+CAS-00496,PAR-PRJ-0004-001,encroachment,2020-03-19,pending,False,3
+CAS-00497,PAR-PRJ-0004-002,stay,2023-01-17,pending,False,7
+CAS-00498,PAR-PRJ-0004-002,land acquisition,2020-05-03,disposed,False,6
+CAS-00499,PAR-PRJ-0004-002,encroachment,2022-06-12,pending,False,6
+CAS-00500,PAR-PRJ-0004-002,land acquisition,2025-03-05,disposed,False,4
+CAS-00501,PAR-PRJ-0004-002,encroachment,2023-06-18,pending,False,4
+CAS-00502,PAR-PRJ-0004-002,land acquisition,2023-10-23,disposed,False,3
+CAS-00503,PAR-PRJ-0004-002,stay,2021-08-22,pending,False,10
+CAS-00504,PAR-PRJ-0004-002,title dispute,2024-01-14,pending,False,7
+CAS-00505,PAR-PRJ-0004-002,encroachment,2024-07-19,pending,False,5
+CAS-00506,PAR-PRJ-0004-003,compensation,2022-04-30,pending,True,11
+CAS-00507,PAR-PRJ-0004-003,land acquisition,2022-02-03,pending,False,10
+CAS-00508,PAR-PRJ-0004-003,land acquisition,2024-10-03,pending,False,3
+CAS-00509,PAR-PRJ-0004-003,encroachment,2020-06-05,disposed,False,1
+CAS-00510,PAR-PRJ-0004-003,stay,2020-01-06,disposed,True,2
+CAS-00511,PAR-PRJ-0004-003,title dispute,2024-04-08,disposed,True,7
+CAS-00512,PAR-PRJ-0004-003,compensation,2022-06-18,pending,True,11
+CAS-00513,PAR-PRJ-0004-003,encroachment,2020-05-28,disposed,True,8
+CAS-00514,PAR-PRJ-0004-003,compensation,2023-05-04,disposed,True,3
+CAS-00515,PAR-PRJ-0004-004,stay,2025-03-16,disposed,True,4
+CAS-00516,PAR-PRJ-0004-004,title dispute,2021-04-28,disposed,True,10
+CAS-00517,PAR-PRJ-0004-004,encroachment,2021-01-26,pending,True,7
+CAS-00518,PAR-PRJ-0004-004,encroachment,2025-09-11,disposed,True,10
+CAS-00519,PAR-PRJ-0004-004,land acquisition,2022-11-04,disposed,True,4
+CAS-00520,PAR-PRJ-0004-004,title dispute,2024-04-29,disposed,False,5
+CAS-00521,PAR-PRJ-0004-004,encroachment,2020-01-29,pending,False,6
+CAS-00522,PAR-PRJ-0004-004,stay,2022-09-20,disposed,False,2
+CAS-00523,PAR-PRJ-0004-004,encroachment,2024-09-03,pending,False,10
+CAS-00524,PAR-PRJ-0004-004,compensation,2021-09-08,pending,False,11
+CAS-00525,PAR-PRJ-0004-005,encroachment,2025-04-29,disposed,False,9
+CAS-00526,PAR-PRJ-0004-005,encroachment,2024-03-27,pending,True,3
+CAS-00527,PAR-PRJ-0004-005,title dispute,2021-03-23,disposed,False,8
+CAS-00528,PAR-PRJ-0004-005,compensation,2024-07-14,pending,False,3
+CAS-00529,PAR-PRJ-0004-005,land acquisition,2022-02-07,pending,False,10
+CAS-00530,PAR-PRJ-0004-005,compensation,2021-07-01,pending,True,4
+CAS-00531,PAR-PRJ-0004-005,title dispute,2022-03-02,pending,False,4
+CAS-00532,PAR-PRJ-0004-005,stay,2023-12-12,disposed,False,11
+CAS-00533,PAR-PRJ-0004-005,land acquisition,2023-06-11,pending,True,4
+CAS-00534,PAR-PRJ-0004-005,encroachment,2023-07-19,pending,True,1
+CAS-00535,PAR-PRJ-0004-005,land acquisition,2023-11-08,disposed,False,2
+CAS-00536,PAR-PRJ-0004-005,encroachment,2024-01-08,pending,False,6
+CAS-00537,PAR-PRJ-0005-001,title dispute,2025-04-07,pending,False,3
+CAS-00538,PAR-PRJ-0005-001,land acquisition,2021-01-15,pending,False,9
+CAS-00539,PAR-PRJ-0005-001,land acquisition,2024-01-10,pending,False,10
+CAS-00540,PAR-PRJ-0005-001,stay,2024-10-27,pending,False,3
+CAS-00541,PAR-PRJ-0005-001,land acquisition,2024-05-22,pending,False,1
+CAS-00542,PAR-PRJ-0005-002,land acquisition,2020-03-11,disposed,True,9
+CAS-00543,PAR-PRJ-0005-002,stay,2025-11-15,pending,False,11
+CAS-00544,PAR-PRJ-0005-002,land acquisition,2025-05-16,pending,True,7
+CAS-00545,PAR-PRJ-0005-002,title dispute,2023-08-16,disposed,True,8
+CAS-00546,PAR-PRJ-0005-002,title dispute,2024-08-25,disposed,False,4
+CAS-00547,PAR-PRJ-0005-002,encroachment,2021-08-07,pending,False,4
+CAS-00548,PAR-PRJ-0005-002,stay,2024-08-15,pending,False,1
+CAS-00549,PAR-PRJ-0005-003,land acquisition,2020-07-12,disposed,False,4
+CAS-00550,PAR-PRJ-0005-003,encroachment,2020-11-19,disposed,False,3
+CAS-00551,PAR-PRJ-0005-003,land acquisition,2021-10-11,disposed,True,5
+CAS-00552,PAR-PRJ-0005-003,land acquisition,2021-12-09,disposed,True,7
+CAS-00553,PAR-PRJ-0005-003,encroachment,2020-04-26,pending,False,3
+CAS-00554,PAR-PRJ-0005-003,title dispute,2022-08-02,pending,False,1
+CAS-00555,PAR-PRJ-0005-003,encroachment,2025-01-20,pending,True,2
+CAS-00556,PAR-PRJ-0005-003,title dispute,2023-01-25,disposed,True,3
+CAS-00557,PAR-PRJ-0005-003,land acquisition,2024-06-04,pending,True,6
+CAS-00558,PAR-PRJ-0005-003,title dispute,2022-12-01,disposed,False,10
+CAS-00559,PAR-PRJ-0005-004,title dispute,2020-05-01,disposed,False,1
+CAS-00560,PAR-PRJ-0005-005,stay,2024-06-05,disposed,False,7
+CAS-00561,PAR-PRJ-0005-005,compensation,2020-04-28,disposed,True,5
+CAS-00562,PAR-PRJ-0005-005,stay,2023-01-18,disposed,False,3
+CAS-00563,PAR-PRJ-0005-005,encroachment,2023-01-11,pending,False,10
+CAS-00564,PAR-PRJ-0005-005,land acquisition,2024-01-08,disposed,False,2
+CAS-00565,PAR-PRJ-0005-005,compensation,2023-11-16,disposed,False,2
+CAS-00566,PAR-PRJ-0005-005,compensation,2022-05-13,disposed,True,4
+CAS-00567,PAR-PRJ-0005-005,encroachment,2020-11-14,disposed,False,6
+CAS-00568,PAR-PRJ-0005-005,compensation,2020-11-28,disposed,False,11
+CAS-00569,PAR-PRJ-0005-005,encroachment,2021-01-17,disposed,False,10
+CAS-00570,PAR-PRJ-0005-005,encroachment,2025-05-12,pending,False,1
+CAS-00571,PAR-PRJ-0005-005,title dispute,2025-10-24,disposed,False,9
+CAS-00572,PAR-PRJ-0005-006,title dispute,2025-04-30,pending,False,1
+CAS-00573,PAR-PRJ-0005-006,stay,2022-06-27,disposed,False,2
+CAS-00574,PAR-PRJ-0005-006,land acquisition,2025-03-15,disposed,False,3
+CAS-00575,PAR-PRJ-0005-006,land acquisition,2021-08-11,disposed,False,6
+CAS-00576,PAR-PRJ-0005-006,title dispute,2020-06-05,disposed,False,9
