@@ -1,0 +1,83 @@
+{
+  "total_projects": 48,
+  "high_risk_projects": 11,
+  "avg_risk_score": 46.2,
+  "projects_with_alerts": 7,
+  "band_distribution": {
+    "Low": 19,
+    "Medium": 18,
+    "High": 11
+  },
+  "top_risk": [
+    {
+      "project_id": "PRJ-0002",
+      "name": "Thane-Bhiwandi Metro Link Corridor",
+      "district": "Thane",
+      "risk_score": 84,
+      "top_driver": "Dense urban encroachment on alignment"
+    },
+    {
+      "project_id": "PRJ-0001",
+      "name": "Pune Ring Road Western Bypass",
+      "district": "Pune",
+      "risk_score": 78,
+      "top_driver": "Litigation cases with stay orders"
+    },
+    {
+      "project_id": "PRJ-0014",
+      "name": "Kalyan Bypass Multi-Modal Freight Way",
+      "district": "Thane",
+      "risk_score": 74,
+      "top_driver": "High compensation valuation dispute"
+    },
+    {
+      "project_id": "PRJ-0017",
+      "name": "Nashik Outer Ring Expressway Segment 2",
+      "district": "Nashik",
+      "risk_score": 71,
+      "top_driver": "Delayed forest conservation clearance"
+    },
+    {
+      "project_id": "PRJ-0003",
+      "name": "Nagpur Agro-Industrial Logistics Park",
+      "district": "Nagpur",
+      "risk_score": 67,
+      "top_driver": "Forest clearance pending approval"
+    },
+    {
+      "project_id": "PRJ-0021",
+      "name": "Mula-Mutha Riverfront Link Road",
+      "district": "Pune",
+      "risk_score": 64,
+      "top_driver": "Encroached government land parcels"
+    },
+    {
+      "project_id": "PRJ-0004",
+      "name": "Upper Wardha Left Canal Expansion",
+      "district": "Nagpur",
+      "risk_score": 58,
+      "top_driver": "Disputed ownership title records"
+    },
+    {
+      "project_id": "PRJ-0029",
+      "name": "Dombivli Ring Expressway Package C",
+      "district": "Thane",
+      "risk_score": 55,
+      "top_driver": "Slow R&R tenant rehabilitation"
+    },
+    {
+      "project_id": "PRJ-0005",
+      "name": "Nashik Smart City Multimodal Hub",
+      "district": "Nashik",
+      "risk_score": 52,
+      "top_driver": "Compensation disbursement shortfall"
+    },
+    {
+      "project_id": "PRJ-0006",
+      "name": "Baramati-Daund Doubling Rail Line",
+      "district": "Pune",
+      "risk_score": 48,
+      "top_driver": "R&R resettlement site opposition"
+    }
+  ]
+}

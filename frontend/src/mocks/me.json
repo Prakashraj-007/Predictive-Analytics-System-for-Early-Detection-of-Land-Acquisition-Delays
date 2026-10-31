@@ -1,0 +1,38 @@
+{
+  "user_id": "usr-pm-01",
+  "full_name": "Rajesh Sharma",
+  "role": "project_manager",
+  "district": "Pune",
+  "variants": {
+    "project_manager": {
+      "user_id": "usr-pm-01",
+      "full_name": "Rajesh Sharma",
+      "role": "project_manager",
+      "district": "Pune"
+    },
+    "collector": {
+      "user_id": "usr-col-02",
+      "full_name": "Dr. Sunita Kulkarni, IAS",
+      "role": "collector",
+      "district": "Pune"
+    },
+    "policymaker": {
+      "user_id": "usr-pol-03",
+      "full_name": "Vikramaditya Deshmukh",
+      "role": "policymaker",
+      "district": "Maharashtra State"
+    },
+    "admin": {
+      "user_id": "usr-adm-04",
+      "full_name": "Ananya Sen",
+      "role": "admin",
+      "district": "State Data Cell"
+    },
+    "auditor": {
+      "user_id": "usr-aud-05",
+      "full_name": "Gopalakrishnan Nair",
+      "role": "auditor",
+      "district": "Audit Directorate"
+    }
+  }
+}
