@@ -77,3 +77,4 @@ def run_prediction(project_id: str, user_id: str) -> Dict[str, Any]:
 
     # Fallback to contract-compliant stub prediction
     return get_prediction_for_project(project_id)
+
