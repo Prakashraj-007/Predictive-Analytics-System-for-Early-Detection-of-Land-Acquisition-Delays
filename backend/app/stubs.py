@@ -255,6 +255,18 @@ SAMPLE_COMPENSATION: Dict[str, Dict[str, Any]] = {
     }
 }
 
+SAMPLE_INCIDENTS: Dict[str, List[Dict[str, Any]]] = {
+    "PRJ-0001": [
+        {
+            "incident_id": "INC-0001-01",
+            "project_id": "PRJ-0001",
+            "type": "encroachment",
+            "incident_date": "2024-04-10",
+            "encroached_area_ha": 3.2
+        }
+    ]
+}
+
 SAMPLE_PREDICTIONS: Dict[str, Dict[str, Any]] = {
     "PRJ-0001": {
         "project_id": "PRJ-0001",
