@@ -183,3 +183,4 @@ def test_http_200_public_health(live_server):
         assert res.status == 200
         data = json.loads(res.read().decode("utf-8"))
         assert data["status"] == "ok"
+

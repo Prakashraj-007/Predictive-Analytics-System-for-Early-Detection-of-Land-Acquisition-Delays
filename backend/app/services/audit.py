@@ -54,3 +54,4 @@ def log_action(
             print(f"[WARN] Failed to write to Supabase audit_log table: {e}")
 
     return entry
+

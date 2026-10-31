@@ -240,3 +240,4 @@ def scope_projects_query(user: CurrentUser) -> Dict[str, Any]:
     elif user.role in ("policymaker", "admin", "auditor"):
         return {}
     return {"created_by": user.user_id}
+
