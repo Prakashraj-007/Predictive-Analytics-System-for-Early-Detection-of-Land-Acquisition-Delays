@@ -1,0 +1,39 @@
+{
+  "version": "v1",
+  "feature_order": [
+    "land_area_ha",
+    "families_affected",
+    "project_type",
+    "litigation_cases",
+    "stay_orders",
+    "ownership_disputes",
+    "compensation_pending_pct",
+    "approval_days_pending",
+    "docs_incomplete_pct",
+    "officer_response_days",
+    "encroached_area_pct",
+    "possession_pct",
+    "rr_progress_pct",
+    "current_stage",
+    "district_past_delay_rate"
+  ],
+  "project_type_order": [
+    "highway",
+    "rail",
+    "irrigation",
+    "power",
+    "urban"
+  ],
+  "current_stage_order": [
+    "planning",
+    "sia",
+    "notification",
+    "award",
+    "compensation",
+    "possession",
+    "rr"
+  ],
+  "trained_at": "2026-10-31T18:27:29.468461+00:00",
+  "calibration_method": "sigmoid",
+  "delay_days_regression_mode": "direct_regressor_output_for_delayed_projects"
+}
