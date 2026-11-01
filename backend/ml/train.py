@@ -9,6 +9,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.calibration import CalibratedClassifierCV
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
@@ -21,6 +22,7 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
 )
+from sklearn.model_selection import RandomizedSearchCV, TimeSeriesSplit
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from xgboost import XGBClassifier, XGBRegressor
@@ -68,26 +70,58 @@ def fit_baseline(X_train: pd.DataFrame, y_train: pd.Series) -> Pipeline:
     return pipe
 
 
-def fit_xgb_binary(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame | None = None, y_val: pd.Series | None = None, seed: int = 42, early_stop: bool = True):
+def fit_xgb_binary(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame | None = None, y_val: pd.Series | None = None, seed: int = 42, early_stop: bool = True, params: dict | None = None):
     pos_rate = float(y_train.mean())
-    model = XGBClassifier(
-        n_estimators=300,
-        max_depth=4,
-        learning_rate=0.05,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        scale_pos_weight=(1.0 - pos_rate) / max(pos_rate, 1e-6),
-        objective="binary:logistic",
-        eval_metric="logloss",
-        random_state=seed,
-        n_jobs=1,
-        early_stopping_rounds=20 if early_stop and X_val is not None and y_val is not None else None,
-    )
+    config = {
+        "n_estimators": 300,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "scale_pos_weight": (1.0 - pos_rate) / max(pos_rate, 1e-6),
+        "objective": "binary:logistic",
+        "eval_metric": "logloss",
+        "random_state": seed,
+        "n_jobs": 1,
+    }
+    if params:
+        config.update(params)
+    model = XGBClassifier(**config)
     if X_val is not None and y_val is not None and early_stop:
         model.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)
     else:
         model.fit(X_train, y_train)
     return model
+
+
+def tune_xgb_classifier(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame, y_val: pd.Series, n_iter: int = 20):
+    pos_rate = float(pd.concat([y_train, y_val], ignore_index=True).mean())
+    param_space = {
+        "n_estimators": [200, 300, 450, 600],
+        "max_depth": [3, 4, 5, 6],
+        "learning_rate": [0.03, 0.05, 0.07, 0.1],
+        "subsample": [0.7, 0.8, 0.9],
+        "colsample_bytree": [0.7, 0.8, 0.9],
+        "scale_pos_weight": [max((1.0 - pos_rate) / max(pos_rate, 1e-6), 0.8), max((1.0 - pos_rate) / max(pos_rate, 1e-6), 1.0), max((1.0 - pos_rate) / max(pos_rate, 1e-6), 1.6)],
+    }
+    model = XGBClassifier(
+        objective="binary:logistic",
+        eval_metric="logloss",
+        random_state=42,
+        n_jobs=1,
+    )
+    search = RandomizedSearchCV(
+        estimator=model,
+        param_distributions=param_space,
+        n_iter=n_iter,
+        scoring="average_precision",
+        cv=TimeSeriesSplit(n_splits=3),
+        n_jobs=1,
+        random_state=42,
+        refit=True,
+    )
+    search.fit(pd.concat([X_train, X_val], ignore_index=True), pd.concat([y_train, y_val], ignore_index=True))
+    return search.best_estimator_, search.best_params_
 
 
 def compute_top10_recall(y_true: pd.Series, scores: np.ndarray) -> float:
@@ -207,6 +241,51 @@ def save_metrics_json(path: Path, metrics: dict):
         json.dump(metrics, fh, indent=2)
 
 
+def build_model_comparison(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame, y_val: pd.Series, X_test: pd.DataFrame, y_test: pd.Series, best_params: dict | None = None) -> pd.DataFrame:
+    rows = []
+    baseline = fit_baseline(X_train, y_train)
+    rows.append({"model": "Logistic Regression", **evaluate_binary(baseline, X_test, y_test)})
+
+    rf_model = RandomForestClassifier(
+        n_estimators=300,
+        max_depth=8,
+        min_samples_leaf=2,
+        class_weight="balanced",
+        random_state=42,
+    )
+    rf_model.fit(X_train, y_train)
+    rows.append({"model": "Random Forest", **evaluate_binary(rf_model, X_test, y_test)})
+
+    tuned_model = fit_xgb_binary(X_train, y_train, X_val, y_val, params=best_params)
+    rows.append({"model": "XGBoost", **evaluate_binary(tuned_model, X_test, y_test)})
+
+    _, calibrator, _ = fit_calibrated_xgb(X_train, y_train, X_val, y_val)
+    rows.append({"model": "Calibrated XGBoost", **evaluate_binary(calibrator, X_test, y_test)})
+
+    try:
+        import lightgbm as lgb
+
+        lgb_model = lgb.LGBMClassifier(
+            n_estimators=300,
+            learning_rate=0.05,
+            max_depth=4,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            objective="binary",
+            random_state=42,
+            n_jobs=1,
+        )
+        lgb_model.fit(X_train, y_train, eval_set=[(X_val, y_val)], callbacks=[lgb.early_stopping(20, verbose=False)])
+        rows.append({"model": "LightGBM", **evaluate_binary(lgb_model, X_test, y_test)})
+    except Exception:
+        pass
+
+    comparison = pd.DataFrame(rows)
+    comparison = comparison[["model", "pr_auc", "recall", "f1", "brier", "top10_recall"]]
+    comparison.to_csv(MODELS_DIR / "model_comparison.csv", index=False)
+    return comparison
+
+
 def main():
     df = load_historical_data()
     train_df, val_df, test_df = time_split(df)
@@ -215,22 +294,18 @@ def main():
     X_val, y_val = make_features_target(val_df)
     X_test, y_test = make_features_target(test_df)
 
-    # B4 baseline + raw model
+    tuned_model, best_params = tune_xgb_classifier(X_train, y_train, X_val, y_val, n_iter=20)
+    xgb_raw = fit_xgb_binary(X_train, y_train, X_val, y_val, params=best_params)
     baseline = fit_baseline(X_train, y_train)
-    xgb_raw = fit_xgb_binary(X_train, y_train, X_val, y_val)
     baseline_metrics = evaluate_binary(baseline, X_test, y_test)
     xgb_metrics = evaluate_binary(xgb_raw, X_test, y_test)
 
-    # B5 calibration on validation split using raw model with cv="prefit".
     xgb_raw, calibrator, calibration_method = fit_calibrated_xgb(X_train, y_train, X_val, y_val)
     calibrated_probs = calibrator.predict_proba(X_test)[:, 1]
     calibrated_metrics = evaluate_binary(calibrator, X_test, y_test)
     brier_before = float(brier_score_loss(y_test, xgb_raw.predict_proba(X_test)[:, 1]))
     brier_after = float(brier_score_loss(y_test, calibrated_probs))
 
-    # Delay-days regressor: use the regressor output directly for delayed projects and scale it by the
-    # project-level delay probability when used in the prediction object. This keeps expected delay days
-    # anchored to the observed duration distribution of delayed projects while still reflecting risk.
     delayed_rows = df[df[TARGET] == 1].copy()
     delay_train_df, delay_val_df, delay_test_df = time_split(delayed_rows)
     X_delay_train, y_delay_train = make_features_target(delay_train_df, target="delay_days")
@@ -241,12 +316,10 @@ def main():
     mae_days = float(mean_absolute_error(y_delay_test, pred_days))
     rmse_days = float(np.sqrt(mean_squared_error(y_delay_test, pred_days)))
 
-    # Stage models: fit one small XGBClassifier per delayed stage using the same feature set.
     stage_approval = train_stage_model(X_train, train_df["delayed_approval"].astype(int), X_val, val_df["delayed_approval"].astype(int))
     stage_compensation = train_stage_model(X_train, train_df["delayed_compensation"].astype(int), X_val, val_df["delayed_compensation"].astype(int))
     stage_possession = train_stage_model(X_train, train_df["delayed_possession"].astype(int), X_val, val_df["delayed_possession"].astype(int))
 
-    # Save artifacts
     joblib.dump(baseline, MODELS_DIR / "baseline.joblib")
     joblib.dump(xgb_raw, MODELS_DIR / "xgb_raw.joblib")
     joblib.dump(calibrator, VERSION_DIR / "classifier_calibrated.joblib")
@@ -264,11 +337,17 @@ def main():
         "calibration_method": calibration_method,
         "delay_days_regression_mode": "direct_regressor_output_scaled_by_delay_probability",
         "stage_rr_formula": "clip(1 - rr_progress_pct / 100, 0, 1)",
+        "xgb_best_params": best_params,
+        "hyperparameter_search": {
+            "method": "RandomizedSearchCV",
+            "cv": "TimeSeriesSplit(n_splits=3)",
+            "n_iter": 20,
+            "scoring": "average_precision",
+        },
     }
     with open(VERSION_DIR / "meta.json", "w", encoding="utf-8") as fh:
         json.dump(version_meta, fh, indent=2)
 
-    # Final metrics with exact required keys only
     final_metrics = {
         "pr_auc": float(calibrated_metrics["pr_auc"]),
         "roc_auc": float(calibrated_metrics["roc_auc"]),
@@ -285,6 +364,12 @@ def main():
     rel_table = reliability_table(calibrated_probs, y_test, bins=10)
     with open(VERSION_DIR / "reliability_table.json", "w", encoding="utf-8") as fh:
         json.dump(rel_table, fh, indent=2)
+
+    comparison = build_model_comparison(X_train, y_train, X_val, y_val, X_test, y_test, best_params)
+    print("Best XGBoost parameters:")
+    print(best_params)
+    print("Comparison table:")
+    print(comparison.to_string(index=False))
 
     save_active_version("v1")
 
