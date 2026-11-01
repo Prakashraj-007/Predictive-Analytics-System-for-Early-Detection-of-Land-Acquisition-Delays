@@ -1,0 +1,53 @@
+{
+  "project_id": "PRJ-0001",
+  "created_at": "2026-11-02T10:15:00Z",
+  "risk_score": 78,
+  "band": "High",
+  "delay_probability": 0.78,
+  "expected_delay_days": 140,
+  "stage_probabilities": {
+    "approval": 0.35,
+    "compensation": 0.72,
+    "possession": 0.81,
+    "rr": 0.45
+  },
+  "drivers": [
+    {
+      "feature": "litigation_cases",
+      "label": "Court cases",
+      "impact": 0.22,
+      "direction": "increases_risk",
+      "plain_text": "9 court cases, 2 with stay orders, are the biggest cause of delay risk."
+    },
+    {
+      "feature": "compensation_pending_pct",
+      "label": "Compensation pending",
+      "impact": 0.17,
+      "direction": "increases_risk",
+      "plain_text": "66.5% of approved compensation remains undisbursed across active parcels."
+    },
+    {
+      "feature": "encroached_area_pct",
+      "label": "Corridor encroachment",
+      "impact": 0.09,
+      "direction": "increases_risk",
+      "plain_text": "Encroachments along alignment survey numbers 104 and 156 impede physical possession."
+    }
+  ],
+  "recommendations": [
+    {
+      "driver": "litigation_cases",
+      "action": "Escalate cases to the legal cell and consider a special Lok Adalat."
+    },
+    {
+      "driver": "compensation_pending_pct",
+      "action": "Organize single-window validation camps at Sub-Divisional Office for direct DBT account release."
+    },
+    {
+      "driver": "encroached_area_pct",
+      "action": "Issue formal Section 34 notices with joint revenue-police verification team before civil handover."
+    }
+  ],
+  "model_version": "v1"
+}
+

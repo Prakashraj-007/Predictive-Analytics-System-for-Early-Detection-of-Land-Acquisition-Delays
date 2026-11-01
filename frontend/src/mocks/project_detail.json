@@ -1,0 +1,172 @@
+{
+  "project": {
+    "project_id": "PRJ-0001",
+    "name": "Pune Ring Road Western Bypass",
+    "type": "highway",
+    "agency": "MSRDC (Maharashtra State Road Development Corp)",
+    "state": "Maharashtra",
+    "district": "Pune",
+    "lat": 18.5204,
+    "lon": 73.8567,
+    "land_area_ha": 342.5,
+    "families_affected": 820,
+    "families_resettlement": 195,
+    "budget": 4500000000,
+    "planned_start": "2024-03-01",
+    "planned_end": "2027-03-31",
+    "current_stage": "compensation",
+    "status": "active",
+    "rr_progress_pct": 38.5,
+    "officer_response_days": 18,
+    "created_by": "usr-pm-01",
+    "created_at": "2024-01-15T09:00:00Z",
+    "updated_at": "2026-10-28T14:30:00Z"
+  },
+  "parcels": [
+    {
+      "parcel_id": "PAR-0001-01",
+      "project_id": "PRJ-0001",
+      "survey_no": "104/2B",
+      "area_ha": 14.2,
+      "land_type": "private",
+      "compensation_status": "pending",
+      "possession_status": "pending",
+      "doc_complete": false,
+      "ownership_dispute": true
+    },
+    {
+      "parcel_id": "PAR-0001-02",
+      "project_id": "PRJ-0001",
+      "survey_no": "112/4A",
+      "area_ha": 28.6,
+      "land_type": "private",
+      "compensation_status": "disbursed",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-0001-03",
+      "project_id": "PRJ-0001",
+      "survey_no": "128/1",
+      "area_ha": 62.0,
+      "land_type": "government",
+      "compensation_status": "exempt",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-0001-04",
+      "project_id": "PRJ-0001",
+      "survey_no": "145/3C",
+      "area_ha": 44.8,
+      "land_type": "forest",
+      "compensation_status": "pending",
+      "possession_status": "pending",
+      "doc_complete": false,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-0001-05",
+      "project_id": "PRJ-0001",
+      "survey_no": "156/2",
+      "area_ha": 31.4,
+      "land_type": "private",
+      "compensation_status": "pending",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": true
+    },
+    {
+      "parcel_id": "PAR-0001-06",
+      "project_id": "PRJ-0001",
+      "survey_no": "169/1A",
+      "area_ha": 55.0,
+      "land_type": "private",
+      "compensation_status": "pending",
+      "possession_status": "pending",
+      "doc_complete": false,
+      "ownership_dispute": false
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "CAS-2024-881",
+      "parcel_id": "PAR-0001-01",
+      "category": "Title & Inheritance Partition",
+      "filing_date": "2024-08-14",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-2024-942",
+      "parcel_id": "PAR-0001-05",
+      "category": "Compensation Valuation Challenge",
+      "filing_date": "2024-11-02",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-2025-104",
+      "parcel_id": "PAR-0001-06",
+      "category": "Boundary Demarcation Appeal",
+      "filing_date": "2025-02-18",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-2023-419",
+      "parcel_id": "PAR-0001-02",
+      "category": "Tenant Right Assertion",
+      "filing_date": "2023-09-05",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 11
+    }
+  ],
+  "approvals": [
+    {
+      "approval_id": "APP-001",
+      "project_id": "PRJ-0001",
+      "name": "Social Impact Assessment",
+      "planned_date": "2024-04-15",
+      "actual_date": "2024-05-10",
+      "status": "cleared"
+    },
+    {
+      "approval_id": "APP-002",
+      "project_id": "PRJ-0001",
+      "name": "Section 11 Preliminary Notification",
+      "planned_date": "2024-07-01",
+      "actual_date": "2024-07-20",
+      "status": "cleared"
+    },
+    {
+      "approval_id": "APP-003",
+      "project_id": "PRJ-0001",
+      "name": "Environmental & Forest Stage-I Clearance",
+      "planned_date": "2024-11-30",
+      "actual_date": null,
+      "status": "pending"
+    },
+    {
+      "approval_id": "APP-004",
+      "project_id": "PRJ-0001",
+      "name": "Section 19 Declaration of Acquisition",
+      "planned_date": "2025-03-31",
+      "actual_date": null,
+      "status": "pending"
+    }
+  ],
+  "compensation": {
+    "project_id": "PRJ-0001",
+    "award_amount": 1850000000,
+    "disbursed_amount": 620000000,
+    "disputes": 28
+  }
+}
+

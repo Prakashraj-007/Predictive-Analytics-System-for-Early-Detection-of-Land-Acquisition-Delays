@@ -1,0 +1,27 @@
+[
+  {
+    "district": "Thane",
+    "avg_risk": 64.5,
+    "project_count": 14,
+    "high_risk_count": 5
+  },
+  {
+    "district": "Pune",
+    "avg_risk": 51.8,
+    "project_count": 16,
+    "high_risk_count": 3
+  },
+  {
+    "district": "Nagpur",
+    "avg_risk": 43.2,
+    "project_count": 10,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Nashik",
+    "avg_risk": 36.7,
+    "project_count": 8,
+    "high_risk_count": 1
+  }
+]
+

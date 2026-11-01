@@ -1,0 +1,15 @@
+[
+  { "month": "Nov 2025", "avg_risk": 58.4 },
+  { "month": "Dec 2025", "avg_risk": 56.1 },
+  { "month": "Jan 2026", "avg_risk": 53.7 },
+  { "month": "Feb 2026", "avg_risk": 52.0 },
+  { "month": "Mar 2026", "avg_risk": 49.8 },
+  { "month": "Apr 2026", "avg_risk": 48.5 },
+  { "month": "May 2026", "avg_risk": 51.2 },
+  { "month": "Jun 2026", "avg_risk": 50.1 },
+  { "month": "Jul 2026", "avg_risk": 47.9 },
+  { "month": "Aug 2026", "avg_risk": 46.8 },
+  { "month": "Sep 2026", "avg_risk": 45.4 },
+  { "month": "Oct 2026", "avg_risk": 46.2 }
+]
+
