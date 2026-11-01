@@ -1,0 +1,53 @@
+{
+  "project_id": "PRJ-0010",
+  "created_at": "2026-11-01T14:00:00Z",
+  "risk_score": 19,
+  "band": "Low",
+  "delay_probability": 0.18,
+  "expected_delay_days": 15,
+  "stage_probabilities": {
+    "approval": 0.08,
+    "compensation": 0.14,
+    "possession": 0.19,
+    "rr": 0.12
+  },
+  "drivers": [
+    {
+      "feature": "possession_pct",
+      "label": "High advance possession rate",
+      "impact": -0.19,
+      "direction": "decreases_risk",
+      "plain_text": "88% of physical right-of-way already handed over to executing agency."
+    },
+    {
+      "feature": "compensation_pending_pct",
+      "label": "Timely compensation DBT",
+      "impact": -0.14,
+      "direction": "decreases_risk",
+      "plain_text": "Direct beneficiary payouts exceed 90% of sanction value."
+    },
+    {
+      "feature": "litigation_cases",
+      "label": "Zero stay orders",
+      "impact": -0.08,
+      "direction": "decreases_risk",
+      "plain_text": "All parcels have cleared judicial title without stay orders or injunctions."
+    }
+  ],
+  "recommendations": [
+    {
+      "driver": "possession_pct",
+      "action": "Proceed with final physical demarcation boundary fencing."
+    },
+    {
+      "driver": "compensation_pending_pct",
+      "action": "Complete remaining minor DBT transactions."
+    },
+    {
+      "driver": "litigation_cases",
+      "action": "Maintain routine legal vigilance till construction commissioning."
+    }
+  ],
+  "model_version": "v1"
+}
+

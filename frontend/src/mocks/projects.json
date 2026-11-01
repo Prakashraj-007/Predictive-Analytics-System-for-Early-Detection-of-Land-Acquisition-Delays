@@ -1,0 +1,200 @@
+[
+  {
+    "project_id": "PRJ-0001",
+    "name": "Pune Ring Road Western Bypass",
+    "district": "Pune",
+    "state": "Maharashtra",
+    "type": "highway",
+    "current_stage": "compensation",
+    "risk_score": 78,
+    "band": "High",
+    "top_driver": "Litigation cases with stay orders"
+  },
+  {
+    "project_id": "PRJ-0002",
+    "name": "Thane-Bhiwandi Metro Link Corridor",
+    "district": "Thane",
+    "state": "Maharashtra",
+    "type": "rail",
+    "current_stage": "possession",
+    "risk_score": 84,
+    "band": "High",
+    "top_driver": "Dense urban encroachment on alignment"
+  },
+  {
+    "project_id": "PRJ-0003",
+    "name": "Nagpur Agro-Industrial Logistics Park",
+    "district": "Nagpur",
+    "state": "Maharashtra",
+    "type": "urban",
+    "current_stage": "notification",
+    "risk_score": 67,
+    "band": "High",
+    "top_driver": "Forest clearance pending approval"
+  },
+  {
+    "project_id": "PRJ-0004",
+    "name": "Upper Wardha Left Canal Expansion",
+    "district": "Nagpur",
+    "state": "Maharashtra",
+    "type": "irrigation",
+    "current_stage": "compensation",
+    "risk_score": 58,
+    "band": "Medium",
+    "top_driver": "Disputed ownership title records"
+  },
+  {
+    "project_id": "PRJ-0005",
+    "name": "Nashik Smart City Multimodal Hub",
+    "district": "Nashik",
+    "state": "Maharashtra",
+    "type": "urban",
+    "current_stage": "award",
+    "risk_score": 52,
+    "band": "Medium",
+    "top_driver": "Compensation disbursement shortfall"
+  },
+  {
+    "project_id": "PRJ-0006",
+    "name": "Baramati-Daund Doubling Rail Line",
+    "district": "Pune",
+    "state": "Maharashtra",
+    "type": "rail",
+    "current_stage": "possession",
+    "risk_score": 48,
+    "band": "Medium",
+    "top_driver": "R&R resettlement site opposition"
+  },
+  {
+    "project_id": "PRJ-0007",
+    "name": "Kalyan-Shilphata Elevated Highway Corridor",
+    "district": "Thane",
+    "state": "Maharashtra",
+    "type": "highway",
+    "current_stage": "sia",
+    "risk_score": 42,
+    "band": "Medium",
+    "top_driver": "Delay in Social Impact Assessment hearings"
+  },
+  {
+    "project_id": "PRJ-0008",
+    "name": "Dindori Solar Substation Feeder Line",
+    "district": "Nashik",
+    "state": "Maharashtra",
+    "type": "power",
+    "current_stage": "award",
+    "risk_score": 35,
+    "band": "Medium",
+    "top_driver": "Slow land mutation verifications"
+  },
+  {
+    "project_id": "PRJ-0009",
+    "name": "Buldhana-Nagpur 765kV Transmission Corridor",
+    "district": "Nagpur",
+    "state": "Maharashtra",
+    "type": "power",
+    "current_stage": "possession",
+    "risk_score": 24,
+    "band": "Low",
+    "top_driver": "Minor title verification delays"
+  },
+  {
+    "project_id": "PRJ-0010",
+    "name": "Purandar International Airport Access Road",
+    "district": "Pune",
+    "state": "Maharashtra",
+    "type": "highway",
+    "current_stage": "rr",
+    "risk_score": 19,
+    "band": "Low",
+    "top_driver": "Routine municipal clearances"
+  },
+  {
+    "project_id": "PRJ-0011",
+    "name": "Igatpuri Pumped Storage Hydro Project",
+    "district": "Nashik",
+    "state": "Maharashtra",
+    "type": "power",
+    "current_stage": "possession",
+    "risk_score": 14,
+    "band": "Low",
+    "top_driver": "No critical bottlenecks"
+  },
+  {
+    "project_id": "PRJ-0012",
+    "name": "Ulhas River Flood Embankment & Canal",
+    "district": "Thane",
+    "state": "Maharashtra",
+    "type": "irrigation",
+    "current_stage": "rr",
+    "risk_score": 11,
+    "band": "Low",
+    "top_driver": "On schedule; final disbursements"
+  },
+  {
+    "project_id": "PRJ-0013",
+    "name": "Nashik-Pune Semi-High Speed Rail Corridor",
+    "district": "Nashik",
+    "state": "Maharashtra",
+    "type": "rail",
+    "current_stage": "sia",
+    "risk_score": 65,
+    "band": "High",
+    "top_driver": "Extensive agricultural land fragmentation"
+  },
+  {
+    "project_id": "PRJ-0014",
+    "name": "Kalyan Bypass Multi-Modal Freight Way",
+    "district": "Thane",
+    "state": "Maharashtra",
+    "type": "highway",
+    "current_stage": "compensation",
+    "risk_score": 74,
+    "band": "High",
+    "top_driver": "High compensation valuation dispute"
+  },
+  {
+    "project_id": "PRJ-0015",
+    "name": "Nagpur Ring Road Phase 3 Interchange",
+    "district": "Nagpur",
+    "state": "Maharashtra",
+    "type": "highway",
+    "current_stage": "award",
+    "risk_score": 59,
+    "band": "Medium",
+    "top_driver": "Pending revenue department award sanctions"
+  },
+  {
+    "project_id": "PRJ-0016",
+    "name": "Chakan Industrial Corridor Expansion",
+    "district": "Pune",
+    "state": "Maharashtra",
+    "type": "urban",
+    "current_stage": "planning",
+    "risk_score": 44,
+    "band": "Medium",
+    "top_driver": "Environmental impact public notice queries"
+  },
+  {
+    "project_id": "PRJ-0017",
+    "name": "Nashik Outer Ring Expressway Segment 2",
+    "district": "Nashik",
+    "state": "Maharashtra",
+    "type": "highway",
+    "current_stage": "compensation",
+    "risk_score": 71,
+    "band": "High",
+    "top_driver": "Delayed forest conservation clearance"
+  },
+  {
+    "project_id": "PRJ-0018",
+    "name": "Godavari Lift Irrigation Feeder Package 4",
+    "district": "Nashik",
+    "state": "Maharashtra",
+    "type": "irrigation",
+    "current_stage": "possession",
+    "risk_score": 28,
+    "band": "Low",
+    "top_driver": "Final survey verification pending"
+  }
+]

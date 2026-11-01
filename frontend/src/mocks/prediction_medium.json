@@ -1,0 +1,53 @@
+{
+  "project_id": "PRJ-0004",
+  "created_at": "2026-11-01T08:30:00Z",
+  "risk_score": 58,
+  "band": "Medium",
+  "delay_probability": 0.54,
+  "expected_delay_days": 65,
+  "stage_probabilities": {
+    "approval": 0.22,
+    "compensation": 0.58,
+    "possession": 0.44,
+    "rr": 0.31
+  },
+  "drivers": [
+    {
+      "feature": "ownership_disputes",
+      "label": "Disputed title claims",
+      "impact": 0.16,
+      "direction": "increases_risk",
+      "plain_text": "Conflicting mutation inheritance claims across 3 active parcels delay final award settlement."
+    },
+    {
+      "feature": "docs_incomplete_pct",
+      "label": "Incomplete documentation",
+      "impact": 0.12,
+      "direction": "increases_risk",
+      "plain_text": "35% of affected landowner title verification certificates remain unsubmitted."
+    },
+    {
+      "feature": "officer_response_days",
+      "label": "Inter-department query turnaround",
+      "impact": -0.05,
+      "direction": "decreases_risk",
+      "plain_text": "Prompt responses from Talathi office reduce expected administrative drag."
+    }
+  ],
+  "recommendations": [
+    {
+      "driver": "ownership_disputes",
+      "action": "Refer disputed parcels to Revenue Court under Section 64 for deposit of compensation."
+    },
+    {
+      "driver": "docs_incomplete_pct",
+      "action": "Conduct village-level documentation camp with mobile revenue verification van."
+    },
+    {
+      "driver": "officer_response_days",
+      "action": "Maintain weekly cadence with Tehsildar for mutation sign-offs."
+    }
+  ],
+  "model_version": "v1"
+}
+
