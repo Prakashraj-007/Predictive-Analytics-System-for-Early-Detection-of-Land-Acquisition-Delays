@@ -39,6 +39,7 @@ LABELS = {
 }
 
 _EXPLAINERS: dict[str, Any] = {}
+_TOP_DRIVER_CACHE: dict[str, list[dict[str, Any]]] = {}
 
 
 def _raw_model_for_version(version: str):
@@ -213,9 +214,19 @@ def _plain_text_for_row(feature: str, values: dict[str, Any]) -> str:
     return f"The {LABELS.get(feature, feature)} signal is a notable driver of delay risk."
 
 
+def _cache_key_for_row(features: dict[str, Any], version: str, k: int) -> str:
+    payload = {"version": version, "k": k, "features": {key: features.get(key) for key in FEATURE_COLUMNS}}
+    return json.dumps(payload, sort_keys=True, default=str)
+
+
 def top_drivers(features: dict[str, Any], version: str, k: int = 3) -> list[dict]:
     if k <= 0:
         return []
+
+    cache_key = _cache_key_for_row(features, version, k)
+    cached = _TOP_DRIVER_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
 
     row = {**_average_feature_row().to_dict(), **features}
     row_df = prepare(pd.DataFrame([row], columns=FEATURE_COLUMNS))
@@ -264,6 +275,7 @@ def top_drivers(features: dict[str, Any], version: str, k: int = 3) -> list[dict
         item = dict(item)
         item["impact"] = round(float(item["impact"]), 4)
         final.append(item)
+    _TOP_DRIVER_CACHE[cache_key] = final
     return final
 
 

@@ -66,6 +66,10 @@ def _as_float(value: Any, default: float = 0.0) -> float:
     if value is None or value == "":
         return float(default)
     try:
+        if isinstance(value, str):
+            value = value.strip()
+            if value == "":
+                return float(default)
         return float(value)
     except (TypeError, ValueError):
         return float(default)
@@ -76,6 +80,20 @@ def _normalize_features(features: dict[str, Any]) -> dict[str, Any]:
     for key in FEATURE_COLUMNS:
         if key not in normalized:
             normalized[key] = None
+        if key in {"project_type", "current_stage"}:
+            value = normalized.get(key)
+            normalized[key] = value if value is not None and str(value) != "nan" else (
+                "planning" if key == "current_stage" else "highway"
+            )
+        else:
+            value = normalized.get(key)
+            if value is None or str(value).lower() == "none" or str(value).lower() == "nan":
+                normalized[key] = np.nan
+            else:
+                try:
+                    normalized[key] = float(value)
+                except (TypeError, ValueError):
+                    normalized[key] = np.nan
     return normalized
 
 
@@ -151,15 +169,9 @@ def predict_project(features: dict) -> dict:
 
     stage_probabilities: dict[str, float] = {}
     for stage_name, stage_model in bundle["stages"].items():
-        if stage_name == "approval":
+        if stage_name in {"approval", "compensation", "possession"}:
             p = float(stage_model.predict_proba(X)[0, 1])
-            stage_probabilities["approval"] = float(np.clip(p, 0.0, 1.0))
-        elif stage_name == "compensation":
-            p = float(stage_model.predict_proba(X)[0, 1])
-            stage_probabilities["compensation"] = float(np.clip(p, 0.0, 1.0))
-        elif stage_name == "possession":
-            p = float(stage_model.predict_proba(X)[0, 1])
-            stage_probabilities["possession"] = float(np.clip(p, 0.0, 1.0))
+            stage_probabilities[stage_name] = float(np.clip(p, 0.0, 1.0))
 
     rr_progress = _as_float(normalized.get("rr_progress_pct"), 0.0)
     rr_probability = float(np.clip(0.5 * (1.0 - rr_progress / 100.0) + 0.5 * prob, 0.0, 1.0))

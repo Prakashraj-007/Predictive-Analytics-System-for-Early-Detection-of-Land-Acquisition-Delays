@@ -26,11 +26,20 @@ FEATURE_COLUMNS = [
 def prepare(df: pd.DataFrame) -> pd.DataFrame:
     """Map categorical fields to fixed category codes and return model-ready columns."""
     prepared = df.copy()
+
+    for feature in FEATURE_COLUMNS:
+        if feature in {"project_type", "current_stage"}:
+            continue
+        if feature in prepared.columns:
+            prepared[feature] = pd.to_numeric(prepared[feature], errors="coerce").astype(float)
+
     if "project_type" in prepared.columns:
+        prepared["project_type"] = prepared["project_type"].fillna(PROJECT_TYPE_ORDER[0]).astype(str).str.lower()
         prepared["project_type"] = pd.Categorical(
             prepared["project_type"], categories=PROJECT_TYPE_ORDER, ordered=True
         ).codes
     if "current_stage" in prepared.columns:
+        prepared["current_stage"] = prepared["current_stage"].fillna(CURRENT_STAGE_ORDER[0]).astype(str).str.lower()
         prepared["current_stage"] = pd.Categorical(
             prepared["current_stage"], categories=CURRENT_STAGE_ORDER, ordered=True
         ).codes

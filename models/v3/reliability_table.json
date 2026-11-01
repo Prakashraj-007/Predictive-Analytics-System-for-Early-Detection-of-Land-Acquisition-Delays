@@ -1,0 +1,82 @@
+[
+  {
+    "bin": 0,
+    "low": 0.0,
+    "high": 0.1,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  },
+  {
+    "bin": 1,
+    "low": 0.1,
+    "high": 0.2,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  },
+  {
+    "bin": 2,
+    "low": 0.2,
+    "high": 0.3,
+    "mean_predicted": 0.2852,
+    "mean_actual": 0.4045,
+    "count": 89
+  },
+  {
+    "bin": 3,
+    "low": 0.3,
+    "high": 0.4,
+    "mean_predicted": 0.3398,
+    "mean_actual": 0.3811,
+    "count": 286
+  },
+  {
+    "bin": 4,
+    "low": 0.4,
+    "high": 0.5,
+    "mean_predicted": 0.4235,
+    "mean_actual": 0.3556,
+    "count": 45
+  },
+  {
+    "bin": 5,
+    "low": 0.5,
+    "high": 0.6,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  },
+  {
+    "bin": 6,
+    "low": 0.6,
+    "high": 0.7,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  },
+  {
+    "bin": 7,
+    "low": 0.7,
+    "high": 0.8,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  },
+  {
+    "bin": 8,
+    "low": 0.8,
+    "high": 0.9,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  },
+  {
+    "bin": 9,
+    "low": 0.9,
+    "high": 1.0,
+    "mean_predicted": 0.0,
+    "mean_actual": 0.0,
+    "count": 0
+  }
+]
