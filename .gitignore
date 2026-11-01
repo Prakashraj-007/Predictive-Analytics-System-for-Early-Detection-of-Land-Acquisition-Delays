@@ -38,6 +38,7 @@ yarn-error.log*
 Thumbs.db
 .vscode/
 .idea/
+.pytest_cache/
 
 # Note: *.joblib is NOT ignored as per repository requirements
 !*.joblib
