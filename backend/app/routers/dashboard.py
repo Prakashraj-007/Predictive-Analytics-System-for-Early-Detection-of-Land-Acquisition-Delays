@@ -32,7 +32,11 @@ def _fetch_scoped_projects_and_predictions(user: CurrentUser) -> List[Dict[str, 
     if supabase:
         try:
             query = supabase.table("projects").select("project_id, name, district, state, type, current_stage, created_by")
-            query = scope_projects_query(query, user)
+            scope = scope_projects_query(user)
+            if "created_by" in scope and scope["created_by"]:
+                query = query.eq("created_by", scope["created_by"])
+            if "district" in scope and scope["district"]:
+                query = query.eq("district", scope["district"])
             res = query.execute()
             if res.data:
                 projects = res.data
