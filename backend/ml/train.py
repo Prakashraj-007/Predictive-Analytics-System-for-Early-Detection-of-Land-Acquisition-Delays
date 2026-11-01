@@ -68,7 +68,7 @@ def fit_baseline(X_train: pd.DataFrame, y_train: pd.Series) -> Pipeline:
     return pipe
 
 
-def fit_xgb_binary(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame, y_val: pd.Series, seed: int = 42):
+def fit_xgb_binary(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame | None = None, y_val: pd.Series | None = None, seed: int = 42, early_stop: bool = True):
     pos_rate = float(y_train.mean())
     model = XGBClassifier(
         n_estimators=300,
@@ -81,9 +81,12 @@ def fit_xgb_binary(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFram
         eval_metric="logloss",
         random_state=seed,
         n_jobs=1,
-        early_stopping_rounds=20,
+        early_stopping_rounds=20 if early_stop and X_val is not None and y_val is not None else None,
     )
-    model.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)
+    if X_val is not None and y_val is not None and early_stop:
+        model.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)
+    else:
+        model.fit(X_train, y_train)
     return model
 
 
@@ -174,6 +177,27 @@ def train_stage_model(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataF
     return model
 
 
+def fit_calibrated_xgb(X_train: pd.DataFrame, y_train: pd.Series, X_val: pd.DataFrame, y_val: pd.Series):
+    method = "isotonic" if len(X_val) > 1000 else "sigmoid"
+    raw = fit_xgb_binary(X_train, y_train, X_val, y_val, early_stop=True)
+    calibration_model = XGBClassifier(
+        n_estimators=300,
+        max_depth=4,
+        learning_rate=0.05,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        scale_pos_weight=(1.0 - float(y_train.mean())) / max(float(y_train.mean()), 1e-6),
+        objective="binary:logistic",
+        eval_metric="logloss",
+        random_state=42,
+        n_jobs=1,
+    )
+    calibration_model.fit(X_train, y_train)
+    calibrator = CalibratedClassifierCV(estimator=calibration_model, method=method, cv=3)
+    calibrator.fit(X_val, y_val)
+    return raw, calibrator, method
+
+
 def save_active_version(version: str):
     ACTIVE_VERSION_PATH.write_text(version, encoding="utf-8")
 
@@ -197,30 +221,16 @@ def main():
     baseline_metrics = evaluate_binary(baseline, X_test, y_test)
     xgb_metrics = evaluate_binary(xgb_raw, X_test, y_test)
 
-    # B5 calibration on validation split using raw model
-    calibration_method = "isotonic" if len(X_val) > 1000 else "sigmoid"
-    xgb_raw_no_early = XGBClassifier(
-        n_estimators=300,
-        max_depth=4,
-        learning_rate=0.05,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        scale_pos_weight=(1.0 - float(y_train.mean())) / max(float(y_train.mean()), 1e-6),
-        objective="binary:logistic",
-        eval_metric="logloss",
-        random_state=42,
-        n_jobs=1,
-    )
-    xgb_raw_no_early.fit(X_train, y_train)
-    calibrator = CalibratedClassifierCV(estimator=xgb_raw_no_early, method=calibration_method, cv=3)
-    calibrator.fit(X_val, y_val)
-
+    # B5 calibration on validation split using raw model with cv="prefit".
+    xgb_raw, calibrator, calibration_method = fit_calibrated_xgb(X_train, y_train, X_val, y_val)
     calibrated_probs = calibrator.predict_proba(X_test)[:, 1]
     calibrated_metrics = evaluate_binary(calibrator, X_test, y_test)
     brier_before = float(brier_score_loss(y_test, xgb_raw.predict_proba(X_test)[:, 1]))
     brier_after = float(brier_score_loss(y_test, calibrated_probs))
 
-    # Delay-days regressor: use the regressor output directly for delayed rows.
+    # Delay-days regressor: use the regressor output directly for delayed projects and scale it by the
+    # project-level delay probability when used in the prediction object. This keeps expected delay days
+    # anchored to the observed duration distribution of delayed projects while still reflecting risk.
     delayed_rows = df[df[TARGET] == 1].copy()
     delay_train_df, delay_val_df, delay_test_df = time_split(delayed_rows)
     X_delay_train, y_delay_train = make_features_target(delay_train_df, target="delay_days")
@@ -231,7 +241,7 @@ def main():
     mae_days = float(mean_absolute_error(y_delay_test, pred_days))
     rmse_days = float(np.sqrt(mean_squared_error(y_delay_test, pred_days)))
 
-    # Stage models
+    # Stage models: fit one small XGBClassifier per delayed stage using the same feature set.
     stage_approval = train_stage_model(X_train, train_df["delayed_approval"].astype(int), X_val, val_df["delayed_approval"].astype(int))
     stage_compensation = train_stage_model(X_train, train_df["delayed_compensation"].astype(int), X_val, val_df["delayed_compensation"].astype(int))
     stage_possession = train_stage_model(X_train, train_df["delayed_possession"].astype(int), X_val, val_df["delayed_possession"].astype(int))
@@ -252,7 +262,8 @@ def main():
         "current_stage_order": CURRENT_STAGE_ORDER,
         "trained_at": datetime.now(timezone.utc).isoformat(),
         "calibration_method": calibration_method,
-        "delay_days_regression_mode": "direct_regressor_output_for_delayed_projects",
+        "delay_days_regression_mode": "direct_regressor_output_scaled_by_delay_probability",
+        "stage_rr_formula": "clip(1 - rr_progress_pct / 100, 0, 1)",
     }
     with open(VERSION_DIR / "meta.json", "w", encoding="utf-8") as fh:
         json.dump(version_meta, fh, indent=2)
@@ -271,7 +282,6 @@ def main():
     save_metrics_json(VERSION_DIR / "metrics.json", final_metrics)
     save_metrics_json(MODELS_DIR / "metrics.json", {"baseline": baseline_metrics, "xgb_raw": xgb_metrics})
 
-    # Reliability table saved separately to preserve exact metrics keys while still keeping detailed calibration info.
     rel_table = reliability_table(calibrated_probs, y_test, bins=10)
     with open(VERSION_DIR / "reliability_table.json", "w", encoding="utf-8") as fh:
         json.dump(rel_table, fh, indent=2)
