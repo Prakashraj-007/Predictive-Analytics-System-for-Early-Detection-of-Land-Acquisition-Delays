@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts';
+import { RISK_COLORS, THEME_COLORS } from '../../theme';
 
 const CustomLineTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -47,15 +48,15 @@ export default function TrendLine({ data = [] }) {
             tickLine={{ stroke: '#3D2D21' }}
           />
           <Tooltip content={<CustomLineTooltip />} />
-          <ReferenceLine y={60} stroke="#C94A3D" strokeDasharray="3 3" opacity={0.4} />
-          <ReferenceLine y={30} stroke="#4A855A" strokeDasharray="3 3" opacity={0.4} />
+          <ReferenceLine y={60} stroke={RISK_COLORS.high.hex} strokeDasharray="3 3" opacity={0.5} />
+          <ReferenceLine y={30} stroke={RISK_COLORS.low.hex} strokeDasharray="3 3" opacity={0.5} />
           <Line
             type="monotone"
             dataKey="avg_risk"
-            stroke="#C8792C"
+            stroke={THEME_COLORS.burntAmber}
             strokeWidth={2.5}
-            dot={{ fill: '#C8792C', r: 3, stroke: '#F4D9A0', strokeWidth: 1 }}
-            activeDot={{ r: 5, fill: '#F4D9A0', stroke: '#C8792C' }}
+            dot={{ fill: THEME_COLORS.burntAmber, r: 3, stroke: THEME_COLORS.champagneGold, strokeWidth: 1 }}
+            activeDot={{ r: 5, fill: THEME_COLORS.champagneGold, stroke: THEME_COLORS.burntAmber }}
           />
         </LineChart>
       </ResponsiveContainer>

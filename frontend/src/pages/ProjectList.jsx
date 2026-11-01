@@ -4,6 +4,10 @@ import { useAuth } from '../context/AuthContext';
 import { getProjects } from '../api/projects';
 import RiskBadge from '../components/RiskBadge';
 import ErrorBox from '../components/ErrorBox';
+import EmptyState from '../components/EmptyState';
+import { SkeletonTable } from '../components/Loading';
+import SyntheticNote from '../components/SyntheticNote';
+import { getRiskBand, RISK_COLORS } from '../theme';
 
 const PAGE_SIZE = 15;
 const DEFAULT_SORT = 'risk_desc';
@@ -255,6 +259,10 @@ export default function ProjectList() {
       setLoading(false);
     }
   }, [stateFilter, districtFilter, typeFilter, bandFilter, stageFilter, searchFilter, sortParam]);
+
+  useEffect(() => {
+    document.title = 'Projects Registry | LandSentinel';
+  }, []);
 
   useEffect(() => {
     fetchProjects();
@@ -589,38 +597,22 @@ export default function ProjectList() {
           ======================================================== */}
       <div className="peace-card overflow-hidden">
         {loading ? (
-          <div className="p-8 space-y-4">
+          <div className="p-4 space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[#C4B5A5] pb-2 border-b border-[rgba(244,217,160,0.1)]">
               <span>Synchronizing statutory project registers...</span>
               <span className="text-[#F4D9A0] animate-pulse">Loading telemetry</span>
             </div>
-            <div className="space-y-3">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-12 rounded bg-[#201812] animate-pulse border border-[rgba(244,217,160,0.05)]" />
-              ))}
-            </div>
+            <SkeletonTable rows={PAGE_SIZE} cols={6} />
           </div>
         ) : paginatedProjects.length === 0 ? (
           /* Empty Search / Filter State */
-          <div className="py-16 px-4 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[#2A1F18] text-[#F4D9A0] flex items-center justify-center mx-auto border border-[#5B4632]">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-            </div>
-            <h3 className="text-base font-semibold text-[#F4D9A0] font-headline">
-              No Matching Projects Found
-            </h3>
-            <p className="text-xs text-[#C4B5A5] max-w-md mx-auto">
-              No land acquisition corridors match the currently applied combination of filters or search criteria.
-            </p>
-            <button
-              type="button"
-              onClick={handleResetFilters}
-              className="btn-amber text-xs mt-2"
-            >
-              Clear All Filters
-            </button>
+          <div className="py-8 px-4">
+            <EmptyState
+              title="No Matching Projects Found"
+              description="No land acquisition corridors match the currently applied combination of filters or search criteria."
+              actionLabel="Reset All Filters"
+              onAction={handleResetFilters}
+            />
           </div>
         ) : (
           <div className="overflow-x-auto">

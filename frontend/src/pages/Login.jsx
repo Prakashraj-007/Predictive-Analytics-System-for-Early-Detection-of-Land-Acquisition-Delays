@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import SyntheticNote from '../components/SyntheticNote';
 
@@ -9,6 +10,10 @@ export default function Login() {
   const { login, switchDemoRole, demoUsers, authError, setAuthError } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    document.title = 'Institutional Sign In | LandSentinel';
+  }, []);
 
   // Redirect destination after successful login
   const from = location.state?.from?.pathname || '/overview';
@@ -25,9 +30,12 @@ export default function Login() {
     setSubmitting(true);
     try {
       await login(email, password);
+      toast.success('Authenticated successfully');
       navigate(from, { replace: true });
     } catch (err) {
-      setLocalError(err.message || 'Authentication failed. Please verify credentials.');
+      const msg = err.message || 'Authentication failed. Please verify credentials.';
+      setLocalError(msg);
+      toast.error(msg);
     } finally {
       setSubmitting(false);
     }
@@ -39,9 +47,12 @@ export default function Login() {
     setSubmitting(true);
     try {
       await switchDemoRole(demoUser.role);
+      toast.success(`Signed in as ${demoUser.name} (${demoUser.role})`);
       navigate(from, { replace: true });
     } catch (err) {
-      setLocalError(err.message || 'Failed to switch demo role.');
+      const msg = err.message || 'Failed to switch demo role.';
+      setLocalError(msg);
+      toast.error(msg);
     } finally {
       setSubmitting(false);
     }
@@ -168,9 +179,14 @@ export default function Login() {
           )}
         </div>
 
-        {/* Security & Audit Protocol Note */}
-        <div className="text-center text-[10px] font-mono text-[#8E7E70] tracking-wider">
-          SECURE PROTOCOL • ENCRYPTED SESSION • AUDIT LOGGED
+        {/* Security & Audit Protocol Note & Synthetic Disclaimer */}
+        <div className="space-y-3 pt-1 text-center">
+          <div className="text-[10px] font-mono text-[#8E7E70] tracking-wider">
+            SECURE PROTOCOL • ENCRYPTED SESSION • AUDIT LOGGED
+          </div>
+          <div className="flex justify-center">
+            <SyntheticNote compact />
+          </div>
         </div>
       </div>
     </div>

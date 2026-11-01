@@ -3,7 +3,18 @@ import { getRiskBand } from '../theme';
 
 /**
  * RiskGauge Component - Inner Peace Styling
- * Precision SVG semi-circle gauge (0-100)
+ *
+ * Renders a precision SVG semi-circular speedometer gauge (0-100)
+ * with three colored risk zones (Low <30, Medium 30-60, High >60),
+ * an active needle indicator, centered composite risk score, and band label.
+ *
+ * @component
+ * @param {Object} props
+ * @param {number} props.score - Delay risk score (0-100)
+ * @param {number} [props.size=190] - Width/diameter of the gauge in pixels
+ * @param {string} [props.label='Delay Risk Score'] - Descriptive metric label
+ * @param {boolean} [props.showBand=true] - Whether to display the colored band pill
+ * @returns {JSX.Element}
  */
 export default function RiskGauge({
   score = 0,
@@ -48,13 +59,13 @@ export default function RiskGauge({
   const ny = cy + needleLen * Math.sin(needleRad);
 
   return (
-    <div className="flex flex-col items-center justify-center p-5 bg-[#1E1611] border border-[rgba(244,217,160,0.14)] rounded-lg">
+    <div className="flex flex-col items-center justify-center p-5 bg-[#1E1611] border border-[rgba(244,217,160,0.14)] rounded-lg w-full">
       <svg
         viewBox="0 0 200 115"
         className="w-full max-w-[210px] overflow-visible"
         style={{ width: `${size}px` }}
       >
-        {/* Track Arcs */}
+        {/* Track Zone Arcs */}
         <path
           d={lowArc}
           fill="none"
@@ -79,7 +90,7 @@ export default function RiskGauge({
           strokeLinecap="round"
         />
 
-        {/* Active Progress */}
+        {/* Active Progress Arc */}
         <path
           d={describeArc(cx, cy, r, 0, clampedScore * 1.8)}
           fill="none"
@@ -88,7 +99,7 @@ export default function RiskGauge({
           strokeLinecap="round"
         />
 
-        {/* Needle Line */}
+        {/* Needle Line and Hub */}
         <line
           x1={cx}
           y1={cy}

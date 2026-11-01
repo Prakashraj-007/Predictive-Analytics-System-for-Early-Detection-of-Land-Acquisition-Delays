@@ -24,14 +24,22 @@ export function AuthProvider({ children }) {
       setLoading(true);
       try {
         // If real Supabase is configured, check its session
-        if (!isMock && isSupabaseConfigured) {
+        if (isSupabaseConfigured) {
           const { data } = await supabase.auth.getSession();
           if (data?.session?.access_token) {
             localStorage.setItem('landsentinel_token', data.session.access_token);
             const profile = await getMe();
             if (mounted && profile) setUser(profile);
           } else {
-            if (mounted) setUser(null);
+            // Automatically establish session with demo role for immediate connectivity
+            const activeRole = localStorage.getItem('landsentinel_role') || 'project_manager';
+            try {
+              const profile = await loginAsDemoRole(activeRole);
+              if (mounted && profile) setUser(profile);
+            } catch (e) {
+              console.warn('Initial session sign-in note:', e.message);
+              if (mounted) setUser(null);
+            }
           }
         } else {
           // Mock mode: check local token / role or default to active evaluation role

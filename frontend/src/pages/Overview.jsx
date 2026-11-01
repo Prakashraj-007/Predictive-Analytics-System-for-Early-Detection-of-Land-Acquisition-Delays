@@ -13,6 +13,7 @@ import TrendLine from '../components/charts/TrendLine';
 import BandDonut from '../components/charts/BandDonut';
 import { SkeletonCard, SkeletonChart } from '../components/Loading';
 import ErrorBox from '../components/ErrorBox';
+import EmptyState from '../components/EmptyState';
 
 /**
  * C4. Overview Dashboard
@@ -56,6 +57,7 @@ export default function Overview() {
   };
 
   useEffect(() => {
+    document.title = 'Executive Overview | LandSentinel';
     loadDashboard();
   }, []);
 
@@ -259,35 +261,46 @@ export default function Overview() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#2A1F18]">
-                {(summary?.top_risk || []).map((prj) => (
-                  <tr
-                    key={prj.project_id}
-                    onClick={() => navigate(`/projects/${prj.project_id}`)}
-                    className="hover:bg-[#2A1F18] cursor-pointer transition-colors group"
-                  >
-                    <td className="py-3 px-3">
-                      <div className="font-medium text-[#F3EDE2] group-hover:text-[#F4D9A0] transition-colors">
-                        {prj.name}
-                      </div>
-                      <div className="text-[10px] font-mono text-[#F4D9A0]">{prj.project_id}</div>
-                    </td>
-                    <td className="py-3 px-3 text-[#C4B5A5] font-mono">
-                      {prj.district || 'Pune'}
-                    </td>
-                    <td className="py-3 px-3">
-                      <RiskBadge score={prj.risk_score} />
-                    </td>
-                    <td className="py-3 px-3 text-[#E8DFD3] max-w-xs">
-                      {prj.top_driver}
-                    </td>
-                    <td className="py-3 px-3 text-right">
-                      <span className="text-[#C8792C] group-hover:text-[#F4D9A0] font-mono text-xs hover:underline flex items-center justify-end gap-1">
-                        <span>Open</span>
-                        <span>&rarr;</span>
-                      </span>
+                {(summary?.top_risk || []).length === 0 ? (
+                  <tr>
+                    <td colSpan="5" className="py-8 text-center">
+                      <EmptyState
+                        title="No Critical Delay Corridors"
+                        description="All active infrastructure projects are currently operating within nominal baseline parameters."
+                      />
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  (summary?.top_risk || []).map((prj) => (
+                    <tr
+                      key={prj.project_id}
+                      onClick={() => navigate(`/projects/${prj.project_id}`)}
+                      className="hover:bg-[#2A1F18] cursor-pointer transition-colors group"
+                    >
+                      <td className="py-3 px-3">
+                        <div className="font-medium text-[#F3EDE2] group-hover:text-[#F4D9A0] transition-colors">
+                          {prj.name}
+                        </div>
+                        <div className="text-[10px] font-mono text-[#F4D9A0]">{prj.project_id}</div>
+                      </td>
+                      <td className="py-3 px-3 text-[#C4B5A5] font-mono">
+                        {prj.district || 'Pune'}
+                      </td>
+                      <td className="py-3 px-3">
+                        <RiskBadge score={prj.risk_score} />
+                      </td>
+                      <td className="py-3 px-3 text-[#E8DFD3] max-w-xs">
+                        {prj.top_driver}
+                      </td>
+                      <td className="py-3 px-3 text-right">
+                        <span className="text-[#C8792C] group-hover:text-[#F4D9A0] font-mono text-xs hover:underline flex items-center justify-end gap-1">
+                          <span>Open</span>
+                          <span>&rarr;</span>
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
