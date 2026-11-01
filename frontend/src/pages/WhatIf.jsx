@@ -363,7 +363,7 @@ export default function WhatIf() {
               Counterfactual Simulator
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#F4D9A0] tracking-wide">
+          <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#2D1E14] tracking-wide">
             What-If Sensitivity Simulator
           </h1>
           <p className="text-xs text-[#C4B5A5] mt-0.5">

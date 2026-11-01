@@ -9,14 +9,14 @@ export default function AlertsTasks() {
       <div className="border-b border-[rgba(244,217,160,0.12)] pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-mono text-[#F4D9A0] uppercase tracking-widest">
+            <span className="text-[11px] font-mono text-[#2D1E14] uppercase tracking-widest">
               Administrative Mitigation
             </span>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#2A1F18] text-[#F4D9A0] border border-[rgba(244,217,160,0.2)]">
               Person D Integration
             </span>
           </div>
-          <h1 className="text-2xl font-bold font-headline text-[#F4D9A0] mt-1">
+          <h1 className="text-2xl font-bold font-headline text-[#2D1E14] mt-1">
             Active Alerts &amp; Delegated Directives
           </h1>
           <p className="text-xs text-[#C4B5A5] mt-0.5">

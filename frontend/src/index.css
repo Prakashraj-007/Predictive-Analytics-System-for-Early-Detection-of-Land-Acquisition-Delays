@@ -4,40 +4,74 @@
 
 @layer base {
   body {
-    background-color: #140F0B;
+    background-color: #F8F3EA;
+    background-image:
+      /* Radiant lighting beam / sun ray of luminous warm cream from top-right down across canvas */
+      linear-gradient(215deg, rgba(255, 255, 255, 0.88) 0%, rgba(253, 248, 238, 0.65) 24%, rgba(240, 226, 206, 0.35) 48%, transparent 72%),
+      /* Intense focal spotlight glow on the right representing warm cream illumination */
+      radial-gradient(ellipse 75% 65% at 88% 18%, #FFFDF8 0%, rgba(250, 243, 230, 0.82) 30%, rgba(234, 219, 198, 0.42) 55%, transparent 75%),
+      /* Soft counter-fill ambient warm sand glow reflecting off the lower plane */
+      radial-gradient(ellipse 70% 55% at 40% 92%, rgba(220, 201, 175, 0.45) 0%, rgba(206, 185, 157, 0.22) 40%, transparent 70%),
+      /* Dual-color base atmospheric gradient: Soft Ivory Cream (#FAF5EC) transitioning to Warm Cashmere Beige (#DBC6AA) */
+      linear-gradient(125deg, #FCF9F3 0%, #F7EFE3 30%, #EFE3D0 60%, #E3D1BA 85%, #D4BD9E 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #F3EDE2;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     letter-spacing: -0.01em;
   }
 
-  /* Refined Inner Peace Mocha & Gold Scrollbar */
+  /* Refined Cream & Beige Scrollbar */
   ::-webkit-scrollbar {
     width: 7px;
     height: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: #140F0B;
+    background: #EFE4D6;
   }
   ::-webkit-scrollbar-thumb {
-    background: #3D2D21;
+    background: #BAA288;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #5B4632;
+    background: #8F765D;
   }
 }
 
 @layer components {
-  /* Inner Peace Architectural Card */
+  /* Inner Peace Architectural Card with Luxury Elevation Shadow */
   .peace-card {
     background: #1E1611;
-    border: 1px solid rgba(244, 217, 160, 0.12);
+    border: 1px solid rgba(244, 217, 160, 0.18);
     border-radius: 8px;
-    transition: border-color 0.18s ease, background-color 0.18s ease;
+    box-shadow: 0 10px 28px -3px rgba(60, 42, 28, 0.16), 0 2px 8px -1px rgba(60, 42, 28, 0.10);
+    transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
   }
   .peace-card:hover {
-    border-color: rgba(244, 217, 160, 0.25);
+    border-color: rgba(244, 217, 160, 0.35);
     background: #241B14;
+    box-shadow: 0 14px 36px -4px rgba(60, 42, 28, 0.22), 0 4px 12px -2px rgba(60, 42, 28, 0.14);
+  }
+
+  /* High-legibility luxury typography for page titles outside cards on the Cream + Beige canvas */
+  .text-\[\#2D1E14\],
+  main > div > div > h1.text-\[\#F4D9A0\],
+  main > div > section > div > div > h1.text-\[\#F4D9A0\],
+  div[class*="min-h-screen"] > div > div > h1.text-\[\#F4D9A0\] {
+    color: #2D1E14 !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+  }
+
+  main > div > div > p.text-\[\#C4B5A5\],
+  main > div > section > div > div > p.text-\[\#C4B5A5\],
+  div[class*="min-h-screen"] > div > div > p.text-\[\#C4B5A5\] {
+    color: #68503E !important;
+  }
+
+  /* Refined warm separator divider on the Cream + Beige canvas */
+  main .border-\[rgba\(244\,217\,160\,0\.12\)\] {
+    border-color: rgba(170, 140, 110, 0.30);
   }
 
   /* Inner Peace Section Container */

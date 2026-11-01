@@ -251,7 +251,35 @@ export default function ProjectList() {
       if (sortParam) params.sort = sortParam;
 
       const data = await getProjects(params);
-      setAllProjects(Array.isArray(data) ? data : []);
+      let list = Array.isArray(data) ? [...data] : [];
+
+      // If backend doesn't filter text search, guarantee client-side search filtering
+      if (searchFilter) {
+        const q = searchFilter.toLowerCase();
+        list = list.filter((p) =>
+          (p.name && p.name.toLowerCase().includes(q)) ||
+          (p.project_id && p.project_id.toLowerCase().includes(q)) ||
+          (p.district && p.district.toLowerCase().includes(q)) ||
+          (p.top_driver && p.top_driver.toLowerCase().includes(q))
+        );
+      }
+
+      // If sortParam is non-risk (e.g. name_asc, district_desc, etc.), guarantee client-side sort
+      if (sortParam && !sortParam.startsWith('risk_')) {
+        const [field, dir] = sortParam.split('_');
+        list.sort((a, b) => {
+          let valA = a[field] || '';
+          let valB = b[field] || '';
+          if (field === 'stage') {
+            valA = a.current_stage || '';
+            valB = b.current_stage || '';
+          }
+          const cmp = String(valA).localeCompare(String(valB));
+          return dir === 'desc' ? -cmp : cmp;
+        });
+      }
+
+      setAllProjects(list);
     } catch (err) {
       console.error('Failed to load projects:', err);
       setError(err.message || 'Failed to retrieve projects from registry');
@@ -356,7 +384,7 @@ export default function ProjectList() {
               {getScopeSubtitle()}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#F4D9A0] tracking-wide">
+          <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#2D1E14] tracking-wide">
             Master Projects Registry
           </h1>
           <p className="text-xs text-[#C4B5A5] mt-1">

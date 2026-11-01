@@ -100,11 +100,11 @@ export default function Overview() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[rgba(244,217,160,0.12)] pb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[11px] font-mono text-[#F4D9A0] uppercase tracking-widest">
+              <span className="text-[11px] font-mono text-[#2D1E14] uppercase tracking-widest">
                 Executive Portfolio Telemetry
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#F4D9A0] tracking-wide">
+            <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#2D1E14] tracking-wide">
               Land Acquisition Delay Risk Intelligence
             </h1>
             <div className="flex flex-wrap items-center gap-2 mt-1">
