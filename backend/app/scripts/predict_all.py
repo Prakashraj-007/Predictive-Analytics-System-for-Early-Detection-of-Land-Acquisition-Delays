@@ -80,3 +80,4 @@ def predict_all_projects():
 
 if __name__ == "__main__":
     predict_all_projects()
+
