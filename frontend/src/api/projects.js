@@ -19,8 +19,8 @@ export async function getProjectPrediction(id) {
   return await api.get(`/projects/${id}/prediction`);
 }
 
-export async function postWhatIf(id, changes) {
-  return await api.post(`/projects/${id}/what-if`, { changes });
+export async function postWhatIf(id, changes, baseline) {
+  return await api.post(`/projects/${id}/what-if`, { changes, baseline });
 }
 
 export async function createProject(data) {

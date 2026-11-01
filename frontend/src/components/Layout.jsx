@@ -174,8 +174,8 @@ export default function Layout() {
         </nav>
 
         {/* User Identity, Role Switcher & Disclaimer */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          <div className="hidden xl:block">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex">
             <SyntheticNote compact />
           </div>
 
@@ -254,8 +254,11 @@ export default function Layout() {
       </main>
 
       {/* Institutional Compliance Footer */}
-      <footer className="border-t border-[rgba(244,217,160,0.12)] bg-[#100C09] px-6 py-6 text-xs text-[#8E7E70]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-[rgba(244,217,160,0.12)] bg-[#100C09] px-6 py-6 text-xs text-[#8E7E70] space-y-4">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <SyntheticNote />
+        </div>
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[rgba(244,217,160,0.06)]">
           <div className="flex items-center gap-3">
             <span className="text-[#C4B5A5]">LandSentinel Predictive Intelligence Console</span>
             <span>•</span>
