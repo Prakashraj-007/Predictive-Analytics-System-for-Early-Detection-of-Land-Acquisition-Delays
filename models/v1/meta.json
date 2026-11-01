@@ -33,7 +33,8 @@
     "possession",
     "rr"
   ],
-  "trained_at": "2026-10-31T18:27:29.468461+00:00",
+  "trained_at": "2026-11-01T04:15:53.808663+00:00",
   "calibration_method": "sigmoid",
-  "delay_days_regression_mode": "direct_regressor_output_for_delayed_projects"
+  "delay_days_regression_mode": "direct_regressor_output_scaled_by_delay_probability",
+  "stage_rr_formula": "clip(1 - rr_progress_pct / 100, 0, 1)"
 }
