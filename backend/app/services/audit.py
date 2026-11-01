@@ -40,9 +40,15 @@ def log_action(
     supabase = get_supabase_client()
     if supabase:
         try:
+            db_user_id = None
+            try:
+                db_user_id = str(uuid.UUID(str(user_id)))
+            except Exception:
+                db_user_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, str(user_id)))
+
             db_payload = {
                 "log_id": log_id,
-                "user_id": user_id,
+                "user_id": db_user_id,
                 "action": action,
                 "project_id": project_id,
                 "timestamp": timestamp,
@@ -54,4 +60,3 @@ def log_action(
             print(f"[WARN] Failed to write to Supabase audit_log table: {e}")
 
     return entry
-
