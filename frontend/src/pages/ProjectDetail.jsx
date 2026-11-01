@@ -56,7 +56,7 @@ export default function ProjectDetail() {
   const [taskError, setTaskError] = useState(null);
 
   const canUpdateData = role === 'project_manager';
-  const canAssignTask = role === 'collector' || role === 'policymaker' || role === 'admin';
+  const canAssignTask = role === 'collector' || role === 'policymaker';
   const canRunWhatIf = role !== 'auditor';
 
   // Load Project Detail & Prediction Data

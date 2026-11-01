@@ -363,6 +363,7 @@ export default function CreateProject() {
         },
         parcels: formData.parcels.map((p) => ({
           survey_no: p.survey_no.trim(),
+          survey_number: p.survey_no.trim(),
           area_ha: Number(p.area_ha),
           land_type: p.land_type,
         })),
@@ -496,7 +497,7 @@ export default function CreateProject() {
               Step {currentStep} of 6
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#F4D9A0] tracking-wide">
+          <h1 className="text-2xl sm:text-3xl font-bold font-headline text-[#2D1E14] tracking-wide">
             Create Land Acquisition Project
           </h1>
           <p className="text-xs text-[#C4B5A5] mt-0.5">

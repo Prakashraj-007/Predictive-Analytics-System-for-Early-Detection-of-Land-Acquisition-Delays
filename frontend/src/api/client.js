@@ -19,7 +19,7 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 4000,
+  timeout: 15000,
 });
 
 // Interceptor that adds the Supabase access token as Authorization: Bearer
@@ -30,6 +30,27 @@ axiosInstance.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Response interceptor: handle 401 by redirecting to /login and 403 by showing /not-allowed
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      if (error.response.status === 401) {
+        localStorage.removeItem('landsentinel_token');
+        localStorage.removeItem('landsentinel_role');
+        if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
+          window.location.href = '/login';
+        }
+      } else if (error.response.status === 403) {
+        if (typeof window !== 'undefined' && window.location.pathname !== '/not-allowed') {
+          window.location.href = '/not-allowed';
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 // In-memory data store for stateful prototype fallback
 let inMemoryProjects = [...projectsMock];
@@ -146,6 +167,11 @@ async function fetchSupabaseProjects(params = {}) {
  */
 export const api = {
   async get(url, config = {}) {
+    if (!isMock) {
+      const response = await axiosInstance.get(url, config);
+      return response.data;
+    }
+
     const parsedUrl = new URL(url, 'http://dummy.local');
     const pathname = parsedUrl.pathname;
     const params = Object.fromEntries(parsedUrl.searchParams.entries());
@@ -571,6 +597,11 @@ export const api = {
   },
 
   async post(url, data = {}, config = {}) {
+    if (!isMock) {
+      const response = await axiosInstance.post(url, data, config);
+      return response.data;
+    }
+
     const pathname = new URL(url, 'http://dummy.local').pathname;
 
     // 1. POST /projects
@@ -716,6 +747,11 @@ export const api = {
   },
 
   async patch(url, data = {}, config = {}) {
+    if (!isMock) {
+      const response = await axiosInstance.patch(url, data, config);
+      return response.data;
+    }
+
     const pathname = new URL(url, 'http://dummy.local').pathname;
     const prjPatchMatch = pathname.match(/^\/projects\/([^/]+)$/);
     if (prjPatchMatch) {

@@ -61,7 +61,7 @@ export default function Login() {
   const displayError = localError || authError;
 
   return (
-    <div className="min-h-screen bg-[#140F0B] flex flex-col justify-center items-center p-4 selection:bg-[#C8792C] selection:text-white font-sans">
+    <div className="min-h-screen bg-transparent flex flex-col justify-center items-center p-4 selection:bg-[#C8792C] selection:text-white font-sans">
       <div className="w-full max-w-md space-y-6">
         {/* Institutional Branding */}
         <div className="text-center space-y-2">

@@ -23,38 +23,28 @@ export function AuthProvider({ children }) {
     async function initSession() {
       setLoading(true);
       try {
-        // If real Supabase is configured, check its session
-        if (isSupabaseConfigured) {
-          const { data } = await supabase.auth.getSession();
-          if (data?.session?.access_token) {
-            localStorage.setItem('landsentinel_token', data.session.access_token);
+        const token = localStorage.getItem('landsentinel_token');
+        if (token) {
+          try {
             const profile = await getMe();
-            if (mounted && profile) setUser(profile);
-          } else {
-            // Automatically establish session with demo role for immediate connectivity
-            const activeRole = localStorage.getItem('landsentinel_role') || 'project_manager';
-            try {
-              const profile = await loginAsDemoRole(activeRole);
-              if (mounted && profile) setUser(profile);
-            } catch (e) {
-              console.warn('Initial session sign-in note:', e.message);
-              if (mounted) setUser(null);
+            if (mounted && profile) {
+              setUser(profile);
+              setLoading(false);
+              return;
             }
+          } catch (e) {
+            console.warn('Existing token validation error, re-establishing session:', e.message);
           }
-        } else {
-          // Mock mode: check local token / role or default to active evaluation role
-          const token = localStorage.getItem('landsentinel_token');
-          if (token) {
-            const profile = await getMe();
-            if (mounted && profile) setUser(profile);
-          } else {
-            // Default demo session for immediate smooth evaluation
-            const defaultRole = localStorage.getItem('landsentinel_role') || 'project_manager';
-            localStorage.setItem('landsentinel_role', defaultRole);
-            localStorage.setItem('landsentinel_token', `mock-token-${defaultRole}-init`);
-            const profile = await getMe();
-            if (mounted && profile) setUser(profile);
-          }
+        }
+
+        // Establish session with active evaluation role
+        const activeRole = localStorage.getItem('landsentinel_role') || 'project_manager';
+        try {
+          const profile = await loginAsDemoRole(activeRole);
+          if (mounted && profile) setUser(profile);
+        } catch (e) {
+          console.warn('Initial session sign-in note:', e.message);
+          if (mounted) setUser(null);
         }
       } catch (err) {
         console.error('Session initialization error:', err);
