@@ -42,3 +42,7 @@ Thumbs.db
 
 # Note: *.joblib is NOT ignored as per repository requirements
 !*.joblib
+
+# Uploaded datasets
+data/uploads/*
+!data/uploads/.gitkeep

@@ -278,3 +278,4 @@ def test_audit_pm_and_collector_forbidden(live_server):
     col_token = create_mock_jwt(user_id="col_1", role="collector", district="Pune")
     status_col, _ = _http_request(f"{live_server}/audit", token=col_token)
     assert status_col == 403
+

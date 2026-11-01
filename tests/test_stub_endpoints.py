@@ -7,6 +7,13 @@ backend_path = Path(__file__).resolve().parent.parent / "backend"
 sys.path.insert(0, str(backend_path))
 
 import pytest
+from dotenv import load_dotenv
+
+env_path = backend_path / ".env"
+load_dotenv(dotenv_path=env_path)
+
+if os.getenv("STUB_MODE", "false").lower() not in ("true", "1"):
+    pytest.skip("STUB_MODE is disabled; real endpoint tests run in test_projects, test_prediction_service, test_a9_routers, test_admin", allow_module_level=True)
 from starlette.testclient import TestClient
 from app.main import app
 
