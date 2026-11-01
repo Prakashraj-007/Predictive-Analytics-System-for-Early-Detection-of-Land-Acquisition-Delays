@@ -1,0 +1,42 @@
+services:
+  # LandSentinel FastAPI Backend
+  - type: web
+    name: landsentinel-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    plan: starter
+    region: oregon
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: STUB_MODE
+        value: "false"
+      - key: MODEL_DIR
+        value: models
+
+  # LandSentinel React Frontend (Static Site)
+  - type: web
+    name: landsentinel-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
