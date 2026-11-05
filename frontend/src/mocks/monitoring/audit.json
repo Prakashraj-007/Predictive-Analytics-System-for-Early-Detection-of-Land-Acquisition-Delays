@@ -1,0 +1,146 @@
+[
+  {
+    "log_id": "LOG-0001",
+    "user": "collector1",
+    "action": "CREATE_TASK",
+    "project_id": "PRJ-0001",
+    "timestamp": "2026-11-04T14:22:10Z"
+  },
+  {
+    "log_id": "LOG-0002",
+    "user": "pm1",
+    "action": "UPDATE_PROJECT",
+    "project_id": "PRJ-0001",
+    "timestamp": "2026-11-04T12:05:45Z"
+  },
+  {
+    "log_id": "LOG-0003",
+    "user": "pm1",
+    "action": "PREDICT",
+    "project_id": "PRJ-0001",
+    "timestamp": "2026-11-04T12:05:46Z",
+    "model_version": "v1"
+  },
+  {
+    "log_id": "LOG-0004",
+    "user": "collector1",
+    "action": "ACK_ALERT",
+    "project_id": "PRJ-0004",
+    "timestamp": "2026-11-04T10:18:22Z"
+  },
+  {
+    "log_id": "LOG-0005",
+    "user": "policymaker1",
+    "action": "VIEW_PROJECT",
+    "project_id": "PRJ-0013",
+    "timestamp": "2026-11-04T09:44:00Z"
+  },
+  {
+    "log_id": "LOG-0006",
+    "user": "admin1",
+    "action": "ACTIVATE_MODEL",
+    "project_id": null,
+    "timestamp": "2026-11-04T09:20:15Z",
+    "model_version": "v1"
+  },
+  {
+    "log_id": "LOG-0007",
+    "user": "admin1",
+    "action": "TRIGGER_RETRAINING",
+    "project_id": null,
+    "timestamp": "2026-11-04T09:02:10Z"
+  },
+  {
+    "log_id": "LOG-0008",
+    "user": "admin1",
+    "action": "UPLOAD_DATASET",
+    "project_id": null,
+    "timestamp": "2026-11-04T08:58:33Z"
+  },
+  {
+    "log_id": "LOG-0009",
+    "user": "policymaker1",
+    "action": "CREATE_TASK",
+    "project_id": "PRJ-0025",
+    "timestamp": "2026-11-03T16:45:00Z"
+  },
+  {
+    "log_id": "LOG-0010",
+    "user": "collector1",
+    "action": "VIEW_PROJECT",
+    "project_id": "PRJ-0019",
+    "timestamp": "2026-11-03T15:30:12Z"
+  },
+  {
+    "log_id": "LOG-0011",
+    "user": "pm1",
+    "action": "PREDICT",
+    "project_id": "PRJ-0004",
+    "timestamp": "2026-11-03T14:12:08Z",
+    "model_version": "v1"
+  },
+  {
+    "log_id": "LOG-0012",
+    "user": "auditor1",
+    "action": "VIEW_AUDIT_LOG",
+    "project_id": null,
+    "timestamp": "2026-11-03T11:00:24Z"
+  },
+  {
+    "log_id": "LOG-0013",
+    "user": "pm1",
+    "action": "UPDATE_TASK",
+    "project_id": "PRJ-0004",
+    "timestamp": "2026-11-02T16:15:40Z"
+  },
+  {
+    "log_id": "LOG-0014",
+    "user": "collector1",
+    "action": "ACK_ALERT",
+    "project_id": "PRJ-0007",
+    "timestamp": "2026-11-02T13:40:55Z"
+  },
+  {
+    "log_id": "LOG-0015",
+    "user": "policymaker1",
+    "action": "VIEW_DASHBOARD",
+    "project_id": null,
+    "timestamp": "2026-11-02T10:05:18Z"
+  },
+  {
+    "log_id": "LOG-0016",
+    "user": "pm1",
+    "action": "CREATE_PROJECT",
+    "project_id": "PRJ-0030",
+    "timestamp": "2026-11-01T15:20:00Z"
+  },
+  {
+    "log_id": "LOG-0017",
+    "user": "collector1",
+    "action": "VIEW_MAP",
+    "project_id": null,
+    "timestamp": "2026-11-01T11:15:32Z"
+  },
+  {
+    "log_id": "LOG-0018",
+    "user": "admin1",
+    "action": "USER_ROLE_ASSIGN",
+    "project_id": null,
+    "timestamp": "2026-10-31T17:00:10Z"
+  },
+  {
+    "log_id": "LOG-0019",
+    "user": "pm1",
+    "action": "PREDICT",
+    "project_id": "PRJ-0007",
+    "timestamp": "2026-10-31T10:15:02Z",
+    "model_version": "v1"
+  },
+  {
+    "log_id": "LOG-0020",
+    "user": "auditor1",
+    "action": "EXPORT_AUDIT_CSV",
+    "project_id": null,
+    "timestamp": "2026-10-30T16:45:50Z"
+  }
+]

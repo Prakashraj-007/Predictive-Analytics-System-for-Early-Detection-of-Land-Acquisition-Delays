@@ -1,0 +1,68 @@
+[
+  {
+    "task_id": "TSK-0001",
+    "project_id": "PRJ-0001",
+    "project_name": "Pune Ring Road Outer Corridor",
+    "action": "Escalate the cases to the legal cell, consider a special Lok Adalat and seek early hearings.",
+    "assigned_by": "collector1",
+    "assigned_to": "pm1",
+    "deadline": "2026-11-20",
+    "status": "assigned",
+    "remarks": null
+  },
+  {
+    "task_id": "TSK-0002",
+    "project_id": "PRJ-0013",
+    "project_name": "Samruddhi Mahamarg Nashik Feeder",
+    "action": "Prioritize vacation of stay orders through Advocate General's office.",
+    "assigned_by": "collector1",
+    "assigned_to": "pm1",
+    "deadline": "2026-11-15",
+    "status": "assigned",
+    "remarks": null
+  },
+  {
+    "task_id": "TSK-0003",
+    "project_id": "PRJ-0025",
+    "project_name": "Aurangabad Smart City Outer Ring",
+    "action": "Release pending funds and hold payment camps for landowners.",
+    "assigned_by": "policymaker1",
+    "assigned_to": "pm1",
+    "deadline": "2026-11-25",
+    "status": "in_progress",
+    "remarks": "Special disbursement camp scheduled at Tehsil office on Nov 18."
+  },
+  {
+    "task_id": "TSK-0004",
+    "project_id": "PRJ-0019",
+    "project_name": "Thane Coastal Road Extension",
+    "action": "Escalate to the department head and set a deadline for the pending approval.",
+    "assigned_by": "policymaker1",
+    "assigned_to": "pm1",
+    "deadline": "2026-11-10",
+    "status": "assigned",
+    "remarks": null
+  },
+  {
+    "task_id": "TSK-0005",
+    "project_id": "PRJ-0004",
+    "project_name": "Maval Valley Water Pipeline",
+    "action": "Hold a joint hearing with the revenue officer and speed up mutation of disputed parcels.",
+    "assigned_by": "collector1",
+    "assigned_to": "pm1",
+    "deadline": "2026-10-28",
+    "status": "done",
+    "remarks": "Joint inspection completed on Oct 25; 12 parcel mutations approved."
+  },
+  {
+    "task_id": "TSK-0006",
+    "project_id": "PRJ-0007",
+    "project_name": "Nagpur Metro Phase 2 Northern Spur",
+    "action": "Plan an eviction and clearance drive with the local administration.",
+    "assigned_by": "collector1",
+    "assigned_to": "pm1",
+    "deadline": "2026-10-20",
+    "status": "done",
+    "remarks": "Sub-divisional magistrate carried out eviction drive with police bandobast; 4.5 ha cleared."
+  }
+]

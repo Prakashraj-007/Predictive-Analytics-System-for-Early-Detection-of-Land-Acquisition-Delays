@@ -1,0 +1,90 @@
+[
+  {
+    "alert_id": "ALT-0001",
+    "project_id": "PRJ-0001",
+    "project_name": "Pune Ring Road Outer Corridor",
+    "district": "Pune",
+    "reason": "Risk score 78 crossed High-risk threshold (> 60) and rose by 18 points.",
+    "risk_score": 78,
+    "previous_score": 60,
+    "status": "active",
+    "created_at": "2026-11-04T08:30:00Z"
+  },
+  {
+    "alert_id": "ALT-0002",
+    "project_id": "PRJ-0013",
+    "project_name": "Samruddhi Mahamarg Nashik Feeder",
+    "district": "Nashik",
+    "reason": "High Court interim stay order issued halting survey operations.",
+    "risk_score": 88,
+    "previous_score": 71,
+    "status": "active",
+    "created_at": "2026-11-04T11:45:00Z"
+  },
+  {
+    "alert_id": "ALT-0003",
+    "project_id": "PRJ-0019",
+    "project_name": "Thane Coastal Road Extension",
+    "district": "Thane",
+    "reason": "CRZ environmental clearance pending exceeded 180 days statutory window.",
+    "risk_score": 91,
+    "previous_score": 84,
+    "status": "active",
+    "created_at": "2026-11-03T16:20:00Z"
+  },
+  {
+    "alert_id": "ALT-0004",
+    "project_id": "PRJ-0010",
+    "project_name": "Umred Coal-Corridor Double Line",
+    "district": "Nagpur",
+    "reason": "Resettlement and rehabilitation progress stalled below 15%.",
+    "risk_score": 82,
+    "previous_score": 65,
+    "status": "active",
+    "created_at": "2026-11-03T09:10:00Z"
+  },
+  {
+    "alert_id": "ALT-0005",
+    "project_id": "PRJ-0025",
+    "project_name": "Aurangabad Smart City Outer Ring",
+    "district": "Aurangabad",
+    "reason": "Compensation undisbursed percentage reached 56.0%.",
+    "risk_score": 79,
+    "previous_score": 62,
+    "status": "active",
+    "created_at": "2026-11-02T14:05:00Z"
+  },
+  {
+    "alert_id": "ALT-0006",
+    "project_id": "PRJ-0004",
+    "project_name": "Maval Valley Water Pipeline",
+    "district": "Pune",
+    "reason": "Risk score rose by 16 points due to new forest clearance requirements.",
+    "risk_score": 68,
+    "previous_score": 52,
+    "status": "acknowledged",
+    "created_at": "2026-11-01T17:40:00Z"
+  },
+  {
+    "alert_id": "ALT-0007",
+    "project_id": "PRJ-0007",
+    "project_name": "Nagpur Metro Phase 2 Northern Spur",
+    "district": "Nagpur",
+    "reason": "Encroachment incidents reported along 9.2% of right-of-way.",
+    "risk_score": 74,
+    "previous_score": 68,
+    "status": "acknowledged",
+    "created_at": "2026-10-31T10:15:00Z"
+  },
+  {
+    "alert_id": "ALT-0008",
+    "project_id": "PRJ-0020",
+    "project_name": "Kalyan-Bhiwandi Freight Transit Line",
+    "district": "Thane",
+    "reason": "Multiple ownership disputes filed on key industrial interchange parcels.",
+    "risk_score": 76,
+    "previous_score": 59,
+    "status": "acknowledged",
+    "created_at": "2026-10-30T13:50:00Z"
+  }
+]

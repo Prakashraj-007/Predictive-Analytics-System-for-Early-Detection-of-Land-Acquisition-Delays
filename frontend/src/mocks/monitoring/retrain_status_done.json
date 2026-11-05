@@ -1,0 +1,21 @@
+{
+  "state": "done",
+  "result": {
+    "before": {
+      "pr_auc": 0.884,
+      "recall": 0.826,
+      "f1": 0.849,
+      "brier": 0.112,
+      "top10_recall": 0.895
+    },
+    "after": {
+      "pr_auc": 0.908,
+      "recall": 0.854,
+      "f1": 0.871,
+      "brier": 0.098,
+      "top10_recall": 0.925
+    },
+    "new_version": "v2",
+    "promoted": true
+  }
+}
