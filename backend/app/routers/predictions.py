@@ -20,9 +20,29 @@ def _verify_project_access(project_id: str, user: CurrentUser) -> Dict[str, Any]
     Validates project existence and role-based access control:
     - Collector: restricted to their assigned district.
     - Project Manager: restricted to projects they created (if assigned).
+    - Statewide roles (Admin, Policymaker, Auditor): access all projects.
+    Lightweight: queries only project metadata rather than full 6-table bundle.
     """
-    bundle = fetch_project_bundle(project_id)
-    project = bundle.get("project")
+    supabase = get_supabase_client()
+    project = None
+    if supabase:
+        try:
+            res = (
+                supabase.table("projects")
+                .select("project_id, district, created_by")
+                .eq("project_id", project_id)
+                .limit(1)
+                .execute()
+            )
+            if res.data and len(res.data) > 0:
+                project = res.data[0]
+        except Exception:
+            pass
+
+    if not project:
+        bundle = fetch_project_bundle(project_id)
+        project = bundle.get("project")
+
     if not project:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

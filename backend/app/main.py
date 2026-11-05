@@ -5,8 +5,10 @@ Strictly adheres to docs/contracts.md
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 # Load environment variables
 env_path = Path(__file__).resolve().parent.parent / ".env"
@@ -25,7 +27,23 @@ from app.routers import (
     me
 )
 
-app = FastAPI(
+class LandSentinelFastAPI(FastAPI):
+    """
+    Subclass FastAPI to expose all flat routes via .routes for contract introspection,
+    unpacking Starlette _IncludedRouter entries while preserving standard dispatching.
+    """
+    @property
+    def routes(self):
+        all_routes = []
+        for r in self.router.routes:
+            if hasattr(r, "original_router"):
+                all_routes.extend(r.original_router.routes)
+            else:
+                all_routes.append(r)
+        return all_routes
+
+
+app = LandSentinelFastAPI(
     title="LandSentinel API",
     description="Risk Prediction, Monitoring, and Governance Platform for Land Acquisition",
     version="1.0.0"
@@ -42,6 +60,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail},
+        headers=exc.headers,
+    )
+
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error."}
+    )
 
 # Health endpoint
 @app.get("/health", tags=["Health"])

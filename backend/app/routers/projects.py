@@ -41,6 +41,9 @@ EDITABLE_PROJECT_FIELDS = {
 }
 
 
+PII_PARCEL_FIELDS = {"owner", "owner_name", "aadhaar", "pan", "bank_account", "bank_account_no", "account_no"}
+
+
 @router.get("/projects", response_model=List[ProjectListItem])
 def list_projects(
     state: Optional[str] = Query(None, description="Filter by state"),
@@ -212,12 +215,10 @@ def get_project_detail(
                 detail=f"Access forbidden: Collector for {user.district} cannot view project in {project.get('district')}."
             )
 
-    # Anonymise parcels (strip owner names per contracts.md section 1)
+    # Anonymise parcels (strip owner names and PII per contracts.md section 1 & Task A12)
     clean_parcels = []
     for p in bundle.get("parcels", []):
-        parcel_copy = dict(p)
-        parcel_copy.pop("owner", None)
-        parcel_copy.pop("owner_name", None)
+        parcel_copy = {k: v for k, v in dict(p).items() if k.lower() not in PII_PARCEL_FIELDS}
         clean_parcels.append(parcel_copy)
 
     return ProjectDetail(
@@ -255,11 +256,11 @@ def create_project(
             # 1. Insert project
             supabase.table("projects").insert(project_data).execute()
 
-            # 2. Insert parcels
+            # 2. Insert parcels (stripping any PII before persisting)
             if payload.parcels:
                 parcels_to_insert = []
                 for p in payload.parcels:
-                    p_rec = dict(p)
+                    p_rec = {k: v for k, v in dict(p).items() if k.lower() not in PII_PARCEL_FIELDS}
                     p_rec["project_id"] = project_id
                     if not p_rec.get("parcel_id"):
                         p_rec["parcel_id"] = f"PAR-{uuid.uuid4().hex[:6].upper()}"
@@ -390,11 +391,11 @@ def update_project(
                 if update_data:
                     supabase.table("projects").update(update_data).eq("project_id", id).execute()
 
-            # 2. Upsert parcels if supplied
+            # 2. Upsert parcels if supplied (stripping any PII before persisting)
             if payload.parcels:
                 clean_parcels = []
                 for p in payload.parcels:
-                    p_rec = dict(p)
+                    p_rec = {k: v for k, v in dict(p).items() if k.lower() not in PII_PARCEL_FIELDS}
                     p_rec["project_id"] = id
                     clean_parcels.append(p_rec)
                 supabase.table("parcels").upsert(clean_parcels, on_conflict="parcel_id").execute()
