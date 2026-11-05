@@ -120,3 +120,4 @@
   By detecting land acquisition delays 6 to 12 months before construction deadlines lapse, LandSentinel has the potential to save state exchequers hundreds of crores in contractor arbitration claims. Our technical roadmap expands this foundation with automated NLP extraction from judicial PDF orders, PostGIS spatial buffer analysis, and survival analysis for precise milestone duration forecasting. LandSentinel delivers the predictive transparency India needs to build its infrastructure on time and on budget.
 - **Visual:**  
   Horizontal roadmap timeline (Phase 1: Pilot & Live Adapters &rarr; Phase 2: NLP & PostGIS &rarr; Phase 3: National Rollout) flanking a bold closing takeaway banner: *"Predict Early. Intervene Early. Build on Time."*
+

@@ -26,3 +26,4 @@
 - **If local network disconnects:** The application runs completely offline in `STUB_MODE="true"` using cached realistic fixtures without degrading any demo steps.
 - **If Leaflet map tiles fail to load:** Switch to the tabular view on `/projects` or `/dashboard` which presents identical risk statistics and corridor metrics.
 - **If What-If slider resets:** Default preset buttons on the workbench provide instant 1-click simulation parameters (e.g. "Fast-Track Clearance", "Disburse 50% Compensation").
+

@@ -92,3 +92,4 @@
 2. **Cursor Aesthetics:** Enable a subtle circular highlight around the mouse cursor to assist viewer tracking during clicks.
 3. **Audio Quality:** Use a cardioid USB or XLR microphone with a pop filter, recording audio into Audacity or OBS with normalized loudness (-14 LUFS).
 4. **Transition Pacing:** Maintain clean 0.5-second cross-fades between screen transitions; avoid rapid jumping between browser tabs.
+

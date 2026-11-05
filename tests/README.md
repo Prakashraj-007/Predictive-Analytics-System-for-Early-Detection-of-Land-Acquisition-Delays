@@ -46,3 +46,4 @@ pytest
 - `DATA_DIR`: Directory containing raw input CSV files for adapters (default: `data/ongoing`).
 - `STUB_MODE`: Set to `"true"` to execute contract shape tests against stub memory fixtures without connecting to live Supabase Postgres.
 - `MODEL_DIR`: Path to serialized scikit-learn / XGBoost model artifacts (default: `models`).
+

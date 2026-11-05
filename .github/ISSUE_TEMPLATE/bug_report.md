@@ -49,3 +49,4 @@ assignees: ""
 - [ ] demo-blocker (Prevents completion of official 6-step demo path)
 - [ ] major (Core workflow failure or permission bypass without immediate workaround)
 - [ ] minor (Cosmetic, styling alignment, or non-blocking edge case)
+

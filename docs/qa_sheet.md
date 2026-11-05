@@ -50,3 +50,4 @@ Real integration relies on our pluggable adapter architecture (`backend/adapters
 ### Q8. Who is accountable if a model prediction is incorrect?
 **Answer:**  
 Accountability remains strictly with the human administrative officer: LandSentinel is an executive decision-support system, not an automated executive adjudicator. Predictions, risk bands, and recommendations are advisory tools designed to highlight priority files, and no statutory acquisition, award, or disbursement can be executed or denied by the algorithm. Every prediction, parameter update, and model retraining is permanently recorded in an immutable statutory audit log with user IDs, ensuring complete post-hoc accountability under administrative law.
+

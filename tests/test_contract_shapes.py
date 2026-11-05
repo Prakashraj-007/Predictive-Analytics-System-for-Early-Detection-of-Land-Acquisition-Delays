@@ -375,3 +375,4 @@ def test_shape_audit(client, auth_headers):
         assert "project_id" in item
         assert "timestamp" in item
         assert ("user" in item or "user_id" in item)
+

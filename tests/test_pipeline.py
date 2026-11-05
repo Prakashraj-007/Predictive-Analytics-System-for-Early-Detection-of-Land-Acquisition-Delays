@@ -250,3 +250,4 @@ def test_pipeline_pure_components_without_ml():
     assert high_alert is not None
     assert high_alert["severity"] == "High"
     assert "rose by 18" in high_alert["reason"]
+

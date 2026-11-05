@@ -207,3 +207,4 @@ Because `build_features` only consumes the returned Python dictionaries, the ent
    - `policymaker` & `admin`: Statewide visibility.
    - `auditor`: Immutable read-only view.
 3. **Statutory Audit Log**: Any update to project parameters, retraining operation, or model activation triggers an automated insert into `audit_log` capturing the authenticated user, timestamp, action type, and affected project ID.
+
