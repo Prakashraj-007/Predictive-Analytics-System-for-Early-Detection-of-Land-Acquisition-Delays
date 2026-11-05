@@ -58,12 +58,15 @@ def predict_all_projects():
     total = len(project_list)
     success = 0
 
+    # Admin user UUID seeded by supabase/seed_users.py
+    system_user_id = "34b6811b-2523-4bc3-b6a4-794b4724715d"
+
     print(f"\nProcessing predictions for {total} projects...")
     for idx, p in enumerate(project_list, 1):
         pid = p["project_id"]
         name = p.get("name", pid)
         try:
-            pred = run_prediction(project_id=pid, user_id="system_init")
+            pred = run_prediction(project_id=pid, user_id=system_user_id)
             band = pred.get("band", "Medium")
             score = pred.get("risk_score", 0)
             counts[band] = counts.get(band, 0) + 1

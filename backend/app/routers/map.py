@@ -33,8 +33,12 @@ def get_map_projects(
     if supabase:
         try:
             query = supabase.table("projects").select("project_id, name, district, lat, lon, created_by")
-            query = scope_projects_query(query, user)
-            if effective_district:
+            scope = scope_projects_query(user)
+            if "created_by" in scope and scope["created_by"]:
+                query = query.eq("created_by", scope["created_by"])
+            if "district" in scope and scope["district"]:
+                query = query.eq("district", scope["district"])
+            elif effective_district:
                 query = query.ilike("district", effective_district)
             res = query.execute()
             if res.data:
