@@ -9,6 +9,15 @@ sys.path.insert(0, str(backend_path))
 os.environ["STUB_MODE"] = "true"
 os.environ["SUPABASE_URL"] = ""
 os.environ["SUPABASE_SERVICE_ROLE_KEY"] = ""
+os.environ["SUPABASE_JWT_SECRET"] = os.environ.get(
+    "SUPABASE_JWT_SECRET", "contract-testing-secret-key-with-minimum-32-chars-length"
+)
+
+try:
+    import app.db as db_mod
+    db_mod._supabase_client = None
+except Exception:
+    pass
 
 import pytest
 from starlette.testclient import TestClient
