@@ -570,7 +570,7 @@ export default function ProjectDetail() {
                           {p.parcel_id}
                         </td>
                         <td className="py-2.5 px-3 font-mono text-[#F3EDE2]">
-                          {p.survey_number}
+                          {p.survey_no || p.survey_number || '—'}
                         </td>
                         <td className="py-2.5 px-3 font-mono text-[#C4B5A5]">
                           {p.area_ha} ha
@@ -617,7 +617,7 @@ export default function ProjectDetail() {
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs text-[#C4B5A5]">
               <span>
-                Active judicial proceedings affecting corridor parcels.
+                Active judicial proceedings affecting corridor parcels (linked by statutory Parcel ID).
               </span>
               <span className="font-mono text-[10px] text-[#F87171] bg-[#331411] px-2 py-0.5 rounded border border-[#7F261E]">
                 {cases.filter((c) => c.stay_order).length} ACTIVE STAY ORDERS
@@ -629,6 +629,7 @@ export default function ProjectDetail() {
                 <thead>
                   <tr className="border-b border-[#3D2D21] text-[#C4B5A5] font-mono uppercase text-[11px] bg-[#16100C]">
                     <th className="py-2.5 px-3">Case ID</th>
+                    <th className="py-2.5 px-3">Target Parcel</th>
                     <th className="py-2.5 px-3">Forum / Court</th>
                     <th className="py-2.5 px-3">Litigation Category</th>
                     <th className="py-2.5 px-3">Stay Order Status</th>
@@ -639,7 +640,7 @@ export default function ProjectDetail() {
                 <tbody className="divide-y divide-[#2A1F18]">
                   {cases.length === 0 ? (
                     <tr>
-                      <td colSpan="6" className="py-8 text-center">
+                      <td colSpan="7" className="py-8 text-center">
                         <EmptyState
                           title="No Litigation Proceedings"
                           description="Zero active litigation proceedings or stay orders logged for this project corridor."
@@ -651,6 +652,11 @@ export default function ProjectDetail() {
                       <tr key={c.case_id || idx} className="hover:bg-[#2A1F18] transition-colors">
                         <td className="py-2.5 px-3 font-mono text-[#F4D9A0] font-semibold">
                           {c.case_number || c.case_id}
+                        </td>
+                        <td className="py-2.5 px-3 font-mono">
+                          <span className="px-2 py-0.5 rounded bg-[#1E1611] border border-[rgba(244,217,160,0.2)] text-[11px] text-[#F4D9A0]">
+                            {c.parcel_id || 'Corridor General'}
+                          </span>
                         </td>
                         <td className="py-2.5 px-3 text-[#F3EDE2]">
                           {c.court || 'District Civil Court'}
