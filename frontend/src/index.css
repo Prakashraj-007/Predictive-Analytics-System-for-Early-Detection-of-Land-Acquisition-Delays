@@ -144,3 +144,19 @@
     box-shadow: 0 0 0 1px #C8792C;
   }
 }
+
+
+/* Leaflet Map Overrides */
+.leaflet-container {
+  font-family: inherit;
+  z-index: 10;
+}
+.landsentinel-leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: #FAF5EC;
+  border-radius: 8px;
+  border: 1px solid #DBC6AA;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+.landsentinel-leaflet-popup .leaflet-popup-tip {
+  background-color: #FAF5EC;
+}
