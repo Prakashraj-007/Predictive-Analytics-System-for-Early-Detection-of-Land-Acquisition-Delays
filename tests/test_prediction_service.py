@@ -262,7 +262,7 @@ def _http_request(url: str, method: str = "GET", token: str = None, json_data: d
 
     req = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
             return resp.status, body
     except urllib.error.HTTPError as he:
