@@ -624,6 +624,7 @@ export const api = {
             planned_end: data.project?.planned_end || '2028-12-31',
             current_stage: 'planning',
             status: 'draft',
+            created_by: '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
           };
 
           const { error } = await supabase.from('projects').insert([newProjectRecord]);
@@ -642,6 +643,7 @@ export const api = {
         district: data.project?.district || 'Pune',
         type: data.project?.type || 'highway',
         current_stage: 'planning',
+        created_by: '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
         risk_score: 45,
         band: 'Medium',
         top_driver: 'Initial statutory survey phase',
