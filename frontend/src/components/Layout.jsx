@@ -113,7 +113,7 @@ export default function Layout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#140F0B] text-[#F3EDE2] flex flex-col font-sans selection:bg-[#C8792C] selection:text-white">
+    <div className="min-h-screen bg-transparent text-[#F3EDE2] flex flex-col font-sans selection:bg-[#C8792C] selection:text-white">
       {/* Top Sticky Institutional Header */}
       <header className="h-16 bg-[#18120D] border-b border-[rgba(244,217,160,0.14)] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
         {/* Brand Crest */}
@@ -126,9 +126,6 @@ export default function Layout() {
               <div className="flex items-center gap-2">
                 <span className="font-headline font-bold text-lg tracking-wide text-[#F4D9A0]">
                   LandSentinel
-                </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#301C0D] text-[#F4D9A0] border border-[rgba(200,121,44,0.4)] uppercase">
-                  GovInfra AI
                 </span>
               </div>
               <div className="text-[10px] text-[#C4B5A5] font-mono tracking-wider uppercase -mt-0.5">
@@ -174,8 +171,8 @@ export default function Layout() {
         </nav>
 
         {/* User Identity, Role Switcher & Disclaimer */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          <div className="hidden xl:block">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex">
             <SyntheticNote compact />
           </div>
 
@@ -254,8 +251,11 @@ export default function Layout() {
       </main>
 
       {/* Institutional Compliance Footer */}
-      <footer className="border-t border-[rgba(244,217,160,0.12)] bg-[#100C09] px-6 py-6 text-xs text-[#8E7E70]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-[rgba(244,217,160,0.12)] bg-[#100C09] px-6 py-6 text-xs text-[#8E7E70] space-y-4">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <SyntheticNote />
+        </div>
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[rgba(244,217,160,0.06)]">
           <div className="flex items-center gap-3">
             <span className="text-[#C4B5A5]">LandSentinel Predictive Intelligence Console</span>
             <span>•</span>

@@ -4,11 +4,13 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import NotAllowed from './pages/NotAllowed';
+import NotFound from './pages/NotFound';
 import Overview from './pages/Overview';
 import ProjectList from './pages/ProjectList';
 import ProjectDetail from './pages/ProjectDetail';
 import CreateProject from './pages/CreateProject';
 import UpdateProject from './pages/UpdateProject';
+import WhatIf from './pages/WhatIf';
 import RiskMap from './pages/monitoring/RiskMap';
 import AlertsTasks from './pages/monitoring/AlertsTasks';
 import AdminRetrain from './pages/monitoring/AdminRetrain';
@@ -61,7 +63,7 @@ export default function AppRoutes() {
           path="what-if"
           element={
             <ProtectedRoute allowedRoles={['project_manager', 'collector', 'policymaker', 'admin']}>
-              <Overview />
+              <WhatIf />
             </ProtectedRoute>
           }
         />
@@ -107,8 +109,8 @@ export default function AppRoutes() {
         />
       </Route>
 
-      {/* Fallback to Overview */}
-      <Route path="*" element={<Navigate to="/overview" replace />} />
+      {/* 404 Route */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

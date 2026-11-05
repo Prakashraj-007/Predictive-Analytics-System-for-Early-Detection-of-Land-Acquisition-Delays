@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import SyntheticNote from '../components/SyntheticNote';
 
 export default function NotAllowed({ allowedRoles }) {
   const { user, switchDemoRole, demoUsers } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    document.title = '403 - Access Restricted | LandSentinel';
+  }, []);
 
   const handleRoleSwitch = async (role) => {
     await switchDemoRole(role);
@@ -76,7 +81,7 @@ export default function NotAllowed({ allowedRoles }) {
           </div>
         )}
 
-        <div className="pt-2 flex justify-center gap-3">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             type="button"
             onClick={() => navigate('/overview')}
@@ -84,6 +89,10 @@ export default function NotAllowed({ allowedRoles }) {
           >
             &larr; Return to Executive Overview
           </button>
+        </div>
+
+        <div className="flex justify-center pt-2">
+          <SyntheticNote compact />
         </div>
       </div>
     </div>

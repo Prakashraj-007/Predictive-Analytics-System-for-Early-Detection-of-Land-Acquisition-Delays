@@ -1,0 +1,303 @@
+[
+  {
+    "project_id": "PRJ-0001",
+    "name": "Pune Ring Road Outer Corridor",
+    "district": "Pune",
+    "lat": 18.5204,
+    "lon": 73.8567,
+    "risk_score": 78,
+    "band": "High",
+    "top_driver": "9 pending court cases with 2 stay orders"
+  },
+  {
+    "project_id": "PRJ-0002",
+    "name": "Baramati Irrigation Canal Network",
+    "district": "Pune",
+    "lat": 18.1516,
+    "lon": 74.5771,
+    "risk_score": 42,
+    "band": "Medium",
+    "top_driver": "38.5% compensation disbursement pending"
+  },
+  {
+    "project_id": "PRJ-0003",
+    "name": "Haveli Industrial Freight Bypass",
+    "district": "Pune",
+    "lat": 18.4285,
+    "lon": 73.9114,
+    "risk_score": 24,
+    "band": "Low",
+    "top_driver": "Documentation drive in progress (92% complete)"
+  },
+  {
+    "project_id": "PRJ-0004",
+    "name": "Maval Valley Water Pipeline",
+    "district": "Pune",
+    "lat": 18.7548,
+    "lon": 73.5358,
+    "risk_score": 68,
+    "band": "High",
+    "top_driver": "Departmental forest clearance overdue by 125 days"
+  },
+  {
+    "project_id": "PRJ-0005",
+    "name": "Shirur Agro-Logistics Expressway",
+    "district": "Pune",
+    "lat": 18.8258,
+    "lon": 74.3789,
+    "risk_score": 53,
+    "band": "Medium",
+    "top_driver": "Ownership disputes on 14 parcels"
+  },
+  {
+    "project_id": "PRJ-0006",
+    "name": "Khed Special Economic Corridor",
+    "district": "Pune",
+    "lat": 18.8504,
+    "lon": 73.9015,
+    "risk_score": 19,
+    "band": "Low",
+    "top_driver": "Possession 88% completed ahead of schedule"
+  },
+  {
+    "project_id": "PRJ-0007",
+    "name": "Nagpur Metro Phase 2 Northern Spur",
+    "district": "Nagpur",
+    "lat": 21.1458,
+    "lon": 79.0882,
+    "risk_score": 74,
+    "band": "High",
+    "top_driver": "Encroached area along alignment exceeds 9.2%"
+  },
+  {
+    "project_id": "PRJ-0008",
+    "name": "MIHAN Cargo Rail Multi-Modal Link",
+    "district": "Nagpur",
+    "lat": 21.0562,
+    "lon": 79.0345,
+    "risk_score": 35,
+    "band": "Medium",
+    "top_driver": "Officer file review response averaging 19 days"
+  },
+  {
+    "project_id": "PRJ-0009",
+    "name": "Ramtek Solar Park Transmission Grid",
+    "district": "Nagpur",
+    "lat": 21.3964,
+    "lon": 79.3298,
+    "risk_score": 18,
+    "band": "Low",
+    "top_driver": "Government barren land, minimal private acquisition"
+  },
+  {
+    "project_id": "PRJ-0010",
+    "name": "Umred Coal-Corridor Double Line",
+    "district": "Nagpur",
+    "lat": 20.8542,
+    "lon": 79.3276,
+    "risk_score": 82,
+    "band": "High",
+    "top_driver": "Resettlement housing allotment stalled at 12%"
+  },
+  {
+    "project_id": "PRJ-0011",
+    "name": "Katol Citrus Cold Chain Highway",
+    "district": "Nagpur",
+    "lat": 21.2685,
+    "lon": 78.5864,
+    "risk_score": 48,
+    "band": "Medium",
+    "top_driver": "45% award compensation pending disbursal"
+  },
+  {
+    "project_id": "PRJ-0012",
+    "name": "Kamptee Flood Defense Bund",
+    "district": "Nagpur",
+    "lat": 21.2235,
+    "lon": 79.1985,
+    "risk_score": 28,
+    "band": "Low",
+    "top_driver": "All survey numbers verified and notified"
+  },
+  {
+    "project_id": "PRJ-0013",
+    "name": "Samruddhi Mahamarg Nashik Feeder",
+    "district": "Nashik",
+    "lat": 19.9975,
+    "lon": 73.7898,
+    "risk_score": 88,
+    "band": "High",
+    "top_driver": "High Court stay order halts section km 34-42"
+  },
+  {
+    "project_id": "PRJ-0014",
+    "name": "Dindori Vineyard Agro-Hub Road",
+    "district": "Nashik",
+    "lat": 20.2014,
+    "lon": 73.8322,
+    "risk_score": 38,
+    "band": "Medium",
+    "top_driver": "Incomplete land titles on 28% of agricultural parcels"
+  },
+  {
+    "project_id": "PRJ-0015",
+    "name": "Malegaon Power Loom Substation",
+    "district": "Nashik",
+    "lat": 20.5535,
+    "lon": 74.5298,
+    "risk_score": 22,
+    "band": "Low",
+    "top_driver": "Direct purchase negotiations successfully concluded"
+  },
+  {
+    "project_id": "PRJ-0016",
+    "name": "Sinnar Industrial SEZ Access Expressway",
+    "district": "Nashik",
+    "lat": 19.8452,
+    "lon": 74.0025,
+    "risk_score": 64,
+    "band": "High",
+    "top_driver": "65% compensation undisbursed due to bank details verification"
+  },
+  {
+    "project_id": "PRJ-0017",
+    "name": "Trimbakeshwar Pilgrim Transit Ring",
+    "district": "Nashik",
+    "lat": 19.9324,
+    "lon": 73.5312,
+    "risk_score": 52,
+    "band": "Medium",
+    "top_driver": "Environmental clearance pending 85 days"
+  },
+  {
+    "project_id": "PRJ-0018",
+    "name": "Kalwan Tribal Belt Lift Irrigation",
+    "district": "Nashik",
+    "lat": 20.4892,
+    "lon": 73.9854,
+    "risk_score": 29,
+    "band": "Low",
+    "top_driver": "FRA community rights consultation in final stage"
+  },
+  {
+    "project_id": "PRJ-0019",
+    "name": "Thane Coastal Road Extension",
+    "district": "Thane",
+    "lat": 19.2183,
+    "lon": 72.9781,
+    "risk_score": 91,
+    "band": "High",
+    "top_driver": "MCZMA CRZ mangrove clearance delayed 180 days"
+  },
+  {
+    "project_id": "PRJ-0020",
+    "name": "Kalyan-Bhiwandi Freight Transit Line",
+    "district": "Thane",
+    "lat": 19.2437,
+    "lon": 73.1355,
+    "risk_score": 76,
+    "band": "High",
+    "top_driver": "Commercial warehouse encroachments along ROW"
+  },
+  {
+    "project_id": "PRJ-0021",
+    "name": "Mira-Bhayandar Water Supply Conduit",
+    "district": "Thane",
+    "lat": 19.2952,
+    "lon": 72.8544,
+    "risk_score": 44,
+    "band": "Medium",
+    "top_driver": "Forest department pipeline right-of-way pending"
+  },
+  {
+    "project_id": "PRJ-0022",
+    "name": "Ulhasnagar Flood Mitigation Reservoir",
+    "district": "Thane",
+    "lat": 19.2167,
+    "lon": 73.1500,
+    "risk_score": 58,
+    "band": "Medium",
+    "top_driver": "Municipal title dispute with private trust"
+  },
+  {
+    "project_id": "PRJ-0023",
+    "name": "Murbad Wind Farm Evacuation Line",
+    "district": "Thane",
+    "lat": 19.2541,
+    "lon": 73.4012,
+    "risk_score": 21,
+    "band": "Low",
+    "top_driver": "Overhead tower easement agreements 90% executed"
+  },
+  {
+    "project_id": "PRJ-0024",
+    "name": "Shahapur Water Treatment Expansion",
+    "district": "Thane",
+    "lat": 19.4528,
+    "lon": 73.3289,
+    "risk_score": 26,
+    "band": "Low",
+    "top_driver": "Existing government reservation land utilised"
+  },
+  {
+    "project_id": "PRJ-0025",
+    "name": "Aurangabad Smart City Outer Ring",
+    "district": "Aurangabad",
+    "lat": 19.8762,
+    "lon": 75.3433,
+    "risk_score": 79,
+    "band": "High",
+    "top_driver": "56% compensation unpaid, landowners resisting survey"
+  },
+  {
+    "project_id": "PRJ-0026",
+    "name": "Shendra-Bidkin DMIC Industrial Node",
+    "district": "Aurangabad",
+    "lat": 19.8245,
+    "lon": 75.5124,
+    "risk_score": 46,
+    "band": "Medium",
+    "top_driver": "Rehabilitation package claims pending verification"
+  },
+  {
+    "project_id": "PRJ-0027",
+    "name": "Paithan Godavari Barrage Channel",
+    "district": "Aurangabad",
+    "lat": 19.4812,
+    "lon": 75.3852,
+    "risk_score": 62,
+    "band": "High",
+    "top_driver": "Submergence survey legal objection from downstream farmers"
+  },
+  {
+    "project_id": "PRJ-0028",
+    "name": "Gangapur Agro-Processing Corridor",
+    "district": "Aurangabad",
+    "lat": 19.6985,
+    "lon": 75.0125,
+    "risk_score": 33,
+    "band": "Medium",
+    "top_driver": "Mutation entries pending in revenue court"
+  },
+  {
+    "project_id": "PRJ-0029",
+    "name": "Vaijapur Highway Widening Section",
+    "district": "Aurangabad",
+    "lat": 19.9241,
+    "lon": 74.7289,
+    "risk_score": 27,
+    "band": "Low",
+    "top_driver": "Direct consent awards disbursed to 85% khatedars"
+  },
+  {
+    "project_id": "PRJ-0030",
+    "name": "Kannad Ghat Bypass Tunnel",
+    "district": "Aurangabad",
+    "lat": 20.2642,
+    "lon": 75.1328,
+    "risk_score": 85,
+    "band": "High",
+    "top_driver": "Wildlife Sanctuary clearance overdue by 160 days"
+  }
+]
+

@@ -1,7 +1,30 @@
 import React from 'react';
+import { RISK_COLORS } from '../theme';
 
 /**
  * StageBars Component - Inner Peace Styling
+ *
+ * Displays horizontal progress bars representing the model-estimated
+ * schedule overrun probability for the 4 core statutory stages:
+ * 1. Statutory Approvals & Clearances (approval)
+ * 2. Award Determination & Compensation (compensation)
+ * 3. Physical Land Possession (possession)
+ * 4. Rehabilitation & Resettlement (rr)
+ *
+ * Each stage is colored according to risk level:
+ * - Critical (>= 60%): Red (#C94A3D)
+ * - Moderate (30-59%): Amber (#C8792C)
+ * - Low (< 30%): Green (#4A855A)
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.stageProbabilities - Map of stage delay probabilities (0 to 1)
+ * @param {number} [props.stageProbabilities.approval=0.35]
+ * @param {number} [props.stageProbabilities.compensation=0.72]
+ * @param {number} [props.stageProbabilities.possession=0.81]
+ * @param {number} [props.stageProbabilities.rr=0.45]
+ * @param {string} [props.title='Stage-Wise Delay Risk Distribution'] - Title caption
+ * @returns {JSX.Element}
  */
 export default function StageBars({
   stageProbabilities = {
@@ -20,9 +43,28 @@ export default function StageBars({
   ];
 
   const getBarColor = (pct) => {
-    if (pct >= 60) return { bg: 'bg-[#C94A3D]', text: 'text-[#F87171]', badge: 'bg-[#331411] text-[#F87171] border-[#7F261E]' };
-    if (pct >= 30) return { bg: 'bg-[#C8792C]', text: 'text-[#F4D9A0]', badge: 'bg-[#301C0D] text-[#F4D9A0] border-[#8A4A17]' };
-    return { bg: 'bg-[#4A855A]', text: 'text-[#86EFAC]', badge: 'bg-[#152B1E] text-[#86EFAC] border-[#255C3A]' };
+    if (pct >= 60) {
+      return {
+        bg: 'bg-[#C94A3D]',
+        text: 'text-[#F87171]',
+        badge: 'bg-[#331411] text-[#F87171] border-[#7F261E]',
+        label: 'Critical',
+      };
+    }
+    if (pct >= 30) {
+      return {
+        bg: 'bg-[#C8792C]',
+        text: 'text-[#F4D9A0]',
+        badge: 'bg-[#301C0D] text-[#F4D9A0] border-[#8A4A17]',
+        label: 'Moderate',
+      };
+    }
+    return {
+      bg: 'bg-[#4A855A]',
+      text: 'text-[#86EFAC]',
+      badge: 'bg-[#152B1E] text-[#86EFAC] border-[#255C3A]',
+      label: 'Low',
+    };
   };
 
   return (
@@ -43,7 +85,7 @@ export default function StageBars({
 
       <div className="space-y-4">
         {STAGES.map((stage) => {
-          const prob = stageProbabilities[stage.key] ?? 0;
+          const prob = stageProbabilities?.[stage.key] ?? 0;
           const pct = Math.round(prob * 100);
           const color = getBarColor(pct);
 
@@ -59,7 +101,7 @@ export default function StageBars({
                     {pct}%
                   </span>
                   <span className={`text-[10px] uppercase font-mono px-1.5 py-0.2 rounded border ${color.badge}`}>
-                    {pct >= 60 ? 'Critical' : pct >= 30 ? 'Moderate' : 'Low'}
+                    {color.label}
                   </span>
                 </div>
               </div>
