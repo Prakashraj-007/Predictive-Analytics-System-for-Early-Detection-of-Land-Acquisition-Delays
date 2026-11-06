@@ -400,7 +400,7 @@ export default function UpdateProject() {
         a.approval_id === approvalId
           ? {
               ...a,
-              actual_date: actualDate,
+              actual_date: actualDate || null,
               status: actualDate ? 'cleared' : 'pending',
             }
           : a
@@ -1400,13 +1400,50 @@ export default function UpdateProject() {
           ======================================================== */}
       {activeTab === 'approvals' && (
         <div className="peace-card p-6 space-y-4">
-          <div className="border-b border-[rgba(244,217,160,0.08)] pb-2">
-            <h3 className="text-sm font-semibold text-[#F4D9A0] font-headline">
-              Statutory Milestones &amp; Clearances
-            </h3>
-            <p className="text-xs text-[#C4B5A5] mt-0.5">
-              Mark statutory sanctions and environmental clearances as cleared with their actual completion date.
-            </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[rgba(244,217,160,0.08)] pb-2">
+            <div>
+              <h3 className="text-sm font-semibold text-[#F4D9A0] font-headline">
+                Statutory Milestones &amp; Clearances
+              </h3>
+              <p className="text-xs text-[#C4B5A5] mt-0.5">
+                Mark statutory sanctions and environmental clearances as cleared with their actual completion date.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  const todayStr = new Date().toISOString().split('T')[0];
+                  setFormData((prev) => ({
+                    ...prev,
+                    approvals: prev.approvals.map((a) => ({
+                      ...a,
+                      actual_date: todayStr,
+                      status: 'cleared',
+                    })),
+                  }));
+                }}
+                className="px-2.5 py-1 rounded bg-[#1C3322] hover:bg-[#25452E] text-[#86EFAC] border border-[#255C3A] font-mono text-[11px] transition-colors"
+              >
+                ✓ Mark All Cleared
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    approvals: prev.approvals.map((a) => ({
+                      ...a,
+                      actual_date: null,
+                      status: 'pending',
+                    })),
+                  }));
+                }}
+                className="px-2.5 py-1 rounded bg-[#2A1714] hover:bg-[#3D1E1A] text-[#FCA5A5] border border-[#7F261E] font-mono text-[11px] transition-colors"
+              >
+                Revoke All (Pending)
+              </button>
+            </div>
           </div>
 
           <div className="space-y-3">
@@ -1443,9 +1480,19 @@ export default function UpdateProject() {
 
                   <div className="md:col-span-3 text-right md:text-center">
                     {isCleared ? (
-                      <div className="inline-flex items-center gap-1.5 font-mono text-xs text-[#86EFAC] bg-[#1C3322] px-3 py-1.5 rounded border border-[#255C3A]">
-                        <span>✓</span>
-                        <span>CLEARED</span>
+                      <div className="flex items-center justify-end md:justify-center gap-2">
+                        <div className="inline-flex items-center gap-1.5 font-mono text-xs text-[#86EFAC] bg-[#1C3322] px-3 py-1.5 rounded border border-[#255C3A]">
+                          <span>✓</span>
+                          <span>CLEARED</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleApprovalClearance(app.approval_id, '')}
+                          title="Revoke clearance and set back to pending"
+                          className="px-2.5 py-1.5 rounded bg-[#2A1714] hover:bg-[#3D1E1A] text-[#FCA5A5] hover:text-[#F87171] border border-[#7F261E] font-mono text-[11px] transition-colors"
+                        >
+                          Revoke
+                        </button>
                       </div>
                     ) : (
                       <button
