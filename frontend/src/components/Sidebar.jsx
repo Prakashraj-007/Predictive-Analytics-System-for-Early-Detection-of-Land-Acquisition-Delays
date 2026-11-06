@@ -87,11 +87,6 @@ export default function Sidebar() {
             }
           >
             <span>{item.label}</span>
-            {item.comingSoon && (
-              <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-[#201812] text-[#8E7E70] border border-[rgba(244,217,160,0.1)]">
-                Person D
-              </span>
-            )}
           </NavLink>
         ))}
       </nav>

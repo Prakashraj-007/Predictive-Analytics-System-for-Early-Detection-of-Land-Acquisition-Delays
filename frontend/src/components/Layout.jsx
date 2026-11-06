@@ -66,42 +66,42 @@ export default function Layout() {
       return [
         ...baseLinks,
         { id: 'create', label: 'Create Project', path: '/projects/new' },
-        { id: 'alerts', label: 'Alerts & Tasks', path: '/alerts', badge: 'Person D' },
-        { id: 'what-if', label: 'What-If', path: '/what-if', badge: 'Day 3' },
+        { id: 'alerts', label: 'Alerts & Tasks', path: '/alerts' },
+        { id: 'what-if', label: 'What-If', path: '/what-if' },
       ];
     }
 
     if (currentRole === 'collector') {
       return [
         ...baseLinks,
-        { id: 'map', label: 'Map', path: '/map', badge: 'Person D' },
-        { id: 'alerts', label: 'Alerts & Tasks', path: '/alerts', badge: 'Person D' },
-        { id: 'what-if', label: 'What-If', path: '/what-if', badge: 'Day 3' },
+        { id: 'map', label: 'Map', path: '/map' },
+        { id: 'alerts', label: 'Alerts & Tasks', path: '/alerts' },
+        { id: 'what-if', label: 'What-If', path: '/what-if' },
       ];
     }
 
     if (currentRole === 'policymaker') {
       return [
         ...baseLinks,
-        { id: 'map', label: 'Map', path: '/map', badge: 'Person D' },
-        { id: 'alerts', label: 'Alerts', path: '/alerts', badge: 'Person D' },
-        { id: 'what-if', label: 'What-If', path: '/what-if', badge: 'Day 3' },
+        { id: 'map', label: 'Map', path: '/map' },
+        { id: 'alerts', label: 'Alerts', path: '/alerts' },
+        { id: 'what-if', label: 'What-If', path: '/what-if' },
       ];
     }
 
     if (currentRole === 'admin') {
       return [
         ...baseLinks,
-        { id: 'map', label: 'Map', path: '/map', badge: 'Person D' },
-        { id: 'retrain', label: 'Data & Retrain', path: '/admin/retrain', badge: 'Person D' },
-        { id: 'audit', label: 'Audit Log', path: '/audit', badge: 'Person D' },
+        { id: 'map', label: 'Map', path: '/map' },
+        { id: 'retrain', label: 'Data & Retrain', path: '/admin/retrain' },
+        { id: 'audit', label: 'Audit Log', path: '/audit' },
       ];
     }
 
     if (currentRole === 'auditor') {
       return [
         ...baseLinks,
-        { id: 'audit', label: 'Audit Log', path: '/audit', badge: 'Person D' },
+        { id: 'audit', label: 'Audit Log', path: '/audit' },
       ];
     }
 
