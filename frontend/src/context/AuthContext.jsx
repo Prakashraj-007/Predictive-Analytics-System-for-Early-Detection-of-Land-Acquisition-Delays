@@ -37,15 +37,8 @@ export function AuthProvider({ children }) {
           }
         }
 
-        // Establish session with active evaluation role
-        const activeRole = localStorage.getItem('landsentinel_role') || 'project_manager';
-        try {
-          const profile = await loginAsDemoRole(activeRole);
-          if (mounted && profile) setUser(profile);
-        } catch (e) {
-          console.warn('Initial session sign-in note:', e.message);
-          if (mounted) setUser(null);
-        }
+        // No active session token found - user is signed out
+        if (mounted) setUser(null);
       } catch (err) {
         console.error('Session initialization error:', err);
         if (mounted) setUser(null);
