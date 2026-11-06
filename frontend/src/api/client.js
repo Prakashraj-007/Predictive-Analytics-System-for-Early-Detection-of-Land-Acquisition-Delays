@@ -898,10 +898,17 @@ export const api = {
         }
       }
 
-      // 4. Update/Insert Cases
-      if (Array.isArray(data.cases) && data.cases.length > 0) {
+      // 4. Update/Insert/Delete Cases
+      if (Array.isArray(data.cases)) {
+        inMemoryDetail.cases = [...data.cases];
         if (isSupabaseConfigured) {
           try {
+            const keepIds = data.cases.filter((c) => c.case_id && !c.case_id.startsWith('temp-')).map((c) => c.case_id);
+            if (keepIds.length > 0) {
+              await supabase.from('cases').delete().eq('project_id', prjId).not('case_id', 'in', `(${keepIds.map((cid) => `"${cid}"`).join(',')})`);
+            } else if (data.cases.length === 0) {
+              await supabase.from('cases').delete().eq('project_id', prjId);
+            }
             for (const c of data.cases) {
               if (c.case_id && !c.case_id.startsWith('temp-')) {
                 await supabase.from('cases').update({
@@ -911,6 +918,7 @@ export const api = {
               } else {
                 await supabase.from('cases').insert([{
                   case_id: `CAS-${Date.now().toString().slice(-6)}`,
+                  project_id: prjId,
                   parcel_id: data.parcels?.[0]?.parcel_id || 'PAR-0001-01',
                   category: c.category || 'Dispute',
                   filing_date: c.filing_date || nowIso.split('T')[0],

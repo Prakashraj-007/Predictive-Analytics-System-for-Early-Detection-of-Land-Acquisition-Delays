@@ -277,22 +277,26 @@ export default function UpdateProject() {
     }
 
     // 4. Cases diff
-    const changedCases = [];
-    formData.cases.forEach((c) => {
-      const initC = initialData.cases.find((ic) => ic.case_id === c.case_id);
-      if (
-        !initC ||
-        c.status !== initC.status ||
-        c.stay_order !== initC.stay_order ||
-        c.parcel_id !== initC.parcel_id ||
-        c.category !== initC.category
-      ) {
-        changedCases.push(c);
-        changedCount++;
-      }
+    const anyCaseDeleted = (initialData.cases || []).some(
+      (ic) => !formData.cases.some((c) => c.case_id === ic.case_id)
+    );
+    const anyCaseAdded = (formData.cases || []).some(
+      (c) => !(initialData.cases || []).some((ic) => ic.case_id === c.case_id)
+    );
+    const anyCaseModified = (formData.cases || []).some((c) => {
+      const initC = (initialData.cases || []).find((ic) => ic.case_id === c.case_id);
+      return (
+        initC &&
+        (c.status !== initC.status ||
+          c.stay_order !== initC.stay_order ||
+          c.parcel_id !== initC.parcel_id ||
+          c.category !== initC.category)
+      );
     });
-    if (changedCases.length > 0) {
-      patchBody.cases = changedCases;
+
+    if (anyCaseDeleted || anyCaseAdded || anyCaseModified) {
+      patchBody.cases = formData.cases;
+      changedCount++;
     }
 
     // 5. Approvals diff
@@ -349,6 +353,15 @@ export default function UpdateProject() {
         c.case_id === caseId ? { ...c, parcel_id: parcelId || null } : c
       ),
     }));
+  };
+
+  // Case delete helper
+  const handleDeleteCase = (caseId) => {
+    setFormData((prev) => ({
+      ...prev,
+      cases: prev.cases.filter((c) => c.case_id !== caseId),
+    }));
+    toast.success('Litigation case removed from registry staging.');
   };
 
   // Add new case handler
@@ -1302,11 +1315,12 @@ export default function UpdateProject() {
                     <th className="py-2.5 px-3">Filing Date</th>
                     <th className="py-2.5 px-3">Status</th>
                     <th className="py-2.5 px-3 text-center">Stay Order Active</th>
+                    <th className="py-2.5 px-3 text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#2A1F18]">
                   {formData.cases.map((c) => (
-                    <tr key={c.case_id} className="hover:bg-[#201812]">
+                    <tr key={c.case_id} className="hover:bg-[#201812] transition-colors">
                       <td className="py-2.5 px-3 font-mono font-semibold text-[#F4D9A0]">
                         {c.case_id}
                       </td>
@@ -1352,11 +1366,24 @@ export default function UpdateProject() {
                           {c.stay_order ? '⚠ STAY ORDER ACTIVE' : 'NO STAY'}
                         </button>
                       </td>
+                      <td className="py-2.5 px-3 text-center">
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteCase(c.case_id)}
+                          title="Delete case"
+                          className="px-2.5 py-1 rounded text-xs font-mono font-medium bg-[#2A1614] hover:bg-[#451A16] text-[#FCA5A5] border border-[#7F261E] hover:border-[#F87171] transition-colors inline-flex items-center gap-1 shadow-sm"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                          <span>Delete</span>
+                        </button>
+                      </td>
                     </tr>
                   ))}
                   {formData.cases.length === 0 && (
                     <tr>
-                      <td colSpan="5" className="py-6 text-center text-[#8E7E70] italic">
+                      <td colSpan="7" className="py-6 text-center text-[#8E7E70] italic">
                         No pending court cases recorded for this project corridor.
                       </td>
                     </tr>

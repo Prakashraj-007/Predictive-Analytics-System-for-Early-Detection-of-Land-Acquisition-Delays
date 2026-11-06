@@ -500,7 +500,7 @@ def update_project(
                     parcel_map[pid] = p_dict
         SAMPLE_PARCELS[id] = list(parcel_map.values())
 
-    if payload.cases:
+    if payload.cases is not None:
         SAMPLE_CASES[id] = [dict(c) for c in payload.cases]
 
     if payload.approvals:
@@ -575,10 +575,19 @@ def update_project(
                     })
                 supabase.table("parcels").upsert(clean_parcels, on_conflict="parcel_id").execute()
 
-            # 3. Upsert cases if supplied
-            if payload.cases:
+            # 3. Synchronize cases if supplied (supports addition, update, and deletion)
+            if payload.cases is not None:
                 clean_cases = [dict(c) for c in payload.cases]
-                supabase.table("cases").upsert(clean_cases, on_conflict="case_id").execute()
+                existing_persisted = [c["case_id"] for c in clean_cases if c.get("case_id") and not str(c["case_id"]).startswith("temp-")]
+                try:
+                    if existing_persisted:
+                        supabase.table("cases").delete().eq("project_id", id).not_.in_("case_id", existing_persisted).execute()
+                    elif not clean_cases:
+                        supabase.table("cases").delete().eq("project_id", id).execute()
+                except Exception as de:
+                    print(f"[WARN] Failed deleting removed cases for {id}: {de}")
+                if clean_cases:
+                    supabase.table("cases").upsert(clean_cases, on_conflict="case_id").execute()
 
             # 4. Upsert approvals if supplied
             if payload.approvals:
