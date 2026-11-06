@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
-import SyntheticNote from '../components/SyntheticNote';
 
 const isMock = import.meta.env.VITE_USE_MOCK !== 'false';
 
@@ -78,20 +77,12 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-transparent flex flex-col justify-center items-center p-4 selection:bg-[#C8792C] selection:text-white font-sans">
       <div className="w-full max-w-md space-y-6">
-        {/* Institutional Government Header */}
-        <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#2A1F18] to-[#1A130E] font-headline font-bold text-2xl text-[#F4D9A0] border border-[rgba(244,217,160,0.35)] shadow-lg mb-1">
-            LS
-          </div>
-          <div>
-            <div className="text-[10px] font-mono uppercase tracking-widest text-[#C4B5A5]">
-              Government of Tamil Nadu &bull; Land Administration
-            </div>
-            <h1 className="text-2xl font-bold font-headline tracking-wide text-[#F4D9A0] mt-0.5">
-              LandSentinel Console
-            </h1>
-          </div>
-          <p className="text-xs text-[#C4B5A5] max-w-sm mx-auto leading-relaxed">
+        {/* Institutional Header */}
+        <div className="text-center space-y-1">
+          <h1 className="text-3xl font-bold font-headline tracking-wide text-[#2D1E14]">
+            LandSentinel Console
+          </h1>
+          <p className="text-xs text-[#5B4632] max-w-sm mx-auto leading-relaxed font-medium">
             Statutory Predictive Analytics &amp; Corridor Delay Mitigation Terminal
           </p>
         </div>
@@ -150,14 +141,9 @@ export default function Login() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-medium text-[#C4B5A5]">
-                  Security Passcode
-                </label>
-                <span className="text-[10px] text-[#8E7E70] font-mono">
-                  Standard Passcode: <code className="text-[#F4D9A0]">demo123</code>
-                </span>
-              </div>
+              <label className="block text-xs font-medium text-[#C4B5A5] mb-1">
+                Security Passcode
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -195,7 +181,7 @@ export default function Login() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-xs pt-1">
+            <div className="flex items-center text-xs pt-1">
               <label className="flex items-center gap-2 cursor-pointer text-[#C4B5A5]">
                 <input
                   type="checkbox"
@@ -205,7 +191,6 @@ export default function Login() {
                 />
                 <span>Remember this terminal</span>
               </label>
-              <span className="text-[#8E7E70] text-[11px]">DPDP Act 2023 Compliant</span>
             </div>
 
             <button
@@ -254,16 +239,6 @@ export default function Login() {
                 </option>
               ))}
             </select>
-          </div>
-        </div>
-
-        {/* Security & Audit Protocol Footer */}
-        <div className="space-y-2 pt-1 text-center">
-          <div className="text-[10px] font-mono text-[#8E7E70] tracking-wider">
-            GOVERNMENT INTRANET &bull; ENCRYPTED TLS 1.3 &bull; AUDIT LOGGED
-          </div>
-          <div className="flex justify-center">
-            <SyntheticNote compact />
           </div>
         </div>
       </div>
