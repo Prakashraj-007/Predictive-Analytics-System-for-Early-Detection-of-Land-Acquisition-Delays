@@ -85,6 +85,7 @@ export default function UpdateProject() {
 
   // "Add case" row buffer
   const [newCase, setNewCase] = useState({
+    parcel_id: '',
     category: CASE_CATEGORIES[0],
     filing_date: new Date().toISOString().split('T')[0],
     stay_order: false,
@@ -131,6 +132,7 @@ export default function UpdateProject() {
           officer_response_days: Number(prj.officer_response_days || 14),
           encroachment_area_ha: Number(prj.encroachment_area_ha || 0),
           obstructions_count: Number(prj.obstructions_count || 0),
+          project_budget: Number(prj.budget || 0),
           parcels: parcels.map((p) => ({
             parcel_id: p.parcel_id,
             survey_no: p.survey_number || p.survey_no || '101/A',
@@ -140,11 +142,13 @@ export default function UpdateProject() {
               p.status === 'handed_over' || p.possession_status === 'handed_over' || p.possession_given
             ),
             documents_verified: Boolean(p.documents_verified || p.doc_complete),
+            compensation_status: p.compensation_status || (p.amount_disbursed && p.amount_disbursed > 0 ? 'disbursed' : 'pending'),
           })),
-          award_amount: Number(compensation.award_amount || compensation.total_award || prj.budget || 0),
+          award_amount: Number(compensation.award_amount || compensation.total_award || 0),
           amount_disbursed: Number(compensation.disbursed_amount || compensation.amount_disbursed || 0),
           cases: cases.map((c) => ({
             case_id: c.case_id,
+            parcel_id: c.parcel_id || '',
             category: c.category || 'Dispute',
             filing_date: c.filing_date || '2024-01-01',
             status: c.status || 'pending',
@@ -217,7 +221,8 @@ export default function UpdateProject() {
       if (
         !initP ||
         p.possession_handed_over !== initP.possession_handed_over ||
-        p.documents_verified !== initP.documents_verified
+        p.documents_verified !== initP.documents_verified ||
+        p.compensation_status !== initP.compensation_status
       ) {
         changedParcels.push(p);
         changedCount++;
@@ -245,7 +250,13 @@ export default function UpdateProject() {
     const changedCases = [];
     formData.cases.forEach((c) => {
       const initC = initialData.cases.find((ic) => ic.case_id === c.case_id);
-      if (!initC || c.status !== initC.status || c.stay_order !== initC.stay_order) {
+      if (
+        !initC ||
+        c.status !== initC.status ||
+        c.stay_order !== initC.stay_order ||
+        c.parcel_id !== initC.parcel_id ||
+        c.category !== initC.category
+      ) {
         changedCases.push(c);
         changedCount++;
       }
@@ -300,6 +311,16 @@ export default function UpdateProject() {
     }));
   };
 
+  // Case target parcel update helper
+  const handleCaseParcelChange = (caseId, parcelId) => {
+    setFormData((prev) => ({
+      ...prev,
+      cases: prev.cases.map((c) =>
+        c.case_id === caseId ? { ...c, parcel_id: parcelId || null } : c
+      ),
+    }));
+  };
+
   // Add new case handler
   const handleAddCase = (e) => {
     e.preventDefault();
@@ -307,6 +328,7 @@ export default function UpdateProject() {
 
     const createdCase = {
       case_id: `temp-${Date.now()}`,
+      parcel_id: newCase.parcel_id || null,
       category: newCase.category,
       filing_date: newCase.filing_date,
       status: 'pending',
@@ -320,6 +342,7 @@ export default function UpdateProject() {
 
     // Reset add case inputs
     setNewCase({
+      parcel_id: '',
       category: CASE_CATEGORIES[0],
       filing_date: new Date().toISOString().split('T')[0],
       stay_order: false,
@@ -732,60 +755,80 @@ export default function UpdateProject() {
                     <th className="py-2.5 px-3">Parcel ID / Survey No</th>
                     <th className="py-2.5 px-3">Area (Ha)</th>
                     <th className="py-2.5 px-3">Land Type</th>
+                    <th className="py-2.5 px-3">Legal &amp; Litigation</th>
                     <th className="py-2.5 px-3 text-center">Possession Handed Over</th>
                     <th className="py-2.5 px-3 text-center">Documents Verified</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#2A1F18]">
-                  {formData.parcels.map((p, idx) => (
-                    <tr key={p.parcel_id || idx} className="hover:bg-[#201812]">
-                      <td className="py-2.5 px-3 font-mono text-[#8E7E70]">{idx + 1}</td>
-                      <td className="py-2.5 px-3 font-mono">
-                        <span className="font-semibold text-[#F4D9A0]">{p.survey_no}</span>
-                        <span className="block text-[10px] text-[#8E7E70]">{p.parcel_id}</span>
-                      </td>
-                      <td className="py-2.5 px-3 font-mono text-[#F3EDE2]">{p.area_ha} Ha</td>
-                      <td className="py-2.5 px-3 capitalize text-[#C4B5A5]">{p.land_type}</td>
-                      <td className="py-2.5 px-3 text-center">
-                        <label className="inline-flex items-center gap-1.5 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={Boolean(p.possession_handed_over)}
-                            onChange={(e) =>
-                              handleParcelChange(p.parcel_id, 'possession_handed_over', e.target.checked)
-                            }
-                            className="w-4 h-4 accent-[#4A855A] rounded cursor-pointer"
-                          />
-                          <span
-                            className={`text-[11px] font-mono ${
-                              p.possession_handed_over ? 'text-[#86EFAC]' : 'text-[#8E7E70]'
-                            }`}
-                          >
-                            {p.possession_handed_over ? 'Handed Over' : 'Pending'}
-                          </span>
-                        </label>
-                      </td>
-                      <td className="py-2.5 px-3 text-center">
-                        <label className="inline-flex items-center gap-1.5 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={Boolean(p.documents_verified)}
-                            onChange={(e) =>
-                              handleParcelChange(p.parcel_id, 'documents_verified', e.target.checked)
-                            }
-                            className="w-4 h-4 accent-[#C8792C] rounded cursor-pointer"
-                          />
-                          <span
-                            className={`text-[11px] font-mono ${
-                              p.documents_verified ? 'text-[#F4D9A0]' : 'text-[#8E7E70]'
-                            }`}
-                          >
-                            {p.documents_verified ? 'Verified' : 'Unverified'}
-                          </span>
-                        </label>
-                      </td>
-                    </tr>
-                  ))}
+                  {formData.parcels.map((p, idx) => {
+                    const parcelCases = formData.cases.filter((c) => c.parcel_id === p.parcel_id);
+                    const hasStay = parcelCases.some((c) => c.stay_order);
+
+                    return (
+                      <tr key={p.parcel_id || idx} className="hover:bg-[#201812]">
+                        <td className="py-2.5 px-3 font-mono text-[#8E7E70]">{idx + 1}</td>
+                        <td className="py-2.5 px-3 font-mono">
+                          <span className="font-semibold text-[#F4D9A0]">{p.survey_no}</span>
+                          <span className="block text-[10px] text-[#8E7E70]">{p.parcel_id}</span>
+                        </td>
+                        <td className="py-2.5 px-3 font-mono text-[#F3EDE2]">{p.area_ha} Ha</td>
+                        <td className="py-2.5 px-3 capitalize text-[#C4B5A5]">{p.land_type}</td>
+                        <td className="py-2.5 px-3 font-mono text-[11px]">
+                          {hasStay ? (
+                            <span className="px-2 py-0.5 rounded bg-[#331411] text-[#FCA5A5] border border-[#7F261E] font-semibold text-[10px] inline-flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#C94A3D] animate-ping" />
+                              <span>⚠ Stay Order</span>
+                            </span>
+                          ) : parcelCases.length > 0 ? (
+                            <span className="px-2 py-0.5 rounded bg-[#2A1F18] text-[#F4D9A0] border border-[rgba(244,217,160,0.2)] text-[10px]">
+                              ⚖ {parcelCases.length} Dispute{parcelCases.length > 1 ? 's' : ''}
+                            </span>
+                          ) : (
+                            <span className="text-[#8E7E70] italic">Clear</span>
+                          )}
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <label className="inline-flex items-center gap-1.5 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={Boolean(p.possession_handed_over)}
+                              onChange={(e) =>
+                                handleParcelChange(p.parcel_id, 'possession_handed_over', e.target.checked)
+                              }
+                              className="w-4 h-4 accent-[#4A855A] rounded cursor-pointer"
+                            />
+                            <span
+                              className={`text-[11px] font-mono ${
+                                p.possession_handed_over ? 'text-[#86EFAC]' : 'text-[#8E7E70]'
+                              }`}
+                            >
+                              {p.possession_handed_over ? 'Handed Over' : 'Pending'}
+                            </span>
+                          </label>
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <label className="inline-flex items-center gap-1.5 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={Boolean(p.documents_verified)}
+                              onChange={(e) =>
+                                handleParcelChange(p.parcel_id, 'documents_verified', e.target.checked)
+                              }
+                              className="w-4 h-4 accent-[#C8792C] rounded cursor-pointer"
+                            />
+                            <span
+                              className={`text-[11px] font-mono ${
+                                p.documents_verified ? 'text-[#F4D9A0]' : 'text-[#8E7E70]'
+                              }`}
+                            >
+                              {p.documents_verified ? 'Verified' : 'Unverified'}
+                            </span>
+                          </label>
+                        </td>
+                      </tr>
+                    );
+                  })}
                   {formData.parcels.length === 0 && (
                     <tr>
                       <td colSpan="6" className="py-6 text-center text-[#8E7E70] italic">
@@ -805,13 +848,23 @@ export default function UpdateProject() {
           ======================================================== */}
       {activeTab === 'compensation' && (
         <div className="peace-card p-6 space-y-6">
-          <div className="border-b border-[rgba(244,217,160,0.08)] pb-2">
-            <h3 className="text-sm font-semibold text-[#F4D9A0] font-headline">
-              Section 31 Financial Compensation Disbursed
-            </h3>
-            <p className="text-xs text-[#C4B5A5] mt-0.5">
-              Record determination of total statutory award and physical escrow disbursement to project affected persons.
-            </p>
+          <div className="border-b border-[rgba(244,217,160,0.08)] pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 className="text-sm font-semibold text-[#F4D9A0] font-headline">
+                Section 31 Financial Compensation Disbursed
+              </h3>
+              <p className="text-xs text-[#C4B5A5] mt-0.5">
+                Record determination of statutory land award (Section 23/31) and direct benefit disbursement to project-affected landowners.
+              </p>
+            </div>
+            {formData.project_budget > 0 && (
+              <div className="text-right">
+                <span className="text-[10px] font-mono text-[#8E7E70] uppercase block">Total Project CapEx Budget</span>
+                <span className="text-xs font-mono font-bold text-[#F4D9A0]">
+                  ₹{Number(formData.project_budget).toLocaleString('en-IN')}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
@@ -828,7 +881,7 @@ export default function UpdateProject() {
                 className="peace-input w-full font-mono text-sm"
               />
               <span className="text-[10px] text-[#8E7E70] mt-1 block">
-                Total sanctioned award under Section 23/31 valuation
+                Total statutory compensation pool sanctioned under Section 23/31 valuation
               </span>
             </div>
 
@@ -847,7 +900,7 @@ export default function UpdateProject() {
                 className="peace-input w-full font-mono text-sm"
               />
               <span className="text-[10px] text-[#8E7E70] mt-1 block">
-                Funds released to validated landowner bank accounts
+                Total funds released to validated landowner bank accounts
               </span>
             </div>
           </div>
@@ -897,6 +950,125 @@ export default function UpdateProject() {
               </div>
             </div>
           </div>
+
+          {/* Parcel-Level Compensation & Disbursement Schedule */}
+          <div className="border border-[rgba(244,217,160,0.12)] rounded-lg p-4 bg-[#1B130E] space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[rgba(244,217,160,0.08)] pb-2">
+              <div>
+                <h4 className="text-xs font-semibold text-[#F4D9A0] font-headline uppercase tracking-wider">
+                  Parcel-Level Compensation Schedule ({formData.parcels.length} Cadastral Parcels)
+                </h4>
+                <p className="text-[11px] text-[#C4B5A5] mt-0.5">
+                  Update payment status for each individual survey number (DBT Direct Transfer vs Court Escrow Deposit).
+                </p>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const allDisbursed = formData.parcels.map((p) => ({ ...p, compensation_status: 'disbursed' }));
+                    setFormData((prev) => ({
+                      ...prev,
+                      parcels: allDisbursed,
+                      amount_disbursed: prev.award_amount > 0 ? prev.award_amount : prev.amount_disbursed,
+                    }));
+                  }}
+                  className="btn-mocha text-[11px] py-1 px-2.5 font-mono"
+                >
+                  ✓ Mark All Paid (100%)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const allPending = formData.parcels.map((p) => ({ ...p, compensation_status: 'pending' }));
+                    setFormData((prev) => ({
+                      ...prev,
+                      parcels: allPending,
+                      amount_disbursed: 0,
+                    }));
+                  }}
+                  className="btn-mocha text-[11px] py-1 px-2.5 font-mono"
+                >
+                  Reset All Pending
+                </button>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto border border-[rgba(244,217,160,0.1)] rounded-lg">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr className="border-b border-[#3D2D21] text-[#C4B5A5] font-mono uppercase text-[11px] bg-[#16100C]">
+                    <th className="py-2.5 px-3">#</th>
+                    <th className="py-2.5 px-3">Survey Number / Parcel ID</th>
+                    <th className="py-2.5 px-3">Area (Ha)</th>
+                    <th className="py-2.5 px-3">Classification</th>
+                    <th className="py-2.5 px-3">Linked Litigation</th>
+                    <th className="py-2.5 px-3 text-center">Compensation Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#2A1F18]">
+                  {formData.parcels.map((p, idx) => {
+                    const parcelCases = formData.cases.filter((c) => c.parcel_id === p.parcel_id);
+                    const hasStay = parcelCases.some((c) => c.stay_order);
+
+                    return (
+                      <tr key={p.parcel_id || idx} className="hover:bg-[#201812]">
+                        <td className="py-2 px-3 font-mono text-[#8E7E70]">{idx + 1}</td>
+                        <td className="py-2 px-3 font-mono">
+                          <span className="font-semibold text-[#F4D9A0]">{p.survey_no}</span>
+                          <span className="block text-[10px] text-[#8E7E70]">{p.parcel_id}</span>
+                        </td>
+                        <td className="py-2 px-3 font-mono text-[#F3EDE2]">{p.area_ha} Ha</td>
+                        <td className="py-2 px-3 capitalize text-[#C4B5A5]">{p.land_type}</td>
+                        <td className="py-2 px-3 font-mono text-[11px]">
+                          {hasStay ? (
+                            <span className="px-2 py-0.5 rounded bg-[#331411] text-[#FCA5A5] border border-[#7F261E] font-semibold text-[10px] inline-flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#C94A3D] animate-ping" />
+                              <span>⚠ Stay Order</span>
+                            </span>
+                          ) : parcelCases.length > 0 ? (
+                            <span className="px-2 py-0.5 rounded bg-[#2A1F18] text-[#F4D9A0] border border-[rgba(244,217,160,0.2)] text-[10px]">
+                              ⚖ {parcelCases.length} Dispute{parcelCases.length > 1 ? 's' : ''}
+                            </span>
+                          ) : (
+                            <span className="text-[#8E7E70] italic">Clear</span>
+                          )}
+                        </td>
+                        <td className="py-2 px-3 text-center">
+                          <select
+                            value={p.compensation_status || 'pending'}
+                            onChange={(e) => {
+                              const newStatus = e.target.value;
+                              handleParcelChange(p.parcel_id, 'compensation_status', newStatus);
+                            }}
+                            className={`peace-input py-1 px-2 text-xs font-mono rounded ${
+                              p.compensation_status === 'disbursed'
+                                ? 'text-[#86EFAC] border-[#2F6B42] bg-[#14261B]'
+                                : p.compensation_status === 'disputed'
+                                ? 'text-[#FCA5A5] border-[#7F261E] bg-[#331411]'
+                                : 'text-[#F4D9A0] border-[#8A4A17] bg-[#201812]'
+                            }`}
+                          >
+                            <option value="pending">⏳ Pending Payment</option>
+                            <option value="disbursed">✓ Disbursed (Paid via DBT)</option>
+                            <option value="disputed">⚖ Disputed (Escrow Deposit)</option>
+                          </select>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                  {formData.parcels.length === 0 && (
+                    <tr>
+                      <td colSpan="6" className="py-6 text-center text-[#8E7E70] italic">
+                        No demarcated parcels loaded for this project corridor.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       )}
 
@@ -912,7 +1084,23 @@ export default function UpdateProject() {
             </h3>
 
             <form onSubmit={handleAddCase} className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end text-xs">
-              <div className="sm:col-span-5">
+              <div className="sm:col-span-4">
+                <label className="block text-[#C4B5A5] mb-1 font-medium">Target Survey Parcel</label>
+                <select
+                  value={newCase.parcel_id || ''}
+                  onChange={(e) => setNewCase({ ...newCase, parcel_id: e.target.value })}
+                  className="peace-input w-full font-mono text-xs"
+                >
+                  <option value="">-- Corridor General (All Parcels) --</option>
+                  {formData.parcels.map((p) => (
+                    <option key={p.parcel_id} value={p.parcel_id}>
+                      Survey {p.survey_no} ({p.area_ha} Ha - {p.land_type})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="sm:col-span-3">
                 <label className="block text-[#C4B5A5] mb-1 font-medium">Dispute Category</label>
                 <select
                   value={newCase.category}
@@ -927,7 +1115,7 @@ export default function UpdateProject() {
                 </select>
               </div>
 
-              <div className="sm:col-span-3">
+              <div className="sm:col-span-2">
                 <label className="block text-[#C4B5A5] mb-1 font-medium">Filing Date</label>
                 <input
                   type="date"
@@ -956,12 +1144,12 @@ export default function UpdateProject() {
                 </label>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-1">
                 <button
                   type="submit"
                   className="btn-amber w-full text-xs py-2 font-semibold"
                 >
-                  Add Case
+                  + Add
                 </button>
               </div>
             </form>
@@ -975,7 +1163,7 @@ export default function UpdateProject() {
                   Active Litigation Registry ({formData.cases.length})
                 </h3>
                 <p className="text-xs text-[#C4B5A5] mt-0.5">
-                  Manage judicial disputes, status tracking, and stay order toggles affecting physical access.
+                  Manage judicial disputes, status tracking, and stay order toggles linked to specific survey parcels.
                 </p>
               </div>
             </div>
@@ -985,6 +1173,7 @@ export default function UpdateProject() {
                 <thead>
                   <tr className="border-b border-[#3D2D21] text-[#C4B5A5] font-mono uppercase text-[11px] bg-[#16100C]">
                     <th className="py-2.5 px-3">Case ID</th>
+                    <th className="py-2.5 px-3">Target Survey Parcel</th>
                     <th className="py-2.5 px-3">Category</th>
                     <th className="py-2.5 px-3">Filing Date</th>
                     <th className="py-2.5 px-3">Status</th>
@@ -996,6 +1185,20 @@ export default function UpdateProject() {
                     <tr key={c.case_id} className="hover:bg-[#201812]">
                       <td className="py-2.5 px-3 font-mono font-semibold text-[#F4D9A0]">
                         {c.case_id}
+                      </td>
+                      <td className="py-2.5 px-3 font-mono">
+                        <select
+                          value={c.parcel_id || ''}
+                          onChange={(e) => handleCaseParcelChange(c.case_id, e.target.value)}
+                          className="peace-input py-1 px-2 text-xs font-mono w-full"
+                        >
+                          <option value="">-- Corridor General --</option>
+                          {formData.parcels.map((p) => (
+                            <option key={p.parcel_id} value={p.parcel_id}>
+                              Survey {p.survey_no} ({p.area_ha} Ha)
+                            </option>
+                          ))}
+                        </select>
                       </td>
                       <td className="py-2.5 px-3 text-[#F3EDE2] font-medium">{c.category}</td>
                       <td className="py-2.5 px-3 font-mono text-[#C4B5A5]">{c.filing_date}</td>
