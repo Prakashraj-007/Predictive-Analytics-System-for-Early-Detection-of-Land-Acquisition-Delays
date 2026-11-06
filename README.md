@@ -149,39 +149,7 @@ When structuring your CAD file, adhere to the following layer standard:
 
 ---
 
-## 7. Role-Based Access Control (RBAC) & Institutional Governance
-
-LandSentinel provides cryptographically verified (HS256 JWT) statutory personas with 1-click evaluation switching in the application header:
-
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 LANDSENTINEL ROLES                                      │
-├───────────────────────────────┬────────────────────────────┬───────────────────────────┤
-│ Role / Persona                │ Administrative Jurisdiction│ Accessible Portals        │
-├───────────────────────────────┼────────────────────────────┼───────────────────────────┤
-│ Priya Sharma (PM)             │ Corridor / Project-level   │ Create Project, Telemetry │
-│                               │ (Kanchipuram & Statewide)  │ Updates, What-If, Alerts  │
-├───────────────────────────────┼────────────────────────────┼───────────────────────────┤
-│ Rajesh Patil (Collector)      │ Kanchipuram District       │ Kanchipuram Risk Map,     │
-│                               │                            │ Approvals, Task Orders    │
-├───────────────────────────────┼────────────────────────────┼───────────────────────────┤
-│ Dr. K. Senthilraj (Collector) │ Thoothukudi District       │ Thoothukudi Risk Map,     │
-│                               │                            │ Approvals, Task Orders    │
-├───────────────────────────────┼────────────────────────────┼───────────────────────────┤
-│ Dr. Sunita Deshmukh (Sec.)    │ Tamil Nadu State (Macro)   │ Statewide Portfolio Map,  │
-│                               │                            │ Overview, Policy What-If  │
-├───────────────────────────────┼────────────────────────────┼───────────────────────────┤
-│ Anand Verma (System Admin)    │ System-wide                │ Model Retraining Studio,  │
-│                               │                            │ Audit Trail, Map          │
-├───────────────────────────────┼────────────────────────────┼───────────────────────────┤
-│ Kavita Rao (State Auditor)    │ Compliance Directorate     │ Immutable Audit Log,      │
-│                               │                            │ Read-only Verification    │
-└───────────────────────────────┴────────────────────────────┴───────────────────────────┘
-```
-
----
-
-## 8. Technology Stack
+## 7. Technology Stack
 
 * **Frontend**: React 18, Vite, Tailwind CSS, Recharts, React-Leaflet, Lucide Icons, React Hot Toast.
 * **Backend**: FastAPI, Uvicorn, Pydantic v2, Python-Multipart, PyJWT.
@@ -192,7 +160,7 @@ LandSentinel provides cryptographically verified (HS256 JWT) statutory personas 
 
 ---
 
-## 9. Quick Start & Installation
+## 8. Quick Start & Installation
 
 ### Prerequisites
 * **Python 3.10+** (Python 3.11–3.13 supported)
@@ -237,7 +205,7 @@ Open **`http://localhost:5173`** in your browser.
 
 ---
 
-## 10. Automated Test Suite
+## 9. Automated Test Suite
 
 Run the full verification suite including the 10 CAD geometry and validation tests:
 
@@ -254,7 +222,7 @@ npm --prefix frontend run build
 
 ---
 
-## 11. Project Documentation Directory
+## 10. Project Documentation Directory
 
 * [`docs/contracts.md`](docs/contracts.md) — Source of truth for API schemas, model feature contracts, and database specs.
 * [`docs/cad_layer_convention.md`](docs/cad_layer_convention.md) — Comprehensive guide for DXF/GeoJSON/Shapefile layer standards and CRS rules.
