@@ -149,7 +149,7 @@ export default function UpdateProject() {
             documents_verified: Boolean(p.documents_verified || p.doc_complete),
             compensation_status: p.compensation_status || (p.amount_disbursed && p.amount_disbursed > 0 ? 'disbursed' : 'pending'),
           })),
-          award_amount: Number(compensation.award_amount || compensation.total_award || 0),
+          award_amount: Number(compensation.award_amount || compensation.total_award || (prj.budget ? Math.round(prj.budget * 0.35) : 15000000)),
           amount_disbursed: Number(compensation.disbursed_amount || compensation.amount_disbursed || 0),
           cases: cases.map((c) => ({
             case_id: c.case_id,
@@ -1053,10 +1053,12 @@ export default function UpdateProject() {
                   type="button"
                   onClick={() => {
                     const allDisbursed = formData.parcels.map((p) => ({ ...p, compensation_status: 'disbursed' }));
+                    const award = formData.award_amount > 0 ? formData.award_amount : (formData.project_budget ? Math.round(formData.project_budget * 0.35) : 15000000);
                     setFormData((prev) => ({
                       ...prev,
                       parcels: allDisbursed,
-                      amount_disbursed: prev.award_amount > 0 ? prev.award_amount : prev.amount_disbursed,
+                      award_amount: award,
+                      amount_disbursed: award,
                     }));
                   }}
                   className="btn-mocha text-[11px] py-1 px-2.5 font-mono"

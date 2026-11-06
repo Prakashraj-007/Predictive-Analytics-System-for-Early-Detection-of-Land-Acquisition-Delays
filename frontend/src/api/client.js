@@ -945,11 +945,31 @@ export const api = {
 
       // Calculate fresh prediction score based on inputs
       let delta = 0;
-      if (data.parcels) {
-        data.parcels.forEach((p) => {
-          if (p.possession_handed_over) delta -= 4;
-          if (p.documents_verified) delta -= 2;
-        });
+      if (Array.isArray(data.parcels) && data.parcels.length > 0) {
+        const totalParcels = data.parcels.length;
+        const paidCount = data.parcels.filter(
+          (p) => p.compensation_status === 'disbursed' || p.compensation_status === 'disputed'
+        ).length;
+        const handedCount = data.parcels.filter(
+          (p) => p.possession_handed_over || p.possession_status === 'handed_over'
+        ).length;
+        const verifiedCount = data.parcels.filter(
+          (p) => p.documents_verified || p.doc_complete
+        ).length;
+
+        // Parcel-level statutory risk reductions
+        if (paidCount > 0) {
+          const paidRatio = paidCount / totalParcels;
+          delta -= Math.round(paidRatio * 22);
+        }
+        if (handedCount > 0) {
+          const handedRatio = handedCount / totalParcels;
+          delta -= Math.round(handedRatio * 18);
+        }
+        if (verifiedCount > 0) {
+          const verRatio = verifiedCount / totalParcels;
+          delta -= Math.round(verRatio * 10);
+        }
       }
       if (data.approvals) {
         data.approvals.forEach((a) => {
@@ -960,12 +980,19 @@ export const api = {
         const { award_amount, amount_disbursed } = data.compensation;
         if (award_amount > 0) {
           const ratio = (amount_disbursed || 0) / award_amount;
-          if (ratio >= 0.7) delta -= 8;
-          else if (ratio < 0.25) delta += 6;
+          if (ratio >= 0.7) delta -= 15;
+          else if (ratio >= 0.4) delta -= 8;
+          else if (ratio < 0.25) delta += 4;
         }
       }
       if (data.project) {
-        if (data.project.rr_progress_pct > 60) delta -= 5;
+        if (data.project.current_stage) {
+          const st = String(data.project.current_stage).toLowerCase();
+          if (st === 'possession') delta += 3;
+          else if (st === 'rr') delta -= 6;
+          else if (st === 'planning') delta -= 3;
+        }
+        if (data.project.rr_progress_pct > 60) delta -= 8;
         if (data.project.encroachment_area_ha > 0) delta += Math.min(16, Math.round(data.project.encroachment_area_ha * 3));
         if (data.project.obstructions_count > 0) delta += Math.min(16, data.project.obstructions_count * 4);
       }
@@ -976,8 +1003,8 @@ export const api = {
         });
       }
 
-      // Compute new score clamped between 10 and 96
-      const newScore = Math.min(96, Math.max(10, Math.round(prevScore + delta)));
+      // Compute new score clamped between 12 and 94
+      const newScore = Math.min(94, Math.max(12, Math.round(prevScore + delta)));
       const newBand = newScore > 60 ? 'High' : newScore >= 30 ? 'Medium' : 'Low';
       const delayProbability = Math.round((newScore / 100) * 100) / 100;
       const expectedDelayDays = Math.round(newScore * 1.8);
@@ -1042,6 +1069,16 @@ export const api = {
       if (pIdx !== -1) {
         inMemoryProjects[pIdx].risk_score = newScore;
         inMemoryProjects[pIdx].band = newBand;
+      }
+      if (inMemoryDetail.project?.project_id === prjId) {
+        inMemoryDetail.project.risk_score = newScore;
+        inMemoryDetail.project.band = newBand;
+      }
+      if (Array.isArray(inMemoryDetail.parcels) && Array.isArray(data.parcels)) {
+        inMemoryDetail.parcels = inMemoryDetail.parcels.map((mp) => {
+          const found = data.parcels.find((p) => p.parcel_id === mp.parcel_id);
+          return found ? { ...mp, ...found } : mp;
+        });
       }
 
       return newPredObject;
