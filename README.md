@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛰️ LandSentinel
+# LandSentinel
 
 ### *India's AI-Powered Land Acquisition Intelligence Platform*
 
@@ -25,52 +25,52 @@
 
 ---
 
-## ⚡ What LandSentinel Does — In 30 Seconds
+## What LandSentinel Does — In 30 Seconds
 
 ```
-📂 Fragmented admin data  ──►  🧠 AI Risk Engine  ──►  🚨 Prescriptive Alerts
-   (Courts · CAD files ·           (XGBoost + SHAP)        (To the right officer,
-    Revenue records ·                                         at the right time,
-    Compensation DBT ·                6–12 months              with the exact
-    Statutory clearances)             in advance)              action to take)
+Fragmented admin data    ──►   AI Risk Engine   ──►   Prescriptive Alerts
+(Courts, CAD files,            (XGBoost + SHAP)       (To the right officer,
+ Revenue records,                                      at the right time,
+ Compensation DBT,                 6–12 months          with the exact
+ Statutory clearances)            in advance)          action to take)
 ```
 
 | Without LandSentinel | With LandSentinel |
 |:---|:---|
-| 📋 Discover delays via monthly MIS reports | ⚡ AI flags delay risk **6–12 months ahead** |
-| 🗂️ Manual survey number entry from paper maps | 🗺️ Upload a CAD file → parcels auto-extracted in seconds |
-| ❓ "Why is this project high risk?" — no answer | 🔍 Top-3 SHAP risk drivers with plain-language justification |
-| 🤷 Guess impact of policy interventions | 🎛️ Simulate *"what if we release 50% compensation?"* live |
-| 🔓 Flat access — anyone sees any district | 🔒 Cryptographic district scoping (RFCTLARR §3(g)) |
+| Discover delays via monthly MIS reports | AI flags delay risk **6–12 months ahead** |
+| Manual survey number entry from paper maps | Upload a CAD file -> parcels auto-extracted in seconds |
+| "Why is this project high risk?" — no answer | Top-3 SHAP risk drivers with plain-language justification |
+| Guess impact of policy interventions | Simulate *"what if we release 50% compensation?"* live |
+| Flat access — anyone sees any district | Cryptographic district scoping (RFCTLARR §3(g)) |
 
 ---
 
-## 🗺️ How the System Works
+## How the System Works
 
 ```mermaid
 flowchart TD
-    subgraph Sources["📥 Data Sources"]
-        D1["🗺️ CAD / GIS Files\nDXF · GeoJSON · Shapefile"]
-        D2["⚖️ Court Records\neCourts / NJDG Adapter"]
-        D3["📜 Revenue Records\nPatta · Chitta · FMB"]
-        D4["💰 Treasury / DBT\nPFMS Disbursement Data"]
-        D5["📋 Statutory Clearances\nForest · CRZ · Railway NOCs"]
+    subgraph Sources["Data Sources"]
+        D1["CAD / GIS Files\nDXF / GeoJSON / Shapefile"]
+        D2["Court Records\neCourts / NJDG Adapter"]
+        D3["Revenue Records\nPatta / Chitta / FMB"]
+        D4["Treasury / DBT\nPFMS Disbursement Data"]
+        D5["Statutory Clearances\nForest / CRZ / Railway NOCs"]
     end
 
-    subgraph Engine["🧠 LandSentinel Intelligence Core"]
-        V1["🔧 CAD Topology Engine\nShapely + ezdxf"]
-        V2["📊 15-Feature Extractor"]
-        ML["🤖 XGBoost Classifier\nDelay Probability 0–1"]
-        XAI["🔍 TreeSHAP Explainer\nTop-3 Risk Drivers"]
-        REC["📋 Mitigation Rule Engine\nPrescriptive Actions"]
-        ALT["🚨 Surge Alert Engine\n≥15pt spike OR score >60"]
+    subgraph Engine["LandSentinel Intelligence Core"]
+        V1["CAD Topology Engine\nShapely + ezdxf"]
+        V2["15-Feature Extractor"]
+        ML["XGBoost Classifier\nDelay Probability 0–1"]
+        XAI["TreeSHAP Explainer\nTop-3 Risk Drivers"]
+        REC["Mitigation Rule Engine\nPrescriptive Actions"]
+        ALT["Surge Alert Engine\n>=15pt spike OR score >60"]
     end
 
-    subgraph Users["👥 Role-Based Delivery"]
-        PM["📂 Project Manager\nData Entry · CAD Upload"]
-        COL["🏛️ District Collector\nApprovals · Task Orders"]
-        SEC["📊 State Secretary\nPortfolio View · Policy What-If"]
-        AUD["🔎 State Auditor\nImmutable Audit Log"]
+    subgraph Users["Role-Based Delivery"]
+        PM["Project Manager\nData Entry / CAD Upload"]
+        COL["District Collector\nApprovals / Task Orders"]
+        SEC["State Secretary\nPortfolio View / Policy What-If"]
+        AUD["State Auditor\nImmutable Audit Log"]
     end
 
     Sources --> Engine
@@ -79,38 +79,38 @@ flowchart TD
 
 ---
 
-## 🏆 Five Things No Other System Does
+## Five Key Capabilities (USPs)
 
-### 1️⃣ Predict Delays — Not Just Report Them
+### 1. Predict Delays — Not Just Report Them
 Traditional MIS portals show you *what already happened*. LandSentinel's calibrated **XGBoost model** analyses 15 live project features and outputs a **delay probability score (0.0 to 1.0)** and **expected delay in days** — giving administrators up to **12 months of advance warning** before a project stalls.
 
-### 2️⃣ Upload a CAD File → Get Survey Schedules Instantly
+### 2. Upload a CAD File -> Get Survey Schedules Instantly
 No more typing hundreds of survey numbers from paper sketches. Drop an **AutoCAD DXF**, **GeoJSON**, or **Zipped Shapefile** into LandSentinel. The geometry engine:
 - Extracts parcel boundaries with topological repair (`make_valid`)
 - Ray-casts survey number labels into their correct parcel polygons
 - Reprojects arbitrary CAD coordinate spaces to WGS 84 for live Leaflet map preview
 - Auto-fills the Land & Parcels acquisition schedule in seconds
 
-### 3️⃣ Explain *Why* — Not Just *What*
+### 3. Explain *Why* — Not Just *What*
 Every risk score is decomposed using **TreeSHAP** (game-theoretic feature attribution) into the **Top 3 mathematical contributors**, translated into institutional plain English:
 
 > *"Compensation pending at 73% is the primary delay driver — initiate DBT payouts to the 14 outstanding survey accounts under RFCTLARR §77 to reduce risk by an estimated 18 points."*
 
-### 4️⃣ Simulate Policy Before Executing It
+### 4. Simulate Policy Before Executing It
 The **What-If Sensitivity Simulator** is a live policy workbench. District Collectors can slide parameters — compensation release %, number of court cases, approval delays, document completion — and watch the ML model **recalculate risk scores in real time (debounced 400 ms)**. No guesswork. No committee meetings. Instant data-driven answers.
 
-### 5️⃣ Constitutional Jurisdiction Enforcement
+### 5. Constitutional Jurisdiction Enforcement
 Every user is cryptographically scoped to their administrative jurisdiction via **HS256 JWT tokens**. District Collectors are **strictly quarantined** to their district under RFCTLARR Section 3(g). A Thoothukudi Collector cannot view Kanchipuram projects — not by convention, but by enforced token validation on every API call.
 
 ---
 
-## 🏛️ Who Uses LandSentinel
+## Who Uses LandSentinel
 
 <table>
 <tr>
 <td width="33%">
 
-**📂 Project Manager**
+**Project Manager**  
 *Priya Sharma — Kanchipuram Corridor*
 
 - Upload CAD/GIS boundary files
@@ -121,8 +121,8 @@ Every user is cryptographically scoped to their administrative jurisdiction via 
 </td>
 <td width="33%">
 
-**🏛️ District Collector**
-*Dr. K. Senthilraj — Thoothukudi*
+**District Collector**  
+*Dr. K. Senthilraj — Thoothukudi*  
 *Rajesh Patil — Kanchipuram*
 
 - View district-scoped geospatial risk map
@@ -133,7 +133,7 @@ Every user is cryptographically scoped to their administrative jurisdiction via 
 </td>
 <td width="33%">
 
-**📊 State Policy Secretary**
+**State Policy Secretary**  
 *Dr. Sunita Deshmukh — Tamil Nadu*
 
 - Statewide portfolio risk dashboard
@@ -146,7 +146,7 @@ Every user is cryptographically scoped to their administrative jurisdiction via 
 <tr>
 <td width="33%">
 
-**🔧 System Administrator**
+**System Administrator**  
 *Anand Verma*
 
 - ML model retraining studio
@@ -157,7 +157,7 @@ Every user is cryptographically scoped to their administrative jurisdiction via 
 </td>
 <td width="33%">
 
-**🔎 State Auditor**
+**State Auditor**  
 *Kavita Rao*
 
 - Immutable read-only audit log
@@ -168,7 +168,7 @@ Every user is cryptographically scoped to their administrative jurisdiction via 
 </td>
 <td width="33%">
 
-**🔑 Demo Credentials**
+**Demo Credentials**  
 *Try any role instantly:*
 
 | Role | Email |
@@ -187,7 +187,7 @@ Every user is cryptographically scoped to their administrative jurisdiction via 
 
 ---
 
-## 📊 The 15 AI Features — Spanning the Entire Statutory Lifecycle
+## The 15 AI Features — Spanning the Entire Statutory Lifecycle
 
 LandSentinel's model monitors the **full RFCTLARR Act lifecycle** — from Social Impact Assessment through Resettlement & Rehabilitation:
 
@@ -204,40 +204,40 @@ LandSentinel's model monitors the **full RFCTLARR Act lifecycle** — from Socia
 | 9 | `docs_incomplete_pct` | % of parcels with unverified Patta / land records | FMB / Adangal |
 | 10 | `officer_response_days` | Avg. revenue query turnaround (days) | Taluk SLA |
 | 11 | `encroached_area_pct` | % of right-of-way under encroachment | Site Incident Reports |
-| 12 | `possession_pct` | % land physically handed over (≥70% → risk reduction) | RFCTLARR §38 |
+| 12 | `possession_pct` | % land physically handed over (>=70% -> risk reduction) | RFCTLARR §38 |
 | 13 | `rr_progress_pct` | Resettlement housing & livelihood scheme progress | RFCTLARR §16 |
-| 14 | `current_stage` | Lifecycle phase (planning → sia → award → possession → rr) | Statutory Progression |
+| 14 | `current_stage` | Lifecycle phase (planning -> sia -> award -> possession -> rr) | Statutory Progression |
 | 15 | `district_past_delay_rate` | Historical land acquisition delay rate for the district | District Benchmark |
 
 ---
 
-## 🗂️ Parcel-Level Intelligence — Survey Number Precision
+## Parcel-Level Intelligence — Survey Number Precision
 
 LandSentinel doesn't just track projects — it tracks **individual survey parcels**:
 
 ```
 Project NH-48 Corridor
-│
-├── Survey 104/1A   ⚖️ Court Case: WP/23456/2024 (Stay Order ACTIVE) 🔴
-│   └── Compensation: ⏳ Pending Payment
-│
-├── Survey 104/2    ✅ No litigation
-│   └── Compensation: ✓ Disbursed via DBT  →  🔓 Section 38 Possession Unlocked
-│
-└── Survey 105/1    ⚖️ Court Case: OS/1122/2024 (Title Dispute)
-    └── Compensation: ⚖ Disputed — Escrow Deposit (construction can proceed)
+|
++-- Survey 104/1A   Court Case: WP/23456/2024 (Stay Order ACTIVE) [Blocked]
+|   \-- Compensation: Pending Payment
+|
++-- Survey 104/2    No litigation
+|   \-- Compensation: Disbursed via DBT -> Section 38 Possession Unlocked
+|
+\-- Survey 105/1    Court Case: OS/1122/2024 (Title Dispute)
+    \-- Compensation: Disputed (Escrow Deposit) -> construction can proceed
 ```
 
 **Compensation States tracked per parcel:**
-- ⏳ **Pending Payment** — Awaiting landowner KYC or Patta verification
-- ✅ **Disbursed (Paid via DBT)** — Funds transferred directly to bank; unlocks physical possession
-- ⚖️ **Disputed (Escrow Deposit)** — Contested funds in LARRA Escrow; construction proceeds legally
+- **Pending Payment** — Awaiting landowner KYC or Patta verification
+- **Disbursed (Paid via DBT)** — Funds transferred directly to bank; unlocks physical possession
+- **Disputed (Escrow Deposit)** — Contested funds in LARRA Escrow; construction proceeds legally
 
 > **Government & Forest Land**: Public land (assigned Patta, revenue poramboke, reserved forest) is tracked for demarcation and possession without compensation obligation — the system flags it separately from private parcel award calculations.
 
 ---
 
-## 🧪 The What-If Simulator — Policy Testing Without Consequences
+## The What-If Simulator — Policy Testing Without Consequences
 
 > *"If the District Collector releases 50% of pending compensation, reduces approval backlog from 150 to 60 days, and resolves 2 court cases — what happens to the project's delay risk?"*
 
@@ -245,37 +245,37 @@ The **Sensitivity Parameter Sliders** answer this in milliseconds:
 
 | Parameter | Slide To Simulate | Risk Impact |
 |:---|:---|:---|
-| 💰 Compensation Pending % | 0% → 100% | Major driver — high pending % sharply raises risk |
-| ⚖️ Number of Court Cases | 0 → 20 | Exponential weight for stay orders |
-| 📄 Documents Incomplete % | 0% → 100% | Cascading effect on possession readiness |
-| 📅 Approval Days Pending | 0 → 365 days | Broken down by named clearance type (Forest, CRZ, Railway NOC…) |
+| Compensation Pending % | 0% -> 100% | Major driver — high pending % sharply raises risk |
+| Number of Court Cases | 0 -> 20 | Exponential weight for stay orders |
+| Documents Incomplete % | 0% -> 100% | Cascading effect on possession readiness |
+| Approval Days Pending | 0 -> 365 days | Broken down by named clearance type (Forest, CRZ, Railway NOC...) |
 
 Each slider shows **current baseline vs. simulated value** side by side, with the ML model recalculating delay probability in real time.
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  FRONTEND          │  BACKEND           │  ML / DATA     │
-│  React 18 + Vite   │  FastAPI + Uvicorn │  XGBoost       │
-│  Tailwind CSS      │  Pydantic v2       │  SHAP          │
-│  Recharts          │  PyJWT (HS256)     │  Scikit-Learn  │
-│  React-Leaflet     │  Python-Multipart  │  NumPy / Pandas│
-│  Lucide Icons      │                   │  Joblib        │
-├─────────────────────────────────────────────────────────┤
-│  GEOSPATIAL / CAD  │  DATABASE          │  TESTING       │
-│  Shapely           │  Supabase          │  Pytest (10+)  │
-│  PyProj            │  PostgreSQL + RLS  │  Vite Build    │
-│  ezdxf             │  Row Level         │  CAD Fixture   │
-│  GeoPandas / Fiona │  Security (RLS)    │  Test Suite    │
-└─────────────────────────────────────────────────────────┘
++---------------------------------------------------------+
+|  FRONTEND          |  BACKEND           |  ML / DATA    |
+|  React 18 + Vite   |  FastAPI + Uvicorn |  XGBoost      |
+|  Tailwind CSS      |  Pydantic v2       |  SHAP         |
+|  Recharts          |  PyJWT (HS256)     |  Scikit-Learn |
+|  React-Leaflet     |  Python-Multipart  |  NumPy/Pandas |
+|  Lucide Icons      |                    |  Joblib       |
++--------------------+--------------------+---------------+
+|  GEOSPATIAL / CAD  |  DATABASE          |  TESTING      |
+|  Shapely           |  Supabase          |  Pytest (10+) |
+|  PyProj            |  PostgreSQL + RLS  |  Vite Build   |
+|  ezdxf             |  Row Level         |  CAD Fixture  |
+|  GeoPandas / Fiona |  Security (RLS)    |  Test Suite   |
++--------------------+--------------------+---------------+
 ```
 
 ---
 
-## 🚀 Quick Start — Up in 5 Minutes
+## Quick Start — Up in 5 Minutes
 
 ### Prerequisites
 - Python 3.10+ · Node.js 18+ · npm
@@ -307,11 +307,11 @@ npm install
 npm run dev
 ```
 
-🌐 Open **`http://localhost:5173`** → Click **Quick Login** → Choose any role persona → Explore!
+Open **`http://localhost:5173`** -> Click **Quick Login** -> Choose any role persona -> Explore!
 
 ---
 
-## ✅ Run the Test Suite
+## Run the Test Suite
 
 ```bash
 # CAD geometry & topology tests
@@ -326,20 +326,20 @@ npm --prefix frontend run build
 
 ---
 
-## 📁 Documentation
+## Documentation
 
 | File | Contents |
 |:---|:---|
 | [`docs/contracts.md`](docs/contracts.md) | API schemas, ML feature contracts, DB specs |
 | [`docs/cad_layer_convention.md`](docs/cad_layer_convention.md) | DXF/GeoJSON/Shapefile layer standards & CRS rules |
 | [`docs/architecture.md`](docs/architecture.md) | Adapter pattern, ML pipeline, RBAC guards |
-| [`docs/recommendation_rules.md`](docs/recommendation_rules.md) | SHAP driver → mitigation protocol mapping |
+| [`docs/recommendation_rules.md`](docs/recommendation_rules.md) | SHAP driver -> mitigation protocol mapping |
 
 ---
 
 <div align="center">
 
-**Built for India's Infrastructure Governance**
+**Built for India's Infrastructure Governance**  
 *RFCTLARR Act, 2013 · District Collector Administration · Public Works Departments*
 
 *LandSentinel — From reactive firefighting to proactive, data-driven land governance.*
