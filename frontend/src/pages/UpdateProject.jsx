@@ -408,25 +408,44 @@ export default function UpdateProject() {
     }));
   };
 
-  // Form submit handler sending PATCH /projects/:id with only changed fields
+  // Form submit handler sending PATCH /projects/:id with telemetry state
   const handleSave = async (e) => {
     if (e) e.preventDefault();
-    // Always allow recalculation — even if no visible fields changed, the backend
-    // in-memory state may have been wiped by a server restart. We always send the
-    // full parcel roster + compensation so the prediction is always accurate.
-    const hasPayloadContent = Object.keys(diffPayload.patchBody).length > 0;
-    if (!hasPayloadContent) {
-      alert('No field modifications detected to save.');
-      return;
-    }
-
     setSaving(true);
     setError(null);
     try {
       const oldScore = baselinePrediction?.risk_score || 72;
 
-      // Dispatch PATCH /projects/:id with only the changed fields
-      const newPrediction = await updateProject(id, diffPayload.patchBody);
+      // Ensure the complete current telemetry state is always dispatched
+      const fullTelemetryPayload = {
+        ...diffPayload.patchBody,
+        project: {
+          ...(diffPayload.patchBody.project || {}),
+          current_stage: formData.current_stage,
+          rr_progress_pct: formData.rr_progress_pct,
+          officer_response_days: formData.officer_response_days,
+          encroachment_area_ha: formData.encroachment_area_ha,
+          obstructions_count: formData.obstructions_count,
+        },
+        parcels: formData.parcels.map((p) => ({
+          ...p,
+          possession_status: p.possession_handed_over ? 'handed_over' : 'pending',
+          status: p.possession_handed_over ? 'handed_over' : 'pending',
+          doc_complete: Boolean(p.documents_verified),
+          documents_verified: Boolean(p.documents_verified),
+        })),
+        compensation: {
+          award_amount: formData.award_amount,
+          amount_disbursed: formData.amount_disbursed,
+          disbursed_amount: formData.amount_disbursed,
+        },
+        cases: formData.cases,
+        approvals: formData.approvals,
+        as_of_date: asOfDate,
+      };
+
+      // Dispatch PATCH /projects/:id with verified telemetry payload
+      const newPrediction = await updateProject(id, fullTelemetryPayload);
 
       const newScore = newPrediction.risk_score || oldScore;
       const newBand = newPrediction.band || (newScore > 60 ? 'High' : newScore >= 30 ? 'Medium' : 'Low');
@@ -1552,7 +1571,7 @@ export default function UpdateProject() {
           <button
             type="button"
             onClick={handleSave}
-            disabled={diffPayload.changedCount === 0 || saving}
+            disabled={saving}
             className="btn-amber text-xs font-semibold px-5 disabled:opacity-40"
           >
             {saving ? 'Committing Telemetry...' : 'Save & Recalculate Risk →'}

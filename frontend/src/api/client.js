@@ -71,6 +71,177 @@ axiosInstance.interceptors.response.use(
 let inMemoryProjects = [...projectsMock];
 let inMemoryDetail = JSON.parse(JSON.stringify(projectDetailMock));
 
+const BUNDLES_STORAGE_KEY = 'landsentinel_project_bundles';
+const PREDICTIONS_STORAGE_KEY = 'landsentinel_project_predictions';
+
+function getStoredBundles() {
+  try {
+    if (typeof localStorage === 'undefined') return {};
+    const raw = localStorage.getItem(BUNDLES_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveStoredBundle(prjId, bundle) {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    const bundles = getStoredBundles();
+    bundles[prjId] = {
+      ...(bundles[prjId] || {}),
+      ...bundle,
+      project: { ...(bundles[prjId]?.project || {}), ...(bundle.project || {}) },
+      parcels: bundle.parcels !== undefined ? bundle.parcels : (bundles[prjId]?.parcels || []),
+      cases: bundle.cases !== undefined ? bundle.cases : (bundles[prjId]?.cases || []),
+      approvals: bundle.approvals !== undefined ? bundle.approvals : (bundles[prjId]?.approvals || []),
+      compensation: bundle.compensation !== undefined ? bundle.compensation : (bundles[prjId]?.compensation || {}),
+    };
+    localStorage.setItem(BUNDLES_STORAGE_KEY, JSON.stringify(bundles));
+  } catch (e) {
+    console.warn('Failed to persist bundle to localStorage:', e);
+  }
+}
+
+function getStoredPredictions() {
+  try {
+    if (typeof localStorage === 'undefined') return {};
+    const raw = localStorage.getItem(PREDICTIONS_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveStoredPrediction(prjId, pred) {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    const preds = getStoredPredictions();
+    preds[prjId] = pred;
+    localStorage.setItem(PREDICTIONS_STORAGE_KEY, JSON.stringify(preds));
+  } catch (e) {
+    console.warn('Failed to persist prediction to localStorage:', e);
+  }
+}
+
+/**
+ * Deterministic risk prediction modeling calibrated with backend/core/predict.py
+ */
+function computeTelemetryRiskPrediction(prjId, bundle, effectiveAsOf) {
+  const parcels = bundle.parcels || [];
+  const cases = bundle.cases || [];
+  const approvals = bundle.approvals || [];
+  const compensation = bundle.compensation || {};
+  const project = bundle.project || {};
+
+  // 1. Possession progress: what % of land is handed over?
+  const totalArea = parcels.reduce((sum, p) => sum + (Number(p.area_ha) || 1), 0);
+  const handedArea = parcels
+    .filter((p) => p.possession_status === 'handed_over' || p.status === 'handed_over' || p.possession_handed_over)
+    .reduce((sum, p) => sum + (Number(p.area_ha) || 1), 0);
+  const possessionPct = totalArea > 0 ? (handedArea / totalArea) * 100 : 0;
+
+  // 2. Document verification: what % of parcels are verified?
+  const verifiedCount = parcels.filter((p) => p.documents_verified || p.doc_complete).length;
+  const docsVerifiedPct = parcels.length > 0 ? (verifiedCount / parcels.length) * 100 : 100;
+
+  // 3. Compensation disbursed: what % of award is disbursed?
+  const award = Number(compensation.award_amount) || 0;
+  const disbursed = Number(compensation.amount_disbursed || compensation.disbursed_amount) || 0;
+  const compDisbursedPct = award > 0 ? Math.min(100, Math.max(0, (disbursed / award) * 100)) : 50;
+
+  // 4. Pending cases and stay orders
+  const pendingCases = cases.filter((c) => c.status === 'pending' || c.status === 'stayed' || c.status === 'hearing');
+  const stayOrders = cases.filter((c) => Boolean(c.stay_order)).length;
+
+  // 5. Overdue approvals relative to effectiveAsOf
+  const refDate = effectiveAsOf ? new Date(effectiveAsOf) : new Date();
+  let maxOverdueDays = 0;
+  approvals.forEach((a) => {
+    if (a.status === 'pending' && a.planned_date) {
+      const planned = new Date(a.planned_date);
+      const diffDays = Math.max(0, Math.floor((refDate - planned) / (1000 * 60 * 60 * 24)));
+      if (diffDays > maxOverdueDays) maxOverdueDays = diffDays;
+    }
+  });
+
+  // Calculate base score:
+  // Baseline risk when starting: ~18
+  let score = 18;
+
+  // Outstanding possession penalty (0 to 35 pts)
+  const unhandedRatio = (100 - possessionPct) / 100;
+  score += Math.round(unhandedRatio * 35);
+
+  // Unverified docs penalty (0 to 14 pts)
+  const unverifiedRatio = (100 - docsVerifiedPct) / 100;
+  score += Math.round(unverifiedRatio * 14);
+
+  // Undisbursed compensation penalty (0 to 16 pts)
+  const undisbursedRatio = (100 - compDisbursedPct) / 100;
+  score += Math.round(undisbursedRatio * 16);
+
+  // Litigation penalty: +4 pts per pending case, +10 pts per active stay order
+  score += Math.min(25, pendingCases.length * 4);
+  score += Math.min(30, stayOrders * 10);
+
+  // Overdue approvals penalty
+  score += Math.min(18, Math.round(maxOverdueDays * 0.1));
+
+  // Current stage discount/penalty
+  const st = String(project.current_stage || '').toLowerCase();
+  if (st === 'rr' || st === 'possession') score -= 5;
+
+  const clampedScore = Math.min(95, Math.max(12, score));
+  const band = clampedScore > 60 ? 'High' : clampedScore >= 30 ? 'Medium' : 'Low';
+  const delayProb = Math.round((clampedScore / 100) * 100) / 100;
+  const expectedDelayDays = clampedScore <= 30 ? Math.round(clampedScore * 0.3) : Math.round(clampedScore * 1.6);
+
+  const topDriver =
+    stayOrders > 0
+      ? 'Active Judicial Injunctions & Stay Orders'
+      : possessionPct < 50
+      ? 'Land Handover & Demarcation Lag'
+      : compDisbursedPct < 50
+      ? 'Compensation Disbursement Processing'
+      : maxOverdueDays > 30
+      ? 'Statutory Approval Backlogs'
+      : 'Routine Administrative Clearance';
+
+  return {
+    prediction_id: `PRED-${prjId}-${Date.now()}`,
+    project_id: prjId,
+    created_at: new Date().toISOString(),
+    risk_score: clampedScore,
+    band,
+    delay_probability: delayProb,
+    expected_delay_days: expectedDelayDays,
+    as_of_date: effectiveAsOf || new Date().toISOString().split('T')[0],
+    stage_probabilities: {
+      approval: Math.min(0.9, Math.max(0.1, Math.round(clampedScore * 0.45) / 100)),
+      compensation: Math.min(0.95, Math.max(0.15, Math.round(clampedScore * 0.85) / 100)),
+      possession: Math.min(0.95, Math.max(0.1, Math.round(clampedScore * 0.95) / 100)),
+      rr: Math.min(0.9, Math.max(0.1, Math.round(clampedScore * 0.6) / 100)),
+    },
+    drivers: [
+      {
+        feature: stayOrders > 0 ? 'stay_orders' : possessionPct < 50 ? 'possession_pct' : 'compensation_pending_pct',
+        label: topDriver,
+        impact: 0.28,
+        direction: clampedScore > 60 ? 'increases_risk' : 'decreases_risk',
+        plain_text: `${topDriver} evaluated under current field telemetry.`,
+      },
+    ],
+    recommendations: [
+      {
+        driver: stayOrders > 0 ? 'stay_orders' : 'possession_pct',
+        action: stayOrders > 0 ? 'File vacate stay motion before District Court' : 'Expedite field possession mutation protocols',
+      },
+    ],
+    model_version: 'v1.2-telemetry',
+  };
+}
+
 /**
  * Helper to fetch all projects joined with predictions directly from Supabase
  */
@@ -442,11 +613,30 @@ export const api = {
               drivers: data.drivers || [],
               recommendations: data.recommendations || [],
               model_version: data.model_version || 'v1',
+              as_of_date: data.as_of_date,
             };
           }
         } catch (e) {
           console.warn('Supabase prediction note:', e);
         }
+      }
+
+      // Check stored predictions first
+      const storedPreds = getStoredPredictions();
+      if (storedPreds[prjId]) {
+        return storedPreds[prjId];
+      }
+
+      // Check stored bundles and compute fresh calibrated prediction
+      const storedBundles = getStoredBundles();
+      if (storedBundles[prjId]) {
+        const computed = computeTelemetryRiskPrediction(
+          prjId,
+          storedBundles[prjId],
+          storedBundles[prjId].project?.as_of_date
+        );
+        saveStoredPrediction(prjId, computed);
+        return computed;
       }
 
       const found = inMemoryProjects.find((p) => p.project_id === prjId);
@@ -509,6 +699,9 @@ export const api = {
                       area_ha: p.area_ha,
                       land_type: p.land_type,
                       status: p.possession_status || 'pending',
+                      possession_status: p.possession_status || 'pending',
+                      doc_complete: Boolean(p.doc_complete),
+                      documents_verified: Boolean(p.doc_complete),
                     }))
                   : inMemoryDetail.parcels,
               cases:
@@ -540,11 +733,19 @@ export const api = {
         }
       }
 
+      // Check stored bundles from localStorage first!
+      const storedBundles = getStoredBundles();
+      if (storedBundles[prjId]) {
+        return storedBundles[prjId];
+      }
+
       const basePrj = inMemoryProjects.find((p) => p.project_id === prjId);
       if (prjId === 'PRJ-0001' || !basePrj) {
         return inMemoryDetail;
       }
-      return {
+
+      // Adapt mock detail for this specific project and initialize its persistent bundle
+      const customBundle = {
         ...inMemoryDetail,
         project: {
           ...inMemoryDetail.project,
@@ -552,9 +753,34 @@ export const api = {
           name: basePrj.name,
           district: basePrj.district,
           type: basePrj.type,
-          current_stage: basePrj.current_stage,
+          current_stage: basePrj.current_stage || 'possession',
+          budget: basePrj.budget || inMemoryDetail.project.budget,
+        },
+        parcels: inMemoryDetail.parcels.map((p, idx) => ({
+          ...p,
+          parcel_id: `PAR-${prjId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+          project_id: prjId,
+          status: p.status || 'pending',
+          possession_status: p.possession_status || p.status || 'pending',
+          doc_complete: Boolean(p.doc_complete || p.documents_verified),
+          documents_verified: Boolean(p.doc_complete || p.documents_verified),
+        })),
+        cases: (inMemoryDetail.cases || []).map((c) => ({
+          ...c,
+          parcel_id: `PAR-${prjId.slice(-4)}-01`,
+        })),
+        approvals: (inMemoryDetail.approvals || []).map((a, idx) => ({
+          ...a,
+          approval_id: `APP-${prjId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+        })),
+        compensation: {
+          ...inMemoryDetail.compensation,
+          project_id: prjId,
         },
       };
+
+      saveStoredBundle(prjId, customBundle);
+      return customBundle;
     }
 
     // 9. GET /map/projects
@@ -655,49 +881,95 @@ export const api = {
 
     // 1. POST /projects
     if (pathname === '/projects') {
+      const rawProject = data.project || {};
+      const newId = rawProject.project_id || `PRJ-${Math.random().toString(16).slice(2, 8).toUpperCase()}`;
+      const nowIso = new Date().toISOString();
+
+      const newProjectRecord = {
+        project_id: newId,
+        name: rawProject.name || 'New Infrastructure Project',
+        type: rawProject.type || 'highway',
+        agency: rawProject.agency || 'State Infrastructure Agency',
+        state: rawProject.state || 'Tamil Nadu',
+        district: rawProject.district || 'Kanchipuram',
+        land_area_ha: Number(rawProject.land_area_ha) || 50,
+        families_affected: Number(rawProject.families_affected) || 120,
+        families_resettlement: Number(rawProject.families_resettlement) || 40,
+        budget: Number(rawProject.budget) || 100000000,
+        planned_start: rawProject.planned_start || nowIso.split('T')[0],
+        planned_end: rawProject.planned_end || '2028-12-31',
+        current_stage: rawProject.current_stage || 'planning',
+        status: 'draft',
+        created_by: '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
+        created_at: nowIso,
+        updated_at: nowIso,
+      };
+
       if (isSupabaseConfigured) {
         try {
-          const newId = `PRJ-${String(Math.floor(1000 + Math.random() * 9000))}`;
-          const newProjectRecord = {
-            project_id: newId,
-            name: data.project?.name || 'New Infrastructure Project',
-            type: data.project?.type || 'highway',
-            agency: data.project?.agency || 'State Infrastructure Agency',
-            state: data.project?.state || 'Tamil Nadu',
-            district: data.project?.district || 'Kanchipuram',
-            land_area_ha: Number(data.project?.land_area_ha) || 50,
-            families_affected: Number(data.project?.families_affected) || 120,
-            families_resettlement: Number(data.project?.families_resettlement) || 40,
-            budget: Number(data.project?.budget) || 100000000,
-            planned_start: data.project?.planned_start || '2026-01-01',
-            planned_end: data.project?.planned_end || '2028-12-31',
-            current_stage: 'planning',
-            status: 'draft',
-            created_by: '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
-          };
-
-          const { error } = await supabase.from('projects').insert([newProjectRecord]);
-          if (!error) {
-            return { project_id: newId };
-          }
+          await supabase.from('projects').insert([newProjectRecord]);
         } catch (e) {
           console.warn('Supabase project creation note:', e);
         }
       }
 
-      const newId = `PRJ-${String(inMemoryProjects.length + 1).padStart(4, '0')}`;
-      const newPrj = {
-        project_id: newId,
-        name: data.project?.name || 'New Infrastructure Project',
-        district: data.project?.district || 'Kanchipuram',
-        type: data.project?.type || 'highway',
-        current_stage: 'planning',
-        created_by: '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
-        risk_score: 45,
-        band: 'Medium',
-        top_driver: 'Initial statutory survey phase',
+      // Initialize persistent project bundle with provided parcels and milestones
+      const initialBundle = {
+        project: newProjectRecord,
+        parcels: Array.isArray(data.parcels) && data.parcels.length > 0
+          ? data.parcels.map((p, idx) => ({
+              ...p,
+              parcel_id: p.parcel_id || `PAR-${newId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+              project_id: newId,
+              survey_number: p.survey_no || p.survey_number || `Survey ${idx + 1}`,
+              survey_no: p.survey_no || p.survey_number || `Survey ${idx + 1}`,
+              area_ha: Number(p.area_ha) || 1.0,
+              land_type: p.land_type || 'private',
+              status: p.possession_status || 'pending',
+              possession_status: p.possession_status || 'pending',
+              doc_complete: Boolean(p.documents_verified || p.doc_complete),
+              documents_verified: Boolean(p.documents_verified || p.doc_complete),
+            }))
+          : inMemoryDetail.parcels.map((p, idx) => ({
+              ...p,
+              parcel_id: `PAR-${newId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+              project_id: newId,
+              status: 'pending',
+              possession_status: 'pending',
+            })),
+        cases: Array.isArray(data.cases) ? data.cases : [],
+        approvals: Array.isArray(data.approvals) && data.approvals.length > 0
+          ? data.approvals.map((a, idx) => ({
+              ...a,
+              approval_id: a.approval_id || `APP-${newId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+              project_id: newId,
+            }))
+          : (inMemoryDetail.approvals || []).map((a, idx) => ({
+              ...a,
+              approval_id: `APP-${newId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+              project_id: newId,
+            })),
+        compensation: data.compensation || {
+          project_id: newId,
+          award_amount: (newProjectRecord.budget || 100000000) * 0.35,
+          disbursed_amount: 0,
+        },
       };
-      inMemoryProjects.unshift(newPrj);
+
+      // Save to localStorage immediately
+      saveStoredBundle(newId, initialBundle);
+
+      // Compute initial calibrated prediction
+      const initialPred = computeTelemetryRiskPrediction(newId, initialBundle, newProjectRecord.planned_start);
+      saveStoredPrediction(newId, initialPred);
+
+      const listRecord = {
+        ...newProjectRecord,
+        risk_score: initialPred.risk_score,
+        band: initialPred.band,
+        top_driver: initialPred.drivers?.[0]?.label || 'Initial statutory survey phase',
+      };
+      inMemoryProjects.unshift(listRecord);
       return { project_id: newId };
     }
 
@@ -816,281 +1088,100 @@ export const api = {
     if (prjPatchMatch) {
       const prjId = prjPatchMatch[1];
       const nowIso = new Date().toISOString();
+      const effectiveAsOf = data.as_of_date || data.project?.as_of_date || nowIso.split('T')[0];
 
-      // Retrieve previous prediction for delta tracking
-      let prevScore = 72;
-      let prevPred = null;
-      try {
-        prevPred = await this.get(`/projects/${prjId}/prediction`);
-        if (prevPred?.risk_score) {
-          prevScore = prevPred.risk_score;
-        }
-      } catch (e) {
-        // fallback
+      // Retrieve existing bundle from localStorage or memory
+      const storedBundles = getStoredBundles();
+      let currentBundle = storedBundles[prjId];
+      if (!currentBundle) {
+        const basePrj = inMemoryProjects.find((p) => p.project_id === prjId) || {
+          project_id: prjId,
+          name: `Corridor ${prjId}`,
+          district: 'Kanchipuram',
+          type: 'highway',
+          current_stage: 'possession',
+          budget: 150000000,
+        };
+        currentBundle = {
+          project: { ...inMemoryDetail.project, ...basePrj },
+          parcels: (data.parcels && data.parcels.length > 0) ? data.parcels : inMemoryDetail.parcels,
+          cases: data.cases !== undefined ? data.cases : (inMemoryDetail.cases || []),
+          approvals: inMemoryDetail.approvals || [],
+          compensation: inMemoryDetail.compensation || {},
+        };
       }
 
-      // 1. Update Project Level fields
-      const effectiveAsOf = data.as_of_date || data.project?.as_of_date;
-      if (effectiveAsOf) {
-        const memIdx = inMemoryProjects.findIndex((p) => p.project_id === prjId);
-        if (memIdx !== -1) {
-          inMemoryProjects[memIdx].as_of_date = effectiveAsOf;
-        }
-        if (inMemoryDetail.project?.project_id === prjId) {
-          inMemoryDetail.project.as_of_date = effectiveAsOf;
-        }
-      }
-
+      // 1. Update Project fields
       if (data.project) {
-        if (isSupabaseConfigured) {
-          try {
-            await supabase
-              .from('projects')
-              .update({ ...data.project, as_of_date: effectiveAsOf || undefined, updated_at: nowIso })
-              .eq('project_id', prjId);
-          } catch (e) {
-            console.warn('Supabase project patch note:', e);
-          }
-        }
-        // Update inMemory
-        const memIdx = inMemoryProjects.findIndex((p) => p.project_id === prjId);
-        if (memIdx !== -1) {
-          inMemoryProjects[memIdx] = { ...inMemoryProjects[memIdx], ...data.project };
-        }
-        if (inMemoryDetail.project?.project_id === prjId) {
-          inMemoryDetail.project = { ...inMemoryDetail.project, ...data.project };
-        }
+        currentBundle.project = {
+          ...currentBundle.project,
+          ...data.project,
+          as_of_date: effectiveAsOf,
+          updated_at: nowIso,
+        };
+      } else if (effectiveAsOf) {
+        currentBundle.project.as_of_date = effectiveAsOf;
       }
 
-      // 2. Update Parcels
-      if (Array.isArray(data.parcels) && data.parcels.length > 0) {
-        if (isSupabaseConfigured) {
-          try {
-            for (const p of data.parcels) {
-              const parcelPayload = {
-                possession_status: p.possession_handed_over ? 'handed_over' : 'pending',
-                doc_complete: Boolean(p.documents_verified),
-                updated_at: nowIso,
-              };
-              if (p.parcel_id) {
-                await supabase.from('parcels').update(parcelPayload).eq('parcel_id', p.parcel_id);
-              }
-            }
-          } catch (e) {
-            console.warn('Supabase parcels patch note:', e);
-          }
-        }
+      // 2. Update Parcels - explicitly map possession_status & status & checkboxes
+      if (Array.isArray(data.parcels)) {
+        currentBundle.parcels = data.parcels.map((p, idx) => {
+          const isHanded = Boolean(
+            p.possession_handed_over ||
+            p.possession_status === 'handed_over' ||
+            p.status === 'handed_over'
+          );
+          const isVerified = Boolean(p.documents_verified || p.doc_complete);
+          return {
+            ...p,
+            parcel_id: p.parcel_id || `PAR-${prjId.slice(-4)}-${String(idx + 1).padStart(2, '0')}`,
+            project_id: prjId,
+            status: isHanded ? 'handed_over' : 'pending',
+            possession_status: isHanded ? 'handed_over' : 'pending',
+            possession_handed_over: isHanded,
+            doc_complete: isVerified,
+            documents_verified: isVerified,
+          };
+        });
       }
 
       // 3. Update Compensation
       if (data.compensation) {
-        if (isSupabaseConfigured) {
-          try {
-            await supabase.from('compensation').upsert({
-              project_id: prjId,
-              award_amount: data.compensation.award_amount,
-              disbursed_amount: data.compensation.amount_disbursed,
-              updated_at: nowIso,
-            }, { onConflict: 'project_id' });
-          } catch (e) {
-            console.warn('Supabase compensation patch note:', e);
-          }
-        }
+        currentBundle.compensation = {
+          ...currentBundle.compensation,
+          ...data.compensation,
+          updated_at: nowIso,
+        };
       }
 
-      // 4. Update/Insert/Delete Cases
+      // 4. Update Cases
       if (Array.isArray(data.cases)) {
-        inMemoryDetail.cases = [...data.cases];
-        if (isSupabaseConfigured) {
-          try {
-            const keepIds = data.cases.filter((c) => c.case_id && !c.case_id.startsWith('temp-')).map((c) => c.case_id);
-            if (keepIds.length > 0) {
-              await supabase.from('cases').delete().eq('project_id', prjId).not('case_id', 'in', `(${keepIds.map((cid) => `"${cid}"`).join(',')})`);
-            } else if (data.cases.length === 0) {
-              await supabase.from('cases').delete().eq('project_id', prjId);
-            }
-            for (const c of data.cases) {
-              if (c.case_id && !c.case_id.startsWith('temp-')) {
-                await supabase.from('cases').update({
-                  status: c.status || 'pending',
-                  stay_order: Boolean(c.stay_order),
-                }).eq('case_id', c.case_id);
-              } else {
-                await supabase.from('cases').insert([{
-                  case_id: `CAS-${Date.now().toString().slice(-6)}`,
-                  project_id: prjId,
-                  parcel_id: data.parcels?.[0]?.parcel_id || 'PAR-0001-01',
-                  category: c.category || 'Dispute',
-                  filing_date: c.filing_date || nowIso.split('T')[0],
-                  status: c.status || 'pending',
-                  stay_order: Boolean(c.stay_order),
-                }]);
-              }
-            }
-          } catch (e) {
-            console.warn('Supabase cases patch note:', e);
-          }
-        }
+        currentBundle.cases = [...data.cases];
       }
 
       // 5. Update Approvals
-      if (Array.isArray(data.approvals) && data.approvals.length > 0) {
-        if (isSupabaseConfigured) {
-          try {
-            for (const a of data.approvals) {
-              if (a.approval_id) {
-                await supabase.from('approvals').update({
-                  actual_date: a.actual_date || null,
-                  status: a.status || (a.actual_date ? 'cleared' : 'pending'),
-                }).eq('approval_id', a.approval_id);
-              }
-            }
-          } catch (e) {
-            console.warn('Supabase approvals patch note:', e);
-          }
-        }
+      if (Array.isArray(data.approvals)) {
+        currentBundle.approvals = [...data.approvals];
       }
 
-      // Calculate fresh prediction score based on inputs
-      let delta = 0;
-      if (Array.isArray(data.parcels) && data.parcels.length > 0) {
-        const totalParcels = data.parcels.length;
-        const paidCount = data.parcels.filter(
-          (p) => p.compensation_status === 'disbursed' || p.compensation_status === 'disputed'
-        ).length;
-        const handedCount = data.parcels.filter(
-          (p) => p.possession_handed_over || p.possession_status === 'handed_over'
-        ).length;
-        const verifiedCount = data.parcels.filter(
-          (p) => p.documents_verified || p.doc_complete
-        ).length;
+      // Persist bundle permanently to localStorage!
+      saveStoredBundle(prjId, currentBundle);
 
-        // Parcel-level statutory risk reductions
-        if (paidCount > 0) {
-          const paidRatio = paidCount / totalParcels;
-          delta -= Math.round(paidRatio * 22);
-        }
-        if (handedCount > 0) {
-          const handedRatio = handedCount / totalParcels;
-          delta -= Math.round(handedRatio * 18);
-        }
-        if (verifiedCount > 0) {
-          const verRatio = verifiedCount / totalParcels;
-          delta -= Math.round(verRatio * 10);
-        }
-      }
-      if (data.approvals) {
-        data.approvals.forEach((a) => {
-          if (a.actual_date || a.status === 'cleared') delta -= 6;
-        });
-      }
-      if (data.compensation) {
-        const { award_amount, amount_disbursed } = data.compensation;
-        if (award_amount > 0) {
-          const ratio = (amount_disbursed || 0) / award_amount;
-          if (ratio >= 0.7) delta -= 15;
-          else if (ratio >= 0.4) delta -= 8;
-        }
-      }
-      if (data.project) {
-        if (data.project.current_stage) {
-          const st = String(data.project.current_stage).toLowerCase();
-          if (st === 'rr') delta -= 6;
-          else if (st === 'planning') delta -= 3;
-        }
-        if (data.project.rr_progress_pct > 60) delta -= 8;
-        if (data.project.encroachment_area_ha > 0) delta += Math.min(16, Math.round(data.project.encroachment_area_ha * 3));
-        if (data.project.obstructions_count > 0) delta += Math.min(16, data.project.obstructions_count * 4);
-      }
-      if (data.cases) {
-        data.cases.forEach((c) => {
-          if (c.stay_order) delta += 10;
-          if (c.case_id && c.case_id.startsWith('temp-')) delta += 5;
-        });
+      // Also sync inMemoryDetail if it matches
+      if (inMemoryDetail.project?.project_id === prjId) {
+        inMemoryDetail = { ...inMemoryDetail, ...currentBundle };
       }
 
-      // Compute new score clamped between 12 and 94
-      const newScore = Math.min(94, Math.max(12, Math.round(prevScore + delta)));
-      const newBand = newScore > 60 ? 'High' : newScore >= 30 ? 'Medium' : 'Low';
-      const delayProbability = Math.round((newScore / 100) * 100) / 100;
-      const expectedDelayDays = Math.round(newScore * 1.8);
+      // Compute fresh, deterministic ML prediction from the updated corridor bundle
+      const newPredObject = computeTelemetryRiskPrediction(prjId, currentBundle, effectiveAsOf);
+      saveStoredPrediction(prjId, newPredObject);
 
-      const memIndex = inMemoryProjects.findIndex((p) => p.project_id === prjId);
-      if (memIndex !== -1) {
-        inMemoryProjects[memIndex].risk_score = newScore;
-        inMemoryProjects[memIndex].band = newBand;
-      }
-
-      const newPredObject = {
-        prediction_id: `PRED-${Date.now()}`,
-        project_id: prjId,
-        created_at: nowIso,
-        risk_score: newScore,
-        band: newBand,
-        delay_probability: delayProbability,
-        expected_delay_days: expectedDelayDays,
-        as_of_date: effectiveAsOf || nowIso.split('T')[0],
-        stage_probabilities: {
-          approval: Math.min(0.9, Math.max(0.1, Math.round(newScore * 0.45) / 100)),
-          compensation: Math.min(0.95, Math.max(0.15, Math.round(newScore * 0.9) / 100)),
-          possession: Math.min(0.95, Math.max(0.1, Math.round(newScore * 1.05) / 100)),
-          rr: Math.min(0.9, Math.max(0.1, Math.round(newScore * 0.6) / 100)),
-        },
-        drivers: prevPred?.drivers || [
-          {
-            feature: 'litigation_cases',
-            label: 'Litigation Bottlenecks',
-            impact: 0.24,
-            direction: newScore > 60 ? 'increases_risk' : 'decreases_risk',
-            plain_text: 'Judicial stay orders and parcel disputes impact project execution timeline.',
-          },
-        ],
-        recommendations: prevPred?.recommendations || [
-          {
-            driver: 'litigation_cases',
-            action: 'File vacate-stay application before District Judge and depute Special Land Officer.',
-          },
-        ],
-        model_version: 'v1.2-telemetry',
-      };
-
-      // Persist new prediction in Supabase if configured
-      if (isSupabaseConfigured) {
-        try {
-          await supabase.from('predictions').insert([newPredObject]);
-          // Check alert criteria: score rose by >= 15 or crossed 60
-          const scoreRoseBy = newScore - prevScore;
-          if (scoreRoseBy >= 15 || (prevScore < 60 && newScore >= 60)) {
-            await supabase.from('alerts').insert([{
-              alert_id: `ALT-${Date.now()}`,
-              project_id: prjId,
-              reason: `Risk score rose by ${Math.max(1, scoreRoseBy)} points during telemetry update`,
-              risk_score: newScore,
-              previous_score: prevScore,
-              status: 'active',
-              created_at: nowIso,
-            }]);
-          }
-        } catch (e) {
-          console.warn('Supabase prediction insert note:', e);
-        }
-      }
-
-      // Update inMemory project registry risk score
+      // Update inMemoryProjects list so corridor cards and lists reflect new score & band
       const pIdx = inMemoryProjects.findIndex((p) => p.project_id === prjId);
       if (pIdx !== -1) {
-        inMemoryProjects[pIdx].risk_score = newScore;
-        inMemoryProjects[pIdx].band = newBand;
-      }
-      if (inMemoryDetail.project?.project_id === prjId) {
-        inMemoryDetail.project.risk_score = newScore;
-        inMemoryDetail.project.band = newBand;
-      }
-      if (Array.isArray(inMemoryDetail.parcels) && Array.isArray(data.parcels)) {
-        inMemoryDetail.parcels = inMemoryDetail.parcels.map((mp) => {
-          const found = data.parcels.find((p) => p.parcel_id === mp.parcel_id);
-          return found ? { ...mp, ...found } : mp;
-        });
+        inMemoryProjects[pIdx].risk_score = newPredObject.risk_score;
+        inMemoryProjects[pIdx].band = newPredObject.band;
+        inMemoryProjects[pIdx].as_of_date = effectiveAsOf;
       }
 
       return newPredObject;
