@@ -24,7 +24,8 @@ from app.routers import (
     tasks,
     admin,
     audit,
-    me
+    me,
+    cad
 )
 
 class LandSentinelFastAPI(FastAPI):
@@ -99,4 +100,5 @@ app.include_router(tasks.router)
 app.include_router(admin.router)
 app.include_router(audit.router)
 app.include_router(me.router)
+app.include_router(cad.router)
 

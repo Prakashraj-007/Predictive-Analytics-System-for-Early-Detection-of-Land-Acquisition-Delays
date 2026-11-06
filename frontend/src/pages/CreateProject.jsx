@@ -6,6 +6,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useAuth } from '../context/AuthContext';
 import { createProject } from '../api/projects';
+import { confirmCadParcels } from '../api/cad';
+import CadIngestModal from '../components/CadIngestModal';
 import SyntheticNote from '../components/SyntheticNote';
 
 // Fix Vite leaflet default icon path issue
@@ -206,6 +208,10 @@ export default function CreateProject() {
   const [showCsvModal, setShowCsvModal] = useState(false);
   const [csvText, setCsvText] = useState('');
 
+  // CAD Ingestion State
+  const [showCadModal, setShowCadModal] = useState(false);
+  const [cadDemarcationData, setCadDemarcationData] = useState(null);
+
   // Robust CSV / Excel Paste Parser matching the Parcels Schedule format
   const parseCsvParcels = useCallback((text) => {
     if (!text || !text.trim()) return [];
@@ -285,10 +291,30 @@ export default function CreateProject() {
   }, [formData.district]);
 
   const currentCoords = useMemo(() => {
+    if (cadDemarcationData?.boundary_geojson?.coordinates?.[0]?.[0]) {
+      const pt = cadDemarcationData.boundary_geojson.coordinates[0][0];
+      return [pt[1], pt[0]];
+    }
     return TN_DISTRICT_COORDS[formData.district] || [12.8342, 79.7036];
-  }, [formData.district]);
+  }, [formData.district, cadDemarcationData]);
 
   const corridorGeometry = useMemo(() => {
+    if (cadDemarcationData?.boundary_geojson?.coordinates) {
+      // Reprojected WGS84 GeoJSON [lon, lat] -> Leaflet [lat, lon]
+      const boundaryPolygon = (cadDemarcationData.boundary_geojson.coordinates[0] || []).map((pt) => [pt[1], pt[0]]);
+      const subdivisions = (cadDemarcationData.parcels || []).map((p) => {
+        const polyCoords = (p.geometry_geojson?.coordinates?.[0] || []).map((pt) => [pt[1], pt[0]]);
+        return {
+          survey_no: p.survey_number,
+          area_ha: p.computed_area_ha,
+          land_type: (p.classification || 'private').toLowerCase(),
+          polygon: polyCoords,
+          record_area_ha: p.record_area_ha,
+        };
+      });
+      return { boundaryPolygon, subdivisions };
+    }
+
     const lat = currentCoords[0];
     const lon = currentCoords[1];
 
@@ -308,7 +334,7 @@ export default function CreateProject() {
     }
 
     return generateCorridorGeometry(lat, lon, surveyList);
-  }, [currentCoords, customSurveysText, formData.parcels]);
+  }, [currentCoords, customSurveysText, formData.parcels, cadDemarcationData]);
 
   const handleSketchChange = (e) => {
     const file = e.target.files?.[0];
@@ -469,6 +495,29 @@ export default function CreateProject() {
       };
       reader.readAsText(file);
     }
+  };
+
+  const handleCadConfirm = (cadResult) => {
+    setShowCadModal(false);
+    setCadDemarcationData(cadResult);
+
+    const importedParcels = (cadResult.parcels || []).map((p) => ({
+      survey_no: p.survey_number,
+      area_ha: String(p.computed_area_ha),
+      land_type: (p.classification || 'Private').toLowerCase(),
+      record_area_ha: p.record_area_ha ? String(p.record_area_ha) : '',
+      cad_geometry: p.geometry_geojson,
+    }));
+
+    setFormData((prev) => ({
+      ...prev,
+      parcels: importedParcels.length > 0 ? importedParcels : prev.parcels,
+      land_area_ha: String(cadResult.summary?.total_parcel_area_ha || prev.land_area_ha),
+    }));
+
+    toast.success(
+      `CAD demarcation applied: ${cadResult.parcels.length} survey parcels (${cadResult.summary?.total_parcel_area_ha || 0} ha) imported!`
+    );
   };
 
   const handleDownloadSampleCsv = () => {
@@ -644,6 +693,16 @@ export default function CreateProject() {
       const res = await createProject(payload);
       const newId = res.project_id || 'PRJ-NEW';
       setCreatedProjectId(newId);
+
+      // Persist CAD demarcation geometry linkage if loaded from CAD
+      if (cadDemarcationData?.cad_id) {
+        try {
+          await confirmCadParcels({ project_id: newId, cad_id: cadDemarcationData.cad_id });
+        } catch (cadErr) {
+          console.warn('CAD confirmation link notice:', cadErr);
+        }
+      }
+
       toast.success(`Project ${newId} registered successfully!`);
 
       // Clean up draft on successful creation
@@ -1085,7 +1144,15 @@ export default function CreateProject() {
                 <span className="font-mono text-xs uppercase text-[#F4D9A0] font-semibold">
                   Demarcated Parcels Schedule ({formData.parcels.length})
                 </span>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowCadModal(true)}
+                    className="btn-amber text-xs font-mono flex items-center gap-1.5 shadow border-[#3B82F6]/60 bg-[#1E3A8A]/35 text-[#93C5FD] hover:bg-[#1E3A8A]/60 transition-colors"
+                    title="Upload CAD Demarcation file (DXF, GeoJSON, Shapefile)"
+                  >
+                    📐 Upload CAD Demarcation (DXF / GeoJSON / Shapefile)
+                  </button>
                   <button
                     type="button"
                     onClick={() => setShowCsvModal(true)}
@@ -1103,6 +1170,35 @@ export default function CreateProject() {
                   </button>
                 </div>
               </div>
+
+              {cadDemarcationData && (
+                <div className="p-3 bg-[#172554]/50 border border-[#3B82F6]/50 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs animate-fadeIn">
+                  <div>
+                    <div className="flex items-center gap-2 text-[#93C5FD] font-semibold">
+                      <span>✓ CAD Demarcation Ingested &amp; Verified</span>
+                      <span className="font-mono text-[10px] bg-[#1E3A8A] px-2 py-0.5 rounded border border-[#3B82F6]/40 text-[#BFDBFE]">
+                        {cadDemarcationData.source_crs} • {cadDemarcationData.units}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-[#94A3B8] mt-0.5">
+                      {cadDemarcationData.summary?.parcel_count} parcels totaling {cadDemarcationData.summary?.total_parcel_area_ha} ha verified from <span className="font-mono text-white">{cadDemarcationData.filename}</span>. Step 3 boundary &amp; survey mapping is completed automatically!
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (validateStep(2)) {
+                        setErrors({});
+                        setCurrentStep(4);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className="px-3 py-1.5 rounded bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-mono text-xs font-medium whitespace-nowrap shadow flex items-center gap-1.5 self-start sm:self-auto"
+                  >
+                    <span>Skip to Step 4 (Affected People) &rarr;</span>
+                  </button>
+                </div>
+              )}
 
               {errors.parcels && <span className="text-[11px] text-[#F87171] block">{errors.parcels}</span>}
 
@@ -1193,6 +1289,30 @@ export default function CreateProject() {
                 </span>
               </div>
             </div>
+
+            {cadDemarcationData && (
+              <div className="p-3 bg-[#152B1E] border border-[#255C3A] rounded-lg text-xs text-[#86EFAC] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="font-bold">✓ High-Precision CAD Demarcation Active</span>
+                  <span className="text-[#C4B5A5]">({cadDemarcationData.summary?.parcel_count} parcels, {cadDemarcationData.summary?.total_parcel_area_ha} ha from {cadDemarcationData.filename})</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono bg-[#1E3A8A] text-[#93C5FD] border border-[#3B82F6]/30 px-2 py-0.5 rounded">
+                    {cadDemarcationData.source_crs} • {cadDemarcationData.units}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCurrentStep(4);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="text-[11px] font-mono text-[#F4D9A0] hover:underline"
+                  >
+                    Proceed directly to Step 4 &rarr;
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* 1. Alignment Terminal Villages */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1891,6 +2011,14 @@ export default function CreateProject() {
           </div>
         </div>
       )}
+
+      {/* CAD File Ingestion Studio Modal */}
+      <CadIngestModal
+        isOpen={showCadModal}
+        onClose={() => setShowCadModal(false)}
+        onConfirm={handleCadConfirm}
+        currentDeclaredArea={formData.land_area_ha}
+      />
     </div>
   );
 }
