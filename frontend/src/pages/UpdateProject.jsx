@@ -198,12 +198,11 @@ export default function UpdateProject() {
     const patchBody = {};
     let changedCount = 0;
 
-    // 0. Reporting As-Of Date
-    if (asOfDate) {
-      patchBody.as_of_date = asOfDate;
-      if (asOfDate !== initialAsOfDate) {
-        changedCount++;
-      }
+    // 0. Reporting As-Of Date — always send it so the backend evaluates relative to today
+    const effectiveAsOf = new Date().toISOString().split('T')[0];
+    patchBody.as_of_date = effectiveAsOf;
+    if (effectiveAsOf !== initialAsOfDate) {
+      changedCount++;
     }
 
     // 1. Project level fields
@@ -232,8 +231,9 @@ export default function UpdateProject() {
       patchBody.project = changedPrj;
     }
 
-    // 2. Parcels diff
-    const changedParcels = [];
+    // 2. Parcels — always include the full roster so backend memory stays current after server restarts.
+    // Track whether any parcel fields actually changed for changedCount.
+    let parcelChanged = false;
     formData.parcels.forEach((p) => {
       const initP = initialData.parcels.find((ip) => ip.parcel_id === p.parcel_id);
       if (
@@ -242,16 +242,14 @@ export default function UpdateProject() {
         p.documents_verified !== initP.documents_verified ||
         p.compensation_status !== initP.compensation_status
       ) {
-        changedParcels.push({
-          ...p,
-          possession_status: p.possession_handed_over ? 'handed_over' : 'pending',
-          doc_complete: Boolean(p.documents_verified),
-        });
-        changedCount++;
+        parcelChanged = true;
       }
     });
-    if (changedParcels.length > 0) {
-      // Send complete parcel roster so telemetry recalculation evaluates entire corridor accurately
+    if (parcelChanged) changedCount++;
+
+    // Send the entire corridor roster regardless of whether specific parcels changed.
+    // This guarantees the backend has up-to-date parcel telemetry after any restart.
+    if (formData.parcels.length > 0) {
       patchBody.parcels = formData.parcels.map((p) => ({
         ...p,
         possession_status: p.possession_handed_over ? 'handed_over' : 'pending',
@@ -259,22 +257,23 @@ export default function UpdateProject() {
       }));
     }
 
-    // 3. Compensation diff
-    const changedComp = {};
-    if (formData.award_amount !== initialData.award_amount) {
-      changedComp.award_amount = formData.award_amount;
-      changedCount++;
-    }
-    if (formData.amount_disbursed !== initialData.amount_disbursed) {
-      changedComp.amount_disbursed = formData.amount_disbursed;
-      changedComp.disbursed_amount = formData.amount_disbursed;
-      changedCount++;
-    }
-    if (Object.keys(changedComp).length > 0) {
-      changedComp.award_amount = formData.award_amount;
-      changedComp.amount_disbursed = formData.amount_disbursed;
-      changedComp.disbursed_amount = formData.amount_disbursed;
-      patchBody.compensation = changedComp;
+    // 3. Compensation — always include award + disbursed so backend has correct figures.
+    let compChanged = false;
+    if (formData.award_amount !== initialData.award_amount) { compChanged = true; changedCount++; }
+    if (formData.amount_disbursed !== initialData.amount_disbursed) { compChanged = true; changedCount++; }
+    if (compChanged) {
+      patchBody.compensation = {
+        award_amount: formData.award_amount,
+        amount_disbursed: formData.amount_disbursed,
+        disbursed_amount: formData.amount_disbursed,
+      };
+    } else if (formData.award_amount > 0) {
+      // Always resend compensation so backend can recalculate compensation_pending_pct
+      patchBody.compensation = {
+        award_amount: formData.award_amount,
+        amount_disbursed: formData.amount_disbursed,
+        disbursed_amount: formData.amount_disbursed,
+      };
     }
 
     // 4. Cases diff
@@ -399,7 +398,11 @@ export default function UpdateProject() {
   // Form submit handler sending PATCH /projects/:id with only changed fields
   const handleSave = async (e) => {
     if (e) e.preventDefault();
-    if (diffPayload.changedCount === 0) {
+    // Always allow recalculation — even if no visible fields changed, the backend
+    // in-memory state may have been wiped by a server restart. We always send the
+    // full parcel roster + compensation so the prediction is always accurate.
+    const hasPayloadContent = Object.keys(diffPayload.patchBody).length > 0;
+    if (!hasPayloadContent) {
       alert('No field modifications detected to save.');
       return;
     }

@@ -44,7 +44,11 @@ except ImportError:
         
         # Compensation pending pct
         award = float((compensation or {}).get("award_amount") or 0.0)
-        disbursed = float((compensation or {}).get("disbursed_amount") or 0.0)
+        disbursed = float(
+            (compensation or {}).get("disbursed_amount")
+            or (compensation or {}).get("amount_disbursed")
+            or 0.0
+        )
         if parcels:
             target_parcels = [
                 p for p in parcels
@@ -408,7 +412,7 @@ except ImportError:
 # Core Pipeline: run_prediction (Task A8)
 # ---------------------------------------------------------------------------
 
-def run_prediction(project_id: str, user_id: str = "system", as_of: Optional[Any] = None) -> Dict[str, Any]:
+def run_prediction(project_id: str, user_id: str = "system", as_of: Optional[Any] = None, bundle: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Executes the 10-step prediction pipeline for a project:
     1. Fetch bundle and district past delay rate.
@@ -426,7 +430,9 @@ def run_prediction(project_id: str, user_id: str = "system", as_of: Optional[Any
     now_iso = datetime.now(timezone.utc).isoformat()
     
     # Step 1: Bundle & district past delay rate
-    bundle = fetch_project_bundle(project_id)
+    # Use caller-supplied bundle if provided (avoids stale Supabase re-fetch after an in-memory update)
+    if bundle is None:
+        bundle = fetch_project_bundle(project_id)
     project = bundle.get("project") or {}
     district = project.get("district", "Thane")
     rate = fetch_district_past_delay_rate(district)

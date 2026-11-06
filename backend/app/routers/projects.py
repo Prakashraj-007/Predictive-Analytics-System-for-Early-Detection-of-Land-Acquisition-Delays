@@ -607,5 +607,15 @@ def update_project(
     )
 
     # Trigger fresh prediction per A7 requirement evaluated with as_of cutoff
-    prediction = run_prediction(project_id=id, user_id=user.user_id, as_of=as_of)
+    # Pass the already-updated in-memory bundle so prediction uses the latest parcel/compensation
+    # data instead of re-fetching from Supabase (which may still return the old cached rows).
+    fresh_bundle = {
+        "project": next((sp for sp in SAMPLE_PROJECTS if sp.get("project_id") == id), project),
+        "parcels": SAMPLE_PARCELS.get(id, []),
+        "cases": SAMPLE_CASES.get(id, []),
+        "approvals": SAMPLE_APPROVALS.get(id, []),
+        "compensation": SAMPLE_COMPENSATION.get(id, {}),
+        "incidents": [],
+    }
+    prediction = run_prediction(project_id=id, user_id=user.user_id, as_of=as_of, bundle=fresh_bundle)
     return PredictionObject(**prediction)
