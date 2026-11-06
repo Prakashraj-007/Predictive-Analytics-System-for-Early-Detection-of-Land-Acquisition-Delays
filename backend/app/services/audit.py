@@ -10,22 +10,24 @@ from app.db import get_supabase_client
 from app.stubs import SAMPLE_AUDIT
 
 def log_action(
-    user_id: str,
-    action: str,
+    user_id: Optional[str] = None,
+    action: str = "",
     project_id: Optional[str] = None,
     details: Optional[Dict[str, Any]] = None,
-    model_version: Optional[str] = None
+    model_version: Optional[str] = None,
+    user: Optional[str] = None
 ) -> Dict[str, Any]:
     """
     Inserts a record into the audit_log table and updates in-memory stub history.
     """
+    actual_user_id = user_id or user or "system"
     log_id = f"LOG-{uuid.uuid4().hex[:8].upper()}"
     timestamp = datetime.now(timezone.utc).isoformat()
 
     entry = {
         "log_id": log_id,
-        "user_id": user_id,
-        "user": user_id,  # for compatibility with contract GET /audit shape
+        "user_id": actual_user_id,
+        "user": actual_user_id,  # for compatibility with contract GET /audit shape
         "action": action,
         "project_id": project_id,
         "timestamp": timestamp,
@@ -42,9 +44,9 @@ def log_action(
         try:
             db_user_id = None
             try:
-                db_user_id = str(uuid.UUID(str(user_id)))
+                db_user_id = str(uuid.UUID(str(actual_user_id)))
             except Exception:
-                db_user_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, str(user_id)))
+                db_user_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, str(actual_user_id)))
 
             db_payload = {
                 "log_id": log_id,

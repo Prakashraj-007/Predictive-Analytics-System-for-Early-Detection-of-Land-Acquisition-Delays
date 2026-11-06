@@ -49,19 +49,22 @@ async def parse_cad_endpoint(
         )
 
         # Audit log CAD parsing event
-        log_action(
-            user=user.email or user.user_id,
-            action="PARSE_CAD_FILE",
-            project_id=None,
-            details={
-                "cad_id": result["cad_id"],
-                "filename": filename,
-                "source_crs": result["source_crs"],
-                "units": result["units"],
-                "parcels_count": result["validation"]["stats"]["parcels_count"],
-                "is_valid": result["validation"]["is_valid"]
-            }
-        )
+        try:
+            log_action(
+                user_id=user.email or user.user_id,
+                action="PARSE_CAD_FILE",
+                project_id=None,
+                details={
+                    "cad_id": result["cad_id"],
+                    "filename": filename,
+                    "source_crs": result["source_crs"],
+                    "units": result["units"],
+                    "parcels_count": result["validation"]["stats"]["parcels_count"],
+                    "is_valid": result["validation"]["is_valid"]
+                }
+            )
+        except Exception as audit_err:
+            print(f"[WARN] CAD audit logging failed: {audit_err}")
 
         return result
 
@@ -91,16 +94,19 @@ async def confirm_cad_endpoint(
     if not cad_id:
         raise HTTPException(status_code=400, detail="Missing required 'cad_id'.")
 
-    log_action(
-        user=user.email or user.user_id,
-        action="CONFIRM_CAD_PARCELS",
-        project_id=project_id,
-        details={
-            "cad_id": cad_id,
-            "parcels_count": len(payload.get("parcels", [])),
-            "total_area_ha": payload.get("total_area_ha")
-        }
-    )
+    try:
+        log_action(
+            user_id=user.email or user.user_id,
+            action="CONFIRM_CAD_PARCELS",
+            project_id=project_id,
+            details={
+                "cad_id": cad_id,
+                "parcels_count": len(payload.get("parcels", [])),
+                "total_area_ha": payload.get("total_area_ha")
+            }
+        )
+    except Exception as audit_err:
+        print(f"[WARN] CAD confirm audit logging failed: {audit_err}")
 
     return {
         "status": "confirmed",
@@ -108,3 +114,4 @@ async def confirm_cad_endpoint(
         "project_id": project_id,
         "message": "CAD parcel demarcation successfully confirmed and linked to project schedule."
     }
+
