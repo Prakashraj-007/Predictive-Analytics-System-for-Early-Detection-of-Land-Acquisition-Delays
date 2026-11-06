@@ -48,26 +48,29 @@ export default function WhatIf() {
 
   // Baseline values loaded from project features
   const [baseline, setBaseline] = useState({
-    compensation_pending_pct: 66,
-    litigation_cases: 4,
-    docs_incomplete_pct: 45,
-    approval_days_pending: 120,
-    current_score: 78,
-    current_band: 'High',
+    compensation_pending_pct: 0,
+    litigation_cases: 0,
+    docs_incomplete_pct: 0,
+    approval_days_pending: 0,
+    current_score: 50,
+    current_band: 'Medium',
   });
+
+  // Specific clearances for the active project
+  const [projectApprovals, setProjectApprovals] = useState([]);
 
   // Slider working state
   const [sliders, setSliders] = useState({
-    compensation_pending_pct: 66,
-    litigation_cases: 4,
-    docs_incomplete_pct: 45,
-    approval_days_pending: 120,
+    compensation_pending_pct: 0,
+    litigation_cases: 0,
+    docs_incomplete_pct: 0,
+    approval_days_pending: 0,
   });
 
   // Simulation output
   const [simulationResult, setSimulationResult] = useState({
-    current_score: 78,
-    new_score: 78,
+    current_score: 50,
+    new_score: 50,
     change: 0,
     loading: false,
   });
@@ -161,10 +164,11 @@ export default function WhatIf() {
         const cases = detailRes.cases || [];
         const parcels = detailRes.parcels || [];
         const approvals = detailRes.approvals || [];
+        setProjectApprovals(approvals);
 
-        // Compute baseline compensation_pending_pct
-        let compPending = 66;
-        const awardAmt = Number(compensation.award_amount || compensation.total_award || prj.budget || 0);
+        // Compute baseline compensation_pending_pct (align with backend prediction logic)
+        let compPending = 0;
+        const awardAmt = Number(compensation.award_amount || compensation.total_award || 0);
         const disbAmt = Number(compensation.disbursed_amount || compensation.amount_disbursed || 0);
         if (awardAmt > 0) {
           compPending = Math.round(Math.max(0, 1 - disbAmt / awardAmt) * 100);
@@ -304,6 +308,10 @@ export default function WhatIf() {
   const handleQuickScenario = (scenario) => {
     if (scenario === 'compensation') {
       // Release 50% of pending compensation
+      if (baseline.compensation_pending_pct === 0) {
+        toast('Pending compensation is already 0% for this project corridor.');
+        return;
+      }
       setSliders((prev) => ({
         ...prev,
         compensation_pending_pct: Math.round(baseline.compensation_pending_pct * 0.5),
@@ -311,6 +319,10 @@ export default function WhatIf() {
       toast.success('Applied scenario: Release 50% of pending compensation');
     } else if (scenario === 'litigation') {
       // Close half of court cases
+      if (baseline.litigation_cases === 0) {
+        toast('No active court cases to close for this project corridor.');
+        return;
+      }
       setSliders((prev) => ({
         ...prev,
         litigation_cases: Math.floor(baseline.litigation_cases * 0.5),
@@ -318,6 +330,10 @@ export default function WhatIf() {
       toast.success('Applied scenario: Close half of court cases');
     } else if (scenario === 'documents') {
       // Complete all documents
+      if (baseline.docs_incomplete_pct === 0) {
+        toast('Documentation is already 100% complete for all parcels.');
+        return;
+      }
       setSliders((prev) => ({
         ...prev,
         docs_incomplete_pct: 0,
@@ -791,6 +807,33 @@ export default function WhatIf() {
                 Simulated: {sliders.approval_days_pending} days
               </span>
             </div>
+
+            {/* Clearances breakdown */}
+            {projectApprovals.length > 0 && (
+              <div className="pt-2 border-t border-[rgba(244,217,160,0.08)] space-y-1.5">
+                <span className="text-[10px] uppercase font-mono text-[#8E7E70] block">
+                  Project Clearances ({projectApprovals.filter((a) => a.status !== 'cleared' && !a.actual_date).length} Pending):
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {projectApprovals.map((a, idx) => {
+                    const isPending = a.status !== 'cleared' && !a.actual_date;
+                    return (
+                      <span
+                        key={idx}
+                        className={`px-2 py-0.5 rounded text-[10px] font-mono border ${
+                          isPending
+                            ? 'bg-[#331411] text-[#FCA5A5] border-[#7F261E]'
+                            : 'bg-[#152B1E] text-[#86EFAC] border-[#255C3A]'
+                        }`}
+                        title={a.planned_date ? `Planned: ${a.planned_date}` : ''}
+                      >
+                        {isPending ? '⏳' : '✓'} {a.approval_name || a.name || 'Statutory Clearance'}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
