@@ -232,25 +232,42 @@ export default function CadIngestModal({ isOpen, onClose, onConfirm, declaredAre
       return;
     }
 
-    const finalParcels = editableParcels.map((p) => ({
-      survey_no: p.survey_no.trim(),
-      area_ha: p.record_area_ha !== null && p.record_area_ha !== undefined && p.record_area_ha !== ''
-        ? Number(p.record_area_ha)
-        : Number(p.display_area_ha),
-      land_type: p.classification.toLowerCase(),
-      geojson: p.geojson,
-    }));
+    const finalParcels = editableParcels.map((p) => {
+      const chosenArea = p.record_area_ha !== null && p.record_area_ha !== undefined && p.record_area_ha !== ''
+        ? p.record_area_ha
+        : p.display_area_ha;
+      const sNo = p.survey_no ? p.survey_no.trim() : (p.survey_number ? p.survey_number.trim() : '');
+      return {
+        survey_no: sNo,
+        survey_number: sNo,
+        area_ha: chosenArea,
+        computed_area_ha: p.computed_area_ha,
+        display_area_ha: p.display_area_ha,
+        record_area_ha: p.record_area_ha || null,
+        land_type: (p.classification || 'Private').toLowerCase(),
+        classification: p.classification || 'Private',
+        geojson: p.geojson || p.geometry_geojson,
+        geometry_geojson: p.geojson || p.geometry_geojson,
+      };
+    });
 
-    const totalAreaHa = cadResult.validation.stats.total_parcel_area_ha;
+    const totalAreaHa = cadResult.validation?.stats?.total_parcel_area_ha || cadResult.summary?.total_parcel_area_ha || 0;
 
     onConfirm({
       parcels: finalParcels,
       totalAreaHa,
       projectBoundaryGeojson: cadResult.project_boundary?.geojson,
+      boundary_geojson: cadResult.project_boundary?.geojson,
       cadId: cadResult.cad_id,
+      cad_id: cadResult.cad_id,
       sourceCrs: cadResult.source_crs,
+      source_crs: cadResult.source_crs,
       units: cadResult.units,
       filename: cadResult.filename,
+      summary: {
+        parcel_count: finalParcels.length,
+        total_parcel_area_ha: totalAreaHa,
+      },
     });
 
     onClose();
@@ -699,3 +716,4 @@ export default function CadIngestModal({ isOpen, onClose, onConfirm, declaredAre
     </div>
   );
 }
+

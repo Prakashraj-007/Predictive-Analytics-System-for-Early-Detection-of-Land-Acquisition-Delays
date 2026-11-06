@@ -501,22 +501,44 @@ export default function CreateProject() {
     setShowCadModal(false);
     setCadDemarcationData(cadResult);
 
-    const importedParcels = (cadResult.parcels || []).map((p) => ({
-      survey_no: p.survey_number,
-      area_ha: String(p.computed_area_ha),
-      land_type: (p.classification || 'Private').toLowerCase(),
-      record_area_ha: p.record_area_ha ? String(p.record_area_ha) : '',
-      cad_geometry: p.geometry_geojson,
-    }));
+    const importedParcels = (cadResult.parcels || []).map((p) => {
+      const surveyNo = String(p.survey_no || p.survey_number || '').trim();
+      const area = p.area_ha !== undefined && p.area_ha !== null && p.area_ha !== ''
+        ? String(p.area_ha)
+        : (p.display_area_ha !== undefined ? String(p.display_area_ha) : String(p.computed_area_ha || ''));
+      const landType = (p.land_type || p.classification || 'Private').toLowerCase();
+      const recordArea = p.record_area_ha ? String(p.record_area_ha) : '';
+
+      return {
+        survey_no: surveyNo,
+        area_ha: area,
+        land_type: landType,
+        record_area_ha: recordArea,
+        cad_geometry: p.geojson || p.geometry_geojson,
+      };
+    });
+
+    const totalArea = cadResult.totalAreaHa || cadResult.summary?.total_parcel_area_ha || importedParcels.reduce((sum, p) => sum + (Number(p.area_ha) || 0), 0);
 
     setFormData((prev) => ({
       ...prev,
       parcels: importedParcels.length > 0 ? importedParcels : prev.parcels,
-      land_area_ha: String(cadResult.summary?.total_parcel_area_ha || prev.land_area_ha),
+      land_area_ha: String(totalArea || prev.land_area_ha || ''),
     }));
 
+    if (importedParcels.length > 0) {
+      setCustomSurveysText(importedParcels.map((p) => p.survey_no).join(', '));
+    }
+
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next.parcels;
+      delete next.land_area_ha;
+      return next;
+    });
+
     toast.success(
-      `CAD demarcation applied: ${cadResult.parcels.length} survey parcels (${cadResult.summary?.total_parcel_area_ha || 0} ha) imported!`
+      `CAD demarcation applied: ${importedParcels.length} survey parcels (${totalArea} ha) populated!`
     );
   };
 
