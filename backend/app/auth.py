@@ -36,14 +36,14 @@ DEMO_PROFILES: Dict[str, Dict[str, Any]] = {
     "5ad5e3f4-99ff-445b-bd5c-2fee103c357e": {
         "user_id": "5ad5e3f4-99ff-445b-bd5c-2fee103c357e",
         "role": "project_manager",
-        "district": "Pune",
+        "district": "Kanchipuram",
         "full_name": "Priya Sharma (PM)",
         "email": "pm1@landsentinel.gov.in"
     },
     "cc354e61-2574-49e8-a9ff-85e541a60084": {
         "user_id": "cc354e61-2574-49e8-a9ff-85e541a60084",
         "role": "collector",
-        "district": "Pune",
+        "district": "Kanchipuram",
         "full_name": "Rajesh Patil (District Collector)",
         "email": "collector1@landsentinel.gov.in"
     },

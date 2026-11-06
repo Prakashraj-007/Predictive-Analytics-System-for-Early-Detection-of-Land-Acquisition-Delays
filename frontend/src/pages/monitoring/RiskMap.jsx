@@ -329,6 +329,26 @@ export default function RiskMap() {
             Ingest Pencil Sketch / Layout Map
           </button>
 
+          {/* Quick Corridor Selector */}
+          <div className="flex items-center gap-1.5">
+            <select
+              value={activeProject?.project_id || ''}
+              onChange={(e) => {
+                const prj = allProjects.find((p) => p.project_id === e.target.value);
+                setActiveProject(prj || null);
+                setSelectedSubdivision(null);
+              }}
+              className="peace-input text-xs py-1.5 px-2.5 max-w-[260px] truncate border border-[rgba(244,217,160,0.3)] bg-[#201812] text-[#F3EDE2] rounded"
+            >
+              <option value="">🔍 Select Corridor Boundary to Inspect...</option>
+              {filteredProjects.map((p) => (
+                <option key={p.project_id} value={p.project_id}>
+                  {p.project_id}: {p.name} ({p.district})
+                </option>
+              ))}
+            </select>
+          </div>
+
           {activeProject && (
             <button
               type="button"

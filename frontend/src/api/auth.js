@@ -159,7 +159,7 @@ export async function loginWithCredentials(email, password) {
   const token = await createDemoJwt(
     '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
     role,
-    'Pune',
+    'Kanchipuram',
     'Department Officer',
     normalizedEmail
   );

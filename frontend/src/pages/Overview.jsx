@@ -64,7 +64,7 @@ export default function Overview() {
   // Role scoping subtitle per C4 specification
   const getScopeSubtitle = () => {
     if (role === 'project_manager') return 'Showing: your projects';
-    if (role === 'collector') return `Showing: ${user?.district || 'Pune'} district`;
+    if (role === 'collector') return `Showing: ${user?.district || 'Kanchipuram'} district`;
     return 'Showing: all districts';
   };
 
@@ -284,7 +284,7 @@ export default function Overview() {
                         <div className="text-[10px] font-mono text-[#F4D9A0]">{prj.project_id}</div>
                       </td>
                       <td className="py-3 px-3 text-[#C4B5A5] font-mono">
-                        {prj.district || 'Pune'}
+                        {prj.district || 'Kanchipuram'}
                       </td>
                       <td className="py-3 px-3">
                         <RiskBadge score={prj.risk_score} />

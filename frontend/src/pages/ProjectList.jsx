@@ -177,7 +177,7 @@ export default function ProjectList() {
   // Determine user jurisdiction scope subtitle
   const getScopeSubtitle = () => {
     if (role === 'project_manager') return 'Showing: your projects';
-    if (role === 'collector') return `Showing: ${user?.district || 'Pune'} district`;
+    if (role === 'collector') return `Showing: ${user?.district || 'Kanchipuram'} district`;
     return 'Showing: all districts';
   };
 

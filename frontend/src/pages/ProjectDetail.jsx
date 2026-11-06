@@ -135,7 +135,7 @@ export default function ProjectDetail() {
   const project = projectData?.project || {
     project_id: id,
     name: 'Infrastructure Corridor',
-    district: 'Pune',
+    district: 'Kanchipuram',
     type: 'highway',
     current_stage: 'compensation',
     status: 'active',
@@ -311,7 +311,7 @@ export default function ProjectDetail() {
                 {project.district} District
               </span>
               <span>•</span>
-              <span>State: <strong>{project.state || 'Maharashtra'}</strong></span>
+              <span>State: <strong>{project.state || 'Tamil Nadu'}</strong></span>
               {project.agency && (
                 <>
                   <span>•</span>

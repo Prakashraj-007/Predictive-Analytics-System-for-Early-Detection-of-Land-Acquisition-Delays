@@ -359,7 +359,7 @@ export default function CreateProject() {
           name: formData.name.trim(),
           type: formData.type,
           agency: formData.agency.trim(),
-          state: formData.state.trim() || 'Maharashtra',
+          state: formData.state.trim() || 'Tamil Nadu',
           district: formData.district.trim(),
           land_area_ha: Number(formData.land_area_ha),
           families_affected: Number(formData.families_affected),
@@ -614,7 +614,7 @@ export default function CreateProject() {
                   required
                   value={formData.name}
                   onChange={(e) => updateField('name', e.target.value)}
-                  placeholder="e.g. Pune-Nashik Semi-High Speed Rail Corridor (Phase 1)"
+                  placeholder="e.g. Chennai-Kanchipuram Expressway Corridor (Phase 2)"
                   className="peace-input w-full font-sans text-sm"
                 />
                 {errors.name && <span className="text-[11px] text-[#F87171] mt-1 block">{errors.name}</span>}

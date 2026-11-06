@@ -20,7 +20,7 @@ const DEFAULT_RECOMMENDATIONS = [
 
 // Demo user assignees
 const ASSIGNEES = [
-  { id: 'pm1', label: 'pm1 — Project Manager (Pune / Central)' },
+  { id: 'pm1', label: 'pm1 — Project Manager (Kanchipuram / Chennai)' },
   { id: 'collector1', label: 'collector1 — District Collector' },
   { id: 'policymaker1', label: 'policymaker1 — State Infrastructure Department' },
   { id: 'admin1', label: 'admin1 — System Administrator' },

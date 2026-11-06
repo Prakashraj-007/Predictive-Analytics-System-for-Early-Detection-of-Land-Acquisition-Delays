@@ -10,6 +10,7 @@ import dashboardSummaryMock from '../mocks/dashboard_summary.json';
 import dashboardDistrictsMock from '../mocks/dashboard_districts.json';
 import dashboardTrendMock from '../mocks/dashboard_trend.json';
 import whatIfMock from '../mocks/whatif.json';
+import mapProjectsMock from '../mocks/monitoring/map_projects.json';
 
 const isMock = import.meta.env.VITE_USE_MOCK === 'true';
 
@@ -113,7 +114,7 @@ async function fetchSupabaseProjects(params = {}) {
         project_id: p.project_id,
         name: p.name,
         district: p.district,
-        state: p.state || 'Maharashtra',
+        state: p.state || 'Tamil Nadu',
         type: p.type,
         current_stage: p.current_stage,
         risk_score: score,
@@ -558,29 +559,47 @@ export const api = {
 
     // 9. GET /map/projects
     if (pathname === '/map/projects') {
+      let results = [];
+      const coordMap = new Map(mapProjectsMock.map((m) => [m.project_id, m]));
+
       if (isSupabaseConfigured) {
-        const projects = await fetchSupabaseProjects();
-        if (projects && projects.length > 0) {
-          return projects.map((p) => ({
-            project_id: p.project_id,
-            name: p.name,
-            lat: p.lat || 18.5204 + (Math.random() - 0.5) * 0.8,
-            lon: p.lon || 73.8567 + (Math.random() - 0.5) * 0.8,
-            risk_score: p.risk_score,
-            band: p.band,
-            top_driver: p.top_driver,
-          }));
+        try {
+          const projects = await fetchSupabaseProjects(params);
+          if (projects && projects.length > 0) {
+            results = projects.map((p) => {
+              const matched = coordMap.get(p.project_id);
+              return {
+                project_id: p.project_id,
+                name: p.name,
+                district: p.district,
+                lat: p.lat || matched?.lat || 13.0827,
+                lon: p.lon || matched?.lon || 80.2707,
+                risk_score: p.risk_score,
+                band: p.band,
+                top_driver: p.top_driver || matched?.top_driver || 'Statutory review in progress',
+              };
+            });
+          }
+        } catch (err) {
+          console.warn('[client.js] Supabase map query fallback to mock:', err.message);
         }
       }
-      return inMemoryProjects.map((p) => ({
-        project_id: p.project_id,
-        name: p.name,
-        lat: 18.5204 + (Math.random() - 0.5) * 0.8,
-        lon: 73.8567 + (Math.random() - 0.5) * 0.8,
-        risk_score: p.risk_score,
-        band: p.band,
-        top_driver: p.top_driver,
-      }));
+
+      if (results.length === 0) {
+        results = mapProjectsMock.map((p) => ({ ...p }));
+      }
+
+      if (params.district) {
+        results = results.filter(
+          (p) => p.district && p.district.toLowerCase() === params.district.toLowerCase()
+        );
+      }
+      if (params.band) {
+        results = results.filter(
+          (p) => p.band && p.band.toLowerCase() === params.band.toLowerCase()
+        );
+      }
+      return results;
     }
 
     // 10. GET /alerts
@@ -644,8 +663,8 @@ export const api = {
             name: data.project?.name || 'New Infrastructure Project',
             type: data.project?.type || 'highway',
             agency: data.project?.agency || 'State Infrastructure Agency',
-            state: data.project?.state || 'Maharashtra',
-            district: data.project?.district || 'Pune',
+            state: data.project?.state || 'Tamil Nadu',
+            district: data.project?.district || 'Kanchipuram',
             land_area_ha: Number(data.project?.land_area_ha) || 50,
             families_affected: Number(data.project?.families_affected) || 120,
             families_resettlement: Number(data.project?.families_resettlement) || 40,
@@ -670,7 +689,7 @@ export const api = {
       const newPrj = {
         project_id: newId,
         name: data.project?.name || 'New Infrastructure Project',
-        district: data.project?.district || 'Pune',
+        district: data.project?.district || 'Kanchipuram',
         type: data.project?.type || 'highway',
         current_stage: 'planning',
         created_by: '5ad5e3f4-99ff-445b-bd5c-2fee103c357e',
