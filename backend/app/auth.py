@@ -44,8 +44,15 @@ DEMO_PROFILES: Dict[str, Dict[str, Any]] = {
         "user_id": "cc354e61-2574-49e8-a9ff-85e541a60084",
         "role": "collector",
         "district": "Kanchipuram",
-        "full_name": "Rajesh Patil (District Collector)",
+        "full_name": "Rajesh Patil (Collector - Kanchipuram)",
         "email": "collector1@landsentinel.gov.in"
+    },
+    "88f1a234-77bb-4321-99ee-11aa22bb33cc": {
+        "user_id": "88f1a234-77bb-4321-99ee-11aa22bb33cc",
+        "role": "collector",
+        "district": "Thoothukudi",
+        "full_name": "Dr. K. Senthilraj (Collector - Thoothukudi)",
+        "email": "collector.thoothukudi@landsentinel.gov.in"
     },
     "52430ba3-8c1d-4807-9b96-873adac3b96b": {
         "user_id": "52430ba3-8c1d-4807-9b96-873adac3b96b",

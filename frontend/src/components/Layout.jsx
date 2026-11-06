@@ -212,11 +212,11 @@ export default function Layout() {
                   </div>
                   {demoUsers.map((item) => (
                     <button
-                      key={item.role}
+                      key={item.user_id || item.role}
                       type="button"
-                      onClick={() => handleRoleSelect(item.role)}
+                      onClick={() => handleRoleSelect(item.user_id || item.role)}
                       className={`w-full text-left p-2 rounded text-xs transition-colors flex flex-col ${
-                        role === item.role
+                        user?.user_id === item.user_id
                           ? 'bg-[#C8792C] text-white font-medium'
                           : 'text-[#E8DFD3] hover:bg-[#2A1F18]'
                       }`}
@@ -224,7 +224,7 @@ export default function Layout() {
                       <div className="flex items-center justify-between">
                         <span className="font-semibold">{item.name}</span>
                         <span className="font-mono text-[9px] uppercase opacity-85 px-1 py-0.2 rounded bg-black/30">
-                          {item.role}
+                          {item.district || item.role}
                         </span>
                       </div>
                       <span className="text-[11px] opacity-75 mt-0.5">{item.desc}</span>

@@ -20,12 +20,24 @@ export const DEMO_USERS = [
   },
   {
     role: 'collector',
+    id: 'collector_kanchipuram',
     user_id: 'cc354e61-2574-49e8-a9ff-85e541a60084',
-    name: 'Rajesh Patil (District Collector)',
+    name: 'Rajesh Patil (Collector - Kanchipuram)',
     district: 'Kanchipuram',
     desc: 'District Collector (Kanchipuram District Scope, Approvals, Assign Tasks)',
     email: 'collector1@landsentinel.gov.in',
     aliasEmail: 'collector.kanchipuram@landsentinel.gov.in',
+    defaultPassword: 'demo123',
+  },
+  {
+    role: 'collector',
+    id: 'collector_thoothukudi',
+    user_id: '88f1a234-77bb-4321-99ee-11aa22bb33cc',
+    name: 'Dr. K. Senthilraj (Collector - Thoothukudi)',
+    district: 'Thoothukudi',
+    desc: 'District Collector (Thoothukudi District Scope, Approvals, Assign Tasks)',
+    email: 'collector.thoothukudi@landsentinel.gov.in',
+    aliasEmail: 'collector2@landsentinel.gov.in',
     defaultPassword: 'demo123',
   },
   {
@@ -172,8 +184,16 @@ export async function loginWithCredentials(email, password) {
 /**
  * 1-Click Fast Access for Statutory Role Switcher & Evaluation
  */
-export async function loginAsDemoRole(role) {
-  const user = DEMO_USERS.find((u) => u.role === role) || DEMO_USERS[0];
+export async function loginAsDemoRole(identifier) {
+  const user =
+    DEMO_USERS.find(
+      (u) =>
+        u.user_id === identifier ||
+        u.id === identifier ||
+        u.email === identifier ||
+        u.role === identifier
+    ) || DEMO_USERS[0];
+
   const token = await createDemoJwt(
     user.user_id,
     user.role,
@@ -182,7 +202,8 @@ export async function loginAsDemoRole(role) {
     user.email
   );
 
-  localStorage.setItem('landsentinel_role', role);
+  localStorage.setItem('landsentinel_role', user.role);
+  localStorage.setItem('landsentinel_user_id', user.user_id);
   localStorage.setItem('landsentinel_token', token);
   return await getMe();
 }
@@ -198,8 +219,12 @@ export async function getMe() {
     }
     return profile;
   } catch (err) {
+    const activeUserId = localStorage.getItem('landsentinel_user_id');
     const activeRole = localStorage.getItem('landsentinel_role') || 'project_manager';
-    const demo = DEMO_USERS.find((u) => u.role === activeRole) || DEMO_USERS[0];
+    const demo =
+      DEMO_USERS.find((u) => u.user_id === activeUserId) ||
+      DEMO_USERS.find((u) => u.role === activeRole) ||
+      DEMO_USERS[0];
     return {
       user_id: demo.user_id,
       full_name: demo.name,
