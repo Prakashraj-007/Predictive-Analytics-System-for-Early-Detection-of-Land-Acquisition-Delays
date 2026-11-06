@@ -319,6 +319,12 @@ def create_project(
     SAMPLE_PROJECTS.insert(0, stub_record)
     SAMPLE_PARCELS[project_id] = clean_parcels
     SAMPLE_APPROVALS[project_id] = clean_approvals
+    SAMPLE_COMPENSATION[project_id] = {
+        "project_id": project_id,
+        "award_amount": float(clean_project.get("budget", 10000000) * 0.35),
+        "disbursed_amount": 0.0,
+        "disputes": 0
+    }
 
     # Persist to Supabase
     if supabase:

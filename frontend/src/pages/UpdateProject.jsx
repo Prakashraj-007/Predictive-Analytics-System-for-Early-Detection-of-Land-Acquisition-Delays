@@ -1044,7 +1044,32 @@ export default function UpdateProject() {
                             value={p.compensation_status || 'pending'}
                             onChange={(e) => {
                               const newStatus = e.target.value;
-                              handleParcelChange(p.parcel_id, 'compensation_status', newStatus);
+                              setFormData((prev) => {
+                                const updatedParcels = prev.parcels.map((item) =>
+                                  item.parcel_id === p.parcel_id
+                                    ? { ...item, compensation_status: newStatus }
+                                    : item
+                                );
+                                let newDisbursed = prev.amount_disbursed;
+                                if (prev.award_amount > 0 && updatedParcels.length > 0) {
+                                  const privateParcels = updatedParcels.filter(
+                                    (pr) => !['government', 'forest'].includes(String(pr.land_type || '').toLowerCase())
+                                  );
+                                  const target = privateParcels.length > 0 ? privateParcels : updatedParcels;
+                                  const totalHa = target.reduce((acc, pr) => acc + (Number(pr.area_ha) || 1), 0);
+                                  const paidHa = target
+                                    .filter((pr) => ['disbursed', 'disputed'].includes(pr.compensation_status))
+                                    .reduce((acc, pr) => acc + (Number(pr.area_ha) || 1), 0);
+                                  if (totalHa > 0) {
+                                    newDisbursed = Math.round((paidHa / totalHa) * prev.award_amount);
+                                  }
+                                }
+                                return {
+                                  ...prev,
+                                  parcels: updatedParcels,
+                                  amount_disbursed: newDisbursed,
+                                };
+                              });
                             }}
                             className={`peace-input py-1 px-2 text-xs font-mono rounded ${
                               p.compensation_status === 'disbursed'

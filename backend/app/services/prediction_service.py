@@ -45,7 +45,23 @@ except ImportError:
         # Compensation pending pct
         award = float((compensation or {}).get("award_amount") or 0.0)
         disbursed = float((compensation or {}).get("disbursed_amount") or 0.0)
-        if award > 0:
+        if parcels:
+            target_parcels = [
+                p for p in parcels
+                if str(p.get("land_type", "private")).lower() not in ("government", "forest")
+            ] or parcels
+            total_p_ha = sum(float(p.get("area_ha") or 1.0) for p in target_parcels)
+            pending_p_ha = sum(
+                float(p.get("area_ha") or 1.0)
+                for p in target_parcels
+                if str(p.get("compensation_status", "pending")).lower() not in ("disbursed", "disputed")
+            )
+            ratio = (pending_p_ha / total_p_ha) if total_p_ha > 0 else 0.0
+            if award > 0 and disbursed > 0:
+                comp_pending_pct = max(0.0, min(100.0, min((award - disbursed) / award, ratio) * 100.0))
+            else:
+                comp_pending_pct = max(0.0, min(100.0, ratio * 100.0))
+        elif award > 0:
             comp_pending_pct = max(0.0, min(100.0, ((award - disbursed) / award) * 100.0))
         else:
             comp_pending_pct = 0.0
@@ -124,24 +140,24 @@ except ImportError:
         score = 20
         score += min(30, int((features.get("litigation_cases") or 0) * 4))
         score += min(20, int((features.get("stay_orders") or 0) * 8))
-        score += min(20, int((features.get("compensation_pending_pct") or 0) * 0.25))
+        score += min(20, int((features.get("compensation_pending_pct") or 0) * 0.20))
         score += min(15, int((features.get("approval_days_pending") or 0) * 0.1))
         score += min(15, int((features.get("encroached_area_pct") or 0) * 0.5))
         score += min(10, int((features.get("docs_incomplete_pct") or 0) * 0.15))
         score += min(15, int(float(features.get("district_past_delay_rate") or 0.25) * 40))
 
-        # Statutory stage progression weight
+        # Stage delivery alignment: only penalize if critical milestones for that stage are unfulfilled
         stage = str(features.get("current_stage") or "planning").lower()
-        stage_risk_weights = {
-            "planning": 0,
-            "sia": 3,
-            "notification": 5,
-            "award": 7,
-            "compensation": 8,
-            "possession": 10,
-            "rr": 2
-        }
-        score += stage_risk_weights.get(stage, 0)
+        comp_pend = float(features.get("compensation_pending_pct") or 0.0)
+        poss_pct = float(features.get("possession_pct") or 0.0)
+        docs_inc = float(features.get("docs_incomplete_pct") or 0.0)
+
+        if stage == "possession" and poss_pct < 50:
+            score += 4
+        elif stage == "compensation" and comp_pend > 70:
+            score += 3
+        elif stage == "notification" and docs_inc > 70:
+            score += 2
 
         # Officer response SLA turnaround
         ord_days = int(features.get("officer_response_days") or 14)
@@ -254,7 +270,7 @@ except ImportError:
             candidates.append({
                 "feature": "current_stage",
                 "label": "Statutory Stage Criticality",
-                "impact": round(min(0.18, 0.04 + stage_risk_weights.get(stage, 0) * 0.012), 2),
+                "impact": 0.12,
                 "direction": "increases_risk",
                 "plain_text": f"Project is in the critical {stage.capitalize()} phase where execution friction directly escalates timeline risk."
             })

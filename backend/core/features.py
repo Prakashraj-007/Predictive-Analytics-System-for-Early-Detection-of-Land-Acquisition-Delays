@@ -161,10 +161,28 @@ def build_features(
     # ------------------------------------------------------------------
     award: float = _safe_float(compensation.get("award_amount") if compensation else 0)
     disbursed: float = _safe_float(compensation.get("disbursed_amount") if compensation else 0)
+
     if award > 0:
-        compensation_pending_pct: float = _round1(
-            _clip((award - disbursed) / award * 100)
-        )
+        # If parcels are present, reflect parcel-level DBT disbursements directly into effective payout
+        if parcels:
+            target_parcels = [
+                p for p in parcels
+                if str(p.get("land_type", "private")).lower() not in ("government", "forest")
+            ] or parcels
+            total_target_area = sum(_safe_float(p.get("area_ha", 1.0)) for p in target_parcels)
+            paid_area = sum(
+                _safe_float(p.get("area_ha", 1.0))
+                for p in target_parcels
+                if str(p.get("compensation_status", "pending")).lower() in ("disbursed", "disputed")
+            )
+            if total_target_area > 0 and paid_area > 0:
+                parcel_disbursed = (paid_area / total_target_area) * award
+                effective_disbursed = max(disbursed, parcel_disbursed)
+                compensation_pending_pct = _round1(_clip((award - effective_disbursed) / award * 100))
+            else:
+                compensation_pending_pct = _round1(_clip((award - disbursed) / award * 100))
+        else:
+            compensation_pending_pct = _round1(_clip((award - disbursed) / award * 100))
     else:
         compensation_pending_pct = 0.0
 
