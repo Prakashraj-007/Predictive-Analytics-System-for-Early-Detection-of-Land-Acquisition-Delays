@@ -7,30 +7,45 @@ import pandas as pd
 
 PROJECT_TYPES = ["highway", "rail", "irrigation", "power", "urban"]
 CURRENT_STAGES = ["planning", "sia", "notification", "award", "compensation", "possession", "rr"]
+
+# Major Tamil Nadu Growth Corridors & Districts with realistic center coordinates
 DISTRICTS = {
-    "Pune": {"lat": 18.5204, "lon": 73.8567},
-    "Nashik": {"lat": 20.5942, "lon": 73.9362},
-    "Nagpur": {"lat": 21.1458, "lon": 79.0882},
-    "Aurangabad": {"lat": 19.8762, "lon": 75.3433},
-    "Thane": {"lat": 19.2183, "lon": 72.9781},
+    "Chennai": {"lat": 13.0827, "lon": 80.2707},
+    "Kanchipuram": {"lat": 12.8342, "lon": 79.7036},
+    "Tiruvallur": {"lat": 13.1432, "lon": 79.9074},
+    "Coimbatore": {"lat": 11.0168, "lon": 76.9558},
+    "Madurai": {"lat": 9.9252, "lon": 78.1198},
+    "Salem": {"lat": 11.6643, "lon": 78.1460},
+    "Tiruchirappalli": {"lat": 10.7905, "lon": 78.7047},
+    "Tirunelveli": {"lat": 8.7139, "lon": 77.7567},
+    "Erode": {"lat": 11.3410, "lon": 77.7172},
+    "Thoothukudi": {"lat": 8.7642, "lon": 78.1348},
 }
 
+AGENCIES = [
+    "Tamil Nadu Road Development Company (TNRDC)",
+    "Tamil Nadu Industrial Development Corporation (TIDCO)",
+    "Chennai Metro Rail Limited (CMRL)",
+    "State Highways Department (TN)",
+    "SIPCOT Industrial Parks",
+    "Tamil Nadu Water Supply and Drainage Board (TWAD)",
+    "TANGEDCO Power Transmission",
+    "Chennai Metropolitan Development Authority (CMDA)",
+]
 
 def resolve_repo_root():
     return Path(__file__).resolve().parents[2]
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Generate ongoing project CSVs for LandSentinel.")
-    parser.add_argument("--n", type=int, default=50)
+    parser = argparse.ArgumentParser(description="Generate ongoing project CSVs for LandSentinel (Tamil Nadu).")
+    parser.add_argument("--n", type=int, default=60)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--out", type=str, default="data/ongoing")
     return parser.parse_args()
 
 
 def pick_story_counts(n):
-    if n == 50:
-        return {"high": 10, "medium": 20, "low": 20}
     high = max(1, round(n * 0.2))
     low = max(1, round(n * 0.4))
     medium = max(1, n - high - low)
@@ -40,30 +55,39 @@ def pick_story_counts(n):
 def project_name(project_type, district, idx):
     names = {
         "highway": [
-            "Pune-Nashik Highway Phase 2",
-            "Nagpur-Mumbai Highway Expansion",
-            "Thane Bypass Road Corridor",
-            "Aurangabad Highway Upgradation",
+            "Chennai Peripheral Ring Road (CPRR) Section 2",
+            "Coimbatore Western Bypass Expressway",
+            "Madurai AIIMS Outer Ring Connectivity",
+            "Salem-Chengapalli 6-Lane Corridor",
+            "Tiruchirappalli Semi-Ring Road Phase 1",
+            "Thoothukudi Port Coastal Expressway",
         ],
         "rail": [
-            "Nashik Rail Freight Corridor",
-            "Pune Metro Rail Extension",
-            "Nagpur Rail Link Project",
+            "CMRL Phase 2 Metro Corridor Madhavaram to SIPCOT",
+            "Coimbatore Metro Rail Feeder Spur",
+            "Madurai-Tuticorin Doubling & Freight Rail",
+            "Salem Logistics Dedicated Rail Sidings",
+            "Chennai-Arakkonam Quadrupling Rail Section",
         ],
         "irrigation": [
-            "Aurangabad Lift Irrigation Phase 3",
-            "Nashik Canal Modernisation",
-            "Nagpur Water Distribution Project",
+            "Cauvery-South Vellar-Gundar River Linking Canal",
+            "Athikadavu-Avinashi Groundwater Recharge Phase 2",
+            "Tamirabarani-Karumeniyar-Nambiyar River Link",
+            "Lower Bhavani Project Canal Modernisation",
+            "Parambikulam-Aliyar Water Transfer Network",
         ],
         "power": [
-            "Thane Substation Upgrade",
-            "Pune Power Transmission Expansion",
-            "Nagpur Solar Evacuation Project",
+            "Koodankulam-Tuticorin 765kV Green Energy Evacuation",
+            "Sriperumbudur High-Voltage Substation Upgrade",
+            "Ennore Thermal Replacement Transmission Grid",
+            "Coimbatore Industrial Feeder Network Enhancement",
         ],
         "urban": [
-            "Pune Urban Redevelopment Zone",
-            "Nagpur Smart City Mixed Use",
-            "Thane Riverfront Redevelopment",
+            "Parandur Aero City Multimodal Infrastructure",
+            "Madurai Smart Industrial Logistics Hub",
+            "Hosur IT & Electronics Industrial Corridor",
+            "Kanchipuram Heritage Urban Redevelopment",
+            "Tiruchirappalli Integrated Bus Terminal & Logistics Zone",
         ],
     }
     pool = names.get(project_type, [f"{district} {project_type.title()} Project"])
@@ -101,18 +125,14 @@ def make_projects(n, seed):
     if len(story_sequence) > n:
         story_sequence = story_sequence[:n]
 
-    if n >= 50:
-        story_sequence[0] = "high"
-        story_sequence[1] = "low"
-        story_counts = {"high": 10, "medium": 20, "low": 20}
-        story_sequence = ["high"] * story_counts["high"] + ["medium"] * story_counts["medium"] + ["low"] * story_counts["low"]
-        rng.shuffle(story_sequence)
-        story_sequence[0] = "high"
-        story_sequence[1] = "low"
+    story_sequence[0] = "high"
+    story_sequence[1] = "low"
+
+    dist_keys = list(DISTRICTS.keys())
 
     for story in story_sequence:
         project_type = rng.choice(PROJECT_TYPES)
-        district = list(DISTRICTS.keys())[idx % 5]
+        district = dist_keys[idx % len(dist_keys)]
 
         if story == "high":
             land_area_ha = int(rng.integers(180, 500))
@@ -141,43 +161,44 @@ def make_projects(n, seed):
 
         if idx == 0:
             project_type = "highway"
-            district = "Pune"
+            district = "Kanchipuram"
             story = "high"
-            land_area_ha = 120
-            families_affected = 800
+            land_area_ha = 145
+            families_affected = 820
             rr_progress_pct = 24
             officer_response_days = 22
             litigation_count = 9
             compensation_disputes = 5
             stage = "possession"
-            name = "Pune-Nashik Highway Phase 2"
+            name = "Chennai Peripheral Ring Road (CPRR) Section 2"
+            agency = "Tamil Nadu Road Development Company (TNRDC)"
         elif idx == 1:
             project_type = "power"
-            district = "Aurangabad"
+            district = "Coimbatore"
             story = "low"
             land_area_ha = 90
             families_affected = 280
             rr_progress_pct = 68
             officer_response_days = 12
-            litigation_count = 2
+            litigation_count = 1
             compensation_disputes = 1
             stage = "award"
-            name = "Aurangabad Power Distribution Upgrade"
+            name = "Coimbatore Industrial Feeder Network Enhancement"
+            agency = "TANGEDCO Power Transmission"
         else:
             name = project_name(project_type, district, idx)
+            agency = rng.choice(AGENCIES)
 
         project_id = f"PRJ-{idx + 1:04d}"
+
+        # Real Tamil Nadu centroid jittering
+        lat = float(DISTRICTS[district]["lat"] + rng.normal(0.02, 0.08))
+        lon = float(DISTRICTS[district]["lon"] + rng.normal(0.02, 0.08))
+
         planned_start = date_range(2019, 2025, rng)
-        planned_end = (pd.Timestamp(planned_start) + pd.Timedelta(days=int(rng.integers(180, 1100)))).strftime("%Y-%m-%d")
-        lat = float(DISTRICTS[district]["lat"] + rng.normal(0.15, 0.22))
-        lon = float(DISTRICTS[district]["lon"] + rng.normal(0.1, 0.2))
-        agency = {
-            "highway": "National Highways Authority of India",
-            "rail": "Indian Railways",
-            "irrigation": "State Irrigation Department",
-            "power": "State Power Transmission Utility",
-            "urban": "Urban Development Authority",
-        }.get(project_type, "State Infrastructure Authority")
+        start_dt = pd.Timestamp(planned_start)
+        duration_days = int(rng.integers(300, 1500))
+        planned_end = (start_dt + pd.Timedelta(days=duration_days)).strftime("%Y-%m-%d")
 
         project_rows.append(
             {
@@ -185,14 +206,14 @@ def make_projects(n, seed):
                 "name": name,
                 "type": project_type,
                 "agency": agency,
-                "state": "Maharashtra",
+                "state": "Tamil Nadu",
                 "district": district,
                 "lat": round(lat, 4),
                 "lon": round(lon, 4),
                 "land_area_ha": land_area_ha,
                 "families_affected": families_affected,
                 "families_resettlement": int(families_affected * rng.uniform(0.35, 0.8)),
-                "budget": int(land_area_ha * rng.uniform(450000, 1400000)),
+                "budget": int(land_area_ha * rng.uniform(550000, 1600000)),
                 "planned_start": planned_start,
                 "planned_end": planned_end,
                 "current_stage": stage,
@@ -220,17 +241,35 @@ def make_projects(n, seed):
 
 
 def generate_parcels(project_rows, rng):
+    """
+    Generates Tamil Nadu survey numbers and subdivisions.
+    Survey Number (e.g. 120, 121, 122)
+    Subdivision (e.g. 120/1, 120/2, 121/1A)
+    """
     rows = []
     for _, project in project_rows.iterrows():
-        parcel_count = int(rng.integers(5, 41))
+        parcel_count = int(rng.integers(12, 28))
+        base_survey = int(rng.integers(101, 350))
+        sub_counter = 1
+        curr_survey = base_survey
+
         for pidx in range(1, parcel_count + 1):
             parcel_id = f"PAR-{project['project_id']}-{pidx:03d}"
+            
+            # Group into 2 to 4 subdivisions per survey number
+            if sub_counter > rng.integers(2, 5):
+                curr_survey += int(rng.integers(1, 4))
+                sub_counter = 1
+            
+            subdiv_code = f"{curr_survey}/{sub_counter}" if pidx % 3 != 0 else f"{curr_survey}/{sub_counter}A"
+            sub_counter += 1
+
             rows.append(
                 {
                     "parcel_id": parcel_id,
                     "project_id": project["project_id"],
-                    "survey_no": f"{int(rng.integers(100, 500))}/{chr(65 + (pidx % 6))}",
-                    "area_ha": round(float(rng.uniform(2.0, 18.0)), 2),
+                    "survey_no": subdiv_code,  # Stores combined Tamil Nadu subdivision code (e.g. 120/1)
+                    "area_ha": round(float(rng.uniform(1.2, 14.5)), 2),
                     "land_type": rng.choice(["private", "government", "forest"]),
                     "compensation_status": rng.choice(["pending", "partial", "paid"]),
                     "possession_status": rng.choice(["pending", "handed_over"]),
@@ -244,21 +283,38 @@ def generate_parcels(project_rows, rng):
 def generate_cases(parcels_df, rng):
     rows = []
     case_counter = 1
+    categories = [
+        "High Court Stay Application",
+        "Compensation Enhancement Appeal",
+        "Title & Partition Dispute",
+        "Boundary Demarcation Suit",
+        "Tenant & Inam Right Claim",
+        "Land Acquisition Challenge (Sec 15)",
+    ]
+
     for _, parcel in parcels_df.iterrows():
-        case_count = int(rng.integers(0, 13))
+        case_count = int(rng.integers(0, 10))
         if parcel["ownership_dispute"]:
             case_count = max(case_count, 1)
+
         for _ in range(case_count):
             case_id = f"CAS-{case_counter:05d}"
+            category = rng.choice(categories)
+            filing_date = date_range(2020, 2025, rng)
+            is_pending = bool(rng.random() < 0.7)
+            status = "pending" if is_pending else "disposed"
+            stay_order = bool(is_pending and rng.random() < 0.35)
+            hearings = int(rng.integers(1, 15))
+
             rows.append(
                 {
                     "case_id": case_id,
                     "parcel_id": parcel["parcel_id"],
-                    "category": rng.choice(["title dispute", "encroachment", "compensation", "stay", "land acquisition"]),
-                    "filing_date": date_range(2020, 2025, rng),
-                    "status": rng.choice(["pending", "disposed"]),
-                    "stay_order": bool(rng.random() < 0.35),
-                    "hearings": int(rng.integers(1, 12)),
+                    "category": category,
+                    "filing_date": filing_date,
+                    "status": status,
+                    "stay_order": stay_order,
+                    "hearings": hearings,
                 }
             )
             case_counter += 1
@@ -266,27 +322,29 @@ def generate_cases(parcels_df, rng):
 
 
 def generate_approvals(project_rows, rng):
-    rows = []
-    approval_names = [
-        "survey_clearance",
-        "social_impact_assessment",
-        "title_verification",
-        "award_approval",
-        "compensation_approval",
-        "possession_clearance",
+    approval_types = [
+        "Social Impact Assessment (SIA)",
+        "Section 11 Preliminary Notification",
+        "Rehabilitation & Resettlement Scheme Approval",
+        "Environmental & CRZ Clearance",
+        "Forest Conservation Stage-I Sanction",
+        "Section 19 Declaration of Acquisition",
+        "Section 23 Award Clearance",
     ]
+    rows = []
     for _, project in project_rows.iterrows():
-        approval_count = int(rng.integers(3, 6))
-        chosen = rng.choice(approval_names, size=approval_count, replace=False)
-        for name in chosen:
-            planned_date = maybe_pending_date(rng, 0)
-            status = rng.choice(["pending", "cleared"])
-            actual_date = None if status == "pending" else maybe_pending_date(rng, int(rng.integers(0, 200)))
+        for app_type in approval_types:
+            planned_date = maybe_pending_date(rng)
+            is_cleared = bool(rng.random() < 0.65)
+            actual_date = maybe_pending_date(rng, days_late=int(rng.integers(15, 90))) if is_cleared else ""
+            status = "cleared" if is_cleared else "pending"
+
+            safe_name = app_type.lower().replace(" ", "_").replace("&", "and").replace("(", "").replace(")", "").replace("-", "_")
             rows.append(
                 {
-                    "approval_id": f"APP-{project['project_id']}-{name}",
+                    "approval_id": f"APP-{project['project_id']}-{safe_name[:28]}",
                     "project_id": project["project_id"],
-                    "name": name,
+                    "name": app_type,
                     "planned_date": planned_date,
                     "actual_date": actual_date,
                     "status": status,
@@ -298,14 +356,15 @@ def generate_approvals(project_rows, rng):
 def generate_compensation(project_rows, rng):
     rows = []
     for _, project in project_rows.iterrows():
-        award_amount = int(project["land_area_ha"] * rng.uniform(1200000, 2600000))
-        disbursed_amount = int(award_amount * rng.uniform(0.35, 0.9))
+        total_award = int(project["budget"] * rng.uniform(0.65, 0.92))
+        disbursed = int(total_award * rng.uniform(0.20, 0.88))
+        disputes = int(rng.integers(0, 9))
         rows.append(
             {
                 "project_id": project["project_id"],
-                "award_amount": award_amount,
-                "disbursed_amount": disbursed_amount,
-                "disputes": int(rng.integers(0, 10)),
+                "award_amount": total_award,
+                "disbursed_amount": disbursed,
+                "disputes": disputes,
             }
         )
     return pd.DataFrame(rows)
@@ -313,31 +372,31 @@ def generate_compensation(project_rows, rng):
 
 def generate_incidents(project_rows, rng):
     rows = []
-    incident_counter = 1
+    inc_counter = 1
     for _, project in project_rows.iterrows():
-        incident_count = int(rng.integers(0, 5))
-        # make the demo story more obvious for the first high-risk project
-        if project["project_id"] == "PRJ-0001":
-            incident_count = 3
-        for _ in range(incident_count):
+        inc_count = int(rng.integers(0, 4))
+        for _ in range(inc_count):
+            incident_id = f"INC-{inc_counter:04d}"
+            itype = rng.choice(["encroachment", "obstruction", "boundary_demarcation_protest"])
+            idate = date_range(2023, 2026, rng)
+            encroached_ha = round(float(rng.uniform(0.5, 6.5)), 2)
             rows.append(
                 {
-                    "incident_id": f"INC-{incident_counter:05d}",
+                    "incident_id": incident_id,
                     "project_id": project["project_id"],
-                    "type": rng.choice(["encroachment", "obstruction"]),
-                    "incident_date": date_range(2022, 2025, rng),
-                    "encroached_area_ha": round(float(rng.uniform(1.5, 18.0)), 2),
+                    "type": itype,
+                    "incident_date": idate,
+                    "encroached_area_ha": encroached_ha,
                 }
             )
-            incident_counter += 1
+            inc_counter += 1
     return pd.DataFrame(rows)
 
 
-def save_outputs(df_dict, out_dir):
+def save_outputs(dfs, out_dir):
     out_dir.mkdir(parents=True, exist_ok=True)
-    for name, df in df_dict.items():
-        if df is not None and not df.empty:
-            df.to_csv(out_dir / f"{name}.csv", index=False)
+    for name, df in dfs.items():
+        df.to_csv(out_dir / f"{name}.csv", index=False)
 
 
 def main():
@@ -365,7 +424,7 @@ def main():
         out_dir,
     )
 
-    # Write tiny test set as a subset of the main set.
+    # Write tiny test set as subset
     tiny_count = min(5, len(project_rows))
     tiny_projects = project_rows.head(tiny_count).copy()
     tiny_project_ids = set(tiny_projects["project_id"])
@@ -388,18 +447,28 @@ def main():
         sample_dir,
     )
 
-    story_counts = project_meta["risk_story"].value_counts().to_dict()
-    if "high" not in story_counts:
-        story_counts["high"] = 0
-    if "medium" not in story_counts:
-        story_counts["medium"] = 0
-    if "low" not in story_counts:
-        story_counts["low"] = 0
+    quick_dir = (repo_root / "data" / "ongoing_quick").resolve()
+    quick_projects = project_rows.head(15).copy()
+    quick_project_ids = set(quick_projects["project_id"])
+    quick_parcels = parcels[parcels["project_id"].isin(quick_project_ids)].copy()
+    quick_cases = cases[cases["parcel_id"].isin(set(quick_parcels["parcel_id"]))].copy()
+    quick_approvals = approvals[approvals["project_id"].isin(quick_project_ids)].copy()
+    quick_comp = compensation[compensation["project_id"].isin(quick_project_ids)].copy()
+    quick_incidents = incidents[incidents["project_id"].isin(quick_project_ids)].copy()
+    save_outputs(
+        {
+            "projects": quick_projects,
+            "parcels": quick_parcels,
+            "cases": quick_cases,
+            "approvals": quick_approvals,
+            "compensation": quick_comp,
+            "incidents": quick_incidents,
+        },
+        quick_dir,
+    )
 
-    print(f"Generated {len(project_rows)} projects to {out_dir}")
-    print(f"File counts: projects={len(project_rows)}, parcels={len(parcels)}, cases={len(cases)}, approvals={len(approvals)}, compensation={len(compensation)}, incidents={len(incidents)}")
-    print(f"Risk story counts: {story_counts}")
-    print(f"Saved tiny sample set to {sample_dir}")
+    print(f"Generated {len(project_rows)} projects (Tamil Nadu) to {out_dir}")
+    print(f"Parcels: {len(parcels)}, Cases: {len(cases)}, Approvals: {len(approvals)}")
 
 
 if __name__ == "__main__":

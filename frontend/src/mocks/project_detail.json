@@ -1,77 +1,231 @@
 {
   "project": {
     "project_id": "PRJ-0001",
-    "name": "Pune Ring Road Western Bypass",
+    "name": "Chennai Peripheral Ring Road (CPRR) Section 2",
     "type": "highway",
-    "agency": "MSRDC (Maharashtra State Road Development Corp)",
-    "state": "Maharashtra",
-    "district": "Pune",
-    "lat": 18.5204,
-    "lon": 73.8567,
-    "land_area_ha": 342.5,
+    "agency": "Tamil Nadu Road Development Company (TNRDC)",
+    "state": "Tamil Nadu",
+    "district": "Kanchipuram",
+    "lat": 12.7562,
+    "lon": 79.7297,
+    "land_area_ha": 145.0,
     "families_affected": 820,
-    "families_resettlement": 195,
-    "budget": 4500000000,
-    "planned_start": "2024-03-01",
-    "planned_end": "2027-03-31",
-    "current_stage": "compensation",
+    "families_resettlement": 320,
+    "budget": 162139146,
+    "planned_start": "2019-04-18",
+    "planned_end": "2022-07-21",
+    "current_stage": "possession",
     "status": "active",
-    "rr_progress_pct": 38.5,
-    "officer_response_days": 18,
-    "created_by": "usr-pm-01",
-    "created_at": "2024-01-15T09:00:00Z",
-    "updated_at": "2026-10-28T14:30:00Z"
+    "rr_progress_pct": 24.0,
+    "officer_response_days": 22,
+    "created_by": "5ad5e3f4-99ff-445b-bd5c-2fee103c357e",
+    "created_at": "2026-11-06T06:46:19Z",
+    "updated_at": "2026-11-06T06:46:19Z"
   },
   "parcels": [
     {
-      "parcel_id": "PAR-0001-01",
+      "parcel_id": "PAR-PRJ-0001-001",
       "project_id": "PRJ-0001",
-      "survey_no": "104/2B",
-      "area_ha": 14.2,
+      "survey_no": "256/1",
+      "area_ha": 11.52,
+      "land_type": "forest",
+      "compensation_status": "paid",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-002",
+      "project_id": "PRJ-0001",
+      "survey_no": "256/2",
+      "area_ha": 12.12,
       "land_type": "private",
       "compensation_status": "pending",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-003",
+      "project_id": "PRJ-0001",
+      "survey_no": "256/3A",
+      "area_ha": 4.59,
+      "land_type": "private",
+      "compensation_status": "paid",
       "possession_status": "pending",
-      "doc_complete": false,
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-004",
+      "project_id": "PRJ-0001",
+      "survey_no": "259/1",
+      "area_ha": 11.74,
+      "land_type": "forest",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": true,
       "ownership_dispute": true
     },
     {
-      "parcel_id": "PAR-0001-02",
+      "parcel_id": "PAR-PRJ-0001-005",
       "project_id": "PRJ-0001",
-      "survey_no": "112/4A",
-      "area_ha": 28.6,
+      "survey_no": "259/2",
+      "area_ha": 9.35,
       "land_type": "private",
-      "compensation_status": "disbursed",
+      "compensation_status": "pending",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-006",
+      "project_id": "PRJ-0001",
+      "survey_no": "262/1A",
+      "area_ha": 9.57,
+      "land_type": "forest",
+      "compensation_status": "partial",
       "possession_status": "handed_over",
       "doc_complete": true,
       "ownership_dispute": false
     },
     {
-      "parcel_id": "PAR-0001-03",
+      "parcel_id": "PAR-PRJ-0001-007",
       "project_id": "PRJ-0001",
-      "survey_no": "128/1",
-      "area_ha": 62.0,
+      "survey_no": "262/2",
+      "area_ha": 3.76,
+      "land_type": "private",
+      "compensation_status": "paid",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-008",
+      "project_id": "PRJ-0001",
+      "survey_no": "262/3",
+      "area_ha": 12.24,
+      "land_type": "private",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-009",
+      "project_id": "PRJ-0001",
+      "survey_no": "264/1A",
+      "area_ha": 12.47,
+      "land_type": "forest",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-010",
+      "project_id": "PRJ-0001",
+      "survey_no": "264/2",
+      "area_ha": 7.95,
       "land_type": "government",
-      "compensation_status": "exempt",
+      "compensation_status": "paid",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": true
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-011",
+      "project_id": "PRJ-0001",
+      "survey_no": "264/3",
+      "area_ha": 6.36,
+      "land_type": "government",
+      "compensation_status": "pending",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-012",
+      "project_id": "PRJ-0001",
+      "survey_no": "266/1A",
+      "area_ha": 9.05,
+      "land_type": "forest",
+      "compensation_status": "partial",
       "possession_status": "handed_over",
       "doc_complete": true,
       "ownership_dispute": false
     },
     {
-      "parcel_id": "PAR-0001-04",
+      "parcel_id": "PAR-PRJ-0001-013",
       "project_id": "PRJ-0001",
-      "survey_no": "145/3C",
-      "area_ha": 44.8,
+      "survey_no": "266/2",
+      "area_ha": 7.06,
+      "land_type": "private",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": true
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-014",
+      "project_id": "PRJ-0001",
+      "survey_no": "266/3",
+      "area_ha": 4.06,
       "land_type": "forest",
       "compensation_status": "pending",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-015",
+      "project_id": "PRJ-0001",
+      "survey_no": "268/1A",
+      "area_ha": 2.95,
+      "land_type": "forest",
+      "compensation_status": "paid",
       "possession_status": "pending",
       "doc_complete": false,
       "ownership_dispute": false
     },
     {
-      "parcel_id": "PAR-0001-05",
+      "parcel_id": "PAR-PRJ-0001-016",
       "project_id": "PRJ-0001",
-      "survey_no": "156/2",
-      "area_ha": 31.4,
+      "survey_no": "268/2",
+      "area_ha": 3.13,
+      "land_type": "government",
+      "compensation_status": "pending",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-017",
+      "project_id": "PRJ-0001",
+      "survey_no": "268/3",
+      "area_ha": 12.96,
+      "land_type": "forest",
+      "compensation_status": "partial",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-018",
+      "project_id": "PRJ-0001",
+      "survey_no": "269/1A",
+      "area_ha": 1.71,
+      "land_type": "private",
+      "compensation_status": "paid",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-019",
+      "project_id": "PRJ-0001",
+      "survey_no": "269/2",
+      "area_ha": 11.19,
       "land_type": "private",
       "compensation_status": "pending",
       "possession_status": "pending",
@@ -79,94 +233,1391 @@
       "ownership_dispute": true
     },
     {
-      "parcel_id": "PAR-0001-06",
+      "parcel_id": "PAR-PRJ-0001-020",
       "project_id": "PRJ-0001",
-      "survey_no": "169/1A",
-      "area_ha": 55.0,
+      "survey_no": "269/3",
+      "area_ha": 14.06,
       "land_type": "private",
       "compensation_status": "pending",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-021",
+      "project_id": "PRJ-0001",
+      "survey_no": "272/1A",
+      "area_ha": 5.78,
+      "land_type": "private",
+      "compensation_status": "partial",
       "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-022",
+      "project_id": "PRJ-0001",
+      "survey_no": "272/2",
+      "area_ha": 11.38,
+      "land_type": "forest",
+      "compensation_status": "paid",
+      "possession_status": "handed_over",
+      "doc_complete": false,
+      "ownership_dispute": true
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-023",
+      "project_id": "PRJ-0001",
+      "survey_no": "274/1",
+      "area_ha": 11.98,
+      "land_type": "forest",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-024",
+      "project_id": "PRJ-0001",
+      "survey_no": "274/2A",
+      "area_ha": 9.56,
+      "land_type": "private",
+      "compensation_status": "partial",
+      "possession_status": "handed_over",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-025",
+      "project_id": "PRJ-0001",
+      "survey_no": "275/1",
+      "area_ha": 3.84,
+      "land_type": "forest",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": true,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-026",
+      "project_id": "PRJ-0001",
+      "survey_no": "275/2",
+      "area_ha": 8.83,
+      "land_type": "forest",
+      "compensation_status": "partial",
+      "possession_status": "pending",
+      "doc_complete": false,
+      "ownership_dispute": false
+    },
+    {
+      "parcel_id": "PAR-PRJ-0001-027",
+      "project_id": "PRJ-0001",
+      "survey_no": "276/1A",
+      "area_ha": 8.06,
+      "land_type": "forest",
+      "compensation_status": "paid",
+      "possession_status": "handed_over",
       "doc_complete": false,
       "ownership_dispute": false
     }
   ],
   "cases": [
     {
-      "case_id": "CAS-2024-881",
-      "parcel_id": "PAR-0001-01",
-      "category": "Title & Inheritance Partition",
-      "filing_date": "2024-08-14",
+      "case_id": "CAS-00001",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2021-03-11",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00002",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2020-11-10",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00003",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2024-10-08",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00004",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-06-30",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00005",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-03-28",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 9
+    },
+    {
+      "case_id": "CAS-00006",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2023-05-19",
       "status": "pending",
       "stay_order": true,
       "hearings": 7
     },
     {
-      "case_id": "CAS-2024-942",
-      "parcel_id": "PAR-0001-05",
-      "category": "Compensation Valuation Challenge",
-      "filing_date": "2024-11-02",
+      "case_id": "CAS-00007",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2023-07-09",
       "status": "pending",
-      "stay_order": true,
-      "hearings": 5
+      "stay_order": false,
+      "hearings": 14
     },
     {
-      "case_id": "CAS-2025-104",
-      "parcel_id": "PAR-0001-06",
-      "category": "Boundary Demarcation Appeal",
-      "filing_date": "2025-02-18",
+      "case_id": "CAS-00008",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2023-07-29",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00009",
+      "parcel_id": "PAR-PRJ-0001-001",
+      "category": "High Court Stay Application",
+      "filing_date": "2022-10-30",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00010",
+      "parcel_id": "PAR-PRJ-0001-002",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2023-02-21",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00011",
+      "parcel_id": "PAR-PRJ-0001-002",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2020-12-09",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00012",
+      "parcel_id": "PAR-PRJ-0001-002",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2025-03-08",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00013",
+      "parcel_id": "PAR-PRJ-0001-002",
+      "category": "High Court Stay Application",
+      "filing_date": "2025-09-10",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00014",
+      "parcel_id": "PAR-PRJ-0001-002",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-03-25",
       "status": "pending",
       "stay_order": false,
       "hearings": 3
     },
     {
-      "case_id": "CAS-2023-419",
-      "parcel_id": "PAR-0001-02",
-      "category": "Tenant Right Assertion",
-      "filing_date": "2023-09-05",
+      "case_id": "CAS-00015",
+      "parcel_id": "PAR-PRJ-0001-002",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-05-20",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00016",
+      "parcel_id": "PAR-PRJ-0001-003",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2021-01-31",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00017",
+      "parcel_id": "PAR-PRJ-0001-003",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2022-01-09",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00018",
+      "parcel_id": "PAR-PRJ-0001-003",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2021-01-19",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00019",
+      "parcel_id": "PAR-PRJ-0001-003",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-04-11",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00020",
+      "parcel_id": "PAR-PRJ-0001-003",
+      "category": "High Court Stay Application",
+      "filing_date": "2021-03-27",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00021",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-12-17",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00022",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2023-10-05",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00023",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-10-13",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00024",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2022-06-06",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00025",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2021-10-31",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00026",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2025-12-07",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00027",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2020-09-19",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00028",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-06-09",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00029",
+      "parcel_id": "PAR-PRJ-0001-004",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-06-23",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00030",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2020-09-10",
       "status": "disposed",
       "stay_order": false,
       "hearings": 11
+    },
+    {
+      "case_id": "CAS-00031",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-09-22",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00032",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2023-05-09",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00033",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2020-01-07",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00034",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2023-06-30",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00035",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2023-04-18",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00036",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2023-01-20",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00037",
+      "parcel_id": "PAR-PRJ-0001-005",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2024-03-31",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00038",
+      "parcel_id": "PAR-PRJ-0001-006",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-01-11",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00039",
+      "parcel_id": "PAR-PRJ-0001-006",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2020-01-03",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00040",
+      "parcel_id": "PAR-PRJ-0001-007",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-02-26",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00041",
+      "parcel_id": "PAR-PRJ-0001-007",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2024-12-07",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 2
+    },
+    {
+      "case_id": "CAS-00042",
+      "parcel_id": "PAR-PRJ-0001-007",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-07-19",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00043",
+      "parcel_id": "PAR-PRJ-0001-007",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2023-11-07",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00044",
+      "parcel_id": "PAR-PRJ-0001-007",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-12-17",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00045",
+      "parcel_id": "PAR-PRJ-0001-007",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2021-03-09",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00046",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2023-06-16",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00047",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2020-10-26",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00048",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2024-12-10",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00049",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2024-08-18",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00050",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2022-01-16",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00051",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2024-07-09",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 9
+    },
+    {
+      "case_id": "CAS-00052",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2024-01-08",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00053",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2025-08-13",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00054",
+      "parcel_id": "PAR-PRJ-0001-008",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-05-18",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00055",
+      "parcel_id": "PAR-PRJ-0001-009",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-10-15",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00056",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2021-09-03",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00057",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2025-01-09",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00058",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2022-11-02",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00059",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2022-11-29",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00060",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2020-10-20",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 11
+    },
+    {
+      "case_id": "CAS-00061",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2022-10-30",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00062",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2025-05-21",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 9
+    },
+    {
+      "case_id": "CAS-00063",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "High Court Stay Application",
+      "filing_date": "2021-09-22",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 11
+    },
+    {
+      "case_id": "CAS-00064",
+      "parcel_id": "PAR-PRJ-0001-010",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2024-02-03",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00065",
+      "parcel_id": "PAR-PRJ-0001-011",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2021-01-28",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00066",
+      "parcel_id": "PAR-PRJ-0001-011",
+      "category": "High Court Stay Application",
+      "filing_date": "2021-10-31",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 2
+    },
+    {
+      "case_id": "CAS-00067",
+      "parcel_id": "PAR-PRJ-0001-011",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2025-02-22",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 9
+    },
+    {
+      "case_id": "CAS-00068",
+      "parcel_id": "PAR-PRJ-0001-011",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2025-11-27",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00069",
+      "parcel_id": "PAR-PRJ-0001-011",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2024-09-15",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00070",
+      "parcel_id": "PAR-PRJ-0001-011",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2023-01-28",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00071",
+      "parcel_id": "PAR-PRJ-0001-012",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2024-03-06",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00072",
+      "parcel_id": "PAR-PRJ-0001-012",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-03-27",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00073",
+      "parcel_id": "PAR-PRJ-0001-012",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2022-08-04",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00074",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2024-04-21",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00075",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-05-11",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00076",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2023-05-23",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00077",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-11-15",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00078",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2020-10-21",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 9
+    },
+    {
+      "case_id": "CAS-00079",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2020-12-08",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00080",
+      "parcel_id": "PAR-PRJ-0001-013",
+      "category": "High Court Stay Application",
+      "filing_date": "2024-12-21",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00081",
+      "parcel_id": "PAR-PRJ-0001-014",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2025-09-17",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00082",
+      "parcel_id": "PAR-PRJ-0001-014",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-03-13",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00083",
+      "parcel_id": "PAR-PRJ-0001-014",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2024-10-15",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00084",
+      "parcel_id": "PAR-PRJ-0001-015",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-02-22",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 9
+    },
+    {
+      "case_id": "CAS-00085",
+      "parcel_id": "PAR-PRJ-0001-015",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-10-01",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00086",
+      "parcel_id": "PAR-PRJ-0001-015",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2020-09-04",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00087",
+      "parcel_id": "PAR-PRJ-0001-015",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2022-10-10",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00088",
+      "parcel_id": "PAR-PRJ-0001-015",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2022-03-06",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00089",
+      "parcel_id": "PAR-PRJ-0001-015",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2023-03-13",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00090",
+      "parcel_id": "PAR-PRJ-0001-016",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-10-21",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00091",
+      "parcel_id": "PAR-PRJ-0001-016",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2020-06-19",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00092",
+      "parcel_id": "PAR-PRJ-0001-016",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-12-10",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00093",
+      "parcel_id": "PAR-PRJ-0001-016",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2022-08-13",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00094",
+      "parcel_id": "PAR-PRJ-0001-016",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2021-05-07",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00095",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-08-24",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00096",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2023-12-19",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00097",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2022-08-28",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00098",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2023-11-15",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00099",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2021-09-28",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00100",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2025-06-23",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 11
+    },
+    {
+      "case_id": "CAS-00101",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2025-02-11",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00102",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2021-06-09",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00103",
+      "parcel_id": "PAR-PRJ-0001-018",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2023-05-06",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00104",
+      "parcel_id": "PAR-PRJ-0001-019",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2024-02-25",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00105",
+      "parcel_id": "PAR-PRJ-0001-019",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-11-07",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 2
+    },
+    {
+      "case_id": "CAS-00106",
+      "parcel_id": "PAR-PRJ-0001-019",
+      "category": "High Court Stay Application",
+      "filing_date": "2024-04-15",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00107",
+      "parcel_id": "PAR-PRJ-0001-020",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2024-05-22",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00108",
+      "parcel_id": "PAR-PRJ-0001-020",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2023-05-14",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00109",
+      "parcel_id": "PAR-PRJ-0001-020",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2022-06-07",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00110",
+      "parcel_id": "PAR-PRJ-0001-020",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-08-11",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00111",
+      "parcel_id": "PAR-PRJ-0001-020",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2024-01-26",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00112",
+      "parcel_id": "PAR-PRJ-0001-022",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2025-12-18",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00113",
+      "parcel_id": "PAR-PRJ-0001-022",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2021-02-02",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 7
+    },
+    {
+      "case_id": "CAS-00114",
+      "parcel_id": "PAR-PRJ-0001-022",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2025-06-25",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00115",
+      "parcel_id": "PAR-PRJ-0001-022",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-06-24",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 2
+    },
+    {
+      "case_id": "CAS-00116",
+      "parcel_id": "PAR-PRJ-0001-022",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2025-06-12",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 4
+    },
+    {
+      "case_id": "CAS-00117",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-06-07",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00118",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2025-02-08",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 11
+    },
+    {
+      "case_id": "CAS-00119",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "High Court Stay Application",
+      "filing_date": "2023-06-03",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00120",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2023-05-24",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00121",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2022-08-04",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00122",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "High Court Stay Application",
+      "filing_date": "2021-09-20",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 11
+    },
+    {
+      "case_id": "CAS-00123",
+      "parcel_id": "PAR-PRJ-0001-023",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2020-07-30",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00124",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2024-03-13",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00125",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2025-10-24",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 1
+    },
+    {
+      "case_id": "CAS-00126",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2021-10-13",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00127",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "High Court Stay Application",
+      "filing_date": "2022-04-02",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 8
+    },
+    {
+      "case_id": "CAS-00128",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "Boundary Demarcation Suit",
+      "filing_date": "2021-12-02",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00129",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2025-07-08",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 12
+    },
+    {
+      "case_id": "CAS-00130",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "Title & Partition Dispute",
+      "filing_date": "2025-09-29",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 6
+    },
+    {
+      "case_id": "CAS-00131",
+      "parcel_id": "PAR-PRJ-0001-024",
+      "category": "High Court Stay Application",
+      "filing_date": "2025-03-02",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 10
+    },
+    {
+      "case_id": "CAS-00132",
+      "parcel_id": "PAR-PRJ-0001-026",
+      "category": "Land Acquisition Challenge (Sec 15)",
+      "filing_date": "2025-12-11",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 5
+    },
+    {
+      "case_id": "CAS-00133",
+      "parcel_id": "PAR-PRJ-0001-026",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2025-08-22",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00134",
+      "parcel_id": "PAR-PRJ-0001-027",
+      "category": "High Court Stay Application",
+      "filing_date": "2025-08-23",
+      "status": "pending",
+      "stay_order": true,
+      "hearings": 14
+    },
+    {
+      "case_id": "CAS-00135",
+      "parcel_id": "PAR-PRJ-0001-027",
+      "category": "Tenant & Inam Right Claim",
+      "filing_date": "2022-01-12",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 3
+    },
+    {
+      "case_id": "CAS-00136",
+      "parcel_id": "PAR-PRJ-0001-027",
+      "category": "Compensation Enhancement Appeal",
+      "filing_date": "2020-04-18",
+      "status": "disposed",
+      "stay_order": false,
+      "hearings": 13
+    },
+    {
+      "case_id": "CAS-00137",
+      "parcel_id": "PAR-PRJ-0001-027",
+      "category": "High Court Stay Application",
+      "filing_date": "2020-01-31",
+      "status": "pending",
+      "stay_order": false,
+      "hearings": 8
     }
   ],
   "approvals": [
     {
-      "approval_id": "APP-001",
+      "approval_id": "APP-PRJ-0001-social_impact_assessment_sia",
       "project_id": "PRJ-0001",
-      "name": "Social Impact Assessment",
-      "planned_date": "2024-04-15",
-      "actual_date": "2024-05-10",
-      "status": "cleared"
+      "name": "Social Impact Assessment (SIA)",
+      "planned_date": "2024-01-22",
+      "actual_date": null,
+      "status": "pending"
     },
     {
-      "approval_id": "APP-002",
+      "approval_id": "APP-PRJ-0001-section_11_preliminary_notif",
       "project_id": "PRJ-0001",
       "name": "Section 11 Preliminary Notification",
-      "planned_date": "2024-07-01",
-      "actual_date": "2024-07-20",
+      "planned_date": "2024-12-25",
+      "actual_date": null,
+      "status": "pending"
+    },
+    {
+      "approval_id": "APP-PRJ-0001-rehabilitation_and_resettlem",
+      "project_id": "PRJ-0001",
+      "name": "Rehabilitation & Resettlement Scheme Approval",
+      "planned_date": "2024-07-19",
+      "actual_date": null,
+      "status": "pending"
+    },
+    {
+      "approval_id": "APP-PRJ-0001-environmental_and_crz_cleara",
+      "project_id": "PRJ-0001",
+      "name": "Environmental & CRZ Clearance",
+      "planned_date": "2025-04-02",
+      "actual_date": "2025-05-12",
       "status": "cleared"
     },
     {
-      "approval_id": "APP-003",
+      "approval_id": "APP-PRJ-0001-forest_conservation_stage_i_",
       "project_id": "PRJ-0001",
-      "name": "Environmental & Forest Stage-I Clearance",
-      "planned_date": "2024-11-30",
+      "name": "Forest Conservation Stage-I Sanction",
+      "planned_date": "2025-01-28",
       "actual_date": null,
       "status": "pending"
     },
     {
-      "approval_id": "APP-004",
+      "approval_id": "APP-PRJ-0001-section_19_declaration_of_ac",
       "project_id": "PRJ-0001",
       "name": "Section 19 Declaration of Acquisition",
-      "planned_date": "2025-03-31",
+      "planned_date": "2024-05-02",
       "actual_date": null,
       "status": "pending"
+    },
+    {
+      "approval_id": "APP-PRJ-0001-section_23_award_clearance",
+      "project_id": "PRJ-0001",
+      "name": "Section 23 Award Clearance",
+      "planned_date": "2024-02-22",
+      "actual_date": "2025-06-09",
+      "status": "cleared"
     }
   ],
   "compensation": {
     "project_id": "PRJ-0001",
-    "award_amount": 1850000000,
-    "disbursed_amount": 620000000,
-    "disputes": 28
+    "award_amount": 125869524,
+    "disbursed_amount": 28387194,
+    "disputes": 6
   }
 }
-

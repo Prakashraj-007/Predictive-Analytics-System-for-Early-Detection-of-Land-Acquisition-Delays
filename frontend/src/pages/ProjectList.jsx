@@ -14,19 +14,21 @@ const DEFAULT_SORT = 'risk_desc';
 
 const STATE_OPTIONS = [
   'All States',
-  'Maharashtra',
-  'Karnataka',
-  'Gujarat',
   'Tamil Nadu',
-  'Telangana',
 ];
 
 const DISTRICT_OPTIONS = [
   'All Districts',
-  'Pune',
-  'Thane',
-  'Nagpur',
-  'Nashik',
+  'Chennai',
+  'Kanchipuram',
+  'Tiruvallur',
+  'Coimbatore',
+  'Madurai',
+  'Salem',
+  'Tiruchirappalli',
+  'Tirunelveli',
+  'Erode',
+  'Thoothukudi',
 ];
 
 const TYPE_OPTIONS = [

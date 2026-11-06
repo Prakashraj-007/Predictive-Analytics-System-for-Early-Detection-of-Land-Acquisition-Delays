@@ -1,27 +1,62 @@
 [
   {
-    "district": "Thane",
-    "avg_risk": 64.5,
-    "project_count": 14,
-    "high_risk_count": 5
-  },
-  {
-    "district": "Pune",
-    "avg_risk": 51.8,
-    "project_count": 16,
-    "high_risk_count": 3
-  },
-  {
-    "district": "Nagpur",
-    "avg_risk": 43.2,
-    "project_count": 10,
+    "district": "Coimbatore",
+    "avg_risk": 50.0,
+    "project_count": 7,
     "high_risk_count": 2
   },
   {
-    "district": "Nashik",
-    "avg_risk": 36.7,
-    "project_count": 8,
+    "district": "Erode",
+    "avg_risk": 56.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Kanchipuram",
+    "avg_risk": 66.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Madurai",
+    "avg_risk": 61.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Salem",
+    "avg_risk": 66.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Thoothukudi",
+    "avg_risk": 67.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Tiruchirappalli",
+    "avg_risk": 52.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Tirunelveli",
+    "avg_risk": 68.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Tiruvallur",
+    "avg_risk": 53.0,
+    "project_count": 6,
+    "high_risk_count": 2
+  },
+  {
+    "district": "Chennai",
+    "avg_risk": 64.0,
+    "project_count": 5,
     "high_risk_count": 1
   }
 ]
-

@@ -1,207 +1,421 @@
 approval_id,project_id,name,planned_date,actual_date,status
-APP-PRJ-0001-award_approval,PRJ-0001,award_approval,2024-08-01,,pending
-APP-PRJ-0001-compensation_approval,PRJ-0001,compensation_approval,2024-03-29,2025-09-02,cleared
-APP-PRJ-0001-social_impact_assessment,PRJ-0001,social_impact_assessment,2025-02-13,2024-06-17,cleared
-APP-PRJ-0002-title_verification,PRJ-0002,title_verification,2025-04-01,,pending
-APP-PRJ-0002-compensation_approval,PRJ-0002,compensation_approval,2025-01-27,2025-07-14,cleared
-APP-PRJ-0002-possession_clearance,PRJ-0002,possession_clearance,2024-11-13,2024-06-08,cleared
-APP-PRJ-0002-social_impact_assessment,PRJ-0002,social_impact_assessment,2025-05-07,,pending
-APP-PRJ-0003-survey_clearance,PRJ-0003,survey_clearance,2024-04-13,,pending
-APP-PRJ-0003-possession_clearance,PRJ-0003,possession_clearance,2024-02-01,2024-04-24,cleared
-APP-PRJ-0003-compensation_approval,PRJ-0003,compensation_approval,2024-02-17,2024-09-16,cleared
-APP-PRJ-0003-social_impact_assessment,PRJ-0003,social_impact_assessment,2024-06-06,2025-05-09,cleared
-APP-PRJ-0004-survey_clearance,PRJ-0004,survey_clearance,2024-05-15,2024-10-27,cleared
-APP-PRJ-0004-social_impact_assessment,PRJ-0004,social_impact_assessment,2024-05-15,2024-09-25,cleared
-APP-PRJ-0004-award_approval,PRJ-0004,award_approval,2024-05-25,,pending
-APP-PRJ-0004-compensation_approval,PRJ-0004,compensation_approval,2024-07-18,,pending
-APP-PRJ-0004-title_verification,PRJ-0004,title_verification,2024-11-07,,pending
-APP-PRJ-0005-title_verification,PRJ-0005,title_verification,2025-03-26,,pending
-APP-PRJ-0005-survey_clearance,PRJ-0005,survey_clearance,2024-07-20,,pending
-APP-PRJ-0005-award_approval,PRJ-0005,award_approval,2024-04-20,2024-09-17,cleared
-APP-PRJ-0005-possession_clearance,PRJ-0005,possession_clearance,2024-05-20,2024-03-05,cleared
-APP-PRJ-0006-social_impact_assessment,PRJ-0006,social_impact_assessment,2025-03-26,,pending
-APP-PRJ-0006-compensation_approval,PRJ-0006,compensation_approval,2025-03-31,,pending
-APP-PRJ-0006-award_approval,PRJ-0006,award_approval,2025-05-09,,pending
-APP-PRJ-0007-survey_clearance,PRJ-0007,survey_clearance,2025-04-01,,pending
-APP-PRJ-0007-possession_clearance,PRJ-0007,possession_clearance,2024-09-20,2024-09-01,cleared
-APP-PRJ-0007-compensation_approval,PRJ-0007,compensation_approval,2024-06-11,2024-06-06,cleared
-APP-PRJ-0007-social_impact_assessment,PRJ-0007,social_impact_assessment,2024-04-25,2025-03-06,cleared
-APP-PRJ-0008-social_impact_assessment,PRJ-0008,social_impact_assessment,2025-02-14,2024-07-25,cleared
-APP-PRJ-0008-survey_clearance,PRJ-0008,survey_clearance,2024-05-09,2025-05-11,cleared
-APP-PRJ-0008-compensation_approval,PRJ-0008,compensation_approval,2025-01-12,,pending
-APP-PRJ-0008-possession_clearance,PRJ-0008,possession_clearance,2025-01-11,2024-08-12,cleared
-APP-PRJ-0008-award_approval,PRJ-0008,award_approval,2025-03-28,,pending
-APP-PRJ-0009-award_approval,PRJ-0009,award_approval,2024-02-27,,pending
-APP-PRJ-0009-survey_clearance,PRJ-0009,survey_clearance,2024-01-07,2025-01-04,cleared
-APP-PRJ-0009-social_impact_assessment,PRJ-0009,social_impact_assessment,2024-08-25,,pending
-APP-PRJ-0010-survey_clearance,PRJ-0010,survey_clearance,2024-05-08,,pending
-APP-PRJ-0010-possession_clearance,PRJ-0010,possession_clearance,2024-02-15,,pending
-APP-PRJ-0010-social_impact_assessment,PRJ-0010,social_impact_assessment,2024-08-31,,pending
-APP-PRJ-0010-award_approval,PRJ-0010,award_approval,2024-08-23,2024-10-10,cleared
-APP-PRJ-0010-title_verification,PRJ-0010,title_verification,2024-02-22,2025-06-23,cleared
-APP-PRJ-0011-survey_clearance,PRJ-0011,survey_clearance,2024-02-28,,pending
-APP-PRJ-0011-social_impact_assessment,PRJ-0011,social_impact_assessment,2024-04-09,,pending
-APP-PRJ-0011-title_verification,PRJ-0011,title_verification,2024-10-08,2025-02-14,cleared
-APP-PRJ-0012-survey_clearance,PRJ-0012,survey_clearance,2025-05-07,2024-04-25,cleared
-APP-PRJ-0012-compensation_approval,PRJ-0012,compensation_approval,2024-11-01,,pending
-APP-PRJ-0012-possession_clearance,PRJ-0012,possession_clearance,2024-03-12,,pending
-APP-PRJ-0013-possession_clearance,PRJ-0013,possession_clearance,2025-01-15,2025-02-25,cleared
-APP-PRJ-0013-survey_clearance,PRJ-0013,survey_clearance,2025-03-10,2024-12-15,cleared
-APP-PRJ-0013-award_approval,PRJ-0013,award_approval,2024-12-10,,pending
-APP-PRJ-0013-social_impact_assessment,PRJ-0013,social_impact_assessment,2024-05-02,2025-04-01,cleared
-APP-PRJ-0014-title_verification,PRJ-0014,title_verification,2024-01-22,,pending
-APP-PRJ-0014-award_approval,PRJ-0014,award_approval,2025-01-06,,pending
-APP-PRJ-0014-social_impact_assessment,PRJ-0014,social_impact_assessment,2024-06-13,,pending
-APP-PRJ-0015-title_verification,PRJ-0015,title_verification,2024-05-22,2024-04-15,cleared
-APP-PRJ-0015-survey_clearance,PRJ-0015,survey_clearance,2025-04-01,,pending
-APP-PRJ-0015-possession_clearance,PRJ-0015,possession_clearance,2024-05-17,,pending
-APP-PRJ-0015-compensation_approval,PRJ-0015,compensation_approval,2025-03-01,2024-12-13,cleared
-APP-PRJ-0015-award_approval,PRJ-0015,award_approval,2024-06-10,2024-12-21,cleared
-APP-PRJ-0016-possession_clearance,PRJ-0016,possession_clearance,2025-02-28,,pending
-APP-PRJ-0016-survey_clearance,PRJ-0016,survey_clearance,2024-01-06,2025-01-02,cleared
-APP-PRJ-0016-compensation_approval,PRJ-0016,compensation_approval,2024-10-23,,pending
-APP-PRJ-0016-title_verification,PRJ-0016,title_verification,2024-05-07,2024-06-07,cleared
-APP-PRJ-0016-award_approval,PRJ-0016,award_approval,2025-03-25,2025-01-14,cleared
-APP-PRJ-0017-social_impact_assessment,PRJ-0017,social_impact_assessment,2024-04-09,2024-11-25,cleared
-APP-PRJ-0017-possession_clearance,PRJ-0017,possession_clearance,2024-06-18,,pending
-APP-PRJ-0017-title_verification,PRJ-0017,title_verification,2024-08-27,,pending
-APP-PRJ-0017-survey_clearance,PRJ-0017,survey_clearance,2024-09-30,2025-03-09,cleared
-APP-PRJ-0017-compensation_approval,PRJ-0017,compensation_approval,2024-05-05,,pending
-APP-PRJ-0018-survey_clearance,PRJ-0018,survey_clearance,2025-03-15,,pending
-APP-PRJ-0018-social_impact_assessment,PRJ-0018,social_impact_assessment,2024-05-19,,pending
-APP-PRJ-0018-compensation_approval,PRJ-0018,compensation_approval,2024-01-08,2024-10-18,cleared
-APP-PRJ-0018-award_approval,PRJ-0018,award_approval,2024-08-22,2024-03-15,cleared
-APP-PRJ-0019-possession_clearance,PRJ-0019,possession_clearance,2024-11-13,,pending
-APP-PRJ-0019-title_verification,PRJ-0019,title_verification,2024-07-28,2024-08-12,cleared
-APP-PRJ-0019-social_impact_assessment,PRJ-0019,social_impact_assessment,2025-04-14,2025-05-29,cleared
-APP-PRJ-0019-compensation_approval,PRJ-0019,compensation_approval,2024-07-02,,pending
-APP-PRJ-0019-survey_clearance,PRJ-0019,survey_clearance,2024-07-17,,pending
-APP-PRJ-0020-title_verification,PRJ-0020,title_verification,2024-02-10,2024-07-04,cleared
-APP-PRJ-0020-award_approval,PRJ-0020,award_approval,2024-11-11,,pending
-APP-PRJ-0020-social_impact_assessment,PRJ-0020,social_impact_assessment,2024-12-26,2025-04-01,cleared
-APP-PRJ-0020-survey_clearance,PRJ-0020,survey_clearance,2024-12-21,2024-04-01,cleared
-APP-PRJ-0021-compensation_approval,PRJ-0021,compensation_approval,2025-04-01,2024-09-28,cleared
-APP-PRJ-0021-survey_clearance,PRJ-0021,survey_clearance,2024-03-07,2024-12-31,cleared
-APP-PRJ-0021-award_approval,PRJ-0021,award_approval,2024-07-02,2024-09-27,cleared
-APP-PRJ-0021-social_impact_assessment,PRJ-0021,social_impact_assessment,2024-01-24,2024-12-05,cleared
-APP-PRJ-0022-social_impact_assessment,PRJ-0022,social_impact_assessment,2025-03-28,,pending
-APP-PRJ-0022-title_verification,PRJ-0022,title_verification,2024-01-04,2024-11-26,cleared
-APP-PRJ-0022-compensation_approval,PRJ-0022,compensation_approval,2024-11-23,2024-12-08,cleared
-APP-PRJ-0022-award_approval,PRJ-0022,award_approval,2025-03-22,2025-09-02,cleared
-APP-PRJ-0023-social_impact_assessment,PRJ-0023,social_impact_assessment,2024-03-28,2024-09-17,cleared
-APP-PRJ-0023-survey_clearance,PRJ-0023,survey_clearance,2024-04-10,,pending
-APP-PRJ-0023-title_verification,PRJ-0023,title_verification,2025-01-19,,pending
-APP-PRJ-0023-compensation_approval,PRJ-0023,compensation_approval,2024-06-12,,pending
-APP-PRJ-0024-social_impact_assessment,PRJ-0024,social_impact_assessment,2024-11-15,,pending
-APP-PRJ-0024-award_approval,PRJ-0024,award_approval,2025-04-04,,pending
-APP-PRJ-0024-title_verification,PRJ-0024,title_verification,2025-01-27,2024-09-11,cleared
-APP-PRJ-0024-possession_clearance,PRJ-0024,possession_clearance,2024-03-23,,pending
-APP-PRJ-0024-survey_clearance,PRJ-0024,survey_clearance,2025-02-14,,pending
-APP-PRJ-0025-award_approval,PRJ-0025,award_approval,2025-04-14,2025-05-23,cleared
-APP-PRJ-0025-compensation_approval,PRJ-0025,compensation_approval,2024-02-18,,pending
-APP-PRJ-0025-title_verification,PRJ-0025,title_verification,2024-07-02,2025-02-23,cleared
-APP-PRJ-0025-social_impact_assessment,PRJ-0025,social_impact_assessment,2025-04-05,,pending
-APP-PRJ-0025-survey_clearance,PRJ-0025,survey_clearance,2024-01-03,2024-07-12,cleared
-APP-PRJ-0026-survey_clearance,PRJ-0026,survey_clearance,2024-04-27,2025-02-09,cleared
-APP-PRJ-0026-compensation_approval,PRJ-0026,compensation_approval,2024-11-07,2025-08-09,cleared
-APP-PRJ-0026-possession_clearance,PRJ-0026,possession_clearance,2024-10-26,,pending
-APP-PRJ-0026-award_approval,PRJ-0026,award_approval,2024-07-30,,pending
-APP-PRJ-0026-social_impact_assessment,PRJ-0026,social_impact_assessment,2024-01-06,,pending
-APP-PRJ-0027-award_approval,PRJ-0027,award_approval,2024-01-24,,pending
-APP-PRJ-0027-survey_clearance,PRJ-0027,survey_clearance,2024-10-01,2025-05-21,cleared
-APP-PRJ-0027-compensation_approval,PRJ-0027,compensation_approval,2025-02-13,,pending
-APP-PRJ-0027-title_verification,PRJ-0027,title_verification,2024-09-23,,pending
-APP-PRJ-0027-social_impact_assessment,PRJ-0027,social_impact_assessment,2024-01-02,2024-10-28,cleared
-APP-PRJ-0028-social_impact_assessment,PRJ-0028,social_impact_assessment,2024-06-30,2024-11-03,cleared
-APP-PRJ-0028-title_verification,PRJ-0028,title_verification,2025-03-10,2025-07-02,cleared
-APP-PRJ-0028-award_approval,PRJ-0028,award_approval,2025-03-18,2024-10-20,cleared
-APP-PRJ-0028-compensation_approval,PRJ-0028,compensation_approval,2024-04-10,,pending
-APP-PRJ-0028-survey_clearance,PRJ-0028,survey_clearance,2025-04-29,,pending
-APP-PRJ-0029-possession_clearance,PRJ-0029,possession_clearance,2025-04-17,2025-08-11,cleared
-APP-PRJ-0029-survey_clearance,PRJ-0029,survey_clearance,2024-08-17,2024-08-20,cleared
-APP-PRJ-0029-title_verification,PRJ-0029,title_verification,2024-05-27,2024-09-13,cleared
-APP-PRJ-0030-possession_clearance,PRJ-0030,possession_clearance,2024-07-12,2024-10-24,cleared
-APP-PRJ-0030-award_approval,PRJ-0030,award_approval,2025-04-28,,pending
-APP-PRJ-0030-compensation_approval,PRJ-0030,compensation_approval,2025-01-31,2025-02-06,cleared
-APP-PRJ-0030-survey_clearance,PRJ-0030,survey_clearance,2024-02-09,,pending
-APP-PRJ-0031-social_impact_assessment,PRJ-0031,social_impact_assessment,2024-09-10,2024-08-30,cleared
-APP-PRJ-0031-award_approval,PRJ-0031,award_approval,2024-01-20,2025-05-15,cleared
-APP-PRJ-0031-survey_clearance,PRJ-0031,survey_clearance,2024-02-08,,pending
-APP-PRJ-0031-possession_clearance,PRJ-0031,possession_clearance,2024-12-17,2024-09-12,cleared
-APP-PRJ-0032-survey_clearance,PRJ-0032,survey_clearance,2025-03-13,2024-06-23,cleared
-APP-PRJ-0032-social_impact_assessment,PRJ-0032,social_impact_assessment,2025-02-27,,pending
-APP-PRJ-0032-award_approval,PRJ-0032,award_approval,2024-12-28,2025-03-07,cleared
-APP-PRJ-0033-award_approval,PRJ-0033,award_approval,2025-01-03,2024-06-18,cleared
-APP-PRJ-0033-social_impact_assessment,PRJ-0033,social_impact_assessment,2024-03-07,2025-03-12,cleared
-APP-PRJ-0033-survey_clearance,PRJ-0033,survey_clearance,2024-05-26,2025-05-29,cleared
-APP-PRJ-0033-title_verification,PRJ-0033,title_verification,2024-01-10,2024-03-19,cleared
-APP-PRJ-0034-survey_clearance,PRJ-0034,survey_clearance,2025-01-18,,pending
-APP-PRJ-0034-compensation_approval,PRJ-0034,compensation_approval,2024-11-17,,pending
-APP-PRJ-0034-social_impact_assessment,PRJ-0034,social_impact_assessment,2024-04-27,,pending
-APP-PRJ-0034-possession_clearance,PRJ-0034,possession_clearance,2024-12-12,2025-04-01,cleared
-APP-PRJ-0034-award_approval,PRJ-0034,award_approval,2024-02-07,2025-02-07,cleared
-APP-PRJ-0035-title_verification,PRJ-0035,title_verification,2024-06-22,2024-12-17,cleared
-APP-PRJ-0035-possession_clearance,PRJ-0035,possession_clearance,2024-01-10,,pending
-APP-PRJ-0035-compensation_approval,PRJ-0035,compensation_approval,2024-12-22,2025-02-25,cleared
-APP-PRJ-0035-award_approval,PRJ-0035,award_approval,2024-10-12,,pending
-APP-PRJ-0036-award_approval,PRJ-0036,award_approval,2025-01-24,2025-04-04,cleared
-APP-PRJ-0036-compensation_approval,PRJ-0036,compensation_approval,2024-09-14,2024-04-06,cleared
-APP-PRJ-0036-title_verification,PRJ-0036,title_verification,2024-11-21,2025-04-11,cleared
-APP-PRJ-0036-survey_clearance,PRJ-0036,survey_clearance,2025-03-05,,pending
-APP-PRJ-0037-possession_clearance,PRJ-0037,possession_clearance,2024-12-02,,pending
-APP-PRJ-0037-compensation_approval,PRJ-0037,compensation_approval,2024-01-12,2024-05-23,cleared
-APP-PRJ-0037-social_impact_assessment,PRJ-0037,social_impact_assessment,2025-01-07,,pending
-APP-PRJ-0037-title_verification,PRJ-0037,title_verification,2024-01-11,,pending
-APP-PRJ-0037-survey_clearance,PRJ-0037,survey_clearance,2024-04-17,2024-08-27,cleared
-APP-PRJ-0038-award_approval,PRJ-0038,award_approval,2024-03-10,,pending
-APP-PRJ-0038-title_verification,PRJ-0038,title_verification,2024-12-12,,pending
-APP-PRJ-0038-survey_clearance,PRJ-0038,survey_clearance,2024-08-13,2025-04-26,cleared
-APP-PRJ-0039-title_verification,PRJ-0039,title_verification,2024-10-15,,pending
-APP-PRJ-0039-award_approval,PRJ-0039,award_approval,2024-03-10,2024-08-28,cleared
-APP-PRJ-0039-possession_clearance,PRJ-0039,possession_clearance,2025-01-27,2024-06-16,cleared
-APP-PRJ-0039-compensation_approval,PRJ-0039,compensation_approval,2025-04-04,,pending
-APP-PRJ-0040-title_verification,PRJ-0040,title_verification,2024-09-04,,pending
-APP-PRJ-0040-survey_clearance,PRJ-0040,survey_clearance,2024-10-25,2024-12-10,cleared
-APP-PRJ-0040-compensation_approval,PRJ-0040,compensation_approval,2025-02-04,2024-06-22,cleared
-APP-PRJ-0040-possession_clearance,PRJ-0040,possession_clearance,2024-03-20,2025-03-19,cleared
-APP-PRJ-0040-award_approval,PRJ-0040,award_approval,2025-03-20,2025-02-24,cleared
-APP-PRJ-0041-possession_clearance,PRJ-0041,possession_clearance,2024-10-23,,pending
-APP-PRJ-0041-social_impact_assessment,PRJ-0041,social_impact_assessment,2025-04-29,2024-09-13,cleared
-APP-PRJ-0041-survey_clearance,PRJ-0041,survey_clearance,2024-11-11,2024-08-05,cleared
-APP-PRJ-0041-title_verification,PRJ-0041,title_verification,2024-04-27,2025-06-28,cleared
-APP-PRJ-0042-award_approval,PRJ-0042,award_approval,2024-05-16,2024-11-01,cleared
-APP-PRJ-0042-title_verification,PRJ-0042,title_verification,2024-10-07,2024-07-09,cleared
-APP-PRJ-0042-social_impact_assessment,PRJ-0042,social_impact_assessment,2024-07-03,,pending
-APP-PRJ-0042-compensation_approval,PRJ-0042,compensation_approval,2024-06-24,,pending
-APP-PRJ-0042-possession_clearance,PRJ-0042,possession_clearance,2025-04-24,,pending
-APP-PRJ-0043-social_impact_assessment,PRJ-0043,social_impact_assessment,2024-06-18,,pending
-APP-PRJ-0043-compensation_approval,PRJ-0043,compensation_approval,2024-10-01,2025-04-01,cleared
-APP-PRJ-0043-title_verification,PRJ-0043,title_verification,2025-04-16,,pending
-APP-PRJ-0044-survey_clearance,PRJ-0044,survey_clearance,2025-03-26,2025-02-25,cleared
-APP-PRJ-0044-possession_clearance,PRJ-0044,possession_clearance,2024-04-02,2024-12-11,cleared
-APP-PRJ-0044-title_verification,PRJ-0044,title_verification,2024-10-09,2024-04-07,cleared
-APP-PRJ-0045-possession_clearance,PRJ-0045,possession_clearance,2024-02-19,,pending
-APP-PRJ-0045-title_verification,PRJ-0045,title_verification,2024-05-17,2024-12-13,cleared
-APP-PRJ-0045-survey_clearance,PRJ-0045,survey_clearance,2024-01-16,,pending
-APP-PRJ-0045-social_impact_assessment,PRJ-0045,social_impact_assessment,2025-03-28,2025-11-06,cleared
-APP-PRJ-0046-survey_clearance,PRJ-0046,survey_clearance,2024-04-27,,pending
-APP-PRJ-0046-compensation_approval,PRJ-0046,compensation_approval,2024-02-08,,pending
-APP-PRJ-0046-social_impact_assessment,PRJ-0046,social_impact_assessment,2025-02-06,2024-10-25,cleared
-APP-PRJ-0046-title_verification,PRJ-0046,title_verification,2024-03-20,2025-05-17,cleared
-APP-PRJ-0046-award_approval,PRJ-0046,award_approval,2024-03-03,,pending
-APP-PRJ-0047-title_verification,PRJ-0047,title_verification,2024-10-21,,pending
-APP-PRJ-0047-award_approval,PRJ-0047,award_approval,2024-09-16,,pending
-APP-PRJ-0047-social_impact_assessment,PRJ-0047,social_impact_assessment,2024-03-25,,pending
-APP-PRJ-0047-survey_clearance,PRJ-0047,survey_clearance,2024-11-05,,pending
-APP-PRJ-0047-possession_clearance,PRJ-0047,possession_clearance,2025-03-04,,pending
-APP-PRJ-0048-compensation_approval,PRJ-0048,compensation_approval,2024-12-29,,pending
-APP-PRJ-0048-social_impact_assessment,PRJ-0048,social_impact_assessment,2025-02-08,2025-03-06,cleared
-APP-PRJ-0048-survey_clearance,PRJ-0048,survey_clearance,2025-03-02,,pending
-APP-PRJ-0049-possession_clearance,PRJ-0049,possession_clearance,2025-02-11,,pending
-APP-PRJ-0049-title_verification,PRJ-0049,title_verification,2024-03-03,2024-09-20,cleared
-APP-PRJ-0049-award_approval,PRJ-0049,award_approval,2024-03-09,,pending
-APP-PRJ-0049-social_impact_assessment,PRJ-0049,social_impact_assessment,2024-05-16,,pending
-APP-PRJ-0050-title_verification,PRJ-0050,title_verification,2024-09-28,2025-08-08,cleared
-APP-PRJ-0050-award_approval,PRJ-0050,award_approval,2024-03-24,2025-08-10,cleared
-APP-PRJ-0050-compensation_approval,PRJ-0050,compensation_approval,2025-03-15,,pending
-APP-PRJ-0050-possession_clearance,PRJ-0050,possession_clearance,2024-11-10,2024-10-28,cleared
+APP-PRJ-0001-social_impact_assessment_sia,PRJ-0001,Social Impact Assessment (SIA),2024-01-22,,pending
+APP-PRJ-0001-section_11_preliminary_notif,PRJ-0001,Section 11 Preliminary Notification,2024-12-25,,pending
+APP-PRJ-0001-rehabilitation_and_resettlem,PRJ-0001,Rehabilitation & Resettlement Scheme Approval,2024-07-19,,pending
+APP-PRJ-0001-environmental_and_crz_cleara,PRJ-0001,Environmental & CRZ Clearance,2025-04-02,2025-05-12,cleared
+APP-PRJ-0001-forest_conservation_stage_i_,PRJ-0001,Forest Conservation Stage-I Sanction,2025-01-28,,pending
+APP-PRJ-0001-section_19_declaration_of_ac,PRJ-0001,Section 19 Declaration of Acquisition,2024-05-02,,pending
+APP-PRJ-0001-section_23_award_clearance,PRJ-0001,Section 23 Award Clearance,2024-02-22,2025-06-09,cleared
+APP-PRJ-0002-social_impact_assessment_sia,PRJ-0002,Social Impact Assessment (SIA),2024-07-31,2025-04-25,cleared
+APP-PRJ-0002-section_11_preliminary_notif,PRJ-0002,Section 11 Preliminary Notification,2024-10-22,2024-06-16,cleared
+APP-PRJ-0002-rehabilitation_and_resettlem,PRJ-0002,Rehabilitation & Resettlement Scheme Approval,2024-04-02,2025-07-22,cleared
+APP-PRJ-0002-environmental_and_crz_cleara,PRJ-0002,Environmental & CRZ Clearance,2025-02-18,,pending
+APP-PRJ-0002-forest_conservation_stage_i_,PRJ-0002,Forest Conservation Stage-I Sanction,2024-04-29,,pending
+APP-PRJ-0002-section_19_declaration_of_ac,PRJ-0002,Section 19 Declaration of Acquisition,2024-06-15,,pending
+APP-PRJ-0002-section_23_award_clearance,PRJ-0002,Section 23 Award Clearance,2025-04-23,2024-10-31,cleared
+APP-PRJ-0003-social_impact_assessment_sia,PRJ-0003,Social Impact Assessment (SIA),2024-08-20,2025-01-26,cleared
+APP-PRJ-0003-section_11_preliminary_notif,PRJ-0003,Section 11 Preliminary Notification,2024-04-23,2025-04-22,cleared
+APP-PRJ-0003-rehabilitation_and_resettlem,PRJ-0003,Rehabilitation & Resettlement Scheme Approval,2025-04-29,,pending
+APP-PRJ-0003-environmental_and_crz_cleara,PRJ-0003,Environmental & CRZ Clearance,2024-02-13,,pending
+APP-PRJ-0003-forest_conservation_stage_i_,PRJ-0003,Forest Conservation Stage-I Sanction,2024-05-14,2025-05-10,cleared
+APP-PRJ-0003-section_19_declaration_of_ac,PRJ-0003,Section 19 Declaration of Acquisition,2024-08-11,2024-10-03,cleared
+APP-PRJ-0003-section_23_award_clearance,PRJ-0003,Section 23 Award Clearance,2024-11-13,2024-11-06,cleared
+APP-PRJ-0004-social_impact_assessment_sia,PRJ-0004,Social Impact Assessment (SIA),2024-01-15,2024-08-02,cleared
+APP-PRJ-0004-section_11_preliminary_notif,PRJ-0004,Section 11 Preliminary Notification,2024-07-20,2024-05-17,cleared
+APP-PRJ-0004-rehabilitation_and_resettlem,PRJ-0004,Rehabilitation & Resettlement Scheme Approval,2025-02-26,2024-05-02,cleared
+APP-PRJ-0004-environmental_and_crz_cleara,PRJ-0004,Environmental & CRZ Clearance,2024-01-17,2024-10-30,cleared
+APP-PRJ-0004-forest_conservation_stage_i_,PRJ-0004,Forest Conservation Stage-I Sanction,2024-08-17,2025-03-26,cleared
+APP-PRJ-0004-section_19_declaration_of_ac,PRJ-0004,Section 19 Declaration of Acquisition,2024-07-30,2024-06-07,cleared
+APP-PRJ-0004-section_23_award_clearance,PRJ-0004,Section 23 Award Clearance,2024-12-23,2024-07-20,cleared
+APP-PRJ-0005-social_impact_assessment_sia,PRJ-0005,Social Impact Assessment (SIA),2025-03-30,2025-05-12,cleared
+APP-PRJ-0005-section_11_preliminary_notif,PRJ-0005,Section 11 Preliminary Notification,2024-11-13,2024-04-29,cleared
+APP-PRJ-0005-rehabilitation_and_resettlem,PRJ-0005,Rehabilitation & Resettlement Scheme Approval,2024-10-14,2024-03-08,cleared
+APP-PRJ-0005-environmental_and_crz_cleara,PRJ-0005,Environmental & CRZ Clearance,2024-10-23,2025-04-30,cleared
+APP-PRJ-0005-forest_conservation_stage_i_,PRJ-0005,Forest Conservation Stage-I Sanction,2024-04-15,2025-07-09,cleared
+APP-PRJ-0005-section_19_declaration_of_ac,PRJ-0005,Section 19 Declaration of Acquisition,2024-07-23,,pending
+APP-PRJ-0005-section_23_award_clearance,PRJ-0005,Section 23 Award Clearance,2024-02-19,2025-07-20,cleared
+APP-PRJ-0006-social_impact_assessment_sia,PRJ-0006,Social Impact Assessment (SIA),2024-01-30,2025-04-10,cleared
+APP-PRJ-0006-section_11_preliminary_notif,PRJ-0006,Section 11 Preliminary Notification,2024-09-04,2025-01-28,cleared
+APP-PRJ-0006-rehabilitation_and_resettlem,PRJ-0006,Rehabilitation & Resettlement Scheme Approval,2024-11-21,,pending
+APP-PRJ-0006-environmental_and_crz_cleara,PRJ-0006,Environmental & CRZ Clearance,2024-02-12,2025-03-05,cleared
+APP-PRJ-0006-forest_conservation_stage_i_,PRJ-0006,Forest Conservation Stage-I Sanction,2024-11-13,2025-02-10,cleared
+APP-PRJ-0006-section_19_declaration_of_ac,PRJ-0006,Section 19 Declaration of Acquisition,2025-02-21,2025-01-22,cleared
+APP-PRJ-0006-section_23_award_clearance,PRJ-0006,Section 23 Award Clearance,2024-11-05,,pending
+APP-PRJ-0007-social_impact_assessment_sia,PRJ-0007,Social Impact Assessment (SIA),2024-01-19,,pending
+APP-PRJ-0007-section_11_preliminary_notif,PRJ-0007,Section 11 Preliminary Notification,2024-07-08,,pending
+APP-PRJ-0007-rehabilitation_and_resettlem,PRJ-0007,Rehabilitation & Resettlement Scheme Approval,2024-08-19,,pending
+APP-PRJ-0007-environmental_and_crz_cleara,PRJ-0007,Environmental & CRZ Clearance,2025-04-25,2024-06-10,cleared
+APP-PRJ-0007-forest_conservation_stage_i_,PRJ-0007,Forest Conservation Stage-I Sanction,2024-12-24,2025-02-16,cleared
+APP-PRJ-0007-section_19_declaration_of_ac,PRJ-0007,Section 19 Declaration of Acquisition,2024-05-30,2024-09-19,cleared
+APP-PRJ-0007-section_23_award_clearance,PRJ-0007,Section 23 Award Clearance,2024-04-20,,pending
+APP-PRJ-0008-social_impact_assessment_sia,PRJ-0008,Social Impact Assessment (SIA),2024-08-22,2024-08-20,cleared
+APP-PRJ-0008-section_11_preliminary_notif,PRJ-0008,Section 11 Preliminary Notification,2025-02-11,,pending
+APP-PRJ-0008-rehabilitation_and_resettlem,PRJ-0008,Rehabilitation & Resettlement Scheme Approval,2025-01-09,,pending
+APP-PRJ-0008-environmental_and_crz_cleara,PRJ-0008,Environmental & CRZ Clearance,2024-05-30,2025-02-10,cleared
+APP-PRJ-0008-forest_conservation_stage_i_,PRJ-0008,Forest Conservation Stage-I Sanction,2025-04-05,2024-04-30,cleared
+APP-PRJ-0008-section_19_declaration_of_ac,PRJ-0008,Section 19 Declaration of Acquisition,2024-06-29,,pending
+APP-PRJ-0008-section_23_award_clearance,PRJ-0008,Section 23 Award Clearance,2024-12-17,2025-01-23,cleared
+APP-PRJ-0009-social_impact_assessment_sia,PRJ-0009,Social Impact Assessment (SIA),2024-10-21,,pending
+APP-PRJ-0009-section_11_preliminary_notif,PRJ-0009,Section 11 Preliminary Notification,2024-04-23,2024-05-11,cleared
+APP-PRJ-0009-rehabilitation_and_resettlem,PRJ-0009,Rehabilitation & Resettlement Scheme Approval,2024-10-21,,pending
+APP-PRJ-0009-environmental_and_crz_cleara,PRJ-0009,Environmental & CRZ Clearance,2024-10-03,2025-05-23,cleared
+APP-PRJ-0009-forest_conservation_stage_i_,PRJ-0009,Forest Conservation Stage-I Sanction,2024-07-21,2024-08-20,cleared
+APP-PRJ-0009-section_19_declaration_of_ac,PRJ-0009,Section 19 Declaration of Acquisition,2025-03-01,2024-12-17,cleared
+APP-PRJ-0009-section_23_award_clearance,PRJ-0009,Section 23 Award Clearance,2024-05-13,,pending
+APP-PRJ-0010-social_impact_assessment_sia,PRJ-0010,Social Impact Assessment (SIA),2024-10-14,2024-10-15,cleared
+APP-PRJ-0010-section_11_preliminary_notif,PRJ-0010,Section 11 Preliminary Notification,2024-05-31,,pending
+APP-PRJ-0010-rehabilitation_and_resettlem,PRJ-0010,Rehabilitation & Resettlement Scheme Approval,2024-04-05,,pending
+APP-PRJ-0010-environmental_and_crz_cleara,PRJ-0010,Environmental & CRZ Clearance,2025-02-03,,pending
+APP-PRJ-0010-forest_conservation_stage_i_,PRJ-0010,Forest Conservation Stage-I Sanction,2024-06-18,,pending
+APP-PRJ-0010-section_19_declaration_of_ac,PRJ-0010,Section 19 Declaration of Acquisition,2024-06-08,2024-11-05,cleared
+APP-PRJ-0010-section_23_award_clearance,PRJ-0010,Section 23 Award Clearance,2024-06-28,2024-03-08,cleared
+APP-PRJ-0011-social_impact_assessment_sia,PRJ-0011,Social Impact Assessment (SIA),2024-04-20,2025-07-14,cleared
+APP-PRJ-0011-section_11_preliminary_notif,PRJ-0011,Section 11 Preliminary Notification,2024-04-20,2025-04-05,cleared
+APP-PRJ-0011-rehabilitation_and_resettlem,PRJ-0011,Rehabilitation & Resettlement Scheme Approval,2024-10-21,2025-04-27,cleared
+APP-PRJ-0011-environmental_and_crz_cleara,PRJ-0011,Environmental & CRZ Clearance,2024-07-22,,pending
+APP-PRJ-0011-forest_conservation_stage_i_,PRJ-0011,Forest Conservation Stage-I Sanction,2024-11-15,2024-05-21,cleared
+APP-PRJ-0011-section_19_declaration_of_ac,PRJ-0011,Section 19 Declaration of Acquisition,2024-04-08,2024-08-27,cleared
+APP-PRJ-0011-section_23_award_clearance,PRJ-0011,Section 23 Award Clearance,2024-05-19,2024-12-26,cleared
+APP-PRJ-0012-social_impact_assessment_sia,PRJ-0012,Social Impact Assessment (SIA),2024-03-29,2025-02-09,cleared
+APP-PRJ-0012-section_11_preliminary_notif,PRJ-0012,Section 11 Preliminary Notification,2024-06-17,2024-11-24,cleared
+APP-PRJ-0012-rehabilitation_and_resettlem,PRJ-0012,Rehabilitation & Resettlement Scheme Approval,2024-12-17,,pending
+APP-PRJ-0012-environmental_and_crz_cleara,PRJ-0012,Environmental & CRZ Clearance,2025-03-19,2025-03-03,cleared
+APP-PRJ-0012-forest_conservation_stage_i_,PRJ-0012,Forest Conservation Stage-I Sanction,2024-05-12,2024-10-10,cleared
+APP-PRJ-0012-section_19_declaration_of_ac,PRJ-0012,Section 19 Declaration of Acquisition,2025-01-29,,pending
+APP-PRJ-0012-section_23_award_clearance,PRJ-0012,Section 23 Award Clearance,2024-03-24,2025-04-10,cleared
+APP-PRJ-0013-social_impact_assessment_sia,PRJ-0013,Social Impact Assessment (SIA),2024-08-10,2025-05-02,cleared
+APP-PRJ-0013-section_11_preliminary_notif,PRJ-0013,Section 11 Preliminary Notification,2024-08-10,2024-04-15,cleared
+APP-PRJ-0013-rehabilitation_and_resettlem,PRJ-0013,Rehabilitation & Resettlement Scheme Approval,2024-10-20,2025-01-14,cleared
+APP-PRJ-0013-environmental_and_crz_cleara,PRJ-0013,Environmental & CRZ Clearance,2024-01-19,2024-03-19,cleared
+APP-PRJ-0013-forest_conservation_stage_i_,PRJ-0013,Forest Conservation Stage-I Sanction,2025-02-24,,pending
+APP-PRJ-0013-section_19_declaration_of_ac,PRJ-0013,Section 19 Declaration of Acquisition,2024-01-31,,pending
+APP-PRJ-0013-section_23_award_clearance,PRJ-0013,Section 23 Award Clearance,2024-07-25,2024-02-14,cleared
+APP-PRJ-0014-social_impact_assessment_sia,PRJ-0014,Social Impact Assessment (SIA),2025-04-03,2024-05-14,cleared
+APP-PRJ-0014-section_11_preliminary_notif,PRJ-0014,Section 11 Preliminary Notification,2025-01-29,2024-12-13,cleared
+APP-PRJ-0014-rehabilitation_and_resettlem,PRJ-0014,Rehabilitation & Resettlement Scheme Approval,2024-09-02,2024-10-11,cleared
+APP-PRJ-0014-environmental_and_crz_cleara,PRJ-0014,Environmental & CRZ Clearance,2025-04-05,2024-12-29,cleared
+APP-PRJ-0014-forest_conservation_stage_i_,PRJ-0014,Forest Conservation Stage-I Sanction,2024-07-09,,pending
+APP-PRJ-0014-section_19_declaration_of_ac,PRJ-0014,Section 19 Declaration of Acquisition,2024-05-27,,pending
+APP-PRJ-0014-section_23_award_clearance,PRJ-0014,Section 23 Award Clearance,2024-12-06,2024-02-06,cleared
+APP-PRJ-0015-social_impact_assessment_sia,PRJ-0015,Social Impact Assessment (SIA),2024-11-19,2025-03-23,cleared
+APP-PRJ-0015-section_11_preliminary_notif,PRJ-0015,Section 11 Preliminary Notification,2025-03-20,,pending
+APP-PRJ-0015-rehabilitation_and_resettlem,PRJ-0015,Rehabilitation & Resettlement Scheme Approval,2024-04-27,2024-07-05,cleared
+APP-PRJ-0015-environmental_and_crz_cleara,PRJ-0015,Environmental & CRZ Clearance,2024-08-03,2025-05-11,cleared
+APP-PRJ-0015-forest_conservation_stage_i_,PRJ-0015,Forest Conservation Stage-I Sanction,2024-12-02,,pending
+APP-PRJ-0015-section_19_declaration_of_ac,PRJ-0015,Section 19 Declaration of Acquisition,2024-12-15,2025-08-02,cleared
+APP-PRJ-0015-section_23_award_clearance,PRJ-0015,Section 23 Award Clearance,2024-02-13,2025-06-14,cleared
+APP-PRJ-0016-social_impact_assessment_sia,PRJ-0016,Social Impact Assessment (SIA),2025-02-16,,pending
+APP-PRJ-0016-section_11_preliminary_notif,PRJ-0016,Section 11 Preliminary Notification,2024-11-20,2024-06-17,cleared
+APP-PRJ-0016-rehabilitation_and_resettlem,PRJ-0016,Rehabilitation & Resettlement Scheme Approval,2024-01-23,2024-03-20,cleared
+APP-PRJ-0016-environmental_and_crz_cleara,PRJ-0016,Environmental & CRZ Clearance,2024-09-08,,pending
+APP-PRJ-0016-forest_conservation_stage_i_,PRJ-0016,Forest Conservation Stage-I Sanction,2024-09-19,2024-08-27,cleared
+APP-PRJ-0016-section_19_declaration_of_ac,PRJ-0016,Section 19 Declaration of Acquisition,2024-03-30,2024-08-01,cleared
+APP-PRJ-0016-section_23_award_clearance,PRJ-0016,Section 23 Award Clearance,2024-09-29,,pending
+APP-PRJ-0017-social_impact_assessment_sia,PRJ-0017,Social Impact Assessment (SIA),2024-08-06,2025-05-17,cleared
+APP-PRJ-0017-section_11_preliminary_notif,PRJ-0017,Section 11 Preliminary Notification,2024-04-26,2025-02-22,cleared
+APP-PRJ-0017-rehabilitation_and_resettlem,PRJ-0017,Rehabilitation & Resettlement Scheme Approval,2024-08-11,,pending
+APP-PRJ-0017-environmental_and_crz_cleara,PRJ-0017,Environmental & CRZ Clearance,2024-07-05,2025-06-08,cleared
+APP-PRJ-0017-forest_conservation_stage_i_,PRJ-0017,Forest Conservation Stage-I Sanction,2025-03-02,2024-08-06,cleared
+APP-PRJ-0017-section_19_declaration_of_ac,PRJ-0017,Section 19 Declaration of Acquisition,2025-03-24,2025-06-18,cleared
+APP-PRJ-0017-section_23_award_clearance,PRJ-0017,Section 23 Award Clearance,2025-03-18,,pending
+APP-PRJ-0018-social_impact_assessment_sia,PRJ-0018,Social Impact Assessment (SIA),2024-07-15,,pending
+APP-PRJ-0018-section_11_preliminary_notif,PRJ-0018,Section 11 Preliminary Notification,2024-04-05,2024-09-28,cleared
+APP-PRJ-0018-rehabilitation_and_resettlem,PRJ-0018,Rehabilitation & Resettlement Scheme Approval,2024-03-27,2025-05-01,cleared
+APP-PRJ-0018-environmental_and_crz_cleara,PRJ-0018,Environmental & CRZ Clearance,2024-09-18,,pending
+APP-PRJ-0018-forest_conservation_stage_i_,PRJ-0018,Forest Conservation Stage-I Sanction,2024-09-17,,pending
+APP-PRJ-0018-section_19_declaration_of_ac,PRJ-0018,Section 19 Declaration of Acquisition,2025-02-27,2024-12-27,cleared
+APP-PRJ-0018-section_23_award_clearance,PRJ-0018,Section 23 Award Clearance,2024-11-16,,pending
+APP-PRJ-0019-social_impact_assessment_sia,PRJ-0019,Social Impact Assessment (SIA),2024-12-16,,pending
+APP-PRJ-0019-section_11_preliminary_notif,PRJ-0019,Section 11 Preliminary Notification,2025-04-23,2024-12-15,cleared
+APP-PRJ-0019-rehabilitation_and_resettlem,PRJ-0019,Rehabilitation & Resettlement Scheme Approval,2024-09-28,,pending
+APP-PRJ-0019-environmental_and_crz_cleara,PRJ-0019,Environmental & CRZ Clearance,2024-10-15,,pending
+APP-PRJ-0019-forest_conservation_stage_i_,PRJ-0019,Forest Conservation Stage-I Sanction,2024-05-29,2024-02-18,cleared
+APP-PRJ-0019-section_19_declaration_of_ac,PRJ-0019,Section 19 Declaration of Acquisition,2024-12-12,2024-06-13,cleared
+APP-PRJ-0019-section_23_award_clearance,PRJ-0019,Section 23 Award Clearance,2025-04-09,2024-04-19,cleared
+APP-PRJ-0020-social_impact_assessment_sia,PRJ-0020,Social Impact Assessment (SIA),2025-01-06,,pending
+APP-PRJ-0020-section_11_preliminary_notif,PRJ-0020,Section 11 Preliminary Notification,2025-03-30,2024-12-17,cleared
+APP-PRJ-0020-rehabilitation_and_resettlem,PRJ-0020,Rehabilitation & Resettlement Scheme Approval,2024-02-13,,pending
+APP-PRJ-0020-environmental_and_crz_cleara,PRJ-0020,Environmental & CRZ Clearance,2024-02-20,2025-04-13,cleared
+APP-PRJ-0020-forest_conservation_stage_i_,PRJ-0020,Forest Conservation Stage-I Sanction,2025-02-27,,pending
+APP-PRJ-0020-section_19_declaration_of_ac,PRJ-0020,Section 19 Declaration of Acquisition,2024-05-12,2024-09-17,cleared
+APP-PRJ-0020-section_23_award_clearance,PRJ-0020,Section 23 Award Clearance,2025-01-03,2024-08-06,cleared
+APP-PRJ-0021-social_impact_assessment_sia,PRJ-0021,Social Impact Assessment (SIA),2025-02-27,2024-09-15,cleared
+APP-PRJ-0021-section_11_preliminary_notif,PRJ-0021,Section 11 Preliminary Notification,2024-01-03,2025-01-25,cleared
+APP-PRJ-0021-rehabilitation_and_resettlem,PRJ-0021,Rehabilitation & Resettlement Scheme Approval,2024-06-30,,pending
+APP-PRJ-0021-environmental_and_crz_cleara,PRJ-0021,Environmental & CRZ Clearance,2025-04-06,,pending
+APP-PRJ-0021-forest_conservation_stage_i_,PRJ-0021,Forest Conservation Stage-I Sanction,2025-02-04,2025-01-14,cleared
+APP-PRJ-0021-section_19_declaration_of_ac,PRJ-0021,Section 19 Declaration of Acquisition,2024-07-23,,pending
+APP-PRJ-0021-section_23_award_clearance,PRJ-0021,Section 23 Award Clearance,2024-04-03,2025-04-14,cleared
+APP-PRJ-0022-social_impact_assessment_sia,PRJ-0022,Social Impact Assessment (SIA),2025-03-23,,pending
+APP-PRJ-0022-section_11_preliminary_notif,PRJ-0022,Section 11 Preliminary Notification,2024-08-21,2025-03-15,cleared
+APP-PRJ-0022-rehabilitation_and_resettlem,PRJ-0022,Rehabilitation & Resettlement Scheme Approval,2024-11-15,2025-05-24,cleared
+APP-PRJ-0022-environmental_and_crz_cleara,PRJ-0022,Environmental & CRZ Clearance,2025-04-03,2025-03-07,cleared
+APP-PRJ-0022-forest_conservation_stage_i_,PRJ-0022,Forest Conservation Stage-I Sanction,2024-11-01,2024-05-31,cleared
+APP-PRJ-0022-section_19_declaration_of_ac,PRJ-0022,Section 19 Declaration of Acquisition,2025-04-20,2025-06-04,cleared
+APP-PRJ-0022-section_23_award_clearance,PRJ-0022,Section 23 Award Clearance,2024-10-26,2025-04-28,cleared
+APP-PRJ-0023-social_impact_assessment_sia,PRJ-0023,Social Impact Assessment (SIA),2024-05-28,2025-02-21,cleared
+APP-PRJ-0023-section_11_preliminary_notif,PRJ-0023,Section 11 Preliminary Notification,2024-05-01,,pending
+APP-PRJ-0023-rehabilitation_and_resettlem,PRJ-0023,Rehabilitation & Resettlement Scheme Approval,2025-01-28,,pending
+APP-PRJ-0023-environmental_and_crz_cleara,PRJ-0023,Environmental & CRZ Clearance,2024-09-02,2024-05-29,cleared
+APP-PRJ-0023-forest_conservation_stage_i_,PRJ-0023,Forest Conservation Stage-I Sanction,2024-01-24,2024-10-12,cleared
+APP-PRJ-0023-section_19_declaration_of_ac,PRJ-0023,Section 19 Declaration of Acquisition,2025-04-08,2025-05-13,cleared
+APP-PRJ-0023-section_23_award_clearance,PRJ-0023,Section 23 Award Clearance,2024-08-16,2024-12-02,cleared
+APP-PRJ-0024-social_impact_assessment_sia,PRJ-0024,Social Impact Assessment (SIA),2025-03-28,2024-07-15,cleared
+APP-PRJ-0024-section_11_preliminary_notif,PRJ-0024,Section 11 Preliminary Notification,2024-10-29,2025-01-22,cleared
+APP-PRJ-0024-rehabilitation_and_resettlem,PRJ-0024,Rehabilitation & Resettlement Scheme Approval,2024-03-27,2024-11-13,cleared
+APP-PRJ-0024-environmental_and_crz_cleara,PRJ-0024,Environmental & CRZ Clearance,2025-02-26,,pending
+APP-PRJ-0024-forest_conservation_stage_i_,PRJ-0024,Forest Conservation Stage-I Sanction,2025-04-18,2025-06-24,cleared
+APP-PRJ-0024-section_19_declaration_of_ac,PRJ-0024,Section 19 Declaration of Acquisition,2024-11-29,2024-03-12,cleared
+APP-PRJ-0024-section_23_award_clearance,PRJ-0024,Section 23 Award Clearance,2024-04-08,2024-05-29,cleared
+APP-PRJ-0025-social_impact_assessment_sia,PRJ-0025,Social Impact Assessment (SIA),2024-08-24,2025-05-15,cleared
+APP-PRJ-0025-section_11_preliminary_notif,PRJ-0025,Section 11 Preliminary Notification,2024-03-28,2024-03-08,cleared
+APP-PRJ-0025-rehabilitation_and_resettlem,PRJ-0025,Rehabilitation & Resettlement Scheme Approval,2024-11-29,2024-04-27,cleared
+APP-PRJ-0025-environmental_and_crz_cleara,PRJ-0025,Environmental & CRZ Clearance,2024-09-02,2024-12-12,cleared
+APP-PRJ-0025-forest_conservation_stage_i_,PRJ-0025,Forest Conservation Stage-I Sanction,2024-08-21,2024-08-07,cleared
+APP-PRJ-0025-section_19_declaration_of_ac,PRJ-0025,Section 19 Declaration of Acquisition,2024-12-28,,pending
+APP-PRJ-0025-section_23_award_clearance,PRJ-0025,Section 23 Award Clearance,2024-06-08,2025-02-24,cleared
+APP-PRJ-0026-social_impact_assessment_sia,PRJ-0026,Social Impact Assessment (SIA),2024-02-25,2024-10-06,cleared
+APP-PRJ-0026-section_11_preliminary_notif,PRJ-0026,Section 11 Preliminary Notification,2024-04-20,2025-01-02,cleared
+APP-PRJ-0026-rehabilitation_and_resettlem,PRJ-0026,Rehabilitation & Resettlement Scheme Approval,2024-05-10,2025-03-28,cleared
+APP-PRJ-0026-environmental_and_crz_cleara,PRJ-0026,Environmental & CRZ Clearance,2024-07-02,,pending
+APP-PRJ-0026-forest_conservation_stage_i_,PRJ-0026,Forest Conservation Stage-I Sanction,2024-02-15,2025-03-30,cleared
+APP-PRJ-0026-section_19_declaration_of_ac,PRJ-0026,Section 19 Declaration of Acquisition,2025-01-05,2024-05-25,cleared
+APP-PRJ-0026-section_23_award_clearance,PRJ-0026,Section 23 Award Clearance,2025-03-19,,pending
+APP-PRJ-0027-social_impact_assessment_sia,PRJ-0027,Social Impact Assessment (SIA),2024-02-16,,pending
+APP-PRJ-0027-section_11_preliminary_notif,PRJ-0027,Section 11 Preliminary Notification,2024-10-04,2024-03-06,cleared
+APP-PRJ-0027-rehabilitation_and_resettlem,PRJ-0027,Rehabilitation & Resettlement Scheme Approval,2024-11-18,2025-02-17,cleared
+APP-PRJ-0027-environmental_and_crz_cleara,PRJ-0027,Environmental & CRZ Clearance,2024-06-08,2024-05-12,cleared
+APP-PRJ-0027-forest_conservation_stage_i_,PRJ-0027,Forest Conservation Stage-I Sanction,2024-02-22,2024-05-12,cleared
+APP-PRJ-0027-section_19_declaration_of_ac,PRJ-0027,Section 19 Declaration of Acquisition,2025-04-29,2025-01-02,cleared
+APP-PRJ-0027-section_23_award_clearance,PRJ-0027,Section 23 Award Clearance,2024-09-30,,pending
+APP-PRJ-0028-social_impact_assessment_sia,PRJ-0028,Social Impact Assessment (SIA),2024-08-31,2024-10-06,cleared
+APP-PRJ-0028-section_11_preliminary_notif,PRJ-0028,Section 11 Preliminary Notification,2024-08-20,2024-12-11,cleared
+APP-PRJ-0028-rehabilitation_and_resettlem,PRJ-0028,Rehabilitation & Resettlement Scheme Approval,2024-05-29,,pending
+APP-PRJ-0028-environmental_and_crz_cleara,PRJ-0028,Environmental & CRZ Clearance,2025-05-07,,pending
+APP-PRJ-0028-forest_conservation_stage_i_,PRJ-0028,Forest Conservation Stage-I Sanction,2024-10-31,2024-05-10,cleared
+APP-PRJ-0028-section_19_declaration_of_ac,PRJ-0028,Section 19 Declaration of Acquisition,2024-08-02,2025-01-26,cleared
+APP-PRJ-0028-section_23_award_clearance,PRJ-0028,Section 23 Award Clearance,2024-05-03,2025-07-05,cleared
+APP-PRJ-0029-social_impact_assessment_sia,PRJ-0029,Social Impact Assessment (SIA),2024-11-22,2024-12-30,cleared
+APP-PRJ-0029-section_11_preliminary_notif,PRJ-0029,Section 11 Preliminary Notification,2025-04-27,,pending
+APP-PRJ-0029-rehabilitation_and_resettlem,PRJ-0029,Rehabilitation & Resettlement Scheme Approval,2024-12-02,,pending
+APP-PRJ-0029-environmental_and_crz_cleara,PRJ-0029,Environmental & CRZ Clearance,2024-02-25,2024-06-20,cleared
+APP-PRJ-0029-forest_conservation_stage_i_,PRJ-0029,Forest Conservation Stage-I Sanction,2024-12-11,2025-04-14,cleared
+APP-PRJ-0029-section_19_declaration_of_ac,PRJ-0029,Section 19 Declaration of Acquisition,2025-04-07,,pending
+APP-PRJ-0029-section_23_award_clearance,PRJ-0029,Section 23 Award Clearance,2024-11-09,,pending
+APP-PRJ-0030-social_impact_assessment_sia,PRJ-0030,Social Impact Assessment (SIA),2024-02-05,2025-05-20,cleared
+APP-PRJ-0030-section_11_preliminary_notif,PRJ-0030,Section 11 Preliminary Notification,2024-12-05,2024-09-12,cleared
+APP-PRJ-0030-rehabilitation_and_resettlem,PRJ-0030,Rehabilitation & Resettlement Scheme Approval,2024-07-19,2025-01-04,cleared
+APP-PRJ-0030-environmental_and_crz_cleara,PRJ-0030,Environmental & CRZ Clearance,2025-03-30,2024-05-17,cleared
+APP-PRJ-0030-forest_conservation_stage_i_,PRJ-0030,Forest Conservation Stage-I Sanction,2024-12-22,2024-06-18,cleared
+APP-PRJ-0030-section_19_declaration_of_ac,PRJ-0030,Section 19 Declaration of Acquisition,2024-05-03,2024-01-30,cleared
+APP-PRJ-0030-section_23_award_clearance,PRJ-0030,Section 23 Award Clearance,2024-05-26,2024-11-18,cleared
+APP-PRJ-0031-social_impact_assessment_sia,PRJ-0031,Social Impact Assessment (SIA),2024-08-17,,pending
+APP-PRJ-0031-section_11_preliminary_notif,PRJ-0031,Section 11 Preliminary Notification,2025-04-25,,pending
+APP-PRJ-0031-rehabilitation_and_resettlem,PRJ-0031,Rehabilitation & Resettlement Scheme Approval,2024-07-12,2024-12-10,cleared
+APP-PRJ-0031-environmental_and_crz_cleara,PRJ-0031,Environmental & CRZ Clearance,2024-02-11,,pending
+APP-PRJ-0031-forest_conservation_stage_i_,PRJ-0031,Forest Conservation Stage-I Sanction,2024-11-07,2024-03-04,cleared
+APP-PRJ-0031-section_19_declaration_of_ac,PRJ-0031,Section 19 Declaration of Acquisition,2024-02-12,2024-09-05,cleared
+APP-PRJ-0031-section_23_award_clearance,PRJ-0031,Section 23 Award Clearance,2024-04-20,2025-01-27,cleared
+APP-PRJ-0032-social_impact_assessment_sia,PRJ-0032,Social Impact Assessment (SIA),2024-03-19,,pending
+APP-PRJ-0032-section_11_preliminary_notif,PRJ-0032,Section 11 Preliminary Notification,2024-10-10,2024-05-06,cleared
+APP-PRJ-0032-rehabilitation_and_resettlem,PRJ-0032,Rehabilitation & Resettlement Scheme Approval,2024-03-04,,pending
+APP-PRJ-0032-environmental_and_crz_cleara,PRJ-0032,Environmental & CRZ Clearance,2024-07-18,,pending
+APP-PRJ-0032-forest_conservation_stage_i_,PRJ-0032,Forest Conservation Stage-I Sanction,2025-01-14,2024-10-31,cleared
+APP-PRJ-0032-section_19_declaration_of_ac,PRJ-0032,Section 19 Declaration of Acquisition,2024-06-17,2024-10-11,cleared
+APP-PRJ-0032-section_23_award_clearance,PRJ-0032,Section 23 Award Clearance,2024-05-04,2024-06-20,cleared
+APP-PRJ-0033-social_impact_assessment_sia,PRJ-0033,Social Impact Assessment (SIA),2024-01-02,,pending
+APP-PRJ-0033-section_11_preliminary_notif,PRJ-0033,Section 11 Preliminary Notification,2024-06-29,2025-03-10,cleared
+APP-PRJ-0033-rehabilitation_and_resettlem,PRJ-0033,Rehabilitation & Resettlement Scheme Approval,2024-09-22,2024-03-12,cleared
+APP-PRJ-0033-environmental_and_crz_cleara,PRJ-0033,Environmental & CRZ Clearance,2024-08-13,2024-07-15,cleared
+APP-PRJ-0033-forest_conservation_stage_i_,PRJ-0033,Forest Conservation Stage-I Sanction,2025-03-30,,pending
+APP-PRJ-0033-section_19_declaration_of_ac,PRJ-0033,Section 19 Declaration of Acquisition,2025-04-19,,pending
+APP-PRJ-0033-section_23_award_clearance,PRJ-0033,Section 23 Award Clearance,2024-06-09,2025-06-08,cleared
+APP-PRJ-0034-social_impact_assessment_sia,PRJ-0034,Social Impact Assessment (SIA),2025-02-11,2024-08-25,cleared
+APP-PRJ-0034-section_11_preliminary_notif,PRJ-0034,Section 11 Preliminary Notification,2025-03-05,2024-04-07,cleared
+APP-PRJ-0034-rehabilitation_and_resettlem,PRJ-0034,Rehabilitation & Resettlement Scheme Approval,2024-04-28,2025-06-07,cleared
+APP-PRJ-0034-environmental_and_crz_cleara,PRJ-0034,Environmental & CRZ Clearance,2024-12-08,,pending
+APP-PRJ-0034-forest_conservation_stage_i_,PRJ-0034,Forest Conservation Stage-I Sanction,2024-02-09,2025-06-01,cleared
+APP-PRJ-0034-section_19_declaration_of_ac,PRJ-0034,Section 19 Declaration of Acquisition,2024-07-05,2024-07-17,cleared
+APP-PRJ-0034-section_23_award_clearance,PRJ-0034,Section 23 Award Clearance,2025-04-26,2024-12-14,cleared
+APP-PRJ-0035-social_impact_assessment_sia,PRJ-0035,Social Impact Assessment (SIA),2024-09-29,2024-04-06,cleared
+APP-PRJ-0035-section_11_preliminary_notif,PRJ-0035,Section 11 Preliminary Notification,2024-10-26,,pending
+APP-PRJ-0035-rehabilitation_and_resettlem,PRJ-0035,Rehabilitation & Resettlement Scheme Approval,2024-06-05,2024-04-03,cleared
+APP-PRJ-0035-environmental_and_crz_cleara,PRJ-0035,Environmental & CRZ Clearance,2025-01-11,,pending
+APP-PRJ-0035-forest_conservation_stage_i_,PRJ-0035,Forest Conservation Stage-I Sanction,2024-06-09,2024-05-20,cleared
+APP-PRJ-0035-section_19_declaration_of_ac,PRJ-0035,Section 19 Declaration of Acquisition,2024-03-08,,pending
+APP-PRJ-0035-section_23_award_clearance,PRJ-0035,Section 23 Award Clearance,2024-08-16,,pending
+APP-PRJ-0036-social_impact_assessment_sia,PRJ-0036,Social Impact Assessment (SIA),2025-05-06,2024-05-09,cleared
+APP-PRJ-0036-section_11_preliminary_notif,PRJ-0036,Section 11 Preliminary Notification,2024-02-12,,pending
+APP-PRJ-0036-rehabilitation_and_resettlem,PRJ-0036,Rehabilitation & Resettlement Scheme Approval,2024-08-10,,pending
+APP-PRJ-0036-environmental_and_crz_cleara,PRJ-0036,Environmental & CRZ Clearance,2025-02-06,,pending
+APP-PRJ-0036-forest_conservation_stage_i_,PRJ-0036,Forest Conservation Stage-I Sanction,2024-03-17,,pending
+APP-PRJ-0036-section_19_declaration_of_ac,PRJ-0036,Section 19 Declaration of Acquisition,2024-09-26,2024-06-14,cleared
+APP-PRJ-0036-section_23_award_clearance,PRJ-0036,Section 23 Award Clearance,2024-10-29,,pending
+APP-PRJ-0037-social_impact_assessment_sia,PRJ-0037,Social Impact Assessment (SIA),2024-02-08,2024-12-05,cleared
+APP-PRJ-0037-section_11_preliminary_notif,PRJ-0037,Section 11 Preliminary Notification,2025-03-10,2025-04-16,cleared
+APP-PRJ-0037-rehabilitation_and_resettlem,PRJ-0037,Rehabilitation & Resettlement Scheme Approval,2024-04-13,2024-11-30,cleared
+APP-PRJ-0037-environmental_and_crz_cleara,PRJ-0037,Environmental & CRZ Clearance,2024-07-30,,pending
+APP-PRJ-0037-forest_conservation_stage_i_,PRJ-0037,Forest Conservation Stage-I Sanction,2024-09-10,,pending
+APP-PRJ-0037-section_19_declaration_of_ac,PRJ-0037,Section 19 Declaration of Acquisition,2024-07-07,2025-03-21,cleared
+APP-PRJ-0037-section_23_award_clearance,PRJ-0037,Section 23 Award Clearance,2025-05-13,,pending
+APP-PRJ-0038-social_impact_assessment_sia,PRJ-0038,Social Impact Assessment (SIA),2025-01-17,2025-03-16,cleared
+APP-PRJ-0038-section_11_preliminary_notif,PRJ-0038,Section 11 Preliminary Notification,2025-04-05,2025-02-01,cleared
+APP-PRJ-0038-rehabilitation_and_resettlem,PRJ-0038,Rehabilitation & Resettlement Scheme Approval,2025-03-19,2024-07-19,cleared
+APP-PRJ-0038-environmental_and_crz_cleara,PRJ-0038,Environmental & CRZ Clearance,2024-12-13,2025-04-04,cleared
+APP-PRJ-0038-forest_conservation_stage_i_,PRJ-0038,Forest Conservation Stage-I Sanction,2024-04-27,2024-06-17,cleared
+APP-PRJ-0038-section_19_declaration_of_ac,PRJ-0038,Section 19 Declaration of Acquisition,2024-05-19,2025-01-09,cleared
+APP-PRJ-0038-section_23_award_clearance,PRJ-0038,Section 23 Award Clearance,2024-05-25,2024-11-08,cleared
+APP-PRJ-0039-social_impact_assessment_sia,PRJ-0039,Social Impact Assessment (SIA),2024-08-20,2024-08-03,cleared
+APP-PRJ-0039-section_11_preliminary_notif,PRJ-0039,Section 11 Preliminary Notification,2024-03-23,,pending
+APP-PRJ-0039-rehabilitation_and_resettlem,PRJ-0039,Rehabilitation & Resettlement Scheme Approval,2024-02-20,2024-06-13,cleared
+APP-PRJ-0039-environmental_and_crz_cleara,PRJ-0039,Environmental & CRZ Clearance,2025-03-05,2024-11-01,cleared
+APP-PRJ-0039-forest_conservation_stage_i_,PRJ-0039,Forest Conservation Stage-I Sanction,2024-09-12,2024-12-20,cleared
+APP-PRJ-0039-section_19_declaration_of_ac,PRJ-0039,Section 19 Declaration of Acquisition,2025-05-12,,pending
+APP-PRJ-0039-section_23_award_clearance,PRJ-0039,Section 23 Award Clearance,2025-04-01,,pending
+APP-PRJ-0040-social_impact_assessment_sia,PRJ-0040,Social Impact Assessment (SIA),2024-02-09,,pending
+APP-PRJ-0040-section_11_preliminary_notif,PRJ-0040,Section 11 Preliminary Notification,2025-04-20,,pending
+APP-PRJ-0040-rehabilitation_and_resettlem,PRJ-0040,Rehabilitation & Resettlement Scheme Approval,2024-02-23,2024-06-04,cleared
+APP-PRJ-0040-environmental_and_crz_cleara,PRJ-0040,Environmental & CRZ Clearance,2025-02-26,2024-03-26,cleared
+APP-PRJ-0040-forest_conservation_stage_i_,PRJ-0040,Forest Conservation Stage-I Sanction,2025-01-30,,pending
+APP-PRJ-0040-section_19_declaration_of_ac,PRJ-0040,Section 19 Declaration of Acquisition,2024-04-08,,pending
+APP-PRJ-0040-section_23_award_clearance,PRJ-0040,Section 23 Award Clearance,2024-05-25,,pending
+APP-PRJ-0041-social_impact_assessment_sia,PRJ-0041,Social Impact Assessment (SIA),2024-08-02,2025-01-29,cleared
+APP-PRJ-0041-section_11_preliminary_notif,PRJ-0041,Section 11 Preliminary Notification,2024-11-18,2024-07-11,cleared
+APP-PRJ-0041-rehabilitation_and_resettlem,PRJ-0041,Rehabilitation & Resettlement Scheme Approval,2024-02-12,2024-05-06,cleared
+APP-PRJ-0041-environmental_and_crz_cleara,PRJ-0041,Environmental & CRZ Clearance,2024-09-11,2025-07-04,cleared
+APP-PRJ-0041-forest_conservation_stage_i_,PRJ-0041,Forest Conservation Stage-I Sanction,2024-01-05,2025-02-10,cleared
+APP-PRJ-0041-section_19_declaration_of_ac,PRJ-0041,Section 19 Declaration of Acquisition,2024-01-23,2024-10-20,cleared
+APP-PRJ-0041-section_23_award_clearance,PRJ-0041,Section 23 Award Clearance,2024-07-15,,pending
+APP-PRJ-0042-social_impact_assessment_sia,PRJ-0042,Social Impact Assessment (SIA),2024-12-07,2024-05-12,cleared
+APP-PRJ-0042-section_11_preliminary_notif,PRJ-0042,Section 11 Preliminary Notification,2025-01-24,2025-03-29,cleared
+APP-PRJ-0042-rehabilitation_and_resettlem,PRJ-0042,Rehabilitation & Resettlement Scheme Approval,2024-07-30,2024-10-01,cleared
+APP-PRJ-0042-environmental_and_crz_cleara,PRJ-0042,Environmental & CRZ Clearance,2024-10-30,2024-07-08,cleared
+APP-PRJ-0042-forest_conservation_stage_i_,PRJ-0042,Forest Conservation Stage-I Sanction,2024-05-28,2024-06-05,cleared
+APP-PRJ-0042-section_19_declaration_of_ac,PRJ-0042,Section 19 Declaration of Acquisition,2025-04-06,,pending
+APP-PRJ-0042-section_23_award_clearance,PRJ-0042,Section 23 Award Clearance,2024-10-10,2025-05-19,cleared
+APP-PRJ-0043-social_impact_assessment_sia,PRJ-0043,Social Impact Assessment (SIA),2024-01-06,2024-04-07,cleared
+APP-PRJ-0043-section_11_preliminary_notif,PRJ-0043,Section 11 Preliminary Notification,2025-02-18,,pending
+APP-PRJ-0043-rehabilitation_and_resettlem,PRJ-0043,Rehabilitation & Resettlement Scheme Approval,2024-06-06,2025-02-01,cleared
+APP-PRJ-0043-environmental_and_crz_cleara,PRJ-0043,Environmental & CRZ Clearance,2025-01-20,,pending
+APP-PRJ-0043-forest_conservation_stage_i_,PRJ-0043,Forest Conservation Stage-I Sanction,2024-10-23,2024-06-17,cleared
+APP-PRJ-0043-section_19_declaration_of_ac,PRJ-0043,Section 19 Declaration of Acquisition,2024-01-01,2024-06-02,cleared
+APP-PRJ-0043-section_23_award_clearance,PRJ-0043,Section 23 Award Clearance,2024-05-23,2025-06-07,cleared
+APP-PRJ-0044-social_impact_assessment_sia,PRJ-0044,Social Impact Assessment (SIA),2024-04-01,2024-05-18,cleared
+APP-PRJ-0044-section_11_preliminary_notif,PRJ-0044,Section 11 Preliminary Notification,2024-12-14,,pending
+APP-PRJ-0044-rehabilitation_and_resettlem,PRJ-0044,Rehabilitation & Resettlement Scheme Approval,2024-07-18,,pending
+APP-PRJ-0044-environmental_and_crz_cleara,PRJ-0044,Environmental & CRZ Clearance,2025-01-15,2024-05-04,cleared
+APP-PRJ-0044-forest_conservation_stage_i_,PRJ-0044,Forest Conservation Stage-I Sanction,2024-09-01,,pending
+APP-PRJ-0044-section_19_declaration_of_ac,PRJ-0044,Section 19 Declaration of Acquisition,2025-02-24,2024-05-06,cleared
+APP-PRJ-0044-section_23_award_clearance,PRJ-0044,Section 23 Award Clearance,2024-06-22,,pending
+APP-PRJ-0045-social_impact_assessment_sia,PRJ-0045,Social Impact Assessment (SIA),2025-04-27,2025-01-05,cleared
+APP-PRJ-0045-section_11_preliminary_notif,PRJ-0045,Section 11 Preliminary Notification,2024-04-06,2024-08-04,cleared
+APP-PRJ-0045-rehabilitation_and_resettlem,PRJ-0045,Rehabilitation & Resettlement Scheme Approval,2024-12-18,2024-06-12,cleared
+APP-PRJ-0045-environmental_and_crz_cleara,PRJ-0045,Environmental & CRZ Clearance,2024-10-28,2024-03-13,cleared
+APP-PRJ-0045-forest_conservation_stage_i_,PRJ-0045,Forest Conservation Stage-I Sanction,2024-05-17,2024-05-29,cleared
+APP-PRJ-0045-section_19_declaration_of_ac,PRJ-0045,Section 19 Declaration of Acquisition,2024-06-12,2024-11-01,cleared
+APP-PRJ-0045-section_23_award_clearance,PRJ-0045,Section 23 Award Clearance,2024-01-28,,pending
+APP-PRJ-0046-social_impact_assessment_sia,PRJ-0046,Social Impact Assessment (SIA),2024-09-24,2024-03-21,cleared
+APP-PRJ-0046-section_11_preliminary_notif,PRJ-0046,Section 11 Preliminary Notification,2025-01-15,,pending
+APP-PRJ-0046-rehabilitation_and_resettlem,PRJ-0046,Rehabilitation & Resettlement Scheme Approval,2024-08-08,2024-03-21,cleared
+APP-PRJ-0046-environmental_and_crz_cleara,PRJ-0046,Environmental & CRZ Clearance,2024-12-03,2024-09-02,cleared
+APP-PRJ-0046-forest_conservation_stage_i_,PRJ-0046,Forest Conservation Stage-I Sanction,2024-04-01,,pending
+APP-PRJ-0046-section_19_declaration_of_ac,PRJ-0046,Section 19 Declaration of Acquisition,2024-12-26,2024-08-22,cleared
+APP-PRJ-0046-section_23_award_clearance,PRJ-0046,Section 23 Award Clearance,2024-03-06,2024-12-04,cleared
+APP-PRJ-0047-social_impact_assessment_sia,PRJ-0047,Social Impact Assessment (SIA),2024-05-12,2025-07-02,cleared
+APP-PRJ-0047-section_11_preliminary_notif,PRJ-0047,Section 11 Preliminary Notification,2025-04-03,2024-07-03,cleared
+APP-PRJ-0047-rehabilitation_and_resettlem,PRJ-0047,Rehabilitation & Resettlement Scheme Approval,2024-09-08,,pending
+APP-PRJ-0047-environmental_and_crz_cleara,PRJ-0047,Environmental & CRZ Clearance,2024-09-28,,pending
+APP-PRJ-0047-forest_conservation_stage_i_,PRJ-0047,Forest Conservation Stage-I Sanction,2024-09-26,2024-03-28,cleared
+APP-PRJ-0047-section_19_declaration_of_ac,PRJ-0047,Section 19 Declaration of Acquisition,2024-06-20,,pending
+APP-PRJ-0047-section_23_award_clearance,PRJ-0047,Section 23 Award Clearance,2024-01-02,2024-07-07,cleared
+APP-PRJ-0048-social_impact_assessment_sia,PRJ-0048,Social Impact Assessment (SIA),2024-05-12,2025-05-19,cleared
+APP-PRJ-0048-section_11_preliminary_notif,PRJ-0048,Section 11 Preliminary Notification,2025-04-28,,pending
+APP-PRJ-0048-rehabilitation_and_resettlem,PRJ-0048,Rehabilitation & Resettlement Scheme Approval,2024-08-26,,pending
+APP-PRJ-0048-environmental_and_crz_cleara,PRJ-0048,Environmental & CRZ Clearance,2024-02-08,,pending
+APP-PRJ-0048-forest_conservation_stage_i_,PRJ-0048,Forest Conservation Stage-I Sanction,2024-10-21,2024-08-31,cleared
+APP-PRJ-0048-section_19_declaration_of_ac,PRJ-0048,Section 19 Declaration of Acquisition,2024-09-16,2024-04-06,cleared
+APP-PRJ-0048-section_23_award_clearance,PRJ-0048,Section 23 Award Clearance,2024-09-01,,pending
+APP-PRJ-0049-social_impact_assessment_sia,PRJ-0049,Social Impact Assessment (SIA),2024-09-11,2024-03-09,cleared
+APP-PRJ-0049-section_11_preliminary_notif,PRJ-0049,Section 11 Preliminary Notification,2025-02-22,2024-05-10,cleared
+APP-PRJ-0049-rehabilitation_and_resettlem,PRJ-0049,Rehabilitation & Resettlement Scheme Approval,2025-04-07,2025-06-18,cleared
+APP-PRJ-0049-environmental_and_crz_cleara,PRJ-0049,Environmental & CRZ Clearance,2025-01-10,,pending
+APP-PRJ-0049-forest_conservation_stage_i_,PRJ-0049,Forest Conservation Stage-I Sanction,2024-01-22,2025-04-09,cleared
+APP-PRJ-0049-section_19_declaration_of_ac,PRJ-0049,Section 19 Declaration of Acquisition,2025-04-13,2024-11-20,cleared
+APP-PRJ-0049-section_23_award_clearance,PRJ-0049,Section 23 Award Clearance,2024-08-09,2024-08-19,cleared
+APP-PRJ-0050-social_impact_assessment_sia,PRJ-0050,Social Impact Assessment (SIA),2024-05-28,2024-10-28,cleared
+APP-PRJ-0050-section_11_preliminary_notif,PRJ-0050,Section 11 Preliminary Notification,2025-04-29,2025-05-09,cleared
+APP-PRJ-0050-rehabilitation_and_resettlem,PRJ-0050,Rehabilitation & Resettlement Scheme Approval,2025-02-15,2024-11-01,cleared
+APP-PRJ-0050-environmental_and_crz_cleara,PRJ-0050,Environmental & CRZ Clearance,2025-02-13,2024-02-16,cleared
+APP-PRJ-0050-forest_conservation_stage_i_,PRJ-0050,Forest Conservation Stage-I Sanction,2024-02-15,2024-07-24,cleared
+APP-PRJ-0050-section_19_declaration_of_ac,PRJ-0050,Section 19 Declaration of Acquisition,2024-01-08,2024-04-27,cleared
+APP-PRJ-0050-section_23_award_clearance,PRJ-0050,Section 23 Award Clearance,2024-09-28,,pending
+APP-PRJ-0051-social_impact_assessment_sia,PRJ-0051,Social Impact Assessment (SIA),2024-06-10,,pending
+APP-PRJ-0051-section_11_preliminary_notif,PRJ-0051,Section 11 Preliminary Notification,2024-05-24,,pending
+APP-PRJ-0051-rehabilitation_and_resettlem,PRJ-0051,Rehabilitation & Resettlement Scheme Approval,2025-01-11,2024-10-10,cleared
+APP-PRJ-0051-environmental_and_crz_cleara,PRJ-0051,Environmental & CRZ Clearance,2024-07-27,2025-02-26,cleared
+APP-PRJ-0051-forest_conservation_stage_i_,PRJ-0051,Forest Conservation Stage-I Sanction,2024-01-07,2024-04-16,cleared
+APP-PRJ-0051-section_19_declaration_of_ac,PRJ-0051,Section 19 Declaration of Acquisition,2024-10-15,,pending
+APP-PRJ-0051-section_23_award_clearance,PRJ-0051,Section 23 Award Clearance,2024-03-08,2024-07-16,cleared
+APP-PRJ-0052-social_impact_assessment_sia,PRJ-0052,Social Impact Assessment (SIA),2024-10-07,2024-08-11,cleared
+APP-PRJ-0052-section_11_preliminary_notif,PRJ-0052,Section 11 Preliminary Notification,2024-11-20,,pending
+APP-PRJ-0052-rehabilitation_and_resettlem,PRJ-0052,Rehabilitation & Resettlement Scheme Approval,2025-01-22,2024-05-18,cleared
+APP-PRJ-0052-environmental_and_crz_cleara,PRJ-0052,Environmental & CRZ Clearance,2024-11-25,2025-02-26,cleared
+APP-PRJ-0052-forest_conservation_stage_i_,PRJ-0052,Forest Conservation Stage-I Sanction,2025-03-16,,pending
+APP-PRJ-0052-section_19_declaration_of_ac,PRJ-0052,Section 19 Declaration of Acquisition,2024-02-27,2025-04-22,cleared
+APP-PRJ-0052-section_23_award_clearance,PRJ-0052,Section 23 Award Clearance,2024-10-07,2024-11-11,cleared
+APP-PRJ-0053-social_impact_assessment_sia,PRJ-0053,Social Impact Assessment (SIA),2025-03-03,2025-05-01,cleared
+APP-PRJ-0053-section_11_preliminary_notif,PRJ-0053,Section 11 Preliminary Notification,2024-11-03,2025-06-05,cleared
+APP-PRJ-0053-rehabilitation_and_resettlem,PRJ-0053,Rehabilitation & Resettlement Scheme Approval,2024-05-04,2024-07-05,cleared
+APP-PRJ-0053-environmental_and_crz_cleara,PRJ-0053,Environmental & CRZ Clearance,2024-03-28,,pending
+APP-PRJ-0053-forest_conservation_stage_i_,PRJ-0053,Forest Conservation Stage-I Sanction,2024-07-27,2024-04-24,cleared
+APP-PRJ-0053-section_19_declaration_of_ac,PRJ-0053,Section 19 Declaration of Acquisition,2024-09-13,2024-08-16,cleared
+APP-PRJ-0053-section_23_award_clearance,PRJ-0053,Section 23 Award Clearance,2025-05-01,2024-12-05,cleared
+APP-PRJ-0054-social_impact_assessment_sia,PRJ-0054,Social Impact Assessment (SIA),2024-10-11,,pending
+APP-PRJ-0054-section_11_preliminary_notif,PRJ-0054,Section 11 Preliminary Notification,2024-10-22,,pending
+APP-PRJ-0054-rehabilitation_and_resettlem,PRJ-0054,Rehabilitation & Resettlement Scheme Approval,2024-09-13,,pending
+APP-PRJ-0054-environmental_and_crz_cleara,PRJ-0054,Environmental & CRZ Clearance,2025-02-01,2025-03-07,cleared
+APP-PRJ-0054-forest_conservation_stage_i_,PRJ-0054,Forest Conservation Stage-I Sanction,2024-02-19,,pending
+APP-PRJ-0054-section_19_declaration_of_ac,PRJ-0054,Section 19 Declaration of Acquisition,2025-01-28,2025-04-13,cleared
+APP-PRJ-0054-section_23_award_clearance,PRJ-0054,Section 23 Award Clearance,2024-10-20,2025-05-12,cleared
+APP-PRJ-0055-social_impact_assessment_sia,PRJ-0055,Social Impact Assessment (SIA),2024-05-29,2024-10-28,cleared
+APP-PRJ-0055-section_11_preliminary_notif,PRJ-0055,Section 11 Preliminary Notification,2024-03-02,2024-09-19,cleared
+APP-PRJ-0055-rehabilitation_and_resettlem,PRJ-0055,Rehabilitation & Resettlement Scheme Approval,2024-10-30,2025-06-01,cleared
+APP-PRJ-0055-environmental_and_crz_cleara,PRJ-0055,Environmental & CRZ Clearance,2024-03-28,2024-03-07,cleared
+APP-PRJ-0055-forest_conservation_stage_i_,PRJ-0055,Forest Conservation Stage-I Sanction,2024-08-29,2024-02-24,cleared
+APP-PRJ-0055-section_19_declaration_of_ac,PRJ-0055,Section 19 Declaration of Acquisition,2024-07-05,,pending
+APP-PRJ-0055-section_23_award_clearance,PRJ-0055,Section 23 Award Clearance,2024-07-19,2024-08-01,cleared
+APP-PRJ-0056-social_impact_assessment_sia,PRJ-0056,Social Impact Assessment (SIA),2025-01-08,2024-06-01,cleared
+APP-PRJ-0056-section_11_preliminary_notif,PRJ-0056,Section 11 Preliminary Notification,2024-11-28,2024-04-02,cleared
+APP-PRJ-0056-rehabilitation_and_resettlem,PRJ-0056,Rehabilitation & Resettlement Scheme Approval,2024-03-28,2025-04-04,cleared
+APP-PRJ-0056-environmental_and_crz_cleara,PRJ-0056,Environmental & CRZ Clearance,2025-04-27,,pending
+APP-PRJ-0056-forest_conservation_stage_i_,PRJ-0056,Forest Conservation Stage-I Sanction,2025-03-26,2025-05-16,cleared
+APP-PRJ-0056-section_19_declaration_of_ac,PRJ-0056,Section 19 Declaration of Acquisition,2024-08-12,,pending
+APP-PRJ-0056-section_23_award_clearance,PRJ-0056,Section 23 Award Clearance,2024-10-21,,pending
+APP-PRJ-0057-social_impact_assessment_sia,PRJ-0057,Social Impact Assessment (SIA),2024-10-31,,pending
+APP-PRJ-0057-section_11_preliminary_notif,PRJ-0057,Section 11 Preliminary Notification,2024-05-06,2024-04-28,cleared
+APP-PRJ-0057-rehabilitation_and_resettlem,PRJ-0057,Rehabilitation & Resettlement Scheme Approval,2024-10-16,2025-05-06,cleared
+APP-PRJ-0057-environmental_and_crz_cleara,PRJ-0057,Environmental & CRZ Clearance,2024-10-09,2025-07-16,cleared
+APP-PRJ-0057-forest_conservation_stage_i_,PRJ-0057,Forest Conservation Stage-I Sanction,2025-01-19,,pending
+APP-PRJ-0057-section_19_declaration_of_ac,PRJ-0057,Section 19 Declaration of Acquisition,2024-09-27,,pending
+APP-PRJ-0057-section_23_award_clearance,PRJ-0057,Section 23 Award Clearance,2025-01-05,2025-02-01,cleared
+APP-PRJ-0058-social_impact_assessment_sia,PRJ-0058,Social Impact Assessment (SIA),2025-03-23,2025-02-23,cleared
+APP-PRJ-0058-section_11_preliminary_notif,PRJ-0058,Section 11 Preliminary Notification,2024-08-21,,pending
+APP-PRJ-0058-rehabilitation_and_resettlem,PRJ-0058,Rehabilitation & Resettlement Scheme Approval,2024-07-12,,pending
+APP-PRJ-0058-environmental_and_crz_cleara,PRJ-0058,Environmental & CRZ Clearance,2024-04-01,,pending
+APP-PRJ-0058-forest_conservation_stage_i_,PRJ-0058,Forest Conservation Stage-I Sanction,2024-08-02,2024-05-21,cleared
+APP-PRJ-0058-section_19_declaration_of_ac,PRJ-0058,Section 19 Declaration of Acquisition,2024-07-10,,pending
+APP-PRJ-0058-section_23_award_clearance,PRJ-0058,Section 23 Award Clearance,2024-03-22,,pending
+APP-PRJ-0059-social_impact_assessment_sia,PRJ-0059,Social Impact Assessment (SIA),2024-02-11,2024-03-21,cleared
+APP-PRJ-0059-section_11_preliminary_notif,PRJ-0059,Section 11 Preliminary Notification,2025-04-14,2024-10-18,cleared
+APP-PRJ-0059-rehabilitation_and_resettlem,PRJ-0059,Rehabilitation & Resettlement Scheme Approval,2024-01-16,2024-11-18,cleared
+APP-PRJ-0059-environmental_and_crz_cleara,PRJ-0059,Environmental & CRZ Clearance,2025-01-04,2025-04-07,cleared
+APP-PRJ-0059-forest_conservation_stage_i_,PRJ-0059,Forest Conservation Stage-I Sanction,2024-04-30,2024-11-02,cleared
+APP-PRJ-0059-section_19_declaration_of_ac,PRJ-0059,Section 19 Declaration of Acquisition,2024-10-27,2024-09-30,cleared
+APP-PRJ-0059-section_23_award_clearance,PRJ-0059,Section 23 Award Clearance,2024-10-18,,pending
+APP-PRJ-0060-social_impact_assessment_sia,PRJ-0060,Social Impact Assessment (SIA),2024-06-25,2025-01-24,cleared
+APP-PRJ-0060-section_11_preliminary_notif,PRJ-0060,Section 11 Preliminary Notification,2024-06-20,,pending
+APP-PRJ-0060-rehabilitation_and_resettlem,PRJ-0060,Rehabilitation & Resettlement Scheme Approval,2024-07-10,,pending
+APP-PRJ-0060-environmental_and_crz_cleara,PRJ-0060,Environmental & CRZ Clearance,2024-10-27,2024-06-16,cleared
+APP-PRJ-0060-forest_conservation_stage_i_,PRJ-0060,Forest Conservation Stage-I Sanction,2024-08-28,2024-11-16,cleared
+APP-PRJ-0060-section_19_declaration_of_ac,PRJ-0060,Section 19 Declaration of Acquisition,2025-01-14,,pending
+APP-PRJ-0060-section_23_award_clearance,PRJ-0060,Section 23 Award Clearance,2025-02-28,2024-05-16,cleared

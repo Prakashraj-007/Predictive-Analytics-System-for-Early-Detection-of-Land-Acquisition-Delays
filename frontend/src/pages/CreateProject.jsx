@@ -12,8 +12,8 @@ const INITIAL_FORM_STATE = {
   name: '',
   type: 'highway',
   agency: '',
-  state: 'Maharashtra',
-  district: 'Pune',
+  state: 'Tamil Nadu',
+  district: 'Kanchipuram',
   planned_start: '',
   planned_end: '',
   budget: '',
@@ -56,7 +56,18 @@ const SECTORS = [
   { value: 'urban', label: 'Urban Infrastructure' },
 ];
 
-const DISTRICTS = ['Pune', 'Thane', 'Nagpur', 'Nashik', 'Aurangabad', 'Solapur', 'Kolhapur', 'Satara'];
+const DISTRICTS = [
+  'Chennai',
+  'Kanchipuram',
+  'Tiruvallur',
+  'Coimbatore',
+  'Madurai',
+  'Salem',
+  'Tiruchirappalli',
+  'Tirunelveli',
+  'Erode',
+  'Thoothukudi',
+];
 
 /**
  * C7. Create Project (Multi-Step Form Wizard)
