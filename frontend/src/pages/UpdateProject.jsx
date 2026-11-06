@@ -251,7 +251,12 @@ export default function UpdateProject() {
       }
     });
     if (changedParcels.length > 0) {
-      patchBody.parcels = changedParcels;
+      // Send complete parcel roster so telemetry recalculation evaluates entire corridor accurately
+      patchBody.parcels = formData.parcels.map((p) => ({
+        ...p,
+        possession_status: p.possession_handed_over ? 'handed_over' : 'pending',
+        doc_complete: Boolean(p.documents_verified),
+      }));
     }
 
     // 3. Compensation diff
@@ -262,9 +267,13 @@ export default function UpdateProject() {
     }
     if (formData.amount_disbursed !== initialData.amount_disbursed) {
       changedComp.amount_disbursed = formData.amount_disbursed;
+      changedComp.disbursed_amount = formData.amount_disbursed;
       changedCount++;
     }
     if (Object.keys(changedComp).length > 0) {
+      changedComp.award_amount = formData.award_amount;
+      changedComp.amount_disbursed = formData.amount_disbursed;
+      changedComp.disbursed_amount = formData.amount_disbursed;
       patchBody.compensation = changedComp;
     }
 

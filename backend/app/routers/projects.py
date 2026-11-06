@@ -463,6 +463,24 @@ def update_project(
             if sp.get("project_id") == id:
                 sp["as_of_date"] = as_of
 
+    if not any(sp.get("project_id") == id for sp in SAMPLE_PROJECTS):
+        project_record = dict(project) if project else {
+            "project_id": id,
+            "name": f"Corridor {id}",
+            "district": getattr(user, "district", None) or "Kanchipuram",
+            "type": "highway",
+            "current_stage": (payload.project or {}).get("current_stage", "possession"),
+            "land_area_ha": sum(float(p.get("area_ha") or 2.0) for p in (payload.parcels or [])) or 30.0,
+            "budget": 100000000.0,
+            "status": "draft",
+            "created_by": user.user_id,
+        }
+        if payload.project:
+            project_record.update({k: v for k, v in payload.project.items() if k in EDITABLE_PROJECT_FIELDS})
+        if as_of:
+            project_record["as_of_date"] = as_of
+        SAMPLE_PROJECTS.insert(0, project_record)
+
     if payload.parcels:
         existing_parcels = SAMPLE_PARCELS.get(id, [])
         parcel_map = {p.get("parcel_id"): p for p in existing_parcels}
@@ -489,9 +507,37 @@ def update_project(
         SAMPLE_APPROVALS[id] = [dict(a) for a in payload.approvals]
 
     if payload.compensation:
+        comp_dict = dict(payload.compensation)
+        if "amount_disbursed" in comp_dict and "disbursed_amount" not in comp_dict:
+            comp_dict["disbursed_amount"] = comp_dict["amount_disbursed"]
         if id not in SAMPLE_COMPENSATION:
-            SAMPLE_COMPENSATION[id] = {}
-        SAMPLE_COMPENSATION[id].update(dict(payload.compensation))
+            SAMPLE_COMPENSATION[id] = {
+                "project_id": id,
+                "award_amount": float(comp_dict.get("award_amount") or 15000000.0),
+                "disbursed_amount": 0.0,
+                "disputes": 0,
+            }
+        SAMPLE_COMPENSATION[id].update(comp_dict)
+
+    if payload.parcels:
+        curr_parcels = SAMPLE_PARCELS.get(id, [])
+        if curr_parcels:
+            target_parcels = [
+                p for p in curr_parcels
+                if str(p.get("land_type", "private")).lower() not in ("government", "forest")
+            ] or curr_parcels
+            tot_ha = sum(float(p.get("area_ha") or 1.0) for p in target_parcels)
+            paid_ha = sum(
+                float(p.get("area_ha") or 1.0)
+                for p in target_parcels
+                if str(p.get("compensation_status", "pending")).lower() in ("disbursed", "disputed")
+            )
+            if id not in SAMPLE_COMPENSATION:
+                SAMPLE_COMPENSATION[id] = {"project_id": id, "award_amount": 15000000.0, "disbursed_amount": 0.0, "disputes": 0}
+            award = float(SAMPLE_COMPENSATION[id].get("award_amount") or 15000000.0)
+            if tot_ha > 0:
+                SAMPLE_COMPENSATION[id]["disbursed_amount"] = round((paid_ha / tot_ha) * award, 2)
+                SAMPLE_COMPENSATION[id]["amount_disbursed"] = SAMPLE_COMPENSATION[id]["disbursed_amount"]
 
     if supabase:
         try:

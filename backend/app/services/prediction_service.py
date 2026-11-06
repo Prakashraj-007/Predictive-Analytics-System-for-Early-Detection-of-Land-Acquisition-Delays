@@ -137,14 +137,14 @@ except ImportError:
     # TODO: Person B will provide core/predict.py (Task B7)
     def predict_project(features: dict) -> dict:
         # Heuristic delay risk model aligning strictly with the 15 contract features
-        score = 20
+        score = 18
         score += min(30, int((features.get("litigation_cases") or 0) * 4))
         score += min(20, int((features.get("stay_orders") or 0) * 8))
-        score += min(20, int((features.get("compensation_pending_pct") or 0) * 0.20))
+        score += min(25, int((features.get("compensation_pending_pct") or 0) * 0.25))
         score += min(15, int((features.get("approval_days_pending") or 0) * 0.1))
         score += min(15, int((features.get("encroached_area_pct") or 0) * 0.5))
         score += min(10, int((features.get("docs_incomplete_pct") or 0) * 0.15))
-        score += min(15, int(float(features.get("district_past_delay_rate") or 0.25) * 40))
+        score += min(15, int(float(features.get("district_past_delay_rate") or 0.25) * 35))
 
         # Stage delivery alignment: only penalize if critical milestones for that stage are unfulfilled
         stage = str(features.get("current_stage") or "planning").lower()
@@ -164,10 +164,15 @@ except ImportError:
         if ord_days > 14:
             score += min(10, int((ord_days - 14) * 0.5))
 
-        if float(features.get("possession_pct") or 0) > 70:
-            score -= 15
-        if float(features.get("rr_progress_pct") or 0) > 70:
-            score -= 10
+        # Proportional, continuous risk reduction for positive field execution
+        poss_ratio = poss_pct / 100.0
+        score -= int(round(poss_ratio * 16))
+
+        docs_complete_ratio = 1.0 - (docs_inc / 100.0)
+        score -= int(round(docs_complete_ratio * 6))
+
+        rr_ratio = float(features.get("rr_progress_pct") or 0.0) / 100.0
+        score -= int(round(rr_ratio * 10))
             
         risk_score = max(5, min(95, score))
         delay_prob = round(risk_score / 100.0, 2)

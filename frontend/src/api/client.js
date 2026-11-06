@@ -982,14 +982,12 @@ export const api = {
           const ratio = (amount_disbursed || 0) / award_amount;
           if (ratio >= 0.7) delta -= 15;
           else if (ratio >= 0.4) delta -= 8;
-          else if (ratio < 0.25) delta += 4;
         }
       }
       if (data.project) {
         if (data.project.current_stage) {
           const st = String(data.project.current_stage).toLowerCase();
-          if (st === 'possession') delta += 3;
-          else if (st === 'rr') delta -= 6;
+          if (st === 'rr') delta -= 6;
           else if (st === 'planning') delta -= 3;
         }
         if (data.project.rr_progress_pct > 60) delta -= 8;
@@ -1008,6 +1006,12 @@ export const api = {
       const newBand = newScore > 60 ? 'High' : newScore >= 30 ? 'Medium' : 'Low';
       const delayProbability = Math.round((newScore / 100) * 100) / 100;
       const expectedDelayDays = Math.round(newScore * 1.8);
+
+      const memIndex = inMemoryProjects.findIndex((p) => p.project_id === prjId);
+      if (memIndex !== -1) {
+        inMemoryProjects[memIndex].risk_score = newScore;
+        inMemoryProjects[memIndex].band = newBand;
+      }
 
       const newPredObject = {
         prediction_id: `PRED-${Date.now()}`,

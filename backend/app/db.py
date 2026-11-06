@@ -107,15 +107,44 @@ def fetch_project_bundle(project_id: str) -> Dict[str, Any]:
     # Fallback to stub bundle
     stub_project = next((p for p in SAMPLE_PROJECTS if p["project_id"] == project_id), None)
     if not stub_project:
-        stub_project = {**SAMPLE_PROJECTS[0], "project_id": project_id}
+        if project_id == "PRJ-0001":
+            stub_project = {**SAMPLE_PROJECTS[0], "project_id": project_id}
+        else:
+            stub_project = {
+                "project_id": project_id,
+                "name": f"Corridor {project_id}",
+                "district": "Kanchipuram",
+                "type": "highway",
+                "current_stage": "possession",
+                "land_area_ha": 30.0,
+                "budget": 100000000.0,
+                "families_affected": 40,
+                "officer_response_days": 14,
+                "status": "draft",
+            }
+
+    if project_id == "PRJ-0001":
+        return {
+            "project": stub_project,
+            "parcels": SAMPLE_PARCELS.get(project_id, SAMPLE_PARCELS.get("PRJ-0001", [])),
+            "cases": SAMPLE_CASES.get(project_id, SAMPLE_CASES.get("PRJ-0001", [])),
+            "approvals": SAMPLE_APPROVALS.get(project_id, SAMPLE_APPROVALS.get("PRJ-0001", [])),
+            "compensation": SAMPLE_COMPENSATION.get(project_id, SAMPLE_COMPENSATION.get("PRJ-0001", {})),
+            "incidents": SAMPLE_INCIDENTS.get(project_id, SAMPLE_INCIDENTS.get("PRJ-0001", []))
+        }
 
     return {
         "project": stub_project,
-        "parcels": SAMPLE_PARCELS.get(project_id, SAMPLE_PARCELS.get("PRJ-0001", [])),
-        "cases": SAMPLE_CASES.get(project_id, SAMPLE_CASES.get("PRJ-0001", [])),
-        "approvals": SAMPLE_APPROVALS.get(project_id, SAMPLE_APPROVALS.get("PRJ-0001", [])),
-        "compensation": SAMPLE_COMPENSATION.get(project_id, SAMPLE_COMPENSATION.get("PRJ-0001", {})),
-        "incidents": SAMPLE_INCIDENTS.get(project_id, SAMPLE_INCIDENTS.get("PRJ-0001", []))
+        "parcels": SAMPLE_PARCELS.get(project_id, []),
+        "cases": SAMPLE_CASES.get(project_id, []),
+        "approvals": SAMPLE_APPROVALS.get(project_id, []),
+        "compensation": SAMPLE_COMPENSATION.get(project_id, {
+            "project_id": project_id,
+            "award_amount": 15000000.0,
+            "disbursed_amount": 0.0,
+            "disputes": 0,
+        }),
+        "incidents": SAMPLE_INCIDENTS.get(project_id, [])
     }
 
 
