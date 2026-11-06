@@ -17,7 +17,7 @@
 
 ---
 
-## 🔍 The Problem — In One Sentence
+## The Problem — In One Sentence
 
 > **Indian infrastructure projects (highways, railways, canals) lose 18–36 months** to land acquisition bottlenecks that no one sees coming — until a bulldozer stops and a court notice arrives.
 
