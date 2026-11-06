@@ -68,7 +68,10 @@ except ImportError:
                     
         # Incomplete documentation pct
         if parcels:
-            incomplete_count = sum(1 for p in parcels if not p.get("doc_complete"))
+            incomplete_count = sum(
+                1 for p in parcels
+                if p.get("doc_complete") is False or (p.get("documents_verified") is False and "doc_complete" not in p)
+            )
             docs_inc_pct = round((incomplete_count / len(parcels)) * 100.0, 2)
         else:
             docs_inc_pct = 0.0
@@ -79,7 +82,14 @@ except ImportError:
         
         # Possession pct
         if parcels:
-            handed_ha = sum(float(p.get("area_ha") or 0.0) for p in parcels if p.get("possession_status") == "handed_over")
+            handed_ha = sum(
+                float(p.get("area_ha") or 0.0)
+                for p in parcels
+                if p.get("possession_status") == "handed_over"
+                or p.get("status") == "handed_over"
+                or p.get("possession_handed_over") is True
+                or p.get("possession_given") is True
+            )
             total_ha = sum(float(p.get("area_ha") or 0.0) for p in parcels)
             possession_pct = max(0.0, min(100.0, round((handed_ha / total_ha) * 100.0, 2))) if total_ha > 0 else 0.0
         else:
@@ -112,16 +122,16 @@ except ImportError:
     def predict_project(features: dict) -> dict:
         # Heuristic delay risk model aligning strictly with the 15 contract features
         score = 20
-        score += min(30, int(features.get("litigation_cases", 0) * 4))
-        score += min(20, int(features.get("stay_orders", 0) * 8))
-        score += min(20, int(features.get("compensation_pending_pct", 0) * 0.25))
-        score += min(15, int(features.get("approval_days_pending", 0) * 0.1))
-        score += min(15, int(features.get("encroached_area_pct", 0) * 0.5))
-        score += min(10, int(features.get("docs_incomplete_pct", 0) * 0.15))
-        score += min(15, int(features.get("district_past_delay_rate", 0.25) * 40))
-        if features.get("possession_pct", 0) > 70:
+        score += min(30, int((features.get("litigation_cases") or 0) * 4))
+        score += min(20, int((features.get("stay_orders") or 0) * 8))
+        score += min(20, int((features.get("compensation_pending_pct") or 0) * 0.25))
+        score += min(15, int((features.get("approval_days_pending") or 0) * 0.1))
+        score += min(15, int((features.get("encroached_area_pct") or 0) * 0.5))
+        score += min(10, int((features.get("docs_incomplete_pct") or 0) * 0.15))
+        score += min(15, int(float(features.get("district_past_delay_rate") or 0.25) * 40))
+        if float(features.get("possession_pct") or 0) > 70:
             score -= 15
-        if features.get("rr_progress_pct", 0) > 70:
+        if float(features.get("rr_progress_pct") or 0) > 70:
             score -= 10
             
         risk_score = max(5, min(95, score))
@@ -191,7 +201,7 @@ except ImportError:
                 "plain_text": f"{round(docs_inc)}% of parcels have incomplete land records."
             })
 
-        fam_affected = features.get("families_affected", 0)
+        fam_affected = int(features.get("families_affected") or 0)
         if fam_affected > 0:
             candidates.append({
                 "feature": "families_affected",
@@ -201,7 +211,7 @@ except ImportError:
                 "plain_text": f"{fam_affected} project-affected families require statutory R&R scheme formulation."
             })
 
-        land_area = features.get("land_area_ha", 0)
+        land_area = float(features.get("land_area_ha") or 0)
         if land_area >= 15:
             candidates.append({
                 "feature": "land_area_ha",
@@ -211,7 +221,7 @@ except ImportError:
                 "plain_text": f"Corridor acquisition area of {round(land_area, 1)} Ha spans multiple cadastral survey tracts."
             })
 
-        district_delay = features.get("district_past_delay_rate", 0.25)
+        district_delay = float(features.get("district_past_delay_rate") or 0.25)
         if district_delay > 0.10:
             candidates.append({
                 "feature": "district_past_delay_rate",

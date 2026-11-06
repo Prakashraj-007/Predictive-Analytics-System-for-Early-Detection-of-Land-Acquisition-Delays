@@ -224,7 +224,11 @@ export default function UpdateProject() {
         p.documents_verified !== initP.documents_verified ||
         p.compensation_status !== initP.compensation_status
       ) {
-        changedParcels.push(p);
+        changedParcels.push({
+          ...p,
+          possession_status: p.possession_handed_over ? 'handed_over' : 'pending',
+          doc_complete: Boolean(p.documents_verified),
+        });
         changedCount++;
       }
     });

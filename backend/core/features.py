@@ -187,7 +187,8 @@ def build_features(
     total_parcels: int = len(parcels)
     if total_parcels > 0:
         incomplete: int = sum(
-            1 for p in parcels if p.get("doc_complete") is False
+            1 for p in parcels
+            if p.get("doc_complete") is False or (p.get("documents_verified") is False and "doc_complete" not in p)
         )
         docs_incomplete_pct: float = _round1(incomplete / total_parcels * 100)
     else:
@@ -223,6 +224,9 @@ def build_features(
         _safe_float(p.get("area_ha"))
         for p in parcels
         if p.get("possession_status") == "handed_over"
+        or p.get("status") == "handed_over"
+        or p.get("possession_handed_over") is True
+        or p.get("possession_given") is True
     )
     if total_area > 0:
         possession_pct: float = _round1(_clip(handed_area / total_area * 100))

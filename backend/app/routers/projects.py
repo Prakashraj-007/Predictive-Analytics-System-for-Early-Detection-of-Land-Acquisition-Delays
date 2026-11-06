@@ -435,6 +435,42 @@ def update_project(
 
     now_ts = datetime.now(timezone.utc).isoformat()
 
+    # Always synchronize in-memory fallback store so predictions and queries reflect updates instantly
+    if payload.project:
+        for sp in SAMPLE_PROJECTS:
+            if sp.get("project_id") == id:
+                sp.update({k: v for k, v in payload.project.items() if k in EDITABLE_PROJECT_FIELDS})
+
+    if payload.parcels:
+        existing_parcels = SAMPLE_PARCELS.get(id, [])
+        parcel_map = {p.get("parcel_id"): p for p in existing_parcels}
+        for p in payload.parcels:
+            p_dict = dict(p)
+            if p_dict.get("possession_handed_over") is True:
+                p_dict["possession_status"] = "handed_over"
+            elif p_dict.get("possession_handed_over") is False:
+                p_dict["possession_status"] = "pending"
+            if "documents_verified" in p_dict:
+                p_dict["doc_complete"] = bool(p_dict.get("documents_verified"))
+            pid = p_dict.get("parcel_id")
+            if pid:
+                if pid in parcel_map:
+                    parcel_map[pid].update(p_dict)
+                else:
+                    parcel_map[pid] = p_dict
+        SAMPLE_PARCELS[id] = list(parcel_map.values())
+
+    if payload.cases:
+        SAMPLE_CASES[id] = [dict(c) for c in payload.cases]
+
+    if payload.approvals:
+        SAMPLE_APPROVALS[id] = [dict(a) for a in payload.approvals]
+
+    if payload.compensation:
+        if id not in SAMPLE_COMPENSATION:
+            SAMPLE_COMPENSATION[id] = {}
+        SAMPLE_COMPENSATION[id].update(dict(payload.compensation))
+
     if supabase:
         try:
             # 1. Update project editable fields
@@ -447,13 +483,26 @@ def update_project(
                 if update_data:
                     supabase.table("projects").update(update_data).eq("project_id", id).execute()
 
-            # 2. Upsert parcels if supplied (stripping any PII before persisting)
+            # 2. Upsert parcels if supplied (stripping any PII and extra keys before persisting)
             if payload.parcels:
+                allowed_parcel_cols = {
+                    "parcel_id", "project_id", "survey_no", "area_ha", "land_type",
+                    "compensation_status", "possession_status", "doc_complete", "ownership_dispute"
+                }
                 clean_parcels = []
                 for p in payload.parcels:
-                    p_rec = {k: v for k, v in dict(p).items() if k.lower() not in PII_PARCEL_FIELDS}
-                    p_rec["project_id"] = id
-                    clean_parcels.append(p_rec)
+                    p_dict = dict(p)
+                    if p_dict.get("possession_handed_over") is True:
+                        p_dict["possession_status"] = "handed_over"
+                    elif p_dict.get("possession_handed_over") is False:
+                        p_dict["possession_status"] = "pending"
+                    if "documents_verified" in p_dict:
+                        p_dict["doc_complete"] = bool(p_dict.get("documents_verified"))
+                    p_dict["project_id"] = id
+                    clean_parcels.append({
+                        k: v for k, v in p_dict.items()
+                        if k in allowed_parcel_cols and k.lower() not in PII_PARCEL_FIELDS
+                    })
                 supabase.table("parcels").upsert(clean_parcels, on_conflict="parcel_id").execute()
 
             # 3. Upsert cases if supplied
