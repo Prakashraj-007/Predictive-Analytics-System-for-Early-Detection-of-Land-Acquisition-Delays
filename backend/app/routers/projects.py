@@ -437,9 +437,15 @@ def update_project(
 
     # Always synchronize in-memory fallback store so predictions and queries reflect updates instantly
     if payload.project:
+        found = False
         for sp in SAMPLE_PROJECTS:
             if sp.get("project_id") == id:
                 sp.update({k: v for k, v in payload.project.items() if k in EDITABLE_PROJECT_FIELDS})
+                found = True
+        if not found and project:
+            updated_p = dict(project)
+            updated_p.update({k: v for k, v in payload.project.items() if k in EDITABLE_PROJECT_FIELDS})
+            SAMPLE_PROJECTS.insert(0, updated_p)
 
     if payload.parcels:
         existing_parcels = SAMPLE_PARCELS.get(id, [])

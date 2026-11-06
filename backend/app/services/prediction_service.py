@@ -129,6 +129,25 @@ except ImportError:
         score += min(15, int((features.get("encroached_area_pct") or 0) * 0.5))
         score += min(10, int((features.get("docs_incomplete_pct") or 0) * 0.15))
         score += min(15, int(float(features.get("district_past_delay_rate") or 0.25) * 40))
+
+        # Statutory stage progression weight
+        stage = str(features.get("current_stage") or "planning").lower()
+        stage_risk_weights = {
+            "planning": 0,
+            "sia": 3,
+            "notification": 5,
+            "award": 7,
+            "compensation": 8,
+            "possession": 10,
+            "rr": 2
+        }
+        score += stage_risk_weights.get(stage, 0)
+
+        # Officer response SLA turnaround
+        ord_days = int(features.get("officer_response_days") or 14)
+        if ord_days > 14:
+            score += min(10, int((ord_days - 14) * 0.5))
+
         if float(features.get("possession_pct") or 0) > 70:
             score -= 15
         if float(features.get("rr_progress_pct") or 0) > 70:
@@ -229,6 +248,24 @@ except ImportError:
                 "impact": round(min(0.16, district_delay * 0.35), 2),
                 "direction": "increases_risk",
                 "plain_text": f"Historical land acquisition delay rate in this district is {round(district_delay * 100)}%."
+            })
+
+        if stage in ("possession", "compensation", "award") and score > 35:
+            candidates.append({
+                "feature": "current_stage",
+                "label": "Statutory Stage Criticality",
+                "impact": round(min(0.18, 0.04 + stage_risk_weights.get(stage, 0) * 0.012), 2),
+                "direction": "increases_risk",
+                "plain_text": f"Project is in the critical {stage.capitalize()} phase where execution friction directly escalates timeline risk."
+            })
+
+        if ord_days > 14:
+            candidates.append({
+                "feature": "officer_response_days",
+                "label": "Administrative Turnaround Time",
+                "impact": round(min(0.15, 0.04 + (ord_days - 14) * 0.01), 2),
+                "direction": "increases_risk",
+                "plain_text": f"Officer query response SLA of {ord_days} days exceeds standard 14-day turnaround protocol."
             })
 
         stage = features.get("current_stage", "planning")
