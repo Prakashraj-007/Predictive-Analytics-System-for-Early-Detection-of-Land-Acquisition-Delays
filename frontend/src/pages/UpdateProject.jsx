@@ -83,6 +83,11 @@ export default function UpdateProject() {
     approvals: [],
   });
 
+  // Effective Reporting Cutoff Date (As-Of Date)
+  const [asOfDate, setAsOfDate] = useState(new Date().toISOString().split('T')[0]);
+  const [initialAsOfDate, setInitialAsOfDate] = useState(new Date().toISOString().split('T')[0]);
+  const [projectPlannedStart, setProjectPlannedStart] = useState('');
+
   // "Add case" row buffer
   const [newCase, setNewCase] = useState({
     parcel_id: '',
@@ -163,6 +168,11 @@ export default function UpdateProject() {
           })),
         };
 
+        const effectiveAsOf = prj.as_of_date || predRes?.as_of_date || new Date().toISOString().split('T')[0];
+        setAsOfDate(effectiveAsOf);
+        setInitialAsOfDate(effectiveAsOf);
+        setProjectPlannedStart(prj.planned_start || '');
+
         setInitialData(JSON.parse(JSON.stringify(loadedForm)));
         setFormData(loadedForm);
         setBaselinePrediction(predRes || { risk_score: 72, band: 'High' });
@@ -187,6 +197,14 @@ export default function UpdateProject() {
 
     const patchBody = {};
     let changedCount = 0;
+
+    // 0. Reporting As-Of Date
+    if (asOfDate) {
+      patchBody.as_of_date = asOfDate;
+      if (asOfDate !== initialAsOfDate) {
+        changedCount++;
+      }
+    }
 
     // 1. Project level fields
     const changedPrj = {};
@@ -283,7 +301,7 @@ export default function UpdateProject() {
     }
 
     return { changedCount, patchBody };
-  }, [formData, initialData]);
+  }, [formData, initialData, asOfDate, initialAsOfDate]);
 
   // Parcel field update helper
   const handleParcelChange = (parcelId, field, value) => {
@@ -405,6 +423,7 @@ export default function UpdateProject() {
 
       // Synchronize initial baseline data to newly saved values
       setInitialData(JSON.parse(JSON.stringify(formData)));
+      setInitialAsOfDate(asOfDate);
       setBaselinePrediction(newPrediction);
       toast.success('Project telemetry committed and risk recalculated!');
     } catch (err) {
@@ -421,6 +440,7 @@ export default function UpdateProject() {
   const handleDiscard = () => {
     if (initialData) {
       setFormData(JSON.parse(JSON.stringify(initialData)));
+      setAsOfDate(initialAsOfDate);
     }
   };
 
@@ -537,6 +557,67 @@ export default function UpdateProject() {
           {error}
         </div>
       )}
+
+      {/* ========================================================
+          EVALUATION CUTOFF / AS-OF REPORTING DATE BANNER
+          ======================================================== */}
+      <div className="peace-card p-5 bg-[#1B130E] border border-[rgba(244,217,160,0.22)] shadow-md space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono text-[#F4D9A0] uppercase tracking-wider bg-[#2E1E12] px-2 py-0.5 rounded border border-[#854D0E]">
+                STATUTORY EVALUATION DATE
+              </span>
+              {asOfDate !== initialAsOfDate && (
+                <span className="text-[10px] font-mono text-[#FDE047] bg-[#3B2816] px-1.5 py-0.5 rounded border border-[#854D0E]">
+                  MODIFIED CUTOFF
+                </span>
+              )}
+            </div>
+            <h2 className="text-base font-bold font-headline text-[#F4D9A0] mt-1">
+              Effective Reporting Cutoff Date
+            </h2>
+            <p className="text-xs text-[#C4B5A5] max-w-2xl mt-0.5">
+              AI delay risk calculations and overdue timelines (e.g. pending statutory approvals and disbursement milestones) are evaluated relative to this reporting date rather than the current system calendar.
+            </p>
+          </div>
+
+          {/* Date Picker Input & Quick Presets */}
+          <div className="flex flex-col sm:items-end gap-2 shrink-0 bg-[#140F0B] p-3 rounded-lg border border-[rgba(244,217,160,0.12)]">
+            <div className="flex items-center gap-2">
+              <label className="text-xs font-mono text-[#C4B5A5] whitespace-nowrap">
+                As-Of Date:
+              </label>
+              <input
+                type="date"
+                value={asOfDate}
+                onChange={(e) => setAsOfDate(e.target.value)}
+                className="bg-[#241B14] border border-[rgba(244,217,160,0.3)] rounded px-3 py-1.5 text-xs font-mono text-[#F4D9A0] focus:outline-none focus:border-[#C8792C]"
+              />
+            </div>
+
+            <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8E7E70]">
+              <span>Quick Presets:</span>
+              <button
+                type="button"
+                onClick={() => setAsOfDate(new Date().toISOString().split('T')[0])}
+                className="px-2 py-0.5 rounded bg-[#251B14] hover:bg-[#342419] text-[#C4B5A5] hover:text-[#F4D9A0] border border-[rgba(244,217,160,0.12)] transition-colors"
+              >
+                Today
+              </button>
+              {projectPlannedStart && (
+                <button
+                  type="button"
+                  onClick={() => setAsOfDate(projectPlannedStart)}
+                  className="px-2 py-0.5 rounded bg-[#251B14] hover:bg-[#342419] text-[#C4B5A5] hover:text-[#F4D9A0] border border-[rgba(244,217,160,0.12)] transition-colors"
+                >
+                  Planned Start ({projectPlannedStart})
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* ========================================================
           TAB NAVIGATION (4 TABS)
@@ -1356,9 +1437,12 @@ export default function UpdateProject() {
           PERSISTENT ACTION BAR
           ======================================================== */}
       <div className="peace-card p-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t-2 border-t-[#C8792C]">
-        <div className="text-xs text-[#C4B5A5] flex items-center gap-2">
+        <div className="text-xs text-[#C4B5A5] flex flex-wrap items-center gap-2">
           <span className="font-mono text-[#F4D9A0] font-bold">
             {diffPayload.changedCount} field{diffPayload.changedCount === 1 ? '' : 's'} modified
+          </span>
+          <span className="font-mono text-[#8E7E70] text-[11px] border-l border-[rgba(244,217,160,0.15)] pl-2">
+            Reporting Cutoff: <strong className="text-[#F4D9A0]">{asOfDate}</strong>
           </span>
           {diffPayload.changedCount > 0 && (
             <span className="text-[11px] text-[#8E7E70]">
@@ -1476,6 +1560,20 @@ export default function UpdateProject() {
               >
                 {resultDialog.newBand} Risk
               </span>
+            </div>
+
+            {/* Cutoff Date & Delay Forecast Metrics */}
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+              <div className="p-2.5 bg-[#16100C] border border-[rgba(244,217,160,0.1)] rounded-lg">
+                <span className="text-[#8E7E70] text-[10px] uppercase block">Cutoff Evaluated:</span>
+                <span className="text-[#F4D9A0] font-semibold">{asOfDate}</span>
+              </div>
+              <div className="p-2.5 bg-[#16100C] border border-[rgba(244,217,160,0.1)] rounded-lg">
+                <span className="text-[#8E7E70] text-[10px] uppercase block">Expected Delay:</span>
+                <span className="text-[#F87171] font-bold">
+                  about {resultDialog.newPrediction?.expected_delay_days ?? Math.round(resultDialog.newScore * 1.8)} days
+                </span>
+              </div>
             </div>
 
             {/* Banner: "Alert created: risk rose by N points" when score rose by 15+ or crossed 60 */}

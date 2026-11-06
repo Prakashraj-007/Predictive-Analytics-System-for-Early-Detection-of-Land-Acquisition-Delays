@@ -105,7 +105,8 @@ def get_project_prediction(
                     stage_probabilities=pred.get("stage_probabilities") or {},
                     drivers=pred.get("drivers") or [],
                     recommendations=pred.get("recommendations") or [],
-                    model_version=str(pred.get("model_version", "v1"))
+                    model_version=str(pred.get("model_version", "v1")),
+                    as_of_date=pred.get("as_of_date")
                 )
         except Exception as e:
             print(f"[WARN] Failed to read prediction from DB: {e}")

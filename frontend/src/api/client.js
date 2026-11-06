@@ -830,12 +830,23 @@ export const api = {
       }
 
       // 1. Update Project Level fields
+      const effectiveAsOf = data.as_of_date || data.project?.as_of_date;
+      if (effectiveAsOf) {
+        const memIdx = inMemoryProjects.findIndex((p) => p.project_id === prjId);
+        if (memIdx !== -1) {
+          inMemoryProjects[memIdx].as_of_date = effectiveAsOf;
+        }
+        if (inMemoryDetail.project?.project_id === prjId) {
+          inMemoryDetail.project.as_of_date = effectiveAsOf;
+        }
+      }
+
       if (data.project) {
         if (isSupabaseConfigured) {
           try {
             await supabase
               .from('projects')
-              .update({ ...data.project, updated_at: nowIso })
+              .update({ ...data.project, as_of_date: effectiveAsOf || undefined, updated_at: nowIso })
               .eq('project_id', prjId);
           } catch (e) {
             console.warn('Supabase project patch note:', e);
@@ -979,6 +990,7 @@ export const api = {
         band: newBand,
         delay_probability: delayProbability,
         expected_delay_days: expectedDelayDays,
+        as_of_date: effectiveAsOf || nowIso.split('T')[0],
         stage_probabilities: {
           approval: Math.min(0.9, Math.max(0.1, Math.round(newScore * 0.45) / 100)),
           compensation: Math.min(0.95, Math.max(0.15, Math.round(newScore * 0.9) / 100)),

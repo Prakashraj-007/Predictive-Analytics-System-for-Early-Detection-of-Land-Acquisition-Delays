@@ -37,7 +37,8 @@ EDITABLE_PROJECT_FIELDS = {
     "name", "type", "agency", "state", "district", "lat", "lon",
     "land_area_ha", "families_affected", "families_resettlement",
     "budget", "planned_start", "planned_end", "current_stage",
-    "rr_progress_pct", "officer_response_days"
+    "rr_progress_pct", "officer_response_days", "encroachment_area_ha",
+    "obstructions_count", "as_of_date"
 }
 
 
@@ -439,6 +440,7 @@ def update_project(
                 detail="Access forbidden: You can only update projects assigned to you."
             )
 
+    as_of = payload.as_of_date or (payload.project.get("as_of_date") if payload.project else None)
     now_ts = datetime.now(timezone.utc).isoformat()
 
     # Always synchronize in-memory fallback store so predictions and queries reflect updates instantly
@@ -447,11 +449,19 @@ def update_project(
         for sp in SAMPLE_PROJECTS:
             if sp.get("project_id") == id:
                 sp.update({k: v for k, v in payload.project.items() if k in EDITABLE_PROJECT_FIELDS})
+                if as_of:
+                    sp["as_of_date"] = as_of
                 found = True
         if not found and project:
             updated_p = dict(project)
             updated_p.update({k: v for k, v in payload.project.items() if k in EDITABLE_PROJECT_FIELDS})
+            if as_of:
+                updated_p["as_of_date"] = as_of
             SAMPLE_PROJECTS.insert(0, updated_p)
+    elif as_of:
+        for sp in SAMPLE_PROJECTS:
+            if sp.get("project_id") == id:
+                sp["as_of_date"] = as_of
 
     if payload.parcels:
         existing_parcels = SAMPLE_PARCELS.get(id, [])
@@ -486,11 +496,13 @@ def update_project(
     if supabase:
         try:
             # 1. Update project editable fields
-            if payload.project:
+            if payload.project or as_of:
                 update_data = {
-                    k: v for k, v in payload.project.items()
+                    k: v for k, v in (payload.project or {}).items()
                     if k in EDITABLE_PROJECT_FIELDS
                 }
+                if as_of:
+                    update_data["as_of_date"] = as_of
                 update_data["updated_at"] = now_ts
                 if update_data:
                     supabase.table("projects").update(update_data).eq("project_id", id).execute()
@@ -548,6 +560,6 @@ def update_project(
         details=payload.model_dump(exclude_none=True)
     )
 
-    # Trigger fresh prediction per A7 requirement
-    prediction = run_prediction(project_id=id, user_id=user.user_id)
+    # Trigger fresh prediction per A7 requirement evaluated with as_of cutoff
+    prediction = run_prediction(project_id=id, user_id=user.user_id, as_of=as_of)
     return PredictionObject(**prediction)

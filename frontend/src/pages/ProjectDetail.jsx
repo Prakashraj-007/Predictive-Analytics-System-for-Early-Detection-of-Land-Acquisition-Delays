@@ -437,6 +437,15 @@ export default function ProjectDetail() {
                   {formatPredictionDate(prediction?.created_at)}
                 </div>
               </div>
+
+              {(prediction?.as_of_date || project?.as_of_date) && (
+                <div>
+                  <span className="text-xs text-[#C4B5A5]">Effective reporting date:</span>
+                  <div className="text-xs font-mono text-[#F4D9A0] font-semibold">
+                    {prediction?.as_of_date || project?.as_of_date}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="text-[11px] font-mono text-[#8E7E70] border-t border-[rgba(244,217,160,0.08)] pt-2 flex items-center justify-between">

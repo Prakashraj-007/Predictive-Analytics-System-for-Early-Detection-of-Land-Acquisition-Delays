@@ -403,11 +403,11 @@ except ImportError:
 # Core Pipeline: run_prediction (Task A8)
 # ---------------------------------------------------------------------------
 
-def run_prediction(project_id: str, user_id: str = "system") -> Dict[str, Any]:
+def run_prediction(project_id: str, user_id: str = "system", as_of: Optional[Any] = None) -> Dict[str, Any]:
     """
     Executes the 10-step prediction pipeline for a project:
     1. Fetch bundle and district past delay rate.
-    2. Build 15 model features.
+    2. Build 15 model features (evaluated relative to effective reporting date as_of if specified).
     3. Predict project delay risk score, probabilities, and top-3 drivers.
     4. Generate recommended corrective actions for drivers.
     5. Query previous saved prediction (if any).
@@ -426,6 +426,9 @@ def run_prediction(project_id: str, user_id: str = "system") -> Dict[str, Any]:
     district = project.get("district", "Thane")
     rate = fetch_district_past_delay_rate(district)
     
+    # Determine effective reporting cutoff date
+    effective_as_of = as_of or project.get("as_of_date")
+    
     # Step 2: Build features
     features = build_features(
         project=project,
@@ -434,7 +437,8 @@ def run_prediction(project_id: str, user_id: str = "system") -> Dict[str, Any]:
         approvals=bundle.get("approvals", []),
         compensation=bundle.get("compensation", {}),
         incidents=bundle.get("incidents", []),
-        district_past_delay_rate=rate
+        district_past_delay_rate=rate,
+        as_of=effective_as_of
     )
     
     # Step 3: ML Prediction
@@ -533,11 +537,12 @@ def run_prediction(project_id: str, user_id: str = "system") -> Dict[str, Any]:
         "stage_probabilities": result["stage_probabilities"],
         "drivers": result["drivers"],
         "recommendations": recs,
-        "model_version": result.get("model_version", "v1")
+        "model_version": result.get("model_version", "v1"),
+        "as_of_date": str(effective_as_of) if effective_as_of else None,
     }
 
 
-def simulate_what_if_service(project_id: str, changes: Dict[str, Any]) -> Dict[str, Any]:
+def simulate_what_if_service(project_id: str, changes: Dict[str, Any], as_of: Optional[Any] = None) -> Dict[str, Any]:
     """
     Executes what-if simulation for a project given parameter changes.
     Does NOT save anything to the database.
@@ -548,6 +553,8 @@ def simulate_what_if_service(project_id: str, changes: Dict[str, Any]) -> Dict[s
     district = project.get("district", "Thane")
     rate = fetch_district_past_delay_rate(district)
     
+    effective_as_of = as_of or project.get("as_of_date")
+    
     features = build_features(
         project=project,
         parcels=bundle.get("parcels", []),
@@ -555,7 +562,8 @@ def simulate_what_if_service(project_id: str, changes: Dict[str, Any]) -> Dict[s
         approvals=bundle.get("approvals", []),
         compensation=bundle.get("compensation", {}),
         incidents=bundle.get("incidents", []),
-        district_past_delay_rate=rate
+        district_past_delay_rate=rate,
+        as_of=effective_as_of
     )
     
     return what_if(features, changes)

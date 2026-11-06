@@ -51,6 +51,7 @@ class ProjectPatchRequest(BaseModel):
     cases: Optional[List[Dict[str, Any]]] = None
     approvals: Optional[List[Dict[str, Any]]] = None
     compensation: Optional[Dict[str, Any]] = None
+    as_of_date: Optional[str] = None
 
 # ---------------------------------------------------------------------------
 # Prediction / What-If (Section 4 of contract)
@@ -77,6 +78,7 @@ class PredictionObject(BaseModel):
     drivers: List[DriverItem]
     recommendations: List[RecommendationItem]
     model_version: str
+    as_of_date: Optional[str] = None
 
 class WhatIfChanges(BaseModel):
     compensation_pending_pct: Optional[float] = None
