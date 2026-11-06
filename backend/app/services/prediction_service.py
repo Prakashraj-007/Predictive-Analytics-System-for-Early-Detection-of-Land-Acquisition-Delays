@@ -59,9 +59,10 @@ except ImportError:
             if a.get("status") == "pending" and a.get("planned_date"):
                 try:
                     p_date = date.fromisoformat(str(a["planned_date"])[:10])
-                    diff = (today - p_date).days
-                    if diff > max_approval_days:
-                        max_approval_days = diff
+                    if p_date < today:
+                        diff = (today - p_date).days
+                        if diff > max_approval_days:
+                            max_approval_days = diff
                 except Exception:
                     pass
                     
@@ -136,44 +137,101 @@ except ImportError:
             band = "High"
             expected_days = int(delay_prob * 190)
 
-        # 3 SHAP drivers in plain language
-        candidates = [
-            {
+        # Dynamically evaluate actual risk drivers based on non-zero project risk factors
+        candidates = []
+
+        lit_cases = features.get("litigation_cases", 0)
+        stay_orders = features.get("stay_orders", 0)
+        if lit_cases > 0:
+            candidates.append({
                 "feature": "litigation_cases",
                 "label": "Court cases",
-                "impact": round(min(0.35, max(0.08, features.get("litigation_cases", 0) * 0.04)), 2),
+                "impact": round(min(0.35, 0.08 + lit_cases * 0.04 + stay_orders * 0.08), 2),
                 "direction": "increases_risk",
-                "plain_text": f"{features.get('litigation_cases', 0)} court cases ({features.get('stay_orders', 0)} with stay orders) are a major driver of delay risk."
-            },
-            {
-                "feature": "compensation_pending_pct",
-                "label": "Compensation progress",
-                "impact": round(min(0.30, max(0.06, features.get("compensation_pending_pct", 0) * 0.003)), 2),
-                "direction": "increases_risk",
-                "plain_text": f"{round(features.get('compensation_pending_pct', 0))}% of compensation is pending disbursement."
-            },
-            {
+                "plain_text": f"{lit_cases} court cases ({stay_orders} with stay orders) are a major driver of delay risk."
+            })
+
+        appr_days = features.get("approval_days_pending", 0)
+        if appr_days > 0:
+            candidates.append({
                 "feature": "approval_days_pending",
                 "label": "Pending approvals",
-                "impact": round(min(0.25, max(0.05, features.get("approval_days_pending", 0) * 0.002)), 2),
+                "impact": round(min(0.30, 0.05 + appr_days * 0.003), 2),
                 "direction": "increases_risk",
-                "plain_text": f"Statutory approvals have been pending for {features.get('approval_days_pending', 0)} days."
-            },
-            {
+                "plain_text": f"Statutory approvals have been pending for {appr_days} days."
+            })
+
+        comp_pending = features.get("compensation_pending_pct", 0)
+        if comp_pending > 0:
+            candidates.append({
+                "feature": "compensation_pending_pct",
+                "label": "Compensation progress",
+                "impact": round(min(0.28, 0.04 + comp_pending * 0.0025), 2),
+                "direction": "increases_risk",
+                "plain_text": f"{round(comp_pending)}% of compensation is pending disbursement."
+            })
+
+        encroached = features.get("encroached_area_pct", 0)
+        if encroached > 0:
+            candidates.append({
                 "feature": "encroached_area_pct",
                 "label": "Encroached area",
-                "impact": round(min(0.20, max(0.04, features.get("encroached_area_pct", 0) * 0.004)), 2),
+                "impact": round(min(0.25, 0.04 + encroached * 0.004), 2),
                 "direction": "increases_risk",
-                "plain_text": f"{round(features.get('encroached_area_pct', 0))}% of project land area has active encroachment."
-            },
-            {
+                "plain_text": f"{round(encroached)}% of project land area has active encroachment."
+            })
+
+        docs_inc = features.get("docs_incomplete_pct", 0)
+        if docs_inc > 0:
+            candidates.append({
                 "feature": "docs_incomplete_pct",
                 "label": "Documentation gaps",
-                "impact": round(min(0.18, max(0.03, features.get("docs_incomplete_pct", 0) * 0.002)), 2),
+                "impact": round(min(0.20, 0.03 + docs_inc * 0.002), 2),
                 "direction": "increases_risk",
-                "plain_text": f"{round(features.get('docs_incomplete_pct', 0))}% of parcels have incomplete land records."
-            }
-        ]
+                "plain_text": f"{round(docs_inc)}% of parcels have incomplete land records."
+            })
+
+        fam_affected = features.get("families_affected", 0)
+        if fam_affected > 0:
+            candidates.append({
+                "feature": "families_affected",
+                "label": "Rehabilitation & Resettlement",
+                "impact": round(min(0.22, 0.05 + fam_affected * 0.0015), 2),
+                "direction": "increases_risk",
+                "plain_text": f"{fam_affected} project-affected families require statutory R&R scheme formulation."
+            })
+
+        land_area = features.get("land_area_ha", 0)
+        if land_area >= 15:
+            candidates.append({
+                "feature": "land_area_ha",
+                "label": "Corridor Scale",
+                "impact": round(min(0.18, 0.04 + (land_area - 15) * 0.002), 2),
+                "direction": "increases_risk",
+                "plain_text": f"Corridor acquisition area of {round(land_area, 1)} Ha spans multiple cadastral survey tracts."
+            })
+
+        district_delay = features.get("district_past_delay_rate", 0.25)
+        if district_delay > 0.10:
+            candidates.append({
+                "feature": "district_past_delay_rate",
+                "label": "District Historical Delay Rate",
+                "impact": round(min(0.16, district_delay * 0.35), 2),
+                "direction": "increases_risk",
+                "plain_text": f"Historical land acquisition delay rate in this district is {round(district_delay * 100)}%."
+            })
+
+        stage = features.get("current_stage", "planning")
+        if stage in ("planning", "feasibility", "requisition"):
+            candidates.append({
+                "feature": "current_stage",
+                "label": "Statutory Intake Phase",
+                "impact": 0.07,
+                "direction": "increases_risk",
+                "plain_text": "Project is in initial intake phase pending Section 4 Social Impact Assessment notification."
+            })
+
+        # Ensure we always select the top 3 drivers by actual measured impact
         sorted_drivers = sorted(candidates, key=lambda d: d["impact"], reverse=True)[:3]
 
         stage_probabilities = {
@@ -232,7 +290,11 @@ except ImportError:
         "rr_progress_pct": "Speed up resettlement site development and housing allotment.",
         "ownership_disputes": "Hold a joint hearing with the revenue officer and speed up mutation of disputed parcels.",
         "officer_response_days": "Set a file-movement time limit (e.g. 7 days) and track delays weekly.",
-        "possession_pct": "Hold a possession camp parcel by parcel with the village administration."
+        "possession_pct": "Hold a possession camp parcel by parcel with the village administration.",
+        "families_affected": "Engage designated R&R administrator to finalize rehabilitation scheme and public consultation.",
+        "land_area_ha": "Phase demarcation surveys into sub-stretches to prevent corridor-wide bottlenecks.",
+        "district_past_delay_rate": "Establish weekly inter-departmental task force with District Collector.",
+        "current_stage": "Expedite Section 4 Social Impact Assessment and gazette notification."
     }
 
     def recommend(drivers: list) -> list:
