@@ -148,7 +148,12 @@ function computeTelemetryRiskPrediction(prjId, bundle, effectiveAsOf) {
   // 3. Compensation disbursed: what % of award is disbursed?
   const award = Number(compensation.award_amount) || 0;
   const disbursed = Number(compensation.amount_disbursed || compensation.disbursed_amount) || 0;
-  const compDisbursedPct = award > 0 ? Math.min(100, Math.max(0, (disbursed / award) * 100)) : 50;
+  let compDisbursedPct = award > 0 ? Math.min(100, Math.max(0, (disbursed / award) * 100)) : 50;
+  // In statutory land acquisition, taking physical possession requires either direct disbursement
+  // or statutory award deposit with the Revenue Court / Competent Authority.
+  if (possessionPct > 0 && compDisbursedPct < possessionPct) {
+    compDisbursedPct = Math.max(compDisbursedPct, possessionPct * 0.9);
+  }
 
   // 4. Pending cases and stay orders
   const pendingCases = cases.filter((c) => c.status === 'pending' || c.status === 'stayed' || c.status === 'hearing');
@@ -165,48 +170,57 @@ function computeTelemetryRiskPrediction(prjId, bundle, effectiveAsOf) {
     }
   });
 
-  // Calculate base score:
-  // Baseline risk when starting: ~18
-  let score = 18;
+  // Base score:
+  // Baseline risk when all core hurdles are completely cleared: ~15 (Low Risk)
+  let score = 15;
 
-  // Outstanding possession penalty (0 to 35 pts)
+  // Outstanding possession penalty (0 to 38 pts)
   const unhandedRatio = (100 - possessionPct) / 100;
-  score += Math.round(unhandedRatio * 35);
+  score += Math.round(unhandedRatio * 38);
 
-  // Unverified docs penalty (0 to 14 pts)
+  // Unverified docs penalty (0 to 12 pts)
   const unverifiedRatio = (100 - docsVerifiedPct) / 100;
-  score += Math.round(unverifiedRatio * 14);
+  score += Math.round(unverifiedRatio * 12);
 
-  // Undisbursed compensation penalty (0 to 16 pts)
+  // Undisbursed compensation penalty (0 to 14 pts) - scales down as land is handed over
   const undisbursedRatio = (100 - compDisbursedPct) / 100;
-  score += Math.round(undisbursedRatio * 16);
+  score += Math.round(undisbursedRatio * 14 * Math.max(0.15, unhandedRatio));
 
   // Litigation penalty: +4 pts per pending case, +10 pts per active stay order
   score += Math.min(25, pendingCases.length * 4);
   score += Math.min(30, stayOrders * 10);
 
-  // Overdue approvals penalty
-  score += Math.min(18, Math.round(maxOverdueDays * 0.1));
+  // Overdue approvals penalty: only penalize preliminary approvals if possession is still pending
+  if (possessionPct < 85) {
+    score += Math.min(15, Math.round(maxOverdueDays * 0.08));
+  } else {
+    // If >85% handed over, legacy preliminary approval delays have been surpassed by physical handover
+    score += Math.min(3, Math.round(maxOverdueDays * 0.01));
+  }
 
-  // Current stage discount/penalty
+  // Stage adjustment: if stage is possession or rr and land handover is well underway
   const st = String(project.current_stage || '').toLowerCase();
-  if (st === 'rr' || st === 'possession') score -= 5;
+  if (possessionPct >= 80 || st === 'rr' || st === 'possession') {
+    score -= 4;
+  }
 
   const clampedScore = Math.min(95, Math.max(12, score));
   const band = clampedScore > 60 ? 'High' : clampedScore >= 30 ? 'Medium' : 'Low';
   const delayProb = Math.round((clampedScore / 100) * 100) / 100;
-  const expectedDelayDays = clampedScore <= 30 ? Math.round(clampedScore * 0.3) : Math.round(clampedScore * 1.6);
+  const expectedDelayDays = clampedScore <= 30
+    ? Math.max(5, Math.round(clampedScore * 0.4))
+    : Math.round(clampedScore * 1.5);
 
   const topDriver =
     stayOrders > 0
       ? 'Active Judicial Injunctions & Stay Orders'
-      : possessionPct < 50
-      ? 'Land Handover & Demarcation Lag'
-      : compDisbursedPct < 50
+      : possessionPct < 70
+      ? 'Land Handover & Demarcation Schedule'
+      : compDisbursedPct < 60
       ? 'Compensation Disbursement Processing'
       : maxOverdueDays > 30
       ? 'Statutory Approval Backlogs'
-      : 'Routine Administrative Clearance';
+      : 'Substantial Land Handover & Titling Clearance';
 
   return {
     prediction_id: `PRED-${prjId}-${Date.now()}`,
@@ -218,24 +232,37 @@ function computeTelemetryRiskPrediction(prjId, bundle, effectiveAsOf) {
     expected_delay_days: expectedDelayDays,
     as_of_date: effectiveAsOf || new Date().toISOString().split('T')[0],
     stage_probabilities: {
-      approval: Math.min(0.9, Math.max(0.1, Math.round(clampedScore * 0.45) / 100)),
-      compensation: Math.min(0.95, Math.max(0.15, Math.round(clampedScore * 0.85) / 100)),
-      possession: Math.min(0.95, Math.max(0.1, Math.round(clampedScore * 0.95) / 100)),
-      rr: Math.min(0.9, Math.max(0.1, Math.round(clampedScore * 0.6) / 100)),
+      approval: Math.min(0.9, Math.max(0.08, Math.round(clampedScore * 0.45) / 100)),
+      compensation: Math.min(0.95, Math.max(0.12, Math.round(clampedScore * 0.85) / 100)),
+      possession: Math.min(0.95, Math.max(0.08, Math.round(clampedScore * 0.95) / 100)),
+      rr: Math.min(0.9, Math.max(0.08, Math.round(clampedScore * 0.6) / 100)),
     },
     drivers: [
       {
-        feature: stayOrders > 0 ? 'stay_orders' : possessionPct < 50 ? 'possession_pct' : 'compensation_pending_pct',
+        feature:
+          stayOrders > 0
+            ? 'stay_orders'
+            : possessionPct < 70
+            ? 'possession_pct'
+            : 'possession_pct',
         label: topDriver,
-        impact: 0.28,
+        impact: clampedScore > 60 ? 0.28 : -0.32,
         direction: clampedScore > 60 ? 'increases_risk' : 'decreases_risk',
-        plain_text: `${topDriver} evaluated under current field telemetry.`,
+        plain_text:
+          possessionPct >= 95
+            ? '100% cadastral survey parcels handed over with titles verified; minimal remaining delay vulnerability.'
+            : `${topDriver} evaluated under current field telemetry (${Math.round(possessionPct)}% handed over).`,
       },
     ],
     recommendations: [
       {
         driver: stayOrders > 0 ? 'stay_orders' : 'possession_pct',
-        action: stayOrders > 0 ? 'File vacate stay motion before District Court' : 'Expedite field possession mutation protocols',
+        action:
+          stayOrders > 0
+            ? 'File vacate stay motion before District Court'
+            : possessionPct >= 95
+            ? 'Issue final statutory completion certificate and proceed with physical corridor groundbreaking.'
+            : 'Expedite field possession mutation protocols and physical demarcation camps.',
       },
     ],
     model_version: 'v1.2-telemetry',
@@ -585,6 +612,9 @@ export const api = {
     const predMatch = pathname.match(/^\/projects\/([^/]+)\/prediction$/);
     if (predMatch) {
       const prjId = predMatch[1];
+      const storedPreds = getStoredPredictions();
+      const localPred = storedPreds[prjId];
+
       if (isSupabaseConfigured) {
         try {
           const { data, error } = await supabase
@@ -596,6 +626,10 @@ export const api = {
             .maybeSingle();
 
           if (!error && data) {
+            // If local storage has a newer prediction from this session, prefer local
+            if (localPred && localPred.created_at && new Date(localPred.created_at) >= new Date(data.created_at)) {
+              return localPred;
+            }
             return {
               prediction_id: data.prediction_id,
               project_id: data.project_id,
@@ -622,9 +656,8 @@ export const api = {
       }
 
       // Check stored predictions first
-      const storedPreds = getStoredPredictions();
-      if (storedPreds[prjId]) {
-        return storedPreds[prjId];
+      if (localPred) {
+        return localPred;
       }
 
       // Check stored bundles and compute fresh calibrated prediction
@@ -649,6 +682,9 @@ export const api = {
     const prjDetailMatch = pathname.match(/^\/projects\/([^/]+)$/);
     if (prjDetailMatch) {
       const prjId = prjDetailMatch[1];
+      const storedBundles = getStoredBundles();
+      const localStoredBundle = storedBundles[prjId];
+
       if (isSupabaseConfigured) {
         try {
           const { data: project } = await supabase
@@ -689,42 +725,68 @@ export const api = {
               .select('*')
               .eq('project_id', prjId);
 
+            // Merge with local stored bundle so user updates are never wiped by stale read
+            const localParcels = localStoredBundle?.parcels || [];
+            const rawParcels = parcels && parcels.length > 0 ? parcels : (localParcels.length > 0 ? localParcels : inMemoryDetail.parcels);
+
+            const cleanParcels = rawParcels.map((p) => {
+              const localMatch = localParcels.find((lp) => lp.parcel_id === p.parcel_id || lp.survey_no === p.survey_no);
+              const isHanded = Boolean(
+                localMatch?.possession_handed_over ||
+                localMatch?.possession_status === 'handed_over' ||
+                localMatch?.status === 'handed_over' ||
+                p.possession_status === 'handed_over' ||
+                p.status === 'handed_over'
+              );
+              const isVerified = Boolean(
+                localMatch?.documents_verified ||
+                localMatch?.doc_complete ||
+                p.documents_verified ||
+                p.doc_complete
+              );
+              return {
+                parcel_id: p.parcel_id || localMatch?.parcel_id,
+                survey_number: p.survey_no || p.survey_number || localMatch?.survey_no,
+                survey_no: p.survey_no || p.survey_number || localMatch?.survey_no,
+                area_ha: Number(p.area_ha ?? localMatch?.area_ha ?? 1.0),
+                land_type: p.land_type || localMatch?.land_type || 'private',
+                status: isHanded ? 'handed_over' : 'pending',
+                possession_status: isHanded ? 'handed_over' : 'pending',
+                possession_handed_over: isHanded,
+                doc_complete: isVerified,
+                documents_verified: isVerified,
+                ownership_dispute: Boolean(p.ownership_dispute ?? localMatch?.ownership_dispute),
+                compensation_status: p.compensation_status || localMatch?.compensation_status || 'pending',
+              };
+            });
+
             return {
-              project,
-              parcels:
-                parcels && parcels.length > 0
-                  ? parcels.map((p) => ({
-                      parcel_id: p.parcel_id,
-                      survey_number: p.survey_no || p.survey_number,
-                      area_ha: p.area_ha,
-                      land_type: p.land_type,
-                      status: p.possession_status || 'pending',
-                      possession_status: p.possession_status || 'pending',
-                      doc_complete: Boolean(p.doc_complete),
-                      documents_verified: Boolean(p.doc_complete),
-                    }))
-                  : inMemoryDetail.parcels,
-              cases:
-                cases && cases.length > 0
-                  ? cases.map((c) => ({
-                      case_id: c.case_id,
-                      case_number: c.case_id,
-                      court: 'District Court',
-                      category: c.category,
-                      stay_order: Boolean(c.stay_order),
-                      status: c.status,
-                    }))
-                  : inMemoryDetail.cases,
-              approvals:
-                approvals && approvals.length > 0
-                  ? approvals.map((a) => ({
-                      approval_name: a.name || a.approval_name,
-                      authority: 'State Authority',
-                      planned_date: a.planned_date,
-                      status: a.status,
-                    }))
-                  : inMemoryDetail.approvals,
-              compensation: compensation || inMemoryDetail.compensation,
+              project: {
+                ...project,
+                risk_score: localStoredBundle?.project?.risk_score ?? project.risk_score,
+                band: localStoredBundle?.project?.band ?? project.band,
+                as_of_date: localStoredBundle?.project?.as_of_date ?? project.as_of_date,
+              },
+              parcels: cleanParcels,
+              cases: localStoredBundle?.cases || (cases && cases.length > 0
+                ? cases.map((c) => ({
+                    case_id: c.case_id,
+                    case_number: c.case_id,
+                    court: 'District Court',
+                    category: c.category,
+                    stay_order: Boolean(c.stay_order),
+                    status: c.status,
+                  }))
+                : inMemoryDetail.cases),
+              approvals: localStoredBundle?.approvals || (approvals && approvals.length > 0
+                ? approvals.map((a) => ({
+                    approval_name: a.name || a.approval_name,
+                    authority: 'State Authority',
+                    planned_date: a.planned_date,
+                    status: a.status,
+                  }))
+                : inMemoryDetail.approvals),
+              compensation: localStoredBundle?.compensation || compensation || inMemoryDetail.compensation,
               incidents: incidents || [],
             };
           }
@@ -734,9 +796,8 @@ export const api = {
       }
 
       // Check stored bundles from localStorage first!
-      const storedBundles = getStoredBundles();
-      if (storedBundles[prjId]) {
-        return storedBundles[prjId];
+      if (localStoredBundle) {
+        return localStoredBundle;
       }
 
       const basePrj = inMemoryProjects.find((p) => p.project_id === prjId);
@@ -1175,6 +1236,64 @@ export const api = {
       // Compute fresh, deterministic ML prediction from the updated corridor bundle
       const newPredObject = computeTelemetryRiskPrediction(prjId, currentBundle, effectiveAsOf);
       saveStoredPrediction(prjId, newPredObject);
+
+      // Dual-write sync with Supabase when configured so remote DB matches client state
+      if (isSupabaseConfigured) {
+        try {
+          // 1. Update project metrics in Supabase
+          const prjPatchData = {
+            risk_score: newPredObject.risk_score,
+            band: newPredObject.band,
+            as_of_date: effectiveAsOf,
+            updated_at: nowIso,
+          };
+          if (data.project) {
+            Object.assign(prjPatchData, data.project);
+          }
+          await supabase.from('projects').update(prjPatchData).eq('project_id', prjId);
+
+          // 2. Update parcels in Supabase
+          if (Array.isArray(data.parcels)) {
+            await Promise.all(
+              data.parcels.map(async (p) => {
+                const isHanded = Boolean(
+                  p.possession_handed_over ||
+                  p.possession_status === 'handed_over' ||
+                  p.status === 'handed_over'
+                );
+                const isVerified = Boolean(p.documents_verified || p.doc_complete);
+                const pPayload = {
+                  possession_status: isHanded ? 'handed_over' : 'pending',
+                  doc_complete: isVerified,
+                  updated_at: nowIso,
+                };
+                if (p.parcel_id) {
+                  await supabase.from('parcels').update(pPayload).eq('parcel_id', p.parcel_id);
+                } else if (p.survey_no) {
+                  await supabase.from('parcels').update(pPayload).eq('project_id', prjId).eq('survey_no', p.survey_no);
+                }
+              })
+            );
+          }
+
+          // 3. Insert fresh prediction row in Supabase
+          await supabase.from('predictions').insert([{
+            prediction_id: newPredObject.prediction_id || `PRED-${prjId}-${Date.now()}`,
+            project_id: prjId,
+            risk_score: newPredObject.risk_score,
+            band: newPredObject.band,
+            delay_probability: newPredObject.delay_probability,
+            expected_delay_days: newPredObject.expected_delay_days,
+            stage_probabilities: newPredObject.stage_probabilities,
+            drivers: newPredObject.drivers,
+            recommendations: newPredObject.recommendations,
+            model_version: newPredObject.model_version || 'v1.2-telemetry',
+            created_at: nowIso,
+          }]);
+        } catch (sbSyncErr) {
+          console.warn('[LandSentinel client] Supabase patch sync notice:', sbSyncErr);
+        }
+      }
 
       // Update inMemoryProjects list so corridor cards and lists reflect new score & band
       const pIdx = inMemoryProjects.findIndex((p) => p.project_id === prjId);

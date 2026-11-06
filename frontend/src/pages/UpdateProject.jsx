@@ -144,7 +144,10 @@ export default function UpdateProject() {
             area_ha: Number(p.area_ha || 0),
             land_type: p.land_type || 'private',
             possession_handed_over: Boolean(
-              p.status === 'handed_over' || p.possession_status === 'handed_over' || p.possession_given
+              p.possession_handed_over ||
+              p.status === 'handed_over' ||
+              p.possession_status === 'handed_over' ||
+              p.possession_given
             ),
             documents_verified: Boolean(p.documents_verified || p.doc_complete),
             compensation_status: p.compensation_status || (p.amount_disbursed && p.amount_disbursed > 0 ? 'disbursed' : 'pending'),
