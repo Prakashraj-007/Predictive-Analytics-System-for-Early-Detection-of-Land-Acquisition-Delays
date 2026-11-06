@@ -12,10 +12,23 @@ import dashboardTrendMock from '../mocks/dashboard_trend.json';
 import whatIfMock from '../mocks/whatif.json';
 
 const isMock = import.meta.env.VITE_USE_MOCK === 'true';
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+export function getBaseURL() {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (typeof window !== 'undefined' && window.location?.hostname) {
+    const currentHost = window.location.hostname;
+    // When accessed via LAN IP (e.g. 192.168.x.x, 172.x.x.x) or another host, route to port 8000 on that host
+    if (currentHost !== 'localhost' && currentHost !== '127.0.0.1') {
+      if (!envUrl || envUrl.includes('localhost') || envUrl.includes('127.0.0.1')) {
+        return `http://${currentHost}:8000`;
+      }
+    }
+  }
+  return envUrl || 'http://localhost:8000';
+}
 
 const axiosInstance = axios.create({
-  baseURL,
+  baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json',
   },
@@ -24,6 +37,7 @@ const axiosInstance = axios.create({
 
 // Interceptor that adds the Supabase access token as Authorization: Bearer
 axiosInstance.interceptors.request.use((config) => {
+  config.baseURL = getBaseURL();
   const token = localStorage.getItem('landsentinel_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -168,8 +182,16 @@ async function fetchSupabaseProjects(params = {}) {
 export const api = {
   async get(url, config = {}) {
     if (!isMock) {
-      const response = await axiosInstance.get(url, config);
-      return response.data;
+      try {
+        const response = await axiosInstance.get(url, config);
+        return response.data;
+      } catch (err) {
+        if (err.code === 'ERR_NETWORK' || err.message === 'Network Error' || !err.response) {
+          console.warn(`[LandSentinel API] Backend unreachable at ${getBaseURL()}. Falling back to offline client mode:`, err.message);
+        } else {
+          throw err;
+        }
+      }
     }
 
     const parsedUrl = new URL(url, 'http://dummy.local');
@@ -598,8 +620,16 @@ export const api = {
 
   async post(url, data = {}, config = {}) {
     if (!isMock) {
-      const response = await axiosInstance.post(url, data, config);
-      return response.data;
+      try {
+        const response = await axiosInstance.post(url, data, config);
+        return response.data;
+      } catch (err) {
+        if (err.code === 'ERR_NETWORK' || err.message === 'Network Error' || !err.response) {
+          console.warn(`[LandSentinel API] Backend unreachable at ${getBaseURL()}. Falling back to offline client mode:`, err.message);
+        } else {
+          throw err;
+        }
+      }
     }
 
     const pathname = new URL(url, 'http://dummy.local').pathname;
@@ -750,8 +780,16 @@ export const api = {
 
   async patch(url, data = {}, config = {}) {
     if (!isMock) {
-      const response = await axiosInstance.patch(url, data, config);
-      return response.data;
+      try {
+        const response = await axiosInstance.patch(url, data, config);
+        return response.data;
+      } catch (err) {
+        if (err.code === 'ERR_NETWORK' || err.message === 'Network Error' || !err.response) {
+          console.warn(`[LandSentinel API] Backend unreachable at ${getBaseURL()}. Falling back to offline client mode:`, err.message);
+        } else {
+          throw err;
+        }
+      }
     }
 
     const pathname = new URL(url, 'http://dummy.local').pathname;

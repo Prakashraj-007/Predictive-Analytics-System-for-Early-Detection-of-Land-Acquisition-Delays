@@ -33,7 +33,10 @@ export default function Login() {
       toast.success('Authenticated successfully');
       navigate(from, { replace: true });
     } catch (err) {
-      const msg = err.message || 'Authentication failed. Please verify credentials.';
+      let msg = err.message || 'Authentication failed. Please verify credentials.';
+      if (msg === 'Network Error' || err.code === 'ERR_NETWORK') {
+        msg = 'Backend server on port 8000 is not reachable. To connect to the live backend, start it with: uvicorn app.main:app --reload --app-dir backend --host 0.0.0.0 --port 8000';
+      }
       setLocalError(msg);
       toast.error(msg);
     } finally {

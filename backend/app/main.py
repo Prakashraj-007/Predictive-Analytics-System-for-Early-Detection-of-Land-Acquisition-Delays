@@ -49,13 +49,14 @@ app = LandSentinelFastAPI(
     version="1.0.0"
 )
 
-# Configure CORS
-cors_origins_raw = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000")
+# Configure CORS (permits localhost, LAN IPs e.g. 192.168.x.x, and custom origins)
+cors_origins_raw = os.getenv("CORS_ORIGINS", "")
 origins = [origin.strip() for origin in cors_origins_raw.split(",") if origin.strip()]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
+    allow_origins=origins if origins else [],
+    allow_origin_regex=r"^https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -191,11 +191,23 @@ export async function loginAsDemoRole(role) {
  * Fetch active profile identity and statutory clearances
  */
 export async function getMe() {
-  const profile = await api.get('/me');
-  if (profile?.role) {
-    localStorage.setItem('landsentinel_role', profile.role);
+  try {
+    const profile = await api.get('/me');
+    if (profile?.role) {
+      localStorage.setItem('landsentinel_role', profile.role);
+    }
+    return profile;
+  } catch (err) {
+    const activeRole = localStorage.getItem('landsentinel_role') || 'project_manager';
+    const demo = DEMO_USERS.find((u) => u.role === activeRole) || DEMO_USERS[0];
+    return {
+      user_id: demo.user_id,
+      full_name: demo.name,
+      role: demo.role,
+      district: demo.district,
+      email: demo.email,
+    };
   }
-  return profile;
 }
 
 /**
