@@ -111,3 +111,4 @@ Before any CAD file is committed to a project, LandSentinel generates a comprehe
    - Ingesting a verified CAD file completes boundary demarcation automatically.
    - Click **`Skip to Step 4 (Affected People) →`** directly from Step 2.
    - In Step 3, the interactive map displays the true CAD boundary and survey subdivisions with color-coded classifications.
+

@@ -162,14 +162,14 @@ export default function ProjectList() {
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
 
   // Component Data State
-  const [allProjects, setAllProjects] = useState([]);
+  const [rawProjects, setRawProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Local search input buffer for smooth typing
   const [searchInput, setSearchInput] = useState(searchFilter);
 
-  // Keep local search input synchronized if searchParam changes externally
+  // Keep local search input synchronized if searchParam changes externally (e.g. back button)
   useEffect(() => {
     setSearchInput(searchFilter);
   }, [searchFilter]);
@@ -206,7 +206,18 @@ export default function ProjectList() {
     });
   };
 
-  // Submit search query
+  // Debounced synchronization of local search input to URL query params
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const trimmed = searchInput.trim();
+      if (trimmed !== searchFilter) {
+        updateUrlParams({ search: trimmed, page: 1 });
+      }
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [searchInput, searchFilter, updateUrlParams]);
+
+  // Submit search query immediately
   const handleSearchSubmit = (e) => {
     if (e) e.preventDefault();
     updateUrlParams({ search: searchInput.trim(), page: 1 });
@@ -238,57 +249,20 @@ export default function ProjectList() {
     updateUrlParams({ sort: nextSort, page: 1 });
   };
 
-  // Fetch projects from backend/mock
+  // Fetch projects from backend/mock (only on mount, role change, or manual Refresh)
   const fetchProjects = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const params = {};
-      if (stateFilter) params.state = stateFilter;
-      if (districtFilter) params.district = districtFilter;
-      if (typeFilter) params.type = typeFilter;
-      if (bandFilter) params.band = bandFilter;
-      if (stageFilter) params.stage = stageFilter;
-      if (searchFilter) params.search = searchFilter;
-      if (sortParam) params.sort = sortParam;
-
-      const data = await getProjects(params);
-      let list = Array.isArray(data) ? [...data] : [];
-
-      // If backend doesn't filter text search, guarantee client-side search filtering
-      if (searchFilter) {
-        const q = searchFilter.toLowerCase();
-        list = list.filter((p) =>
-          (p.name && p.name.toLowerCase().includes(q)) ||
-          (p.project_id && p.project_id.toLowerCase().includes(q)) ||
-          (p.district && p.district.toLowerCase().includes(q)) ||
-          (p.top_driver && p.top_driver.toLowerCase().includes(q))
-        );
-      }
-
-      // If sortParam is non-risk (e.g. name_asc, district_desc, etc.), guarantee client-side sort
-      if (sortParam && !sortParam.startsWith('risk_')) {
-        const [field, dir] = sortParam.split('_');
-        list.sort((a, b) => {
-          let valA = a[field] || '';
-          let valB = b[field] || '';
-          if (field === 'stage') {
-            valA = a.current_stage || '';
-            valB = b.current_stage || '';
-          }
-          const cmp = String(valA).localeCompare(String(valB));
-          return dir === 'desc' ? -cmp : cmp;
-        });
-      }
-
-      setAllProjects(list);
+      const data = await getProjects();
+      setRawProjects(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Failed to load projects:', err);
       setError(err.message || 'Failed to retrieve projects from registry');
     } finally {
       setLoading(false);
     }
-  }, [stateFilter, districtFilter, typeFilter, bandFilter, stageFilter, searchFilter, sortParam]);
+  }, []);
 
   useEffect(() => {
     document.title = 'Projects Registry | LandSentinel';
@@ -296,7 +270,71 @@ export default function ProjectList() {
 
   useEffect(() => {
     fetchProjects();
-  }, [fetchProjects]);
+  }, [fetchProjects, role, user?.user_id, user?.district]);
+
+  // Fast, instant in-memory filtering & sorting (< 5ms response time)
+  const allProjects = useMemo(() => {
+    let list = [...rawProjects];
+
+    // Real-time search query matching
+    const query = (searchInput !== undefined ? searchInput : searchFilter).trim().toLowerCase();
+    if (query) {
+      list = list.filter((p) =>
+        (p.name && p.name.toLowerCase().includes(query)) ||
+        (p.project_id && p.project_id.toLowerCase().includes(query)) ||
+        (p.district && p.district.toLowerCase().includes(query)) ||
+        (p.top_driver && p.top_driver.toLowerCase().includes(query)) ||
+        (p.type && p.type.toLowerCase().includes(query)) ||
+        (p.state && p.state.toLowerCase().includes(query))
+      );
+    }
+
+    // State filter
+    if (stateFilter && stateFilter !== 'All States') {
+      list = list.filter((p) => p.state && p.state.toLowerCase() === stateFilter.toLowerCase());
+    }
+
+    // District filter
+    if (districtFilter && districtFilter !== 'All Districts') {
+      list = list.filter((p) => p.district && p.district.toLowerCase() === districtFilter.toLowerCase());
+    }
+
+    // Sector / Type filter
+    if (typeFilter && typeFilter !== 'All Sectors') {
+      list = list.filter((p) => p.type && p.type.toLowerCase() === typeFilter.toLowerCase());
+    }
+
+    // Risk Band filter
+    if (bandFilter && bandFilter !== 'All Risk Bands') {
+      list = list.filter((p) => p.band && p.band.toLowerCase() === bandFilter.toLowerCase());
+    }
+
+    // Acquisition Stage filter
+    if (stageFilter && stageFilter !== 'All Stages') {
+      list = list.filter((p) => p.current_stage && p.current_stage.toLowerCase() === stageFilter.toLowerCase());
+    }
+
+    // Sort order
+    if (sortParam === 'risk_desc') {
+      list.sort((a, b) => (b.risk_score || 0) - (a.risk_score || 0));
+    } else if (sortParam === 'risk_asc') {
+      list.sort((a, b) => (a.risk_score || 0) - (b.risk_score || 0));
+    } else if (sortParam) {
+      const [field, dir] = sortParam.split('_');
+      list.sort((a, b) => {
+        let valA = a[field] || '';
+        let valB = b[field] || '';
+        if (field === 'stage') {
+          valA = a.current_stage || '';
+          valB = b.current_stage || '';
+        }
+        const cmp = String(valA).localeCompare(String(valB));
+        return dir === 'desc' ? -cmp : cmp;
+      });
+    }
+
+    return list;
+  }, [rawProjects, searchInput, searchFilter, stateFilter, districtFilter, typeFilter, bandFilter, stageFilter, sortParam]);
 
   // Compute portfolio statistics for quick chips
   const stats = useMemo(() => {
@@ -474,7 +512,6 @@ export default function ProjectList() {
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              onBlur={handleSearchSubmit}
               placeholder="Search corridor by name, project ID (e.g. PRJ-0001), district or driver..."
               className="peace-input w-full pl-9 pr-8"
             />

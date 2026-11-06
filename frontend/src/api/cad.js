@@ -48,3 +48,4 @@ export async function parseCadFile(file, { sourceCrs = 'EPSG:32644', units = 'me
 export async function confirmCadParcels(payload) {
   return await api.post('/cad/confirm', payload);
 }
+
