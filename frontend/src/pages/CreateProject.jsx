@@ -202,11 +202,54 @@ export default function CreateProject() {
   // Village Tag Input buffer
   const [villageInput, setVillageInput] = useState('');
 
-  // Bulk CSV Paste Modal/Drawer State
+  // Bulk CSV Import State
   const [showCsvModal, setShowCsvModal] = useState(false);
   const [csvText, setCsvText] = useState('');
-  const [csvDefaultArea, setCsvDefaultArea] = useState(10);
-  const [csvDefaultType, setCsvDefaultType] = useState('private');
+
+  // Robust CSV / Excel Paste Parser matching the Parcels Schedule format
+  const parseCsvParcels = useCallback((text) => {
+    if (!text || !text.trim()) return [];
+
+    const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+    const parsed = [];
+
+    lines.forEach((line, idx) => {
+      const lower = line.toLowerCase();
+      // Skip header row if present
+      if (idx === 0 && (lower.includes('survey') || lower.includes('area') || lower.includes('classification'))) {
+        return;
+      }
+
+      // Detect separator: Tab (Excel paste), Semicolon, or Comma
+      const delimiter = line.includes('\t') ? '\t' : (line.includes(';') ? ';' : ',');
+      const parts = line.split(delimiter).map((p) => p.trim());
+      if (parts.length === 0 || !parts[0]) return;
+
+      const surveyNo = parts[0];
+      const areaVal = parts[1] ? parseFloat(parts[1]) : 1.0;
+      const area = !isNaN(areaVal) && areaVal > 0 ? areaVal : 1.0;
+
+      let landType = 'private';
+      if (parts[2]) {
+        const typeLower = parts[2].toLowerCase();
+        if (typeLower.includes('gov')) landType = 'government';
+        else if (typeLower.includes('for')) landType = 'forest';
+        else landType = 'private';
+      }
+
+      parsed.push({
+        survey_no: surveyNo,
+        area_ha: area,
+        land_type: landType,
+      });
+    });
+
+    return parsed;
+  }, []);
+
+  const previewCsvParcels = useMemo(() => {
+    return parseCsvParcels(csvText);
+  }, [csvText, parseCsvParcels]);
 
   // Step 3: Layout Sketch Ingestion & Interactive Vectorizer State
   const [sketchFile, setSketchFile] = useState(null);
@@ -390,31 +433,54 @@ export default function CreateProject() {
     }));
   };
 
-  // CSV Paste Bulk Import Handler
+  // CSV Bulk Import Handler
   const handleImportCsv = () => {
-    if (!csvText.trim()) return;
+    if (previewCsvParcels.length === 0) {
+      toast.error('No valid parcel rows found to import.');
+      return;
+    }
 
-    // Extract survey numbers split by commas, semicolons, or newlines
-    const rawTokens = csvText
-      .split(/[\r\n,;]+/)
-      .map((t) => t.trim())
-      .filter((t) => t.length > 0);
+    setFormData((prev) => {
+      // Remove any blank placeholder parcel rows
+      const existing = prev.parcels.filter((p) => p.survey_no && p.survey_no.trim());
+      const nextParcels = [...existing, ...previewCsvParcels];
 
-    if (rawTokens.length === 0) return;
+      // Auto-compute total land area from imported parcels if not already manually set
+      const totalArea = nextParcels.reduce((sum, p) => sum + (Number(p.area_ha) || 0), 0);
 
-    const importedParcels = rawTokens.map((surveyNo) => ({
-      survey_no: surveyNo,
-      area_ha: Number(csvDefaultArea) || 5,
-      land_type: csvDefaultType,
-    }));
+      return {
+        ...prev,
+        land_area_ha: prev.land_area_ha && Number(prev.land_area_ha) > 0 ? prev.land_area_ha : totalArea.toFixed(2),
+        parcels: nextParcels,
+      };
+    });
 
-    setFormData((prev) => ({
-      ...prev,
-      parcels: [...prev.parcels, ...importedParcels],
-    }));
-
+    toast.success(`Successfully imported ${previewCsvParcels.length} parcel schedules!`);
     setCsvText('');
     setShowCsvModal(false);
+  };
+
+  const handleCsvFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setCsvText(event.target?.result || '');
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const handleDownloadSampleCsv = () => {
+    const sample = "Survey Number,Area (Hectares),Classification\n104/1A,15.2,Private\n104/2B,8.4,Government\n105/1,12.0,Private\n106/3A,4.5,Forest\n";
+    const blob = new Blob([sample], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'parcels_schedule_sample.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Repeatable Approvals Handlers
@@ -936,9 +1002,9 @@ export default function CreateProject() {
                 type="button"
                 onClick={() => setShowCsvModal(true)}
                 className="btn-mocha text-xs font-mono"
-                title="Paste survey numbers from CSV or spreadsheet"
+                title="Paste parcels schedule from CSV or spreadsheet"
               >
-                📋 Paste CSV Survey Nos
+                📋 Import Parcels CSV
               </button>
             </div>
 
@@ -1019,13 +1085,23 @@ export default function CreateProject() {
                 <span className="font-mono text-xs uppercase text-[#F4D9A0] font-semibold">
                   Demarcated Parcels Schedule ({formData.parcels.length})
                 </span>
-                <button
-                  type="button"
-                  onClick={handleAddParcel}
-                  className="btn-mocha text-xs"
-                >
-                  + Add Parcel Row
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowCsvModal(true)}
+                    className="btn-amber text-xs font-mono flex items-center gap-1.5 shadow"
+                    title="Import parcels schedule from CSV"
+                  >
+                    📥 Import / Paste CSV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAddParcel}
+                    className="btn-mocha text-xs"
+                  >
+                    + Add Parcel Row
+                  </button>
+                </div>
               </div>
 
               {errors.parcels && <span className="text-[11px] text-[#F87171] block">{errors.parcels}</span>}
@@ -1684,18 +1760,18 @@ export default function CreateProject() {
       </div>
 
       {/* ========================================================
-          CSV BULK IMPORT MODAL FOR SURVEY NUMBERS
+          CSV BULK IMPORT MODAL FOR PARCEL SCHEDULE
           ======================================================== */}
       {showCsvModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="peace-card p-6 w-full max-w-lg bg-[#1E1611] border border-[rgba(244,217,160,0.25)] shadow-2xl rounded-lg space-y-4 text-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+          <div className="peace-card p-6 w-full max-w-xl bg-[#1E1611] border border-[rgba(244,217,160,0.25)] shadow-2xl rounded-lg space-y-4 text-xs">
             <div className="flex items-center justify-between border-b border-[rgba(244,217,160,0.12)] pb-3">
               <div>
                 <span className="text-[10px] font-mono text-[#F4D9A0] uppercase tracking-wider">
-                  Bulk Data Import
+                  Demarcated Parcels Schedule Import
                 </span>
                 <h3 className="text-base font-bold font-headline text-[#F4D9A0] mt-0.5">
-                  Paste Survey Numbers (CSV)
+                  Import Parcels CSV (Schedule Format)
                 </h3>
               </div>
               <button
@@ -1707,48 +1783,93 @@ export default function CreateProject() {
               </button>
             </div>
 
-            <p className="text-xs text-[#C4B5A5]">
-              Paste comma-separated, space-separated, or newline-separated survey numbers copied from Excel or a survey list.
-            </p>
-
-            <textarea
-              rows="5"
-              value={csvText}
-              onChange={(e) => setCsvText(e.target.value)}
-              placeholder="e.g.&#10;101/1, 101/2, 102/3A&#10;103, 104/B, 105"
-              className="peace-input w-full font-mono text-xs leading-relaxed"
-            />
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-[#C4B5A5] text-[10px] uppercase font-mono mb-1">
-                  Default Area per Parcel (Ha)
-                </label>
-                <input
-                  type="number"
-                  min="0.1"
-                  step="0.1"
-                  value={csvDefaultArea}
-                  onChange={(e) => setCsvDefaultArea(e.target.value)}
-                  className="peace-input w-full font-mono text-xs"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[#C4B5A5] text-[10px] uppercase font-mono mb-1">
-                  Default Classification
-                </label>
-                <select
-                  value={csvDefaultType}
-                  onChange={(e) => setCsvDefaultType(e.target.value)}
-                  className="peace-input w-full text-xs capitalize"
-                >
-                  <option value="private">Private</option>
-                  <option value="government">Government</option>
-                  <option value="forest">Forest</option>
-                </select>
-              </div>
+            <div className="space-y-1">
+              <p className="text-xs text-[#C4B5A5]">
+                Paste rows or upload a CSV file matching the parcels schedule format: <strong className="text-[#F3EDE2]">Survey Number, Area (Hectares), Classification</strong>.
+              </p>
+              <p className="text-[11px] text-[#8E7E70]">
+                Values for area and classification (Private, Government, Forest) are read directly from each row without any default overrides.
+              </p>
             </div>
+
+            {/* Quick Template Download & File Upload Tools */}
+            <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 bg-[#16100C] border border-[#3D2D21] rounded">
+              <label className="btn-mocha text-xs cursor-pointer flex items-center gap-1.5 py-1 px-2.5">
+                <span>📁 Upload .csv File</span>
+                <input
+                  type="file"
+                  accept=".csv,text/csv,text/plain"
+                  onChange={handleCsvFileUpload}
+                  className="hidden"
+                />
+              </label>
+
+              <button
+                type="button"
+                onClick={handleDownloadSampleCsv}
+                className="text-[11px] font-mono text-[#F4D9A0] hover:underline flex items-center gap-1"
+              >
+                <span>⬇ Download Sample CSV Template</span>
+              </button>
+            </div>
+
+            {/* Textarea for Direct Paste */}
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-[10px] uppercase font-mono text-[#C4B5A5]">
+                  CSV / Spreadsheet Content (Comma or Tab separated):
+                </label>
+                <span className="text-[10px] font-mono text-[#8E7E70]">Header row optional</span>
+              </div>
+              <textarea
+                rows="6"
+                value={csvText}
+                onChange={(e) => setCsvText(e.target.value)}
+                placeholder="Survey Number, Area (Hectares), Classification&#10;104/1A, 15.2, Private&#10;104/2B, 8.4, Government&#10;105/1, 12.0, Private&#10;106/3A, 4.5, Forest"
+                className="peace-input w-full font-mono text-xs leading-relaxed"
+              />
+            </div>
+
+            {/* Live Parsing Preview */}
+            {previewCsvParcels.length > 0 && (
+              <div className="space-y-1.5 p-3 bg-[#16100C] border border-[#255C3A] rounded">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="text-[#86EFAC] font-mono font-semibold">
+                    ✓ Parsed {previewCsvParcels.length} parcel rows
+                  </span>
+                  <span className="text-[#F4D9A0] font-mono">
+                    Total Area: {previewCsvParcels.reduce((acc, p) => acc + p.area_ha, 0).toFixed(2)} Ha
+                  </span>
+                </div>
+                <div className="max-h-28 overflow-y-auto border border-[#2A1F18] rounded">
+                  <table className="w-full text-left text-[11px] font-mono">
+                    <thead className="bg-[#201812] text-[#8E7E70] sticky top-0">
+                      <tr>
+                        <th className="py-1 px-2">#</th>
+                        <th className="py-1 px-2">Survey Number</th>
+                        <th className="py-1 px-2">Area (Ha)</th>
+                        <th className="py-1 px-2">Classification</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#2A1F18] text-[#C4B5A5]">
+                      {previewCsvParcels.slice(0, 5).map((p, i) => (
+                        <tr key={i} className="hover:bg-[#1E1611]">
+                          <td className="py-1 px-2 text-[#8E7E70]">{i + 1}</td>
+                          <td className="py-1 px-2 text-[#F3EDE2] font-semibold">{p.survey_no}</td>
+                          <td className="py-1 px-2 text-[#F4D9A0]">{p.area_ha}</td>
+                          <td className="py-1 px-2 capitalize">{p.land_type}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {previewCsvParcels.length > 5 && (
+                  <div className="text-[10px] text-[#8E7E70] italic text-right">
+                    ...and {previewCsvParcels.length - 5} more rows
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="flex items-center justify-end gap-2 pt-2 border-t border-[rgba(244,217,160,0.1)]">
               <button
@@ -1761,10 +1882,10 @@ export default function CreateProject() {
               <button
                 type="button"
                 onClick={handleImportCsv}
-                disabled={!csvText.trim()}
-                className="btn-amber text-xs font-semibold"
+                disabled={previewCsvParcels.length === 0}
+                className="btn-amber text-xs font-semibold disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5"
               >
-                Import Survey Numbers
+                <span>Import {previewCsvParcels.length > 0 ? `${previewCsvParcels.length} Parcels` : 'Parcels'}</span>
               </button>
             </div>
           </div>
